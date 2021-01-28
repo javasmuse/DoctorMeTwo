@@ -1,4 +1,8 @@
+package app;
+
 import java.io.File;
+
+import entities.Player;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -14,12 +18,17 @@ public class DoctorMeApp{
     private Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        //TODO Delegate this behavior to Game Class
         DoctorMeApp app = new DoctorMeApp();
         app.playDrMe();
 
+        //Game game = new Game();
+        //game.start()
+
     }
+
     public void playDrMe() {
-        System.out.println("Hello Player, What is you name?");
+        System.out.println("Hello model.Player, What is you name?");
         String playerName = sc.nextLine();
 
         System.out.println("Test: the players name is:  " + playerName);
@@ -28,7 +37,7 @@ public class DoctorMeApp{
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
-            File inputFile = new File("../resources/test.xml");
+            File inputFile = new File("resources/test.xml");
             Document doc = db.parse(inputFile);
             doc.getDocumentElement().normalize();
             System.out.println("Root Element:  " + doc.getDocumentElement().getNodeName());
