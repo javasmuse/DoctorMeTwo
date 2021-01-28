@@ -2,11 +2,10 @@ package app;
 
 import entities.Threat;
 
-import java.util.List;
+import java.util.Collection;
+
 
 public class XMLController {
-
-
 
     private String xmlFileName;
 
@@ -16,12 +15,12 @@ public class XMLController {
 
     // read xml, not sure if this is needed, maybe just use as private
     public void readXML(String fileName){
-
+        // push into collection
     }
 
 
     // Parse entities
-    public List<Threat> parseXML(){
+    public Collection<Threat> parseXML(){
         //readXML(this.filename)
         return null;
     }

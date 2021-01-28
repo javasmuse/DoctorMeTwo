@@ -16,6 +16,18 @@ public class Game {
 
     }
 
+    public void play(){
+
+    }
+
+    public void playAgain(){
+
+    }
+
+    private boolean didPlayerWin(){
+        return false;
+    }
+
     public Player getPlayer() {
         return player;
     }

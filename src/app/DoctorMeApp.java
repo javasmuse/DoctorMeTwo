@@ -18,6 +18,8 @@ public class DoctorMeApp{
     private Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+
         //TODO Delegate this behavior to Game Class
         DoctorMeApp app = new DoctorMeApp();
         app.playDrMe();
@@ -59,4 +61,17 @@ public class DoctorMeApp{
 
 
     }
+
+    public void into(){
+
+    }
+
+    public void getUserInput(){
+
+    }
+
+    public void getXML(){
+
+    }
+
 }
