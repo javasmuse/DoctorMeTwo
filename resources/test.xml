@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-    <list>
-        <disease>
-            <name>e coli</name>
-            <question>some gut question</question>
-            <points>50</points>
-        </disease>
+<list>
+    <disease>
+        <name>e coli</name>
+        <question>some gut question</question>
+        <points>50</points>
+    </disease>
     <disease>
         <name>samonelia</name>
         <question>another gut question</question>
