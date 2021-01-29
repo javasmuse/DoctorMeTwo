@@ -3,6 +3,7 @@ package app;
 import java.io.File;
 
 //import app.XMLController;
+import entities.Player;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -30,6 +31,7 @@ public class DoctorMeApp{
             "The floor bubbling with acid, you realize you're in the stomach.\n" +
             "What discoveries await as you explore the inner-workings of the human body?";
 
+    private final int WINNING_POINTS_REQUIRED = 100;
     private int HEALTHVALUE = 100; // initiates health value
     public static final String BOLD_RED = "\033[1;91m";
     //private Player player;
@@ -47,16 +49,47 @@ public class DoctorMeApp{
 
         System.out.println("Hello model.Player, What is you name?");
         String playerName = sc.nextLine().strip();
+
         // initialize player
-        //player(String playerName, int HEALTHVALUE);
+        Player player = new Player(playerName, HEALTHVALUE);
+
+        // Create the game object, passing in one player with "normal"
+        // difficulty represented as 50
+        Game game = new Game(player, 50);
 
         // Display game introduction related information
         System.out.println("Hello welcome to Dr Me "+ BOLD_RED + playerName );
         System.out.println(GAME_INTRODUCTION);
         System.out.println(GAME_INTRODUCTION_TWO);
+
+        // Read in the XML file
         XMLController xmlc = new XMLController();
         xmlc.readXML();
 
+        // game loop - possibly delegate to game object
+        //while(!isWin(WINNING_POINTS_REQUIRED)){
+            // do a game turn
+            //user input
+            //fight cell
+
+            //After each fight, check player health
+            // to see if player died
+            // If so, game over
+            // if player died => end game
+
+            //end turn actions
+        //}
+
+    }
+
+    private boolean isWin(Player player, int requiredPoints){
+//        if(player.getPoints() >= requiredPoints){
+//            return true;
+//        } else {
+//            return false;
+//        }
+        // return false so Java compiles for now
+        return false;
     }
 
 //    public void into(){
