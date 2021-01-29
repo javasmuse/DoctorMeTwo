@@ -12,19 +12,19 @@ public class Game {
         this.difficulty = difficulty;
     }
 
-    public void start(){
+    public void start() {
 
     }
 
-    public void play(){
+    public void play() {
 
     }
 
-    public void playAgain(){
+    public void playAgain() {
 
     }
 
-    private boolean didPlayerWin(){
+    private boolean didPlayerWin() {
         return false;
     }
 

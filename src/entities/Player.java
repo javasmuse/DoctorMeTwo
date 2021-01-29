@@ -1,6 +1,6 @@
 package entities;
 
-public class Player{
+public class Player {
 
     private String name;
     private int health;
@@ -28,6 +28,6 @@ public class Player{
 
     @Override
     public String toString() {
-        return "model.Player's name is: " + name ;
+        return "model.Player's name is: " + name;
     }
 }

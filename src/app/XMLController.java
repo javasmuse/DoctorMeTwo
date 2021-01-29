@@ -4,16 +4,18 @@ package app;
 
 import java.util.Collection;
 import java.io.File;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import java.util.*;
 
 public class XMLController {
-   // XMLController xmlc = new XMLController();
+    // XMLController xmlc = new XMLController();
 
     private List<Object> diseases = new ArrayList<>();
 
@@ -21,8 +23,9 @@ public class XMLController {
 
     public XMLController() {
     }
+
     // read xml, not sure if this is needed, maybe just use as private
-    public void readXML(){
+    public void readXML() {
         // push into collection
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -48,7 +51,6 @@ public class XMLController {
         }
 
 
-
     }
     // Parse entities
 //    public Collection<Threat> parseXML(){
@@ -61,7 +63,6 @@ public class XMLController {
 //    public void setXmlFileName(String xmlFileName) {
 //        this.xmlFileName = xmlFileName;
 //    }
-
 
 
 }
