@@ -12,7 +12,7 @@ public abstract class Threat {
 
     public abstract void attack(Player player);
 
-    public void deductHealth(int amount){
+    public void deductHealth(int amount) {
         this.health -= amount;
     }
 
