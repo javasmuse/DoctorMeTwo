@@ -21,7 +21,6 @@ public class XMLController {
     //private Disease disease;
     private ArrayList<Disease> diseases = new ArrayList<>();
 
-    private List<Object> diseases = new ArrayList<>();
 
     private String xmlFileName;
    // private Disease ArrayList;
@@ -42,7 +41,6 @@ public class XMLController {
         String correctAnswer;
         int points;
 
-    public void readXML() {
         // push into collection
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
