@@ -2,25 +2,24 @@ package app;
 
 import entities.Player;
 import entities.Disease;
+import util.Colors;
+import util.GameConstants;
+import util.Output;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Game {
 
     private Player player;
     private int difficulty;
+    int id = UUID.randomUUID().hashCode();
     private Scanner sc = new Scanner(System.in);
 
     public Game(Player player, int difficulty) {
         this.player = player;
         this.difficulty = difficulty;
-
-    }
-
-
-    public void start() {
-
     }
 
 
@@ -55,19 +54,39 @@ public class Game {
 
         }
     }
-    public void playAgain() {
 
+    public void playIntroduction(String playerName) throws InterruptedException {
+        // Display game introduction related information
+        Output.printColor("Hello welcome to Dr Me ", Colors.ANSI_RED, false);
+        Output.printColor(playerName, Colors.ANSI_RED, true);
+
+        // Prints a loading display sequence
+        Output.printLoading(3);
+
+        // Start printing the games story
+        Output.printColor(GameConstants.GAME_INTRODUCTION, Colors.ANSI_BLUE, true);
+
+        Output.printLoading(5);
+
+        Output.printColor(GameConstants.GAME_INTRODUCTION_TWO, Colors.ANSI_BLUE, true);
+
+        Output.printLoading(5);
     }
 
-    private boolean didPlayerWin() {
-        return false;
+    private boolean isWin(Player player, int requiredPoints) {
+        if(player.getPointsByGameId(this.id) >= requiredPoints){
+            return true;
+        } else {
+            return false;
+        }
     }
+
 
     public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    private void setPlayer(Player player) {
         this.player = player;
     }
 
@@ -75,7 +94,11 @@ public class Game {
         return difficulty;
     }
 
-    public void setDifficulty(int difficulty) {
+    private void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public int getId() {
+        return id;
     }
 }
