@@ -2,6 +2,7 @@ package app;
 
 import entities.Disease;
 import entities.Player;
+import entities.Word;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -34,8 +35,11 @@ public class DoctorMeApp {
     private Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        DoctorMeApp app = new DoctorMeApp();
-        app.playDrMe();
+      //  XMLController xc = new XMLController();
+      //  xc.readWordXML();
+       // DoctorMeApp app = new DoctorMeApp();
+       // app.playDrMe();
+      //  System.out.println(Word.wordList.size()+"  the wordList");
 
     }
 
