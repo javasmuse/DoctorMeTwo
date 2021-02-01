@@ -5,47 +5,45 @@ import java.util.List;
 
 public class Commands {
 
-    public static void handleCommand(String command) {
+    public static void handleCommand(String command, String location) {
         // Get args and set flag
-        boolean argsFound = false;
         List<String> args = Arrays.asList(command.split("\\s+").clone());
         args.stream().map(String::toLowerCase);
         String firstCommand = args.get(0);
-        int numArgs = args.size() - 1;
-        if ( numArgs > 0){
-            System.out.println("Entered args: " + args.toString());
-            argsFound = true;
-        }
 
         try {
-            handleValidCommand(argsFound, args, firstCommand);
+            handleValidCommand(args, firstCommand, location);
 
         }
         catch (ArrayIndexOutOfBoundsException e ){
             System.out.println("Please enter subsequent arguments for " + firstCommand);
-            help();
+            helpWithCommandUsage();
             // Need to get user input again
         }
 
     }
 
-    private static void handleValidCommand(boolean argsFound, List<String> args, String firstCommand) {
+    private static void handleValidCommand(
+            List<String> args,
+            String firstCommand,
+            String currentLocation
+                                           ) {
         if(firstCommand.equals("help")){
-            help();
+            help(currentLocation);
         } else {
             // Send to appropriate command
+            String commandArg = args.get(1);
             switch(firstCommand){
                 //TODO Handle synonyms for the commands
                 case "get":
-                    get(args.get(1), argsFound);
+                    get(commandArg);
                     break;
                 case "move":
                     //TODO Also handle 'walk' or 'go' etc.
-                    System.out.println("Moving somewhere");
+                    move(commandArg);
                     break;
-
                 case "hint":
-                    System.out.println("Giving you a hint");
+                    hint();
                     break;
                 default:
                     System.out.println("Bad command entered");
@@ -54,19 +52,24 @@ public class Commands {
         }
     }
 
-    private static void help() {
-        System.out.println("Player asked for help");
+    private static void help(String location) {
+        System.out.println("Player asked for general help");
+        System.out.println("Player is currently located at " + location);
     }
 
-    private static void get(String item, boolean argFound) {
-        System.out.println("Player asked for help");
+    private static void helpWithCommandUsage() {
+        System.out.println("Valid commands are: move, hint, get <item>");
+    }
 
-
+    private static void get(String item) {
+        System.out.println("Player asked to get a " + item);
     }
 
     private static void hint() {
         System.out.println("Player asked for a hint");
-
     }
 
+    private static void move(String direction) {
+        System.out.println("Player asked to move " + direction);
+    }
 }

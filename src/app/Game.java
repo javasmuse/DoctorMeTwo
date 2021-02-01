@@ -32,12 +32,12 @@ public class Game {
         while (score > 0) {
             // here we present scenerio and let the Dr fight the diseases
             for (int round = 0; round < diseaseList.size(); round++) {
-
-                System.out.println("You find yourself in the:  " + diseaseList.get(round).location);
+                String location = diseaseList.get(round).getLocation();
+                System.out.println("You find yourself in the:  " + location);
                 System.out.println("Where you find:  " + diseaseList.get(round).description);
                 System.out.println(diseaseList.get(round).question + "\n >>");
                 userAnswer = sc.nextLine().strip();
-                Commands.handleCommand(userAnswer);
+                Commands.handleCommand(userAnswer, location);
 
 
 
