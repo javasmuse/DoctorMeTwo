@@ -10,14 +10,13 @@ public class Game {
 
     private Player player;
     private int difficulty;
-    private  ArrayList<Disease> diseaseList;
     private Scanner sc = new Scanner(System.in);
 
-//    public Game(Player player, int difficulty, ArrayList<Disease> diseasesList) {
-//        this.player = player;
-//        this.difficulty = difficulty;
-//
-//    }
+    public Game(Player player, int difficulty) {
+        this.player = player;
+        this.difficulty = difficulty;
+
+    }
 
 
     public void start() {
@@ -37,7 +36,11 @@ public class Game {
                 System.out.println("Where you find:  " + diseaseList.get(round).description);
                 System.out.println(diseaseList.get(round).question + "\n >>");
                 userAnswer = sc.nextLine().strip();
-                Commands.handleCommand(userAnswer, location);
+
+                boolean isValidInput = Commands.handleCommand(userAnswer, location);
+                if(!isValidInput){
+                    continue;
+                }
 
 
 

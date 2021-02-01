@@ -53,15 +53,19 @@ public class DoctorMeApp {
         // initialize player
         Player player = new Player(playerName, HEALTHVALUE);
 
-        // Create the game object, passing in one player with "normal"
-        // difficulty represented as 50
-        Game game = new Game();
+
 
         // Display game introduction related information
         System.out.println("Hello welcome to Dr Me " + BOLD_RED + playerName + RESET);
         System.out.println("Hello welcome to Dr Me " + BOLD_RED + playerName);
         System.out.println(GAME_INTRODUCTION);
         System.out.println(GAME_INTRODUCTION_TWO);
+
+
+        // Create the game object, passing in one player with "normal"
+        // difficulty represented as 50
+        Game game = new Game(player, DIFFICULTY);
+
 
         // Read in the XML file
         XMLController xmlc = new XMLController();
@@ -81,17 +85,9 @@ public class DoctorMeApp {
         return false;
     }
 
-//    public void into(){
-//
-//    }
-//
     private String getUserInput(){
         System.out.println("Enter a command: ");
         return sc.nextLine().strip();
     }
-//
-//    public void getXML(){
-//
-//    }
 
 }
