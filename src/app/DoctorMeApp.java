@@ -2,6 +2,14 @@ package app;
 
 import entities.Disease;
 import entities.Player;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import java.util.Scanner;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,6 +32,21 @@ public class DoctorMeApp {
                     "As you look around, you notice the walls have many folds--rugae, perhaps?\n" +
                     "The floor bubbling with acid, you realize you're in the stomach.\n" +
                     "What discoveries await as you explore the inner-workings of the human body?\n";
+    private final String GAME_INTRODUCTION =
+            "Doctor Me needs your help!\n" +
+                    "You are on a mission to save the body\n" +
+                    "Here are some tips on how to play...\n" +
+                    "Commands:\n" +
+                    "HELP - displays more information on commands\n" +
+                    "HINT - gives you a hint on what to do next\n" +
+                    "GET <item> - gets the item from your inventory to see if its useful\n" +
+                    "INVENTORY - displays the items you have";
+
+    private final String GAME_INTRODUCTION_TWO =
+            "The walls shake as the roar of borborygmus envelops the room.\n" +
+                    "As you look around, you notice the walls have many folds--rugae, perhaps?\n" +
+                    "The floor bubbling with acid, you realize you're in the stomach.\n" +
+                    "What discoveries await as you explore the inner-workings of the human body?";
 
     private final int WINNING_POINTS_REQUIRED = 100;
     private int HEALTHVALUE = 100; // initiates health value
@@ -51,6 +74,7 @@ public class DoctorMeApp {
 
         // Display game introduction related information
         System.out.println("Hello welcome to Dr Me " + BOLD_RED + playerName + RESET);
+        System.out.println("Hello welcome to Dr Me " + BOLD_RED + playerName);
         System.out.println(GAME_INTRODUCTION);
         System.out.println(GAME_INTRODUCTION_TWO);
 
@@ -65,6 +89,13 @@ public class DoctorMeApp {
         //user input
         //fight cell
 
+
+        while(!isWin(player, WINNING_POINTS_REQUIRED)){
+        // do a game turn
+        //user input
+        //fight cell
+            String command = getUserInput();
+            Commands.handleCommand(command);
         //After each fight, check player health
         // to see if player died
         // If so, game over
@@ -72,6 +103,7 @@ public class DoctorMeApp {
 
         //end turn actions
         //}
+        }
 
     }
 
@@ -89,9 +121,10 @@ public class DoctorMeApp {
 //
 //    }
 //
-//    public void getUserInput(){
-//
-//    }
+    private String getUserInput(){
+        System.out.println("Enter a command: ");
+        return sc.nextLine().strip();
+    }
 //
 //    public void getXML(){
 //
