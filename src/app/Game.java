@@ -10,14 +10,13 @@ public class Game {
 
     private Player player;
     private int difficulty;
-    private  ArrayList<Disease> diseaseList;
     private Scanner sc = new Scanner(System.in);
 
-//    public Game(Player player, int difficulty, ArrayList<Disease> diseasesList) {
-//        this.player = player;
-//        this.difficulty = difficulty;
-//
-//    }
+    public Game(Player player, int difficulty) {
+        this.player = player;
+        this.difficulty = difficulty;
+
+    }
 
 
     public void start() {
@@ -25,30 +24,37 @@ public class Game {
     }
 
 
-    public void play(int healthValue, ArrayList<Disease> diseaseList) {
+    public void play(int winningPointsRequired, int healthValue, ArrayList<Disease> diseaseList) {
         int score = healthValue;
-         String userAnswer;
+        String userAnswer;
 
-        while (score > 0){
+        while (score > 0) {
             // here we present scenerio and let the Dr fight the diseases
-            for(int round = 0; round < diseaseList.size(); round++ ){
-
-                System.out.println("You find yourself in the:  "+ diseaseList.get(round).location);
-                System.out.println("Where you find:  "+ diseaseList.get(round).description);
-                System.out.println(diseaseList.get(round).question+"\n >>");
+            for (int round = 0; round < diseaseList.size(); round++) {
+                String location = diseaseList.get(round).getLocation();
+                System.out.println("You find yourself in the:  " + location);
+                System.out.println("Where you find:  " + diseaseList.get(round).description);
+                System.out.println(diseaseList.get(round).question + "\n >>");
                 userAnswer = sc.nextLine().strip();
+
+                boolean isValidInput = Commands.handleCommand(userAnswer, location);
+                if(!isValidInput){
+                    continue;
+                }
+
+
+
                 // for test purposes we will print the user Answer
-                System.out.println(userAnswer+"  is what the player entered");
+                System.out.println(userAnswer + "  is what the player entered");
                 // TODO some logic with the answer
                 // TODO verify if win/lose
-
+//stick answer into array to iterate through, basically to handle command and arguments
+                //implement hint
+                //
             }
 
         }
-    public void play() {
-
     }
-
     public void playAgain() {
 
     }

@@ -16,15 +16,10 @@ import entities.Disease;
 import app.Game;
 
 public class XMLController {
-    // XMLController xmlc = new XMLController();
-    Game game = new Game();
-    //private Disease disease;
+
     private ArrayList<Disease> diseases = new ArrayList<>();
-
-    private List<Object> diseases = new ArrayList<>();
-
     private String xmlFileName;
-   // private Disease ArrayList;
+
 
     public XMLController() {
     }
@@ -42,7 +37,6 @@ public class XMLController {
         String correctAnswer;
         int points;
 
-    public void readXML() {
         // push into collection
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
