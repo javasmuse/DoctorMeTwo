@@ -2,9 +2,6 @@ package util;
 
 public class Colors {
 
-    public static final String BOLD_RED = "\033[1;91m";
-    public static final String BOLD_YELLOW = "\033[1;91m";
-
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";

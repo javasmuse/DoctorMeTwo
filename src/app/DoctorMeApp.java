@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import util.Colors;
+import util.Output;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -41,13 +42,13 @@ public class DoctorMeApp {
 
     private Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         DoctorMeApp app = new DoctorMeApp();
         app.playDrMe();
 
     }
 
-    public void playDrMe() {
+    public void playDrMe() throws InterruptedException {
         System.out.println("Hello model.Player, What is you name?"+"\n >>");
         String playerName = sc.nextLine().strip();
         // initialize player
@@ -56,10 +57,19 @@ public class DoctorMeApp {
 
 
         // Display game introduction related information
-        System.out.println("Hello welcome to Dr Me " + Colors.BOLD_RED + playerName + RESET);
-        System.out.println("Hello welcome to Dr Me " + Colors.BOLD_RED + playerName);
-        System.out.println(GAME_INTRODUCTION);
-        System.out.println(GAME_INTRODUCTION_TWO);
+        Output.printColor("Hello welcome to Dr Me ", Colors.ANSI_RED, false);
+        Output.printColor(playerName, Colors.ANSI_RED, true);
+
+        Output.printLoading(3);
+
+        Output.printColor(GAME_INTRODUCTION, Colors.ANSI_BLUE, true);
+
+        Output.printLoading(5);
+
+        Output.printColor(GAME_INTRODUCTION_TWO, Colors.ANSI_BLUE, true);
+
+        Output.printLoading(5);
+
 
 
         // Create the game object, passing in one player with "normal"
