@@ -6,6 +6,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+import util.Colors;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -36,7 +37,6 @@ public class DoctorMeApp {
     private final int WINNING_POINTS_REQUIRED = 100;
     private int HEALTHVALUE = 100; // initiates health value
     private int DIFFICULTY = 50;
-    public static final String BOLD_RED = "\033[1;91m";
     public static final String RESET = "\033[0m";
 
     private Scanner sc = new Scanner(System.in);
@@ -56,8 +56,8 @@ public class DoctorMeApp {
 
 
         // Display game introduction related information
-        System.out.println("Hello welcome to Dr Me " + BOLD_RED + playerName + RESET);
-        System.out.println("Hello welcome to Dr Me " + BOLD_RED + playerName);
+        System.out.println("Hello welcome to Dr Me " + Colors.BOLD_RED + playerName + RESET);
+        System.out.println("Hello welcome to Dr Me " + Colors.BOLD_RED + playerName);
         System.out.println(GAME_INTRODUCTION);
         System.out.println(GAME_INTRODUCTION_TWO);
 

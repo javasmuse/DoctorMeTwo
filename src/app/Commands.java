@@ -1,5 +1,7 @@
 package app;
 
+import util.Colors;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,7 +86,7 @@ public class Commands {
     }
 
     private static void helpWithCommandUsage() {
-        System.out.println("Valid commands are: move, hint, get <item>");
+        System.out.println("Valid commands are: move, hint, get <item>" + Colors.ANSI_YELLOW);
     }
 
     private static void get(String item) {
