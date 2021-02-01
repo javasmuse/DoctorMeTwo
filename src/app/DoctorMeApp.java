@@ -65,30 +65,9 @@ public class DoctorMeApp {
 
         // Read in the XML file
         XMLController xmlc = new XMLController();
-        game.play(HEALTHVALUE, xmlc.readXML());
+        game.play(WINNING_POINTS_REQUIRED, HEALTHVALUE, xmlc.readXML());
 
 
-        // game loop - possibly delegate to game object
-        //while(!isWin(WINNING_POINTS_REQUIRED)){
-        // do a game turn
-        //user input
-        //fight cell
-
-
-        while(!isWin(player, WINNING_POINTS_REQUIRED)){
-        // do a game turn
-        //user input
-        //fight cell
-            String command = getUserInput();
-            Commands.handleCommand(command);
-        //After each fight, check player health
-        // to see if player died
-        // If so, game over
-        // if player died => end game
-
-        //end turn actions
-        //}
-        }
 
     }
 

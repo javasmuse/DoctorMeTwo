@@ -25,7 +25,7 @@ public class Game {
     }
 
 
-    public void play(int healthValue, ArrayList<Disease> diseaseList) {
+    public void play(int winningPointsRequired, int healthValue, ArrayList<Disease> diseaseList) {
         int score = healthValue;
         String userAnswer;
 
@@ -37,11 +37,17 @@ public class Game {
                 System.out.println("Where you find:  " + diseaseList.get(round).description);
                 System.out.println(diseaseList.get(round).question + "\n >>");
                 userAnswer = sc.nextLine().strip();
+                Commands.handleCommand(userAnswer);
+
+
+
                 // for test purposes we will print the user Answer
                 System.out.println(userAnswer + "  is what the player entered");
                 // TODO some logic with the answer
                 // TODO verify if win/lose
-
+//stick answer into array to iterate through, basically to handle command and arguments
+                //implement hint
+                //
             }
 
         }
