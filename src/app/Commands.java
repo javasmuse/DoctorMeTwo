@@ -1,12 +1,19 @@
 package app;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import util.Colors;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Commands {
+    private static HashMap<String, List<String>> wordList = new HashMap<>();
 
     // Starting point of handling commands
     // Command is the raw user input
@@ -99,5 +106,51 @@ public class Commands {
 
     private static void move(String direction) {
         System.out.println("Player asked to move " + direction);
+    }
+
+    public static String wordMatch(String wordSent){
+        String input = wordSent;
+        String result="";
+        for(Map.Entry<String, List<String>> entry : wordList.entrySet()){
+            if(entry.getValue().contains(wordSent)){
+                result = entry.getKey();
+            }
+            else {
+                result= "No Match";
+            }
+        }
+        return result;
+    }
+
+    public static void loadWordXMLfile(){
+        List<String> tempArr = new ArrayList<>();
+
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            File inputFile = new File("resources/Word.xml");
+            Document doc = db.parse(inputFile);
+            doc.getDocumentElement().normalize();
+
+            NodeList nodeList = doc.getElementsByTagName("verb");
+            NodeList nodeList2 = doc.getElementsByTagName("synonym");
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) node;
+                    String action = eElement.getElementsByTagName("action").item(0).getTextContent();
+                    String synonym = eElement.getElementsByTagName("synonym").item(0).getTextContent();
+                    // TODO seperate synonym into pars breaking on comma, then add to tempArr, the put into HashMap
+                    tempArr = Arrays.asList(synonym.split(","));
+                    wordList.put(action, tempArr);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // XXX this is a test to be removed
+       // System.out.println(wordList+"  wordList TEST");
+
     }
 }

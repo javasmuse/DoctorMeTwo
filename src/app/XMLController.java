@@ -44,7 +44,7 @@ public class XMLController {
             File inputFile = new File("resources/Disease.xml");
             Document doc = db.parse(inputFile);
             doc.getDocumentElement().normalize();
-           // System.out.println("Root Element:  " + doc.getDocumentElement().getNodeName());
+            // System.out.println("Root Element:  " + doc.getDocumentElement().getNodeName());
             nodeList = doc.getElementsByTagName("disease");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -67,8 +67,8 @@ public class XMLController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-       // System.out.println(diseases);
-       // System.out.println("\n\n"+ diseases.get(0).name + " array 0 name");     this was a test
+        // System.out.println(diseases);
+        // System.out.println("\n\n"+ diseases.get(0).name + " array 0 name");     this was a test
 //        System.out.println(diseases+"  at line 74");
 //        System.out.println(threat.getDiseaseList().size() + " list size at line 71");
 //        threat.setDiseaseList( diseases);
