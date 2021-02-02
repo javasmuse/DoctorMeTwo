@@ -1,21 +1,42 @@
 package entities;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class Player {
+public class Player extends CombatEntity {
 
     private String name;
-    private int health;
-    private HashMap<Integer, Integer> pointsByGameId;
+    private int points;
 
-    public Player(String name, int health) {
+    public Player(){
+        super(100, 50);
+    }
+
+    public Player(String name) {
+        this();
         setName(name);
-        setHealth(health);
-        setPointsByGameId();
+        setPoints(0);
+    }
+
+    @Override
+    public boolean attack(CombatEntity threat) {
+        threat.deductHealth(this.getStrength());
+        if(threat.getHealth() < 1){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String getName() {
         return name;
+    }
+
+    public boolean addPoints(int gameId, int newPoints) {
+        // Look up game Id to get appropriate points
+        int currPoints = getPoints();
+        this.points += (currPoints + newPoints);
+        return true;
     }
 
     private void setName(String name) {
@@ -30,23 +51,27 @@ public class Player {
         this.health = health;
     }
 
-    public boolean addPoints(int gameId, int newPoints) {
-        // Look up game Id to get appropriate points
-        int currPoints = getPointsByGameId(gameId);
-        this.pointsByGameId.put(gameId, currPoints + newPoints);
-        return true;
+    public int getPoints() {
+        return points;
     }
 
-    public int getPointsByGameId(int gameId) {
-        // Look up game Id to get appropriate points
-        return this.pointsByGameId.get(gameId);
+    private void setPoints(int points) {
+        this.points = points;
     }
 
-    private void setPointsByGameId() {
-        this.pointsByGameId = new HashMap<Integer, Integer>();
+    public int getStrength() {
+        return strength;
     }
+
+    private void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+
     @Override
     public String toString() {
         return "model.Player's name is: " + name;
     }
+
+
 }

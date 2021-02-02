@@ -26,7 +26,7 @@ public class DoctorMeApp {
         System.out.println("Hello! What is you name? \n>> ");
         String playerName = sc.nextLine().strip();
         // initialize player
-        Player player = new Player(playerName, HEALTHVALUE);
+        Player player = new Player(playerName);
 
 
 
@@ -36,7 +36,7 @@ public class DoctorMeApp {
         // difficulty represented as 50
         Game game = new Game(player, DIFFICULTY);
 
-        game.playIntroduction(playerName);
+      //  game.playIntroduction(playerName);
 
         // Read in the XML file
         XMLController xmlc = new XMLController();
