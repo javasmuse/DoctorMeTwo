@@ -11,15 +11,18 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class Game {
-
+    private int id = UUID.randomUUID().hashCode();
     private Player player;
     private int difficulty;
-    int id = UUID.randomUUID().hashCode();
     private Scanner sc = new Scanner(System.in);
 
+    public Game(){
+        super();
+    }
+
     public Game(Player player, int difficulty) {
-        this.player = player;
-        this.difficulty = difficulty;
+        setPlayer(player);
+        setDifficulty(difficulty);
     }
 
 
@@ -27,13 +30,13 @@ public class Game {
         int score = healthValue;
         String userAnswer;
 
-        while (score > 0) {
+        while (!isGameEnd(this.getPlayer(), winningPointsRequired)) {
             // here we present scenerio and let the Dr fight the diseases
             for (int round = 0; round < diseaseList.size(); round++) {
                 String location = diseaseList.get(round).getLocation();
                 System.out.println("You find yourself in the:  " + location);
-                System.out.println("Where you find:  " + diseaseList.get(round).description);
-                System.out.println(diseaseList.get(round).question + "\n >>");
+                System.out.println("Where you find:  " + diseaseList.get(round).getDescription());
+                System.out.println(diseaseList.get(round).getQuestion() + "\n >>");
                 userAnswer = sc.nextLine().strip();
 
                 boolean isValidInput = Commands.handleCommand(userAnswer, location);
@@ -73,8 +76,38 @@ public class Game {
         Output.printLoading(5);
     }
 
+    private boolean isGameEnd(Player player, int requiredPoints) {
+        // TODO Finalize winning conditions
+        if(isWin(player, requiredPoints)){
+            // Player has won
+            System.out.println(player.getName() + " won the game!");
+            // Show game results
+
+            return true;
+
+        } else if (isLose(player)){
+            // Actions to do on lose
+            System.out.println(player.getName() + " lost the game :(((");
+
+            // Show game results
+
+
+            return true;
+        }
+
+        return false;
+    }
+
     private boolean isWin(Player player, int requiredPoints) {
-        if(player.getPointsByGameId(this.id) >= requiredPoints){
+        if(player.getPoints() >= requiredPoints){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean isLose(Player player) {
+        if(player.getHealth() < 1){
             return true;
         } else {
             return false;

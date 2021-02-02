@@ -1,34 +1,41 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Disease {
-    private static ArrayList<Disease> diseasesList;
-    public String name;
-    public String description;
-    public String hint;
-    public String location;
-    public String question;
-    public String correctAnswer;
-    public int points;
-    public ArrayList<Disease> diseaseList;
+
+    private String name;
+    private String description;
+    private String hint;
+    private String location;
+    private String question;
+    private String correctAnswer;
+    private int points;
+    private ArrayList<Disease> diseaseList;
 
     public  Disease(){
 
-    }
-    public Disease(String name, String description, String hint, String location, String question, String correctAnswer, int points){
-        this.name = name;
-        this.description = description;
-        this.hint = hint;
-        this.location = location;
-        this.question = question;
-        this.correctAnswer = correctAnswer;
-        this.points = points;
     }
 
     public Disease(ArrayList<Disease> diseasesList) {
         this.diseaseList = diseasesList;
     }
+
+    public Disease(String name, String description,
+                   String hint, String location,
+                   String question, String correctAnswer,
+                   int points){
+//        this(diseasesList);
+        setName(name);
+        setDescription(description);
+        setHint(hint);
+        setLocation(location);
+        setQuestion(question);
+        setCorrectAnswer(correctAnswer);
+        setPoints(points);
+    }
+
 
 
     // Getters & Setters
@@ -80,14 +87,6 @@ public class Disease {
         this.points = points;
     }
 
-    public static ArrayList<Disease> getDiseasesList() {
-        return diseasesList;
-    }
-
-    public static void setDiseasesList(ArrayList<Disease> diseasesList) {
-        Disease.diseasesList = diseasesList;
-    }
-
     public String getCorrectAnswer() {
         return correctAnswer;
     }
@@ -104,8 +103,18 @@ public class Disease {
         this.diseaseList = diseaseList;
     }
 
-    // toString
+    @Override
+    public boolean equals(Object comparedDisease) {
+        if (this == comparedDisease) return true;
+        if (comparedDisease == null || getClass() != comparedDisease.getClass()) return false;
+        Disease disease = (Disease) comparedDisease;
+        return Objects.equals(getName(), disease.getName());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
+    }
 
     @Override
     public String toString() {
