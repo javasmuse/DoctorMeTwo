@@ -3,7 +3,8 @@ import entities.Player;
 import util.Colors;
 import util.GameConstants;
 import util.Output;
-import java.util.Scanner;
+
+import java.util.*;
 
 
 public class DoctorMeApp {

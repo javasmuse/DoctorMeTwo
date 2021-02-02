@@ -17,6 +17,7 @@ public class Game {
     int id = UUID.randomUUID().hashCode();
     private Scanner sc = new Scanner(System.in);
 
+
     public Game(Player player, int difficulty) {
         this.player = player;
         this.difficulty = difficulty;

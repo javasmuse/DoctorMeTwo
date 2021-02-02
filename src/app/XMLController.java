@@ -71,6 +71,7 @@ public class XMLController {
        // System.out.println("\n\n"+ diseases.get(0).name + " array 0 name");     this was a test
 //        System.out.println(diseases+"  at line 74");
 //        System.out.println(threat.getDiseaseList().size() + " list size at line 71");
+//
 //        threat.setDiseaseList( diseases);
 
         return diseases;
