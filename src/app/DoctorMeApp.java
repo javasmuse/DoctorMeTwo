@@ -36,6 +36,9 @@ public class DoctorMeApp {
         Game game = new Game(player, DIFFICULTY);
 
         game.playIntroduction(playerName);
+        // Read and Load Word XML file
+        Commands command = new Commands();
+        command.loadWordXMLfile();
 
         // Read in the XML file
         XMLController xmlc = new XMLController();

@@ -2,32 +2,18 @@
 <wordList>
     <verb>
         <action>go</action>
-        <synonym>go</synonym>
-        <synonym>move</synonym>
-        <synonym>goto</synonym>
-        <synonym>travel</synonym>
+        <synonym>go,move,goto,travel</synonym>
     </verb>
     <verb>
         <action>get</action>
-        <synonym>get</synonym>
-        <synonym>aquire</synonym>
-        <synonym>take</synonym>
-        <synonym>obtain</synonym>
-        <synonym>grab</synonym>
-        <synonym>pick up</synonym>
-        <synonym>retrieve</synonym>
+        <synonym>get,aquire,take,obtain,grab,pick up,retrieve</synonym>
     </verb>
     <verb>
         <action>find</action>
-        <synonym>find</synonym>
-        <synonym>locate</synonym>
+        <synonym>find,locate</synonym>
     </verb>
     <verb>
         <action>use</action>
-        <synonym>use</synonym>
-        <synonym>operate</synonym>
-        <synonym>apply</synonym>
-        <synonym>exercise</synonym>
+        <synonym>use,operate,apply,exercise</synonym>
     </verb>
-
 </wordList>
