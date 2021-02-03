@@ -3,7 +3,8 @@ import entities.Player;
 import util.Colors;
 import util.GameConstants;
 import util.Output;
-import java.util.Scanner;
+
+import java.util.*;
 
 
 public class DoctorMeApp {
@@ -25,7 +26,7 @@ public class DoctorMeApp {
         System.out.println("Hello! What is you name? \n>> ");
         String playerName = sc.nextLine().strip();
         // initialize player
-        Player player = new Player(playerName, HEALTHVALUE);
+        Player player = new Player(playerName);
 
 
 
