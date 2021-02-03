@@ -16,13 +16,10 @@ import entities.Disease;
 import app.Game;
 
 public class XMLController {
-    // XMLController xmlc = new XMLController();
-    Game game = new Game();
-    //private Disease disease;
-    private ArrayList<Disease> diseases = new ArrayList<>();
 
+    private ArrayList<Disease> diseases = new ArrayList<>();
     private String xmlFileName;
-   // private Disease ArrayList;
+
 
     public XMLController() {
     }
@@ -40,6 +37,7 @@ public class XMLController {
         String correctAnswer;
         int points;
 
+        // push into collection
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
@@ -73,9 +71,11 @@ public class XMLController {
        // System.out.println("\n\n"+ diseases.get(0).name + " array 0 name");     this was a test
 //        System.out.println(diseases+"  at line 74");
 //        System.out.println(threat.getDiseaseList().size() + " list size at line 71");
+//
 //        threat.setDiseaseList( diseases);
 
         return diseases;
+
     }
     // Parse entities
 //    public Collection<Threat> parseXML(){
