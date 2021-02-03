@@ -32,10 +32,10 @@ public class Player extends CombatEntity {
         return name;
     }
 
-    public boolean addPoints(int gameId, int newPoints) {
+    public boolean addPoints(int newPoints) {
         // Look up game Id to get appropriate points
         int currPoints = getPoints();
-        this.points += (currPoints + newPoints);
+        setPoints(currPoints + newPoints);
         return true;
     }
 

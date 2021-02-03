@@ -46,11 +46,15 @@ public class Game {
                 // If correct, inflict damage
                 if(isCorrect(currentThreat, userAnswer)){
                     this.getPlayer().attack(currentThreat);
-                    System.out.println("You inflict "
+                    Output.printColor("You inflict "
                                     + player.getStrength()
                                     + " damage to the pathogen."
                                     + "It can't be much longer now, it is almost dead. "
-                            + "Its remaining health is " + currentThreat.getHealth());
+                            + "Its remaining health is " + currentThreat.getHealth(),
+                            Colors.ANSI_GREEN, true);
+
+                    // Increase player points
+                    this.getPlayer().addPoints(currentThreat.getPoints());
                 } else {
                     // Otherwise pathogen inflicts damage
                     currentThreat.attack(this.getPlayer());
@@ -64,10 +68,10 @@ public class Game {
 
 
 
-                boolean isValidInput = Commands.handleCommand(userAnswer, location);
-                if(!isValidInput){
-                    continue;
-                }
+//                boolean isValidInput = Commands.handleCommand(userAnswer, location);
+//                if(!isValidInput){
+//                    continue;
+//                }
 
                 // TODO some logic with the answer
 
