@@ -36,21 +36,20 @@ public class Game {
             for (int round = 0; round < pathogenList.size(); round++) {
                 Pathogen currentThreat = pathogenList.get(round);
                 String location = currentThreat.getLocation();
-                System.out.println("You find yourself in the:  " + location);
-                System.out.println("Where you find:  " + currentThreat.getDescription());
+                Output.printColor("You find yourself in the:  " + location, Colors.ANSI_BLUE, true);
+                Output.printColor("Where you find:  " + currentThreat.getDescription() + "\n",  Colors.ANSI_BLUE, true);
 
-                System.out.print(currentThreat.getQuestion() + "\n Type your answer >> ");
+                Output.printColor(currentThreat.getQuestion() + "\n Type your answer >> ", Colors.ANSI_YELLOW, false);
                 // Save the player's answer
                 userAnswer = sc.nextLine().strip();
 
                 // If correct, inflict damage
                 if(isCorrect(currentThreat, userAnswer)){
                     this.getPlayer().attack(currentThreat);
-                    Output.printColor("You inflict "
+                    Output.printColor("You inflict enough "
                                     + player.getStrength()
-                                    + " damage to the pathogen."
-                                    + "It can't be much longer now, it is almost dead. "
-                            + "Its remaining health is " + currentThreat.getHealth(),
+                                    + " damage to the pathogen"
+                                    + " so that it dies a slow death.",
                             Colors.ANSI_GREEN, true);
 
                     // Increase player points
@@ -58,12 +57,13 @@ public class Game {
                 } else {
                     // Otherwise pathogen inflicts damage
                     currentThreat.attack(this.getPlayer());
-                    System.out.println("The deadly pathogen inflicts "
-                            + currentThreat.getStrength()
+                    Output.printColor("The deadly pathogen inflicts "
                             + " damage to you."
                             + " We cannot fail!"
                             + " Your remaining health is "
-                            + this.getPlayer().getHealth());
+                            + this.getPlayer().getHealth(),
+                            Colors.ANSI_RED,
+                            true);
                 }
 
 
@@ -72,8 +72,6 @@ public class Game {
 //                if(!isValidInput){
 //                    continue;
 //                }
-
-                // TODO some logic with the answer
 
             }
 
@@ -102,14 +100,14 @@ public class Game {
         // TODO Finalize winning conditions
         if(isWin(player, requiredPoints)){
             // Player has won
-            System.out.println(player.getName() + " won the game!");
+            Output.printColor(player.getName() + " won the game!", Colors.ANSI_CYAN, true);
             // Show game results
 
             return true;
 
         } else if (isLose(player)){
             // Actions to do on lose
-            System.out.println(player.getName() + " lost the game :(((");
+            Output.printColor(player.getName() + " lost the game :(((", Colors.ANSI_RED, true);
 
             // Show game results
 
