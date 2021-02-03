@@ -3,7 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Disease {
+public class Pathogen extends CombatEntity {
 
     private String name;
     private String description;
@@ -12,21 +12,20 @@ public class Disease {
     private String question;
     private String correctAnswer;
     private int points;
-    private ArrayList<Disease> diseaseList;
+    private ArrayList<Pathogen> pathogenList;
 
-    public  Disease(){
-
+    public Pathogen(){
+        //TODO Change hard code to reading in setting value from a file
+        // Or calculate based on difficulty
+        super(20, 20);
     }
 
-    public Disease(ArrayList<Disease> diseasesList) {
-        this.diseaseList = diseasesList;
-    }
 
-    public Disease(String name, String description,
-                   String hint, String location,
-                   String question, String correctAnswer,
-                   int points){
-//        this(diseasesList);
+    public Pathogen(String name, String description,
+                    String hint, String location,
+                    String question, String correctAnswer,
+                    int points){
+        this();
         setName(name);
         setDescription(description);
         setHint(hint);
@@ -36,7 +35,17 @@ public class Disease {
         setPoints(points);
     }
 
-
+    @Override
+    public boolean attack(CombatEntity threat) {
+        threat.deductHealth(this.getStrength());
+        if(threat.getHealth() < 1){
+            // The threat is dead
+            return true;
+        } else {
+            // The threat is still alive
+            return false;
+        }
+    }
 
     // Getters & Setters
     public String getName() {
@@ -95,20 +104,20 @@ public class Disease {
         this.correctAnswer = correctAnswer;
     }
 
-    public ArrayList<Disease> getDiseaseList() {
-        return diseaseList;
+    public ArrayList<Pathogen> getDiseaseList() {
+        return pathogenList;
     }
 
-    public void setDiseaseList(ArrayList<Disease> diseaseList) {
-        this.diseaseList = diseaseList;
+    public void setDiseaseList(ArrayList<Pathogen> pathogenList) {
+        this.pathogenList = pathogenList;
     }
 
     @Override
     public boolean equals(Object comparedDisease) {
         if (this == comparedDisease) return true;
         if (comparedDisease == null || getClass() != comparedDisease.getClass()) return false;
-        Disease disease = (Disease) comparedDisease;
-        return Objects.equals(getName(), disease.getName());
+        Pathogen pathogen = (Pathogen) comparedDisease;
+        return Objects.equals(getName(), pathogen.getName());
     }
 
     @Override
@@ -127,6 +136,7 @@ public class Disease {
                 ", correctAnswer=  '" + correctAnswer +"  "+
                 ", points= " + points;
     }
+
 
 
 }

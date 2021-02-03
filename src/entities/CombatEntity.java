@@ -6,14 +6,19 @@ public abstract class CombatEntity {
     public int strength;
 
     public CombatEntity(int health, int strength) {
-        this.health = health;
-        this.strength = strength;
+        setHealth(health);
+        setStrength(strength);
     }
 
     public abstract boolean attack(CombatEntity threat);
 
     public void deductHealth(int amount) {
-        this.health -= amount;
+        int remainingHealth = getHealth() - amount;
+        if( remainingHealth < 1){
+            setHealth(0);
+        } else {
+            setHealth(remainingHealth);
+        }
     }
 
     public int getHealth() {
