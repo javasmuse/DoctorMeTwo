@@ -4,6 +4,7 @@ package app;
 
 import java.io.File;
 
+import entities.Pathogen;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -12,12 +13,10 @@ import org.w3c.dom.Element;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import java.util.*;
-import entities.Disease;
-import app.Game;
 
 public class XMLController {
 
-    private ArrayList<Disease> diseases = new ArrayList<>();
+    private ArrayList<Pathogen> pathogens = new ArrayList<>();
     private String xmlFileName;
 
 
@@ -25,8 +24,8 @@ public class XMLController {
     }
 
     // read xml, not sure if this is needed, maybe just use as private
-    public ArrayList<Disease> readXML() {
-        Disease threat = new Disease();
+    public ArrayList<Pathogen> readXML() {
+        Pathogen threat = new Pathogen();
 
         NodeList nodeList;
         String name;
@@ -41,11 +40,11 @@ public class XMLController {
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
-            File inputFile = new File("resources/Disease.xml");
+            File inputFile = new File("resources/Pathogens.xml");
             Document doc = db.parse(inputFile);
             doc.getDocumentElement().normalize();
            // System.out.println("Root Element:  " + doc.getDocumentElement().getNodeName());
-            nodeList = doc.getElementsByTagName("disease");
+            nodeList = doc.getElementsByTagName("pathogen");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
@@ -59,7 +58,7 @@ public class XMLController {
                     correctAnswer = eElement.getElementsByTagName("correctAnswer").item(0).getTextContent();
                     points = Integer.parseInt(eElement.getElementsByTagName("points").item(0).getTextContent());
 
-                    diseases.add(i, new Disease( name,  description, hint, location, question, correctAnswer, points));
+                    pathogens.add(i, new Pathogen( name,  description, hint, location, question, correctAnswer, points));
 
                 }
 
@@ -74,7 +73,7 @@ public class XMLController {
 //
 //        threat.setDiseaseList( diseases);
 
-        return diseases;
+        return pathogens;
 
     }
     // Parse entities

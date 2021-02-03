@@ -1,7 +1,7 @@
 package app;
 
+import entities.Pathogen;
 import entities.Player;
-import entities.Disease;
 import util.Colors;
 import util.GameConstants;
 import util.Output;
@@ -21,38 +21,56 @@ public class Game {
     }
 
     public Game(Player player, int difficulty) {
+        this();
         setPlayer(player);
         setDifficulty(difficulty);
     }
 
 
-    public void play(int winningPointsRequired, int healthValue, ArrayList<Disease> diseaseList) {
+    public void play(int winningPointsRequired, int healthValue, ArrayList<Pathogen> pathogenList) {
         int score = healthValue;
         String userAnswer;
 
         while (!isGameEnd(this.getPlayer(), winningPointsRequired)) {
-            // here we present scenerio and let the Dr fight the diseases
-            for (int round = 0; round < diseaseList.size(); round++) {
-                String location = diseaseList.get(round).getLocation();
+            // here we present scenerio and let the Dr fight the pathogens
+            for (int round = 0; round < pathogenList.size(); round++) {
+                Pathogen currentThreat = pathogenList.get(round);
+                String location = currentThreat.getLocation();
                 System.out.println("You find yourself in the:  " + location);
-                System.out.println("Where you find:  " + diseaseList.get(round).getDescription());
-                System.out.println(diseaseList.get(round).getQuestion() + "\n >>");
+                System.out.println("Where you find:  " + currentThreat.getDescription());
+
+                System.out.print(currentThreat.getQuestion() + "\n Type your answer >> ");
+                // Save the player's answer
                 userAnswer = sc.nextLine().strip();
+
+                // If correct, inflict damage
+                if(isCorrect(currentThreat, userAnswer)){
+                    this.getPlayer().attack(currentThreat);
+                    System.out.println("You inflict "
+                                    + player.getStrength()
+                                    + " damage to the pathogen."
+                                    + "It can't be much longer now, it is almost dead. "
+                            + "Its remaining health is " + currentThreat.getHealth());
+                } else {
+                    // Otherwise pathogen inflicts damage
+                    currentThreat.attack(this.getPlayer());
+                    System.out.println("The deadly pathogen inflicts "
+                            + currentThreat.getStrength()
+                            + " damage to you."
+                            + " We cannot fail!"
+                            + " Your remaining health is "
+                            + this.getPlayer().getHealth());
+                }
+
+
 
                 boolean isValidInput = Commands.handleCommand(userAnswer, location);
                 if(!isValidInput){
                     continue;
                 }
 
-
-
-                // for test purposes we will print the user Answer
-                System.out.println(userAnswer + "  is what the player entered");
                 // TODO some logic with the answer
-                // TODO verify if win/lose
-//stick answer into array to iterate through, basically to handle command and arguments
-                //implement hint
-                //
+
             }
 
         }
@@ -110,6 +128,19 @@ public class Game {
         if(player.getHealth() < 1){
             return true;
         } else {
+            return false;
+        }
+    }
+
+    private boolean isCorrect(Pathogen pathogenWithQuestion, String answer){
+        String correctAnswer = pathogenWithQuestion.getCorrectAnswer().toLowerCase().trim();
+        answer = answer.toLowerCase().trim();
+        if(correctAnswer.contains(answer)){
+            System.out.println(answer.toUpperCase() + " is correct");
+            return true;
+        } else {
+            System.out.println(answer.toUpperCase() + " is wrong. " + correctAnswer.toUpperCase()
+            + " is the correct answer.");
             return false;
         }
     }
