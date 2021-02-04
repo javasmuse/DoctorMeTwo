@@ -16,7 +16,7 @@ import java.util.*;
 
 public class XMLController {
 
-    private ArrayList<Pathogen> pathogens = new ArrayList<>();
+    private static ArrayList<Pathogen> pathogens = new ArrayList<>();
     private String xmlFileName;
 
 
@@ -24,7 +24,7 @@ public class XMLController {
     }
 
     // read xml, not sure if this is needed, maybe just use as private
-    public ArrayList<Pathogen> readXML() {
+    public static ArrayList<Pathogen> readXML() {
         Pathogen threat = new Pathogen();
 
         NodeList nodeList;
@@ -35,6 +35,7 @@ public class XMLController {
         String question;
         String correctAnswer;
         int points;
+        Pathogen path;
 
         // push into collection
         try {
@@ -48,6 +49,7 @@ public class XMLController {
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
+
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) node;
                     name = eElement.getElementsByTagName("name").item(0).getTextContent();
@@ -59,7 +61,8 @@ public class XMLController {
                     points = Integer.parseInt(eElement.getElementsByTagName("points").item(0).getTextContent());
 
                     pathogens.add(i, new Pathogen( name,  description, hint, location, question, correctAnswer, points));
-
+                    path = new Pathogen(name,  description, hint, location, question, correctAnswer, points);
+                    path.setDiseaseList( pathogens);
                 }
 
             }
@@ -72,7 +75,6 @@ public class XMLController {
 //        System.out.println(threat.getDiseaseList().size() + " list size at line 71");
 //
 //        threat.setDiseaseList( diseases);
-
         return pathogens;
 
     }

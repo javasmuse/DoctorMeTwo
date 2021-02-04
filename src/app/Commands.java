@@ -1,5 +1,6 @@
 package app;
 
+import entities.Pathogen;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class Commands {
     private static HashMap<String, List<String>> wordList = new HashMap<>();
-    private static String location;
+    private static String name;
 
     // Starting point of handling commands
     // Command is the raw user input
@@ -52,15 +53,14 @@ public class Commands {
     }
 
     // Handles commands only after they are validated
-    private static void handleValidCommand(List<String> task, String currentLocation) {
+    private static void handleValidCommand(List<String> task, String name) {
         // Check for commands that don't have second command line arguments
-        location = currentLocation;
-        if (task.contains("help")) {
-            help(currentLocation);
-        } else if (task.contains("hint")) {
-            hint();
-        } else {
 
+        if (task.contains("help")) {
+            help(name);
+        } else if (task.contains("hint")) {
+            hint(name);
+        } else {
             handleMultipleArgumentCommand(task); // Send to appropriate command and method
         }
     }
@@ -72,44 +72,56 @@ public class Commands {
     // get first aid
     private static void handleMultipleArgumentCommand(List<String> task) {
 
-       String wordmatch =  wordMatch(task); // this checks if what the player sent has a valid verb
-         //task.remove(0);
+        String wordmatch = wordMatch(task); // this checks if what the player sent has a valid verb
+        //task.remove(0);
 
-        if(wordmatch == "no match"){
+        if (wordmatch == "no match") {
             System.out.println("That command is not valid");
             // TODO need to send player back where they came from
         } else {
             // XXX at this point the verb is seperated, now need to determine
             // if the other words in the list are good
-        try {
-            // TODO seperate verb from rest and send rest on
+            try {
+                // TODO seperate verb from rest and send rest on
 
-            //List<String> commandArg = task.remove(wordmatch) ;
+                //List<String> commandArg = task.remove(wordmatch) ;
 
 
-            switch (wordmatch) {
-                //TODO Handle synonyms for the commands
-                case "get":
-                    get(task);
-                    break;
-                case "move":
-                    //TODO Also handle 'walk' or 'go' etc.
-                    move(task);
-                    break;
-                default:
-                    System.out.println("Bad command entered");
-                    break;
+                switch (wordmatch) {
+                    //TODO Handle synonyms for the commands
+                    case "get":
+                        get(task);
+                        break;
+                    case "move":
+                        //TODO Also handle 'walk' or 'go' etc.
+                        move(task);
+                        break;
+                    default:
+                        System.out.println("Bad command entered");
+                        break;
+                }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Please enter subsequent arguments for " + wordmatch);
+                helpWithCommandUsage();
             }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Please enter subsequent arguments for " + wordmatch);
-            helpWithCommandUsage();
-        }
         }
     }
 
-    private static void help(String location) {
+    private static String help(String name) {
         System.out.println("Player asked for general help");
-        System.out.println("Player is currently located at " + location);
+        // TODO check name to find location to give to user
+        Pathogen pathogen = new Pathogen();
+        String pathLocation;
+        String result;
+        for (Pathogen path: Pathogen.getDiseaseList()) {
+
+            if (path.getName().equals(name)) {
+                pathLocation = path.getLocation();
+                result = "Your location is " + pathLocation + " , you might need a hint";
+                return result;
+            }
+        }
+        return "";
     }
 
     private static void helpWithCommandUsage() {
@@ -118,15 +130,25 @@ public class Commands {
 
     private static void get(List<String> item) {
         // TODO iterate and find
+
         System.out.println("Player asked to get a " + item);
     }
 
-    private static void hint() {
-        System.out.println("Player asked for a hint");
+    public static String hint(String name) {
+        Pathogen pathogen = new Pathogen();
+        String pathHint;
+        for (Pathogen path: Pathogen.getDiseaseList()) {
+            if (path.getName().equals(name)) {
+                pathHint = path.getHint();
+               // System.out.println(pathHint);
+                return pathHint;
+            }
+        }
+        return "";
     }
 
     private static void move(List<String> item) {
-        System.out.println("Player asked to move " + item + " to "+ location);
+        //  System.out.println("Player asked to move " + item + " to "+ location);
     }
 
     public static String wordMatch(List<String> wordsSent) {

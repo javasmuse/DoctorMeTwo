@@ -10,11 +10,11 @@ import java.util.List;
 
 
 public class CommandsTest {
-    private Commands commands;
+
 
     @Before
     public void setUp() throws Exception {
-        loadWordXMLfile();
+        Commands.loadWordXMLfile();
     }
 
     @After
@@ -25,20 +25,26 @@ public class CommandsTest {
     public void handleCommand() {
 
     }
-
     @Test
-    public void wordMatch() {
-        commands.loadWordXMLfile();
-        List<String> test1 = Arrays.asList(new String[]{"locate", "ramdom", "word"});
-        List<String> test2 = Arrays.asList(new String[]{"test", "ramdom", "word"});
-
-        assertEquals("find", commands.wordMatch(test1));
-        assertEquals("no match", commands.wordMatch((test2)));
+    public void hintTest(){
+        String name = "Salmonella";
+        XMLController.readXML();
+        assertEquals("It looks like this pathogen is able to produce energy regardless of its surroundings. Perhaps a general attack can do the trick.", Commands.hint(name));
     }
 
     @Test
-    public void loadWordXMLfile() {
-        assertNotNull(commands.loadWordXMLfile());
-        assertEquals(4,commands.loadWordXMLfile().keySet().size());
+    public void wordMatchTest() {
+        Commands.loadWordXMLfile();
+        List<String> test1 = Arrays.asList(new String[]{"locate", "ramdom", "word"});
+        List<String> test2 = Arrays.asList(new String[]{"test", "ramdom", "word"});
+
+        assertEquals("find", Commands.wordMatch(test1));
+        assertEquals("no match", Commands.wordMatch((test2)));
+    }
+
+    @Test
+    public void loadWordXMLfileTest() {
+        assertNotNull(Commands.loadWordXMLfile());
+        assertEquals(4,Commands.loadWordXMLfile().keySet().size());
     }
 }
