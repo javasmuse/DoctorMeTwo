@@ -45,7 +45,7 @@
         <correctAnswer>B cells</correctAnswer>
         <points>50</points>
     </pathogen>
-    <disease>
+    <pathogen>
         <name>Prion</name>
         <description>The harbinger of many transmissible neurodegenerative diseases (e.g., Creutzfeldt-Jakob Disease, Chronic Wasting Disease, spongiform encephalopathy), prions denature the brain's proteins, invariably leading to death.</description>
         <hint>Prions are durable, proteinaceous extremophiles. Beyond the host's life, these proteins remain virulent. Death is ineluctable.</hint>
@@ -53,5 +53,5 @@
         <question>Nothing can be done. Accept death and make amends. Play again?</question>
         <correctAnswer>Yes</correctAnswer>
         <points>100</points>
-    </disease>
+    </pathogen>
 </list>

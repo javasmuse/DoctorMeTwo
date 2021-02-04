@@ -12,7 +12,7 @@ public class Pathogen extends CombatEntity {
     private String question;
     private String correctAnswer;
     private int points;
-    private ArrayList<Pathogen> pathogenList;
+    private static ArrayList<Pathogen> pathogenList;
 
     public Pathogen(){
         //TODO Change hard code to reading in setting value from a file
@@ -104,7 +104,7 @@ public class Pathogen extends CombatEntity {
         this.correctAnswer = correctAnswer;
     }
 
-    public ArrayList<Pathogen> getDiseaseList() {
+    public static ArrayList<Pathogen> getDiseaseList() {
         return pathogenList;
     }
 
