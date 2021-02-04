@@ -18,7 +18,6 @@ public class Pathogen extends CombatEntity {
         //TODO Change hard code to reading in setting value from a file
         // Or calculate based on difficulty
         super(20, 20);
-        pathogenList.remove(0);
     }
 
 
