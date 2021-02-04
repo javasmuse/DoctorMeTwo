@@ -36,10 +36,9 @@ public class DoctorMeApp {
         // difficulty represented as 50
         Game game = new Game(player, DIFFICULTY);
 
-        game.playIntroduction(playerName);
+       // game.playIntroduction(playerName);
         // Read and Load Word XML file
-        Commands command = new Commands();
-        command.loadWordXMLfile();
+        Commands.loadWordXMLfile();
 
         // Read in the XML file
         XMLController xmlc = new XMLController();

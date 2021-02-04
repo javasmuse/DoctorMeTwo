@@ -20,7 +20,7 @@ public class Commands {
     // Command is the raw user input
     // Location is the current player location according to the current turn
 
-    public static boolean handleCommand(String command, String location) {
+    public static boolean handleCommand(String command, String name) {
         // Get args and set flag
         List<String> args;
         List<String> task = new ArrayList<>();
@@ -38,7 +38,7 @@ public class Commands {
 
         try {
             // A valid command has been entered
-            handleValidCommand(task, location);
+            handleValidCommand(task, name);
 
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Please enter subsequent arguments for " + task);
