@@ -28,9 +28,7 @@ public class Game {
 
 
     public void play(int winningPointsRequired, int healthValue, ArrayList<Pathogen> pathogenList) {
-        int score = healthValue;
-        String userAnswer;
-
+        // Initiate primary game loop, check game ending conditions each time
         while (!isGameEnd(this.getPlayer(), winningPointsRequired)) {
             // here we present scenerio and let the Dr fight the pathogens
             for (int round = 0; round < pathogenList.size(); round++) {
@@ -40,7 +38,6 @@ public class Game {
 
                 // Receive the player's input
                 getUserInput();
-
 
             }
         }
