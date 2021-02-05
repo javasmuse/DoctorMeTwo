@@ -66,6 +66,10 @@ public class Cell {
         this.location = location;
     }
 
+    public static ArrayList<Cell> getCellList() {
+        return cellList;
+    }
+
     public void setCellList(ArrayList<Cell> cellList) {
         this.cellList = cellList;
     }

@@ -1,11 +1,13 @@
 package app;
 
+import entities.Cell;
 import entities.Pathogen;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import util.Colors;
+import util.Output;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,15 +21,13 @@ public class Commands {
 
     // Starting point of handling commands
     // Command is the raw user input
-    // Location is the current player location according to the current turn
 
-    public static boolean handleCommand(String command, String name) {
-        // Get args and set flag
+
+    public static boolean handleCommand(String command, String name) { // Get args and set flag
         List<String> args;
         List<String> task = new ArrayList<>();
         args = Arrays.asList(command.split("\\s+").clone()).stream().map(String::toLowerCase)
                 .collect(Collectors.toList());
-        //String firstCommand = args.get(0);
         if (args != null && args.size() > 0) {
             for (int i = 0; i < args.size(); i++) {
                 task.add(args.get(i));
@@ -36,44 +36,35 @@ public class Commands {
             System.out.println("Arguments sent into 'handleCommand' is NULL or EMPTY");
             return false;
         }
-
         try {
             // A valid command has been entered
             handleValidCommand(task, name);
-
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Please enter subsequent arguments for " + task);
             helpWithCommandUsage();
-            // TODO Continue logic and game loop to ask for input again
+            // Continue logic and game loop to ask for input again
             return false;
         }
-
         return true;
-
     }
 
     // Handles commands only after they are validated
     private static void handleValidCommand(List<String> task, String name) {
         // Check for commands that don't have second command line arguments
-
         if (task.contains("help")) {
-            help(name);
+            help(); // this tells user what cells they have to fight the pathogens with
         } else if (task.contains("hint")) {
-            hint(name);
+            hint(name); // this will print the hint from the Pothogen Class
         } else {
             handleMultipleArgumentCommand(task); // Send to appropriate command and method
         }
     }
 
     // Handles commands specifically requiring one or more arguments
-    // For example, "get" command requires an <item>
-    // get <item>
-    // get tcell
-    // get first aid
+
     private static void handleMultipleArgumentCommand(List<String> task) {
 
         String wordmatch = wordMatch(task); // this checks if what the player sent has a valid verb
-        //task.remove(0);
 
         if (wordmatch == "no match") {
             System.out.println("That command is not valid");
@@ -83,10 +74,7 @@ public class Commands {
             // if the other words in the list are good
             try {
                 // TODO seperate verb from rest and send rest on
-
                 //List<String> commandArg = task.remove(wordmatch) ;
-
-
                 switch (wordmatch) {
                     //TODO Handle synonyms for the commands
                     case "get":
@@ -107,21 +95,23 @@ public class Commands {
         }
     }
 
-    private static String help(String name) {
-        System.out.println("Player asked for general help");
+    private static boolean help() { // this tells player what Tools(cells) they have to fight the Pathogens with
+        Output.printColor("Here are the Fighting Cells you have at your disposal,", Colors.ANSI_GREEN, true);
+        Output.printColor("and their descriptions.", Colors.ANSI_GREEN, true);
         // TODO check name to find location to give to user
-        Pathogen pathogen = new Pathogen();
-        String pathLocation;
+       // Pathogen pathogen = new Pathogen();
+        Cell cell = new Cell();
+       // String pathLocation;
+        String cellName;
+        String cellDescription;
         String result;
-        for (Pathogen path: Pathogen.getDiseaseList()) {
-
-            if (path.getName().equals(name)) {
-                pathLocation = path.getLocation();
-                result = "Your location is " + pathLocation + " , you might need a hint";
-                return result;
-            }
+        for(Cell c : Cell.getCellList()){
+            cellName = c.getName();
+            cellDescription = c.getDescription();
+            Output.printColor(cellName, Colors.ANSI_RED, true);
+            Output.printColor(cellDescription, Colors.ANSI_RED, true);
         }
-        return "";
+        return false;
     }
 
     private static void helpWithCommandUsage() {
@@ -134,17 +124,17 @@ public class Commands {
         System.out.println("Player asked to get a " + item);
     }
 
-    public static String hint(String name) {
+    private static boolean hint(String name) {
         Pathogen pathogen = new Pathogen();
         String pathHint;
         for (Pathogen path: Pathogen.getDiseaseList()) {
             if (path.getName().equals(name)) {
                 pathHint = path.getHint();
-               // System.out.println(pathHint);
-                return pathHint;
+               Output.printColor(pathHint, Colors.ANSI_GREEN, true);
+               return false;
             }
         }
-        return "";
+        return false;
     }
 
     private static void move(List<String> item) {
