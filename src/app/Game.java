@@ -28,9 +28,7 @@ public class Game {
 
 
     public void play(int winningPointsRequired, int healthValue, ArrayList<Pathogen> pathogenList) {
-        int score = healthValue;
-        String userAnswer;
-
+        // Initiate primary game loop, check game ending conditions each time
         while (!isGameEnd(this.getPlayer(), winningPointsRequired)) {
             // here we present scenerio and let the Dr fight the pathogens
             for (int round = 0; round < pathogenList.size(); round++) {
@@ -38,8 +36,10 @@ public class Game {
                 Pathogen currentThreat = pathogenList.get(round);
                 askPathogenQuestion(currentThreat);
 
-                // Receive the player's input
-                getUserInput();
+                // Continue waiting until valid command/answer has been entered
+                while(!isValidUserInput(currentThreat)){
+                    askPathogenQuestion(currentThreat);
+                }
 
 
             }
@@ -54,17 +54,12 @@ public class Game {
     }
 
     // Gets the user raw input and sends to handler
-    private void getUserInput() {
-        boolean isValidInput = false;
-        // Keep asking for input until it is a valid command (exluding, help, hint)
-        // Once valid, loop will break and thread will continue
-        while(!isValidInput){
-            // Set the player's answer
-            String userAnswer = sc.nextLine().strip();
-            String pathogenName = this.getPlayer().getName();
-            // True if primary command entered, false if bad command or hint/help entered
-            isValidInput = Commands.handleCommand(userAnswer, pathogenName);
-        }
+    private boolean isValidUserInput(Pathogen currentThreat) {
+        // Get players answer
+        String userAnswer = sc.nextLine().strip();
+        String pathogenName = currentThreat.getName();
+        // True if primary command entered, false if bad command or hint/help entered
+        return Commands.handleCommand(userAnswer, pathogenName);
     }
 
     public void playIntroduction(String playerName) throws InterruptedException {
@@ -86,7 +81,6 @@ public class Game {
     }
 
     private boolean isGameEnd(Player player, int requiredPoints) {
-        // TODO Finalize winning conditions
         if(isWin(player, requiredPoints)){
             // Player has won
             Output.printColor(player.getName() + " won the game!", Colors.ANSI_CYAN, true);
