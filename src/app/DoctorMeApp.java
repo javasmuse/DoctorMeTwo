@@ -19,11 +19,10 @@ public class DoctorMeApp {
     public static void main(String[] args) throws InterruptedException {
         DoctorMeApp app = new DoctorMeApp();
         app.playDrMe();
-
     }
 
     public void playDrMe() throws InterruptedException {
-        System.out.println("Hello! What is you name? \n>> ");
+        Output.printColor("Hello! What is you name? \n>> ", Colors.ANSI_YELLOW, false);
         String playerName = sc.nextLine().strip();
         // initialize player
         Player player = new Player(playerName);
@@ -40,6 +39,8 @@ public class DoctorMeApp {
         // Read and Load Word XML file
         Commands command = new Commands();
         command.loadWordXMLfile();
+        // Read and load Cell XML file
+        XMLController.readCellXML();
 
         // Read in the XML file
         XMLController xmlc = new XMLController();
