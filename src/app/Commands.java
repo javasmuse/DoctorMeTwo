@@ -134,17 +134,14 @@ public class Commands {
         System.out.println("Player asked to get a " + item);
     }
 
-    public static String hint(String name) {
-        Pathogen pathogen = new Pathogen();
+    private static void hint(String name) {
         String pathHint;
         for (Pathogen path: Pathogen.getDiseaseList()) {
             if (path.getName().equals(name)) {
                 pathHint = path.getHint();
-               // System.out.println(pathHint);
-                return pathHint;
+                System.out.println(pathHint);
             }
         }
-        return "";
     }
 
     private static void move(List<String> item) {
