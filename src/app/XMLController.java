@@ -4,6 +4,7 @@ package app;
 
 import java.io.File;
 
+import entities.Cell;
 import entities.Pathogen;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -16,7 +17,8 @@ import java.util.*;
 
 public class XMLController {
 
-    private ArrayList<Pathogen> pathogens = new ArrayList<>();
+    private static ArrayList<Pathogen> pathogens = new ArrayList<>();
+    private static ArrayList<Cell> cells = new ArrayList<>();
     private String xmlFileName;
 
 
@@ -24,8 +26,7 @@ public class XMLController {
     }
 
     // read xml, not sure if this is needed, maybe just use as private
-    public ArrayList<Pathogen> readXML() {
-        Pathogen threat = new Pathogen();
+    public static ArrayList<Pathogen> readXML() {
 
         NodeList nodeList;
         String name;
@@ -35,6 +36,7 @@ public class XMLController {
         String question;
         String correctAnswer;
         int points;
+        Pathogen path;
 
         // push into collection
         try {
@@ -48,6 +50,7 @@ public class XMLController {
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
+
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) node;
                     name = eElement.getElementsByTagName("name").item(0).getTextContent();
@@ -59,34 +62,78 @@ public class XMLController {
                     points = Integer.parseInt(eElement.getElementsByTagName("points").item(0).getTextContent());
 
                     pathogens.add(i, new Pathogen( name,  description, hint, location, question, correctAnswer, points));
-
+                    path = new Pathogen(name,  description, hint, location, question, correctAnswer, points);
+                    path.setDiseaseList( pathogens);
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // System.out.println(diseases);
-        // System.out.println("\n\n"+ diseases.get(0).name + " array 0 name");     this was a test
-//        System.out.println(diseases+"  at line 74");
-//        System.out.println(threat.getDiseaseList().size() + " list size at line 71");
-//
-//        threat.setDiseaseList( diseases);
-
         return pathogens;
-
     }
-    // Parse entities
-//    public Collection<Threat> parseXML(){
-//        //readXML(this.filename)
-//        return null;
-//    }
-//    public String getXmlFileName() {
-//        return xmlFileName;
-//    }
-//    public void setXmlFileName(String xmlFileName) {
-//        this.xmlFileName = xmlFileName;
-//    }
+   public static ArrayList<Cell> readCellXML(){
+        NodeList nodeList;
+        String name;
+        String description;
+        String delayTemp;
+        boolean delay;
+        String selfDamageTemp;
+        boolean selfDamage;
+        String defeats;
+        String location;
+        Cell c;
+        List<String> tempDefeatsArr = new ArrayList<>();
+
+       try {
+           DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+           DocumentBuilder db = dbf.newDocumentBuilder();
+           File inputFile = new File("resources/Cell.xml");
+           Document doc = db.parse(inputFile);
+           doc.getDocumentElement().normalize();
+           nodeList = doc.getElementsByTagName("cell");
+
+           for (int i = 0; i < nodeList.getLength(); i++) {
+               Node node = nodeList.item(i);
+
+               if (node.getNodeType() == Node.ELEMENT_NODE) {
+                   Element eElement = (Element) node;
+                   name = eElement.getElementsByTagName("name").item(0).getTextContent();
+                   description = eElement.getElementsByTagName("description").item(0).getTextContent();
+                   delayTemp = eElement.getElementsByTagName("delay").item(0).getTextContent();
+                   if(delayTemp.equals("True")){
+                       delay = true;
+                   } else {
+                       delay = false;
+                   }
+                   selfDamageTemp = eElement.getElementsByTagName("self-damage").item(0).getTextContent();
+                   if(selfDamageTemp.equals("True")){
+                       selfDamage = true;
+                   } else {
+                       selfDamage = false;
+                   }
+                   defeats= eElement.getElementsByTagName("defeats").item(0).getTextContent();
+
+                   location = eElement.getElementsByTagName("location").item(0).getTextContent();
+
+                   tempDefeatsArr =  Arrays.asList(defeats.split(","));
+                   cells.add(i, new Cell( name,
+                           description,
+                           delay,
+                           selfDamage,
+                           (List) tempDefeatsArr,
+                           location));
+                   c = new Cell(name,  description, delay, selfDamage, tempDefeatsArr, location);
+                   c.setCellList( cells);
+
+               }
+           }
+       } catch (Exception e) {
+           System.out.println("An error occured while loading the cell list from xml");
+           e.printStackTrace();
+       }
+       System.out.println("here is the list of cells  "+cells);// TODO delete after testing
+        return cells;
+   }
 
 
 }
