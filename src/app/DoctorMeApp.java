@@ -22,7 +22,7 @@ public class DoctorMeApp {
     }
 
     public void playDrMe() throws InterruptedException {
-        Output.printColor("Hello! What is you name? \n>> ", Colors.ANSI_YELLOW, false);
+        Output.printColor("Hello! What is your name? \n>> ", Colors.ANSI_YELLOW, false);
         String playerName = sc.nextLine().strip();
         // initialize player
         Player player = new Player(playerName);
