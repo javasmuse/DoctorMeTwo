@@ -27,10 +27,6 @@ public class DoctorMeApp {
         // initialize player
         Player player = new Player(playerName);
 
-
-
-
-
         // Create the game object, passing in one player with "normal"
         // difficulty represented as 50
         Game game = new Game(player, DIFFICULTY);
@@ -46,13 +42,6 @@ public class DoctorMeApp {
         XMLController xmlc = new XMLController();
         game.play(WINNING_POINTS_REQUIRED, HEALTHVALUE, xmlc.readXML());
 
-    }
-
-
-
-    private String getUserInput(){
-        System.out.println("Enter a command: ");
-        return sc.nextLine().strip();
     }
 
 }

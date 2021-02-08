@@ -26,35 +26,38 @@ public class Game {
         setDifficulty(difficulty);
     }
 
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
 
     public void play(int winningPointsRequired, int healthValue, ArrayList<Pathogen> pathogenList) {
         // Initiate primary game loop, check game ending conditions each time
         while (!isGameEnd(this.getPlayer(), winningPointsRequired)) {
             // here we present scenerio and let the Dr fight the pathogens
-            for (int round = 0; round < pathogenList.size(); round++) {
-                // Handle the current threat's scenario and question
-                Pathogen currentThreat = pathogenList.get(round);
-                askPathogenQuestion(currentThreat);
+            // Handle the current threat's scenario and question
+            int randomIndex = getRandomNumber(0, pathogenList.size() - 1);
+            Pathogen currentThreat = pathogenList.get(randomIndex);
+            askPathogenQuestion(currentThreat);
 
-                // If we do not receive a primary command
-                // like hint or help or a synonym to those
-                // Then we assume that is their answer to the question
+            // If we do not receive a primary command
+            // like hint or help or a synonym to those
+            // Then we assume that is their answer to the question
 
-                int chances = 3;
-                // Continue waiting until valid command/answer has been entered
-                // Get players answer
-                // askPathogenQuestion(currentThreat);
-                //String userAnswer = sc.next().strip();
-                String userAnswer = sc.nextLine().strip();
-                if (checkAnswer(currentThreat, userAnswer, chances)) {
-                    // Correct answer, add to player points
-                    this.getPlayer().addPoints(currentThreat.getPoints());
-                } else {
-                    // Wrong answer, subtract player health
-                    currentThreat.attack(this.getPlayer());
-                }
-
+            int chances = 3;
+            // Continue waiting until valid command/answer has been entered
+            // Get players answer
+            // askPathogenQuestion(currentThreat);
+            //String userAnswer = sc.next().strip();
+            String userAnswer = sc.nextLine().strip();
+            if (checkAnswer(currentThreat, userAnswer, chances)) {
+                // Correct answer, add to player points
+                this.getPlayer().addPoints(currentThreat.getPoints());
+            } else {
+                // Wrong answer, subtract player health
+                currentThreat.attack(this.getPlayer());
             }
+
+
         }
     }
 
