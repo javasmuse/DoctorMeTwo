@@ -46,7 +46,6 @@ public class Game {
                 // askPathogenQuestion(currentThreat);
                 //String userAnswer = sc.next().strip();
                 String userAnswer = sc.nextLine().strip();
-                Commands.handleCommand(userAnswer, currentThreat.getName()); // XXXXXXXXXX
                 if (checkAnswer(currentThreat, userAnswer, chances)) {
                     // Correct answer, add to player points
                     this.getPlayer().addPoints(currentThreat.getPoints());
@@ -72,17 +71,21 @@ public class Game {
             return true;
         } else if (isValidUserInput(pathogen, userAnswer, chances)) {
           //  Output.printColor(" Input is valid", Colors.ANSI_YELLOW, true);
+
+            // Handles the command and then asks for input again.
+            Output.printColor("Please enter your answer >> ",
+                    Colors.ANSI_YELLOW, false);
+            userAnswer = sc.nextLine().strip(); // Get the user answer again
             checkAnswer(pathogen, userAnswer, chances);
         } else {
 
-            chances--;
+            chances--; // Answer is wrong, decrement chances
             Output.printColor(chances + " chances remaining to answer the question" +
                             " correctly",
                     Colors.ANSI_CYAN, true);
-
-            // Answer is wrong, decrement chances
-            //userAnswer = sc.next().strip();
-           userAnswer = sc.nextLine().strip(); // NNNNNNNNNNN
+            Output.printColor("Please enter your answer >> ",
+                    Colors.ANSI_YELLOW, false);
+            userAnswer = sc.nextLine().strip(); //
             checkAnswer(pathogen, userAnswer, chances);
         }
 
@@ -102,8 +105,8 @@ public class Game {
         String pathogenName = currentThreat.getName();
         // True if primary command entered, false if bad command or hint/help entered
         // Handle hint, help etc.
-         userAnswer = sc.nextLine().strip();
-        //
+//         userAnswer = sc.nextLine().strip();
+
         boolean result = Commands.handleCommand(userAnswer, pathogenName);
       //  System.out.println("Line 22: HandleCommand Result " + result);
         return result;
