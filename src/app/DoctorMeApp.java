@@ -22,7 +22,7 @@ public class DoctorMeApp {
     }
 
     public void playDrMe() throws InterruptedException {
-        Output.printColor("Hello! What is you name? \n>> ", Colors.ANSI_YELLOW, false);
+        Output.printColor("Hello! What is your name? \n>> ", Colors.ANSI_YELLOW, false);
         String playerName = sc.nextLine().strip();
         // initialize player
         Player player = new Player(playerName);
@@ -35,18 +35,16 @@ public class DoctorMeApp {
         // difficulty represented as 50
         Game game = new Game(player, DIFFICULTY);
 
-        game.playIntroduction(playerName);
+       // game.playIntroduction(playerName);
         // Read and Load Word XML file
-        Commands command = new Commands();
-        command.loadWordXMLfile();
+        Commands.loadWordXMLfile();
+
         // Read and load Cell XML file
         XMLController.readCellXML();
 
         // Read in the XML file
         XMLController xmlc = new XMLController();
         game.play(WINNING_POINTS_REQUIRED, HEALTHVALUE, xmlc.readXML());
-
-
 
     }
 

@@ -38,74 +38,82 @@ public class Commands {
         }
         try {
             // A valid command has been entered
-            handleValidCommand(task, name);
+            return handleValidCommand(task, name);
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Please enter subsequent arguments for " + task);
             helpWithCommandUsage();
             // Continue logic and game loop to ask for input again
             return false;
         }
-        return true;
     }
 
     // Handles commands only after they are validated
-    private static void handleValidCommand(List<String> task, String name) {
+    private static boolean handleValidCommand(List<String> task, String name) {
         // Check for commands that don't have second command line arguments
         if (task.contains("help")) {
             help(); // this tells user what cells they have to fight the pathogens with
+            return true;
         } else if (task.contains("hint")) {
             hint(name); // this will print the hint from the Pothogen Class
+            return true;
         } else {
-            handleMultipleArgumentCommand(task); // Send to appropriate command and method
+            // Bad input received
+            return false;
+//            return handleMultipleArgumentCommand(task); // Send to appropriate command and method
         }
+
+
     }
 
-    // Handles commands specifically requiring one or more arguments
-
-    private static void handleMultipleArgumentCommand(List<String> task) {
-
-        String wordmatch = wordMatch(task); // this checks if what the player sent has a valid verb
-
-        if (wordmatch == "no match") {
-            System.out.println("That command is not valid");
-            // TODO need to send player back where they came from
-        } else {
-            // XXX at this point the verb is seperated, now need to determine
-            // if the other words in the list are good
-            try {
-                // TODO seperate verb from rest and send rest on
-                //List<String> commandArg = task.remove(wordmatch) ;
-                switch (wordmatch) {
-                    //TODO Handle synonyms for the commands
-                    case "get":
-                        get(task);
-                        break;
-                    case "move":
-                        //TODO Also handle 'walk' or 'go' etc.
-                        move(task);
-                        break;
-                    default:
-                        System.out.println("Bad command entered");
-                        break;
-                }
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Please enter subsequent arguments for " + wordmatch);
-                helpWithCommandUsage();
-            }
-        }
-    }
+//    // Handles commands specifically requiring one or more arguments
+//
+//    private static boolean handleMultipleArgumentCommand(List<String> task) {
+//
+////        String wordmatch = wordMatch(task); // this checks if what the player sent has a valid verb
+////
+////        if (wordmatch == "no match") {
+////            System.out.println("No match");
+//
+//        // TODO need to send player back where they came from
+//
+//        // XXX at this point the verb is seperated, now need to determine
+//        // if the other words in the list are good
+//        try {
+//            // TODO seperate verb from rest and send rest on
+//            //List<String> commandArg = task.remove(wordmatch) ;
+////                switch (wordmatch) {
+////                    //TODO Handle synonyms for the commands
+////                    case "get":
+////                        get(task);
+////                        break;
+////                    case "move":
+////                        //TODO Also handle 'walk' or 'go' etc.
+////                        move(task);
+////                        break;
+////                    default:
+////                        System.out.println("Bad command entered");
+////                        break;
+////                }
+//        } catch (IndexOutOfBoundsException e) {
+////                System.out.println("Please enter subsequent arguments for " + wordmatch);
+//            helpWithCommandUsage();
+//        }
+//
+//        // Bad input received, return false and send up method call stack
+//        return false;
+//    }
 
     private static boolean help() { // this tells player what Tools(cells) they have to fight the Pathogens with
         Output.printColor("Here are the Fighting Cells you have at your disposal,", Colors.ANSI_GREEN, true);
         Output.printColor("and their descriptions.", Colors.ANSI_GREEN, true);
         // TODO check name to find location to give to user
-       // Pathogen pathogen = new Pathogen();
+        // Pathogen pathogen = new Pathogen();
         Cell cell = new Cell();
-       // String pathLocation;
+        // String pathLocation;
         String cellName;
         String cellDescription;
         String result;
-        for(Cell c : Cell.getCellList()){
+        for (Cell c : Cell.getCellList()) {
             cellName = c.getName();
             cellDescription = c.getDescription();
             Output.printColor(cellName, Colors.ANSI_RED, true);
@@ -121,17 +129,17 @@ public class Commands {
     private static void get(List<String> item) {
         // TODO iterate and find
 
-        System.out.println("Player asked to get a " + item);
+        Output.printColor("Player asked to get a " + item, Colors.ANSI_YELLOW, true);
     }
 
     private static boolean hint(String name) {
         Pathogen pathogen = new Pathogen();
         String pathHint;
-        for (Pathogen path: Pathogen.getDiseaseList()) {
+        for (Pathogen path : Pathogen.getDiseaseList()) {
             if (path.getName().equals(name)) {
                 pathHint = path.getHint();
-               Output.printColor(pathHint, Colors.ANSI_GREEN, true);
-               return false;
+                Output.printColor(pathHint, Colors.ANSI_GREEN, true);
+                return false;
             }
         }
         return false;

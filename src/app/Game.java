@@ -16,7 +16,7 @@ public class Game {
     private int difficulty;
     private Scanner sc = new Scanner(System.in);
 
-    public Game(){
+    public Game() {
         super();
     }
 
@@ -28,9 +28,7 @@ public class Game {
 
 
     public void play(int winningPointsRequired, int healthValue, ArrayList<Pathogen> pathogenList) {
-        int score = healthValue;
-        String userAnswer;
-
+        // Initiate primary game loop, check game ending conditions each time
         while (!isGameEnd(this.getPlayer(), winningPointsRequired)) {
             // here we present scenerio and let the Dr fight the pathogens
             for (int round = 0; round < pathogenList.size(); round++) {
@@ -38,33 +36,73 @@ public class Game {
                 Pathogen currentThreat = pathogenList.get(round);
                 askPathogenQuestion(currentThreat);
 
-                // Receive the player's input
-                getUserInput();
+                // If we do not receive a primary command
+                // like hint or help or a synonym to those
+                // Then we assume that is their answer to the question
 
+                int chances = 3;
+                // Continue waiting until valid command/answer has been entered
+                // Get players answer
+                askPathogenQuestion(currentThreat);
+                String userAnswer = sc.nextLine().strip();
+                if(checkAnswer(currentThreat, userAnswer, chances)){
+                    // Correct answer, add to player points
+                    this.getPlayer().addPoints(currentThreat.getPoints());
+                } else {
+                    // Wrong answer, subtract player health
+                    currentThreat.attack(this.getPlayer());
+                }
 
             }
         }
     }
 
+    private boolean checkAnswer(Pathogen pathogen, String userAnswer, int chances) {
+
+        //if chances < 1, return false
+        if (chances < 1) {
+            return false;
+        }
+
+        Output.printColor(chances + " chances remaining to answer the question" +
+                        " correctly",
+                Colors.ANSI_CYAN, true);
+
+        // if correct answer, break out
+        if (isCorrect(pathogen, userAnswer)) {
+            return true;
+        } else if (isValidUserInput(pathogen, userAnswer, chances)) {
+            Output.printColor(" Input is valid" ,
+                    Colors.ANSI_YELLOW, true);
+            checkAnswer(pathogen, userAnswer, chances);
+        } else {
+            // Answer is wrong, decrement chances
+            chances--;
+            checkAnswer(pathogen, userAnswer, chances);
+        }
+
+        return false;
+    }
+
+
     private void askPathogenQuestion(Pathogen currentThreat) {
         String location = currentThreat.getLocation();
         Output.printColor("You find yourself in the:  " + location, Colors.ANSI_BLUE, true);
-        Output.printColor("Where you find:  " + currentThreat.getDescription() + "\n",  Colors.ANSI_BLUE, true);
+        Output.printColor("Where you find:  " + currentThreat.getDescription() + "\n", Colors.ANSI_BLUE, true);
         Output.printColor(currentThreat.getQuestion() + "\n Type your answer >> ", Colors.ANSI_YELLOW, false);
     }
 
     // Gets the user raw input and sends to handler
-    private void getUserInput() {
-        boolean isValidInput = false;
-        // Keep asking for input until it is a valid command (exluding, help, hint)
-        // Once valid, loop will break and thread will continue
-        while(!isValidInput){
-            // Set the player's answer
-            String userAnswer = sc.nextLine().strip();
-            String pathogenName = this.getPlayer().getName();
-            // True if primary command entered, false if bad command or hint/help entered
-            isValidInput = Commands.handleCommand(userAnswer, pathogenName);
-        }
+    private boolean isValidUserInput(Pathogen currentThreat, String userAnswer, int chances) {
+        String pathogenName = currentThreat.getName();
+        // True if primary command entered, false if bad command or hint/help entered
+        // Handle hint, help etc.
+        userAnswer = sc.nextLine().strip();
+        //
+        boolean result = Commands.handleCommand(userAnswer, pathogenName);
+        System.out.println("Line 22: HandleCommand Result " + result);
+        return result;
+
     }
 
     public void playIntroduction(String playerName) throws InterruptedException {
@@ -86,15 +124,13 @@ public class Game {
     }
 
     private boolean isGameEnd(Player player, int requiredPoints) {
-        // TODO Finalize winning conditions
-        if(isWin(player, requiredPoints)){
+        if (isWin(player, requiredPoints)) {
             // Player has won
             Output.printColor(player.getName() + " won the game!", Colors.ANSI_CYAN, true);
             // Show game results
-
             return true;
 
-        } else if (isLose(player)){
+        } else if (isLose(player)) {
             // Actions to do on lose
             Output.printColor(player.getName() + " lost the game :(((", Colors.ANSI_RED, true);
 
@@ -108,7 +144,7 @@ public class Game {
     }
 
     private boolean isWin(Player player, int requiredPoints) {
-        if(player.getPoints() >= requiredPoints){
+        if (player.getPoints() >= requiredPoints) {
             return true;
         } else {
             return false;
@@ -116,22 +152,20 @@ public class Game {
     }
 
     private boolean isLose(Player player) {
-        if(player.getHealth() < 1){
+        if (player.getHealth() < 1) {
             return true;
         } else {
             return false;
         }
     }
 
-    private boolean isCorrect(Pathogen pathogenWithQuestion, String answer){
+    private boolean isCorrect(Pathogen pathogenWithQuestion, String answer) {
         String correctAnswer = pathogenWithQuestion.getCorrectAnswer().toLowerCase().trim();
         answer = answer.toLowerCase().trim();
-        if(correctAnswer.contains(answer)){
-            System.out.println(answer.toUpperCase() + " is correct");
+        if (correctAnswer.contains(answer)) {
+            Output.printColor(answer.toUpperCase() + " is correct", Colors.ANSI_CYAN, true);
             return true;
         } else {
-            System.out.println(answer.toUpperCase() + " is wrong. " + correctAnswer.toUpperCase()
-            + " is the correct answer.");
             return false;
         }
     }
