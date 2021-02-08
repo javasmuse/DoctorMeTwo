@@ -131,7 +131,7 @@ public class XMLController {
            System.out.println("An error occured while loading the cell list from xml");
            e.printStackTrace();
        }
-       System.out.println("here is the list of cells  "+cells);// TODO delete after testing
+     //  System.out.println("here is the list of cells  "+cells);// TODO delete after testing
         return cells;
    }
 
