@@ -43,9 +43,10 @@ public class Game {
                 int chances = 3;
                 // Continue waiting until valid command/answer has been entered
                 // Get players answer
-                askPathogenQuestion(currentThreat);
+                // askPathogenQuestion(currentThreat);
+                //String userAnswer = sc.next().strip();
                 String userAnswer = sc.nextLine().strip();
-                if(checkAnswer(currentThreat, userAnswer, chances)){
+                if (checkAnswer(currentThreat, userAnswer, chances)) {
                     // Correct answer, add to player points
                     this.getPlayer().addPoints(currentThreat.getPoints());
                 } else {
@@ -64,20 +65,27 @@ public class Game {
             return false;
         }
 
-        Output.printColor(chances + " chances remaining to answer the question" +
-                        " correctly",
-                Colors.ANSI_CYAN, true);
 
         // if correct answer, break out
         if (isCorrect(pathogen, userAnswer)) {
             return true;
         } else if (isValidUserInput(pathogen, userAnswer, chances)) {
-            Output.printColor(" Input is valid" ,
-                    Colors.ANSI_YELLOW, true);
+          //  Output.printColor(" Input is valid", Colors.ANSI_YELLOW, true);
+
+            // Handles the command and then asks for input again.
+            Output.printColor("Please enter your answer >> ",
+                    Colors.ANSI_YELLOW, false);
+            userAnswer = sc.nextLine().strip(); // Get the user answer again
             checkAnswer(pathogen, userAnswer, chances);
         } else {
-            // Answer is wrong, decrement chances
-            chances--;
+
+            chances--; // Answer is wrong, decrement chances
+            Output.printColor(chances + " chances remaining to answer the question" +
+                            " correctly",
+                    Colors.ANSI_CYAN, true);
+            Output.printColor("Please enter your answer >> ",
+                    Colors.ANSI_YELLOW, false);
+            userAnswer = sc.nextLine().strip(); //
             checkAnswer(pathogen, userAnswer, chances);
         }
 
@@ -97,10 +105,10 @@ public class Game {
         String pathogenName = currentThreat.getName();
         // True if primary command entered, false if bad command or hint/help entered
         // Handle hint, help etc.
-        userAnswer = sc.nextLine().strip();
-        //
+//         userAnswer = sc.nextLine().strip();
+
         boolean result = Commands.handleCommand(userAnswer, pathogenName);
-        System.out.println("Line 22: HandleCommand Result " + result);
+      //  System.out.println("Line 22: HandleCommand Result " + result);
         return result;
 
     }
