@@ -7,7 +7,7 @@
         <location>small intestine</location>
         <question>It's just normal E. coli. Enter "okay" to continue.</question>
         <correctAnswer>okay</correctAnswer>
-        <points>50</points>
+        <points>20</points>
     </pathogen>
     <pathogen>
         <name>Salmonella</name>
@@ -16,7 +16,7 @@
         <location>stomach</location>
         <question>Salmonella is wreaking havoc. A pyrrhic victory is still a victory. Call the help of which self-sacrificing cell?</question>
         <correctAnswer>nk cell,b cell</correctAnswer>
-        <points>70</points>
+        <points>20</points>
     </pathogen>
     <pathogen>
         <name>C. difficile</name>
@@ -25,7 +25,7 @@
         <location>colon</location>
         <question>This requires immediate action. Which cells of the innate immune system should be used?</question>
         <correctAnswer>granulocyte,nk cell,b cell</correctAnswer>
-        <points>50</points>
+        <points>20</points>
     </pathogen>
     <pathogen>
         <name>Chlamydia psittaci</name>
@@ -34,7 +34,7 @@
         <location>lungs</location>
         <question>This typically requires tetracyclines. In the mean time, which cells should take action?</question>
         <correctAnswer>macrophage,granulocyte,nk cell,b cell</correctAnswer>
-        <points>50</points>
+        <points>20</points>
     </pathogen>
     <pathogen>
         <name>Fungal Meningitis</name>
@@ -43,7 +43,7 @@
         <location>brain</location>
         <question>The blood-brain barrier makes this especially tricky. Which cells should be used to extirpate the fungal fury?</question>
         <correctAnswer>B cell</correctAnswer>
-        <points>50</points>
+        <points>20</points>
     </pathogen>
     <pathogen>
         <name>Prion</name>
@@ -52,6 +52,6 @@
         <location>brain</location>
         <question>Nothing can be done. Accept death and make amends. Play again?</question>
         <correctAnswer>Yes</correctAnswer>
-        <points>100</points>
+        <points>20</points>
     </pathogen>
 </list>

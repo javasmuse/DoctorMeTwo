@@ -15,9 +15,7 @@ public class Pathogen extends CombatEntity {
     private static ArrayList<Pathogen> pathogenList;
 
     public Pathogen(){
-        //TODO Change hard code to reading in setting value from a file
-        // Or calculate based on difficulty
-        super(20, 20);
+        super(20, 40);
     }
 
 
