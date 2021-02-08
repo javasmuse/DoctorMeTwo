@@ -64,7 +64,7 @@ public class Game {
     private boolean checkAnswer(Pathogen pathogen, String userAnswer, int chances) {
 
         //if chances < 1, return false
-        if (chances < 1) {
+        if (chances <= 1) {
             return false;
         }
 
