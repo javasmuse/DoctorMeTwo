@@ -1,6 +1,8 @@
-package app;
+package com.doctorme.app;
 
 import static org.junit.Assert.*;
+
+import com.doctorme.util.XMLReader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +30,7 @@ public class CommandsTest {
     @Test
     public void hintTest(){
         String name = "Salmonella";
-        XMLController.readXML();
+        XMLReader.readXML();
         // TODO change the following to check for false && verify the below prints out in terminal
         //  previously it test correct until we changed return type.
        // assertEquals("It looks like this pathogen is able to produce energy regardless of its surroundings. Perhaps a general attack can do the trick.", Commands.hint(name));
