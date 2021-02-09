@@ -1,4 +1,4 @@
-package entities;
+package com.doctorme.app;
 
 import org.junit.After;
 import org.junit.Before;
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class VirusTest {
+public class GameTest {
 
     @Before
     public void setUp() throws Exception {
@@ -17,6 +17,14 @@ public class VirusTest {
     }
 
     @Test
-    public void attack() {
+    public void start() {
+    }
+
+    @Test
+    public void play() {
+    }
+
+    @Test
+    public void playAgain() {
     }
 }
