@@ -1,6 +1,8 @@
 package com.doctorme.app;
 
+import com.doctorme.entities.Location;
 import com.doctorme.entities.Question;
+import com.doctorme.util.LocationList;
 import com.doctorme.util.QuestionList;
 
 import java.util.ArrayList;
@@ -14,10 +16,13 @@ public class Game {
 
     String fileName;
     String nodeNameXML;
-    // available list of questions
+    // available lists - questions, locations
     List<Question> listQs = new ArrayList<>();
-    // access the question list
+    List<Location> listLocas = new ArrayList<>();
+
+    // access - question list, location list
     QuestionList ql = new QuestionList();
+    LocationList ll = new LocationList();
 
     public void startGame() {
         // TODO: put what is need to run here
@@ -25,8 +30,11 @@ public class Game {
         printQ(5);
         displayHint(5);
         checkAnswer(5);
+        bringLocations();
+        printL(4);
     }
 
+    // QUESTION ROUTING - TESTING through souts
     // we could bring them in directly from the question list class - but here allows there to be multiple xmls of questions and configure this to send for the user requested list
     public void bringQuestions() {
         fileName = "resources/questionsLevelOne";
@@ -53,5 +61,16 @@ public class Game {
         System.out.println(listQs.get(idx));
     }
 
+    // LOCATION ROUTING - TESTING through souts
+    public void bringLocations() {
+        fileName = "resources/locations.xml";
+        nodeNameXML = "location";
+        listLocas = ll.allLocations(fileName, nodeNameXML);
+
+    }
+
+    public void printL(int inx) {
+        System.out.println(listLocas.get(inx));
+    }
 
 }
