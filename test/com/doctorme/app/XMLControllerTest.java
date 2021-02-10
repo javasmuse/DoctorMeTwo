@@ -1,4 +1,4 @@
-package entities;
+package com.doctorme.app;
 
 import org.junit.After;
 import org.junit.Before;
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class BacteriaTest {
+public class XMLControllerTest {
 
     @Before
     public void setUp() throws Exception {
@@ -17,6 +17,6 @@ public class BacteriaTest {
     }
 
     @Test
-    public void attack() {
+    public void parseXML() {
     }
 }
