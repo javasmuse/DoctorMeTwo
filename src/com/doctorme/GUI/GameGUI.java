@@ -14,8 +14,8 @@ public class GameGUI implements ActionListener {
     private Container content;
     private final JFrame window = new JFrame();
     private JLabel currLocation;
-    private JPanel questionPanel, currLocationPanel, answerPanel, buttonPanel, helpPanel, buttonPanelHelpPage;
-    private JTextArea questionText;
+    private JPanel questionPanel, currLocationPanel, answerPanel, buttonPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel;
+    private JTextArea questionText, badgeText, scoreText;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
     private static final Font normalFont = new Font("Times New Roman", Font.PLAIN, 16);
@@ -110,6 +110,34 @@ public class GameGUI implements ActionListener {
         quitBtn = new JButton("Quit");
         buttonPanel.add(quitBtn);
         quitBtn.addActionListener(this);
+
+        //Badge Panel
+        badgePanel = new JPanel();
+        badgePanel.setBounds(700,30,300,200);
+        badgePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        content.add(badgePanel);
+
+        badgeText = new JTextArea("Badges Earned: ");
+        badgeText.setEditable(false);
+        badgeText.setBounds(700,30,300,200);
+        badgePanel.add(badgeText);
+
+        //Score Panel
+        scorePanel = new JPanel();
+        scorePanel.setBounds(700, 250,300,300);
+        badgePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        content.add(scorePanel);
+
+        scoreText = new JTextArea("Score Update: ");
+        scoreText.setEditable(false);
+        scoreText.setBounds(700,250,300,350);
+        scorePanel.add(scoreText);
+
+
+
+
+
+
 
     }
 
