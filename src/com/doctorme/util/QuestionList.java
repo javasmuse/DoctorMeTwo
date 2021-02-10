@@ -10,6 +10,7 @@ import java.util.List;
 
 public class QuestionList {
 
+    // FIELDS
     XMLReader xmlR = new XMLReader();
 
     // GENERATE LIST OF QUESTIONS FROM XML - call and pass in desired params (i.e. filename and node name)
