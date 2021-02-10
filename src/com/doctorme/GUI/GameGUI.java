@@ -96,16 +96,18 @@ public class GameGUI implements ActionListener {
 
         //Button Panel
         buttonPanel = new JPanel();
-        buttonPanel.setBounds(50, 550,600,100);
+        buttonPanel.setBounds(50, 470,600,100);
         buttonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         content.add(buttonPanel);
 
         helpBtn = new JButton("Help");
         buttonPanel.add(helpBtn);
+        helpBtn.addActionListener(this);
 
         quitBtn = new JButton("Quit");
         buttonPanel.add(quitBtn);
+        quitBtn.addActionListener(this);
 
     }
 
@@ -116,7 +118,7 @@ public class GameGUI implements ActionListener {
         }
 
         if(e.getSource() == quitBtn){
-
+            window.dispose();
         }
 
     }
