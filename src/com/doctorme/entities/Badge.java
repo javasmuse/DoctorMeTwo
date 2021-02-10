@@ -15,12 +15,15 @@ public class Badge {
     //in string format so GUI can load the file
     private String imageFile;
 
+    //*************** CONSTRUCTORS/ DESTRUCTORS ***************
     public Badge(){
         setName("NULL");
+        setImageFile("NULL");
     }
 
     public Badge(String name) {
         setName(name);
+        setImageFile("NULL");
     }
 
     public Badge(String name, String imageFile) {
@@ -28,6 +31,7 @@ public class Badge {
         setImageFile(imageFile);
     }
 
+    //*************** ACCESSOR METHODS ***************
     public String getName() {
         return name;
     }
@@ -42,5 +46,10 @@ public class Badge {
 
     private void setImageFile(String imageFile) {
         this.imageFile = imageFile;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }
