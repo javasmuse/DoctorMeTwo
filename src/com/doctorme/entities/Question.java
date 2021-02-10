@@ -6,26 +6,28 @@ import java.util.Objects;
 
 public class Question {
 
+    // FIELDS
     private int id;
-    private String hint;
+    private String type;
     private String question;
+    private List<String> possibleAnswers;
     private int correctAnswer;
     private int points;
-    private List<String> possibleAnswers;
+    private String hint;
 
-    public Question(){
-        //default constructor
-    }
-
-    public Question(int id, String hint, String question, int correctAnswer, int points, List<String> possibleAnswers) {
+    // CONSTRUCTOR
+    public Question(int id, String type, String question, List<String> possibleAnswers, int correctAnswer, int points, String hint) {
         this.id = id;
-        this.hint = hint;
+        this.type = type;
         this.question = question;
+        this.possibleAnswers = possibleAnswers;
         this.correctAnswer = correctAnswer;
         this.points = points;
-        this.possibleAnswers = possibleAnswers;
+        this.hint = hint;
     }
 
+
+    // ACCESSORS
     public int getId() {
         return id;
     }
@@ -34,12 +36,12 @@ public class Question {
         this.id = id;
     }
 
-    public String getHint() {
-        return hint;
+    public String getType() {
+        return type;
     }
 
-    public void setHint(String hint) {
-        this.hint = hint;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getQuestion() {
@@ -48,6 +50,14 @@ public class Question {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public List<String> getPossibleAnswers() {
+        return possibleAnswers;
+    }
+
+    public void setPossibleAnswers(List<String> possibleAnswers) {
+        this.possibleAnswers = possibleAnswers;
     }
 
     public int getCorrectAnswer() {
@@ -66,11 +76,22 @@ public class Question {
         this.points = points;
     }
 
-    public List<String> getPossibleAnswers() {
-        return possibleAnswers;
+    public String getHint() {
+        return hint;
     }
 
-    public void setPossibleAnswers(List<String> possibleAnswers) {
-        this.possibleAnswers = possibleAnswers;
+    public void setHint(String hint) {
+        this.hint = hint;
+    }
+
+    // Custom toString
+    @Override
+    public String toString() {
+        return "Question: " + question + "\n" +
+                "A. " + possibleAnswers.get(0) + "\n" +
+                "B. " + possibleAnswers.get(1) + "\n" +
+                "C. " + possibleAnswers.get(2) + "\n" +
+                "D. " + possibleAnswers.get(3) + "\n" +
+                "Your answer >";
     }
 }

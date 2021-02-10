@@ -1,5 +1,6 @@
 package com.doctorme.client;
 
+import com.doctorme.app.Game;
 import com.doctorme.entities.Player;
 
 import java.util.*;
@@ -8,8 +9,8 @@ import java.util.*;
 public class DoctorMeApp {
 
     public static void main(String[] args) throws InterruptedException {
-        DoctorMeApp app = new DoctorMeApp();
-        //TODO: Start game
+        Game game = new Game();
+        game.startGame();
     }
 
 
