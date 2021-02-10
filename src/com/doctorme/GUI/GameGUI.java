@@ -9,12 +9,12 @@ import java.awt.event.ActionListener;
 
 
 public class GameGUI implements ActionListener {
-    private JButton quitBtn, helpBtn,submit ;
+    private JButton quitBtn, helpBtn,submit, back ;
     private List<Location> board;
     private Container content;
     private final JFrame window = new JFrame();
     private JLabel currLocation;
-    private JPanel questionPanel, currLocationPanel, answerPanel, buttonPanel;
+    private JPanel questionPanel, currLocationPanel, answerPanel, buttonPanel, helpPanel, buttonPanelHelpPage;
     private JTextArea questionText;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
@@ -116,12 +116,40 @@ public class GameGUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == helpBtn){
-            //TODO
+
+            window.remove(currLocationPanel);
+            window.remove(questionPanel);
+            window.remove(answerPanel);
+            window.remove(buttonPanel);
+
+            helpPanel = new JPanel();
+            helpPanel.setBounds(50,50,600,500);
+            helpPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+            //TODO: Fill with Help instructions of the game
+
+            content.add(helpPanel);
+
+            buttonPanelHelpPage = new JPanel();
+            buttonPanelHelpPage.setBounds(50,600,600,100);
+            buttonPanelHelpPage.setBorder(BorderFactory.createLineBorder(Color.black));
+
+            back = new JButton("Back");
+
+            buttonPanelHelpPage.add(back);
+
+            content.add(buttonPanelHelpPage);
+            window.setVisible(true);
+
         }
 
         if(e.getSource() == quitBtn){
             window.dispose();
         }
+
+        if(e.getSource()==back){
+            //TODO: Go back to the Game Screen which will be in a function later on
+        }
+
 
     }
 
