@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE gameQuestions>
+<gameQuestions>
+    <questions>
+        <id>1</id>
+        <type>astronomy</type>
+        <question>Which is the largest planet in our solar system?</question>
+        <possibleAnswers1>Saturn</possibleAnswers1>
+        <possibleAnswers2>Pluto</possibleAnswers2>
+        <possibleAnswers3>Mars</possibleAnswers3>
+        <possibleAnswers4>Jupiter</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint>The largest planet shares it's name with the King of Gods in Roman mythology. It is located between Mars and Saturn.</hint>
+    </questions>
+    <questions>
+        <id>2</id>
+        <type>astronomy</type>
+        <question>The Earth's moon appears to rise in which direction; as seen from Earth?</question>
+        <possibleAnswers1>North</possibleAnswers1>
+        <possibleAnswers2>South</possibleAnswers2>
+        <possibleAnswers3>East</possibleAnswers3>
+        <possibleAnswers4>West</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint>Though seen in some movies, you will not in reality see the sunset and moonrise in the same view.</hint>
+    </questions>
+    <questions>
+        <id>3</id>
+        <type>astronomy</type>
+        <question>How many moons does Mars have?</question>
+        <possibleAnswers1>1</possibleAnswers1>
+        <possibleAnswers2>2</possibleAnswers2>
+        <possibleAnswers3>3</possibleAnswers3>
+        <possibleAnswers4>4</possibleAnswers4>
+        <correctAnswer>1</correctAnswer>
+        <points>10</points>
+        <hint>Mars moons are small compared to the Earths and there aren't very many. They are named for the Greek mythological characters of fear and panic.</hint>
+    </questions>
+    <questions>
+        <id>4</id>
+        <type>astronomy</type>
+        <question>Though other planets have rings, which planet is famous for its rings?</question>
+        <possibleAnswers1>Pluto</possibleAnswers1>
+        <possibleAnswers2>Mercury</possibleAnswers2>
+        <possibleAnswers3>Saturn</possibleAnswers3>
+        <possibleAnswers4>Earth</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint>Neptune, Uranus, and Jupiter all have rings, but aren't famous for them.</hint>
+    </questions>
+    <questions>
+        <id>5</id>
+        <type>astronomy</type>
+        <question>The smallest planet is?</question>
+        <possibleAnswers1>Venus</possibleAnswers1>
+        <possibleAnswers2>Pluto</possibleAnswers2>
+        <possibleAnswers3>Mercury</possibleAnswers3>
+        <possibleAnswers4>Neptune</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint>The planets closest to the sun are generally smaller than the further ones.</hint>
+    </questions>
+    <questions>
+        <id>6</id>
+        <type>body</type>
+        <question>How many bones are in the human body?</question>
+        <possibleAnswers1>32</possibleAnswers1>
+        <possibleAnswers2>206</possibleAnswers2>
+        <possibleAnswers3>311</possibleAnswers3>
+        <possibleAnswers4>162</possibleAnswers4>
+        <correctAnswer>1</correctAnswer>
+        <points>10</points>
+        <hint>Sorry this one is tough. Try counting them.</hint>
+    </questions>
+    <questions>
+        <id>7</id>
+        <type>body</type>
+        <question>Which blood type is known as the universal donor?</question>
+        <possibleAnswers1>AB</possibleAnswers1>
+        <possibleAnswers2>A</possibleAnswers2>
+        <possibleAnswers3>B</possibleAnswers3>
+        <possibleAnswers4>O</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint>Universal donor means this type is accepted by all other types. For example people with type A blood can accept their own or the universal.</hint>
+    </questions>
+    <questions>
+        <id>8</id>
+        <type>body</type>
+        <question>Which is longer?</question>
+        <possibleAnswers1>Large intestine</possibleAnswers1>
+        <possibleAnswers2>Small intestine</possibleAnswers2>
+        <possibleAnswers3>Tibia</possibleAnswers3>
+        <possibleAnswers4>Spleen</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint>The Spleen is fairly short in comparison and Tibia is a lower leg bone.</hint>
+    </questions>
+    <questions>
+        <id>9</id>
+        <type>body</type>
+        <question>People and animals with more than five digits on a hand or foot are</question>
+        <possibleAnswers1>Weird</possibleAnswers1>
+        <possibleAnswers2>Common</possibleAnswers2>
+        <possibleAnswers3>Polydactyl</possibleAnswers3>
+        <possibleAnswers4>Ambidextrous</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint>The famous Hemingway cats have this trait.</hint>
+    </questions>
+    <questions>
+        <id>10</id>
+        <type>body</type>
+        <question>Which of the following nutritional deficiencies is caused by a lack of vitamin C?</question>
+        <possibleAnswers1>Scurvy</possibleAnswers1>
+        <possibleAnswers2>Pellagra</possibleAnswers2>
+        <possibleAnswers3>Kwashiorkor</possibleAnswers3>
+        <possibleAnswers4>Anemia</possibleAnswers4>
+        <correctAnswer>0</correctAnswer>
+        <points>10</points>
+        <hint>Limes once helped prevent scurvy among the crews of British ships.</hint>
+    </questions>
+</gameQuestions>
