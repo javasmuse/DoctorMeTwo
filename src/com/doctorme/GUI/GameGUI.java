@@ -1,15 +1,12 @@
 package com.doctorme.GUI;
 
 import com.doctorme.entities.Location;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+
 
 public class GameGUI implements ActionListener {
     private JButton quitBtn, helpBtn,submit ;
@@ -20,6 +17,8 @@ public class GameGUI implements ActionListener {
     private JPanel questionPanel, currLocationPanel, answerPanel, buttonPanel;
     private JTextArea questionText;
     private JRadioButton optA, optB, optC, optD;
+    private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
+    private static final Font normalFont = new Font("Times New Roman", Font.PLAIN, 16);
 
     GameGUI(){
         window.setSize(1000,700);
@@ -28,15 +27,18 @@ public class GameGUI implements ActionListener {
         window.setLayout(null);
         window.setVisible(true);
         content = window.getContentPane();
+        content.setBackground(Color.decode("#ADC7D9"));
 
         //Title of Current Location
         currLocationPanel = new JPanel();
-        currLocationPanel.setBounds(50,50,600,30);
+        currLocationPanel.setBounds(50,30,600,50);
         currLocationPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        currLocationPanel.setBackground(Color.decode("#043769"));
 
-        currLocation = new JLabel("Current Location: ");
+        currLocation = new JLabel("Current Location");
         currLocation.setBounds(50,50,600,30);
-
+        currLocation.setForeground(Color.white);
+        currLocation.setFont(titleFont);
         currLocationPanel.add(currLocation);
 
         content.add(currLocationPanel);
