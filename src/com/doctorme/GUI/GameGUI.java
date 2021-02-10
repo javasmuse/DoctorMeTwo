@@ -9,18 +9,113 @@ import java.awt.event.ActionListener;
 
 
 public class GameGUI implements ActionListener {
-    private JButton quitBtn, helpBtn,submit, back ;
+    private JButton quitBtn, helpBtn,submit, back, enterGameBtn ;
     private List<Location> board;
     private Container content;
     private final JFrame window = new JFrame();
-    private JLabel currLocation;
-    private JPanel questionPanel, currLocationPanel, answerPanel, buttonPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel;
-    private JTextArea questionText, badgeText, scoreText;
+    private JLabel currLocation, welcomeTitle;
+    private JPanel enterGameButtonPanel, welcomeTitlePanel, questionPanel, currLocationPanel, answerPanel, buttonPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel;
+    private JTextArea questionText, badgeText, scoreText, enterGameHelp;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
     private static final Font normalFont = new Font("Times New Roman", Font.PLAIN, 16);
 
     GameGUI(){
+        window.setSize(1000,700);
+        window.setLocation(500,500);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setLayout(null);
+        window.setVisible(true);
+        content = window.getContentPane();
+        content.setBackground(Color.decode("#ADC7D9"));
+
+        //Welcome Title
+        welcomeTitlePanel = new JPanel();
+        welcomeTitlePanel.setBounds(50,50,600,50);
+//        welcomeTitlePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        welcomeTitlePanel.setBackground(Color.decode("#ADC7D9"));
+        content.add(welcomeTitlePanel);
+        window.setSize(800,800);
+
+        welcomeTitle = new JLabel("Welcome to the Doctor Me Game! ");
+        welcomeTitle.setFont(new Font("Consolas", Font.BOLD, 20 ));
+        welcomeTitle.setBounds(50,1,600,150);
+        welcomeTitlePanel.add(welcomeTitle,BorderLayout.CENTER);
+
+        //----Help or Instruction of the game
+        enterGamePanel = new JPanel();
+        enterGamePanel.setBounds(50,125, 600, 500);
+        enterGamePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        content.add(enterGamePanel);
+
+        enterGameHelp = new JTextArea("Instructions for the Game: ");
+        enterGameHelp.setEditable(false);
+        enterGameHelp.setBounds(50,125,600,500);
+        enterGamePanel.add(enterGameHelp);
+
+        //EnterGame Panel for button
+        enterGameButtonPanel = new JPanel();
+        enterGameButtonPanel.setBounds(50,650,600,100);
+        enterGameButtonPanel.setBackground(Color.decode("#ADC7D9"));
+//        enterGameButtonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        content.add(enterGameButtonPanel);
+
+        enterGameBtn = new JButton("Enter Game");
+        enterGameBtn.setBounds(300,750,100,100);
+        enterGameButtonPanel.add(enterGameBtn);
+        enterGameBtn.addActionListener(this);
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==enterGameBtn){
+            window.remove(welcomeTitlePanel);
+            window.remove(enterGamePanel);
+            window.remove(enterGameButtonPanel);
+            gameScreen();
+        }
+        if(e.getSource() == helpBtn){
+
+            window.remove(currLocationPanel);
+            window.remove(questionPanel);
+            window.remove(answerPanel);
+            window.remove(buttonPanel);
+            window.remove(badgePanel);
+            window.remove(scorePanel);
+
+            helpPanel = new JPanel();
+            helpPanel.setBounds(50,50,600,500);
+            helpPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+            //TODO: Fill with Help instructions of the game
+
+            content.add(helpPanel);
+
+            buttonPanelHelpPage = new JPanel();
+            buttonPanelHelpPage.setBounds(50,600,600,100);
+            buttonPanelHelpPage.setBorder(BorderFactory.createLineBorder(Color.black));
+
+            back = new JButton("Back");
+
+            buttonPanelHelpPage.add(back);
+
+            content.add(buttonPanelHelpPage);
+            window.setVisible(true);
+
+        }
+
+        if(e.getSource() == quitBtn){
+            window.dispose();
+        }
+
+        if(e.getSource()==back){
+            //TODO: Go back to the Game Screen which will be in a function later on
+        }
+
+
+    }
+
+    public void gameScreen(){
         window.setSize(1000,700);
         window.setLocation(500,500);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -132,52 +227,6 @@ public class GameGUI implements ActionListener {
         scoreText.setEditable(false);
         scoreText.setBounds(700,250,300,350);
         scorePanel.add(scoreText);
-
-
-
-
-
-
-
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == helpBtn){
-
-            window.remove(currLocationPanel);
-            window.remove(questionPanel);
-            window.remove(answerPanel);
-            window.remove(buttonPanel);
-
-            helpPanel = new JPanel();
-            helpPanel.setBounds(50,50,600,500);
-            helpPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-            //TODO: Fill with Help instructions of the game
-
-            content.add(helpPanel);
-
-            buttonPanelHelpPage = new JPanel();
-            buttonPanelHelpPage.setBounds(50,600,600,100);
-            buttonPanelHelpPage.setBorder(BorderFactory.createLineBorder(Color.black));
-
-            back = new JButton("Back");
-
-            buttonPanelHelpPage.add(back);
-
-            content.add(buttonPanelHelpPage);
-            window.setVisible(true);
-
-        }
-
-        if(e.getSource() == quitBtn){
-            window.dispose();
-        }
-
-        if(e.getSource()==back){
-            //TODO: Go back to the Game Screen which will be in a function later on
-        }
-
 
     }
 
