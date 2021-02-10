@@ -29,7 +29,7 @@ public class Game {
 
     // we could bring them in directly from the question list class - but here allows there to be multiple xmls of questions and configure this to send for the user requested list
     public void bringQuestions() {
-        fileName = "resources/astronomyQuestions";
+        fileName = "resources/questionsLevelOne";
         nodeNameXML = "questions";
         listQs = ql.allQuestions(fileName, nodeNameXML);
     }
