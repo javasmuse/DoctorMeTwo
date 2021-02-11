@@ -3,6 +3,7 @@ package com.doctorme.app;
 import com.doctorme.entities.Location;
 import com.doctorme.entities.Player;
 import com.doctorme.entities.Question;
+import com.doctorme.util.GameText;
 import com.doctorme.util.LocationList;
 import com.doctorme.util.QuestionList;
 
@@ -84,4 +85,11 @@ public class Game {
             }
         }
     }
+
+    //Instructions
+    public void printInstructions(){
+        GameText text = new GameText();
+        System.out.println(text.readInstructions().get(0));
+    }
+
 }
