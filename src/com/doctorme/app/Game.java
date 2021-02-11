@@ -1,5 +1,6 @@
 package com.doctorme.app;
 
+import com.doctorme.GUI.GameGUI;
 import com.doctorme.entities.Location;
 import com.doctorme.entities.Player;
 import com.doctorme.entities.Question;
@@ -29,6 +30,7 @@ public class Game {
     // START HERE
     public void startGame() {
         // TODO: put what is need to run here
+        new GameGUI();
         bringQuestions(); // stock the questions on startup - could ask user to choose topic or increase level through input another xml and adding args to method and method call
         bringLocations(); // same but for locations
         currentPlayer = new Player("Rennie"); // set temp current player name - get from GUI on start up
@@ -123,9 +125,9 @@ public class Game {
     // Random
 
     // INSTRUCTIONS DISPLAY
-    public void printInstructions(){
+    public String printInstructions(){
         GameText text = new GameText();
-        System.out.println(text.readInstructions().get(0));
+        return (text.readInstructions().get(0));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.doctorme.client;
 
+import com.doctorme.GUI.GameGUI;
 import com.doctorme.app.Game;
 import com.doctorme.entities.Player;
 

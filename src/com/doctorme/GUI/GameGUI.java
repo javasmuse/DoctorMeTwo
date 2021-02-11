@@ -1,6 +1,8 @@
 package com.doctorme.GUI;
 
+import com.doctorme.app.Game;
 import com.doctorme.entities.Location;
+import com.doctorme.util.GameText;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -8,19 +10,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameGUI implements ActionListener {
-    private JButton quitBtn, helpBtn, submit, back, enterGameBtn, leftLocBtn, rightLocBtn;
+    private JButton quitBtn, helpBtn, submit, back, enterGameBtn, leftLocBtn, rightLocBtn, helpCloseBtn;
     private List<Location> board;
     private Container content;
     private final JFrame window = new JFrame();
+    private JFrame helpWindow;
     private JLabel currLocation, welcomeTitle, badgeTitle, scoreTitle;
     private JPanel questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
-    private JTextArea questionText, enterGameHelp;
+    private JTextArea helpText, gameInstructions, questionText;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
     private static final Font questionFont = new Font("Times New Roman", Font.ITALIC, 16);
     private static final Font normalFont = new Font("Times New Roman", Font.PLAIN, 16);
+    private JScrollPane scrollPane;
+    private Game game = new Game();
 
-    GameGUI(){
+    public GameGUI(){
         //Setting the GUI window
         window.setSize(1050,520);
         window.setLocation(500,500);
@@ -32,20 +37,32 @@ public class GameGUI implements ActionListener {
 
         //Welcome Title
         welcomeTitle = new JLabel("Welcome to the Doctor Me Game!", SwingConstants.CENTER);
-        welcomeTitle.setFont(titleFont);
         welcomeTitle.setBounds(50,10,950,50);
-        content.add(welcomeTitle,BorderLayout.CENTER);
+        welcomeTitle.setForeground(Color.black);
+        welcomeTitle.setFont(titleFont);
+        content.add(welcomeTitle);
 
         //----Help or Instruction of the game
         enterGamePanel = new JPanel();
         enterGamePanel.setBounds(50,70, 950, 350);
+        enterGamePanel.setBackground(Color.white);
 //        enterGamePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         content.add(enterGamePanel);
 
-        enterGameHelp = new JTextArea("Instructions for the Game: ");
-        enterGameHelp.setEditable(false);
-        enterGameHelp.setBounds(0,0,950,350);
-        enterGamePanel.add(enterGameHelp);
+        gameInstructions = new JTextArea();
+        gameInstructions.setText(game.printInstructions());
+        gameInstructions.setBounds(0,0,950,350);
+        gameInstructions.setForeground(Color.black);
+        gameInstructions.setFont(questionFont);
+        gameInstructions.setLineWrap(true);
+        gameInstructions.setWrapStyleWord(true);
+        gameInstructions.setEditable(false);
+        enterGamePanel.add(gameInstructions);
+
+//        scrollPane = new JScrollPane(gameInstructions);
+//        scrollPane.setPreferredSize(new Dimension(950,350));
+//        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+//        enterGamePanel.add(scrollPane);
 
         //EnterGame button
         enterGameBtn = new JButton();
@@ -62,45 +79,21 @@ public class GameGUI implements ActionListener {
         window.revalidate();
     }
 
+    //*************** EVENT LISTENER ***************
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==enterGameBtn){
+        if(e.getSource() == enterGameBtn){
             content.removeAll();
             window.repaint();
             window.revalidate();
             setup();
-        }
-        if(e.getSource() == helpBtn){
-
-//            window.remove(currLocationPanel);
-//            window.remove(questionPanel);
-//            window.remove(answerPanel);
-//            window.remove(buttonPanel);
-//            window.remove(badgePanel);
-//            window.remove(scorePanel);
-
-            helpPanel = new JPanel();
-            helpPanel.setBounds(50,50,600,500);
-            helpPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-            //TODO: Fill with Help instructions of the game
-
-            content.add(helpPanel);
-
-            buttonPanelHelpPage = new JPanel();
-            buttonPanelHelpPage.setBounds(50,600,600,100);
-            buttonPanelHelpPage.setBorder(BorderFactory.createLineBorder(Color.black));
-
-            back = new JButton("Back");
-
-            buttonPanelHelpPage.add(back);
-
-            content.add(buttonPanelHelpPage);
-            window.setVisible(true);
-
-        }
-
-        if(e.getSource() == quitBtn){
+        }else if(e.getSource() == helpBtn){
+            displayHelpWindow();
+        }else if(e.getSource() == helpCloseBtn){
+            helpWindow.dispose();
+        }else if(e.getSource() == quitBtn){
             window.dispose();
+            System.exit(0);
         }
 
         if(e.getSource()==back){
@@ -142,7 +135,6 @@ public class GameGUI implements ActionListener {
         questionPanel.setBackground(Color.white);
         questionPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         content.add(questionPanel);
-
         questionText = new JTextArea("How much wood would a woodchuck chuck if a woodchuck could chuck wood? Peter Piper picked a peck of pickled peppers. If Peter Piper picked a peck of pickled peppers, how many pecks of pickled peppers did Peter Piper pick?");
         questionText.setBounds(52,102,596,96);
         questionText.setForeground(Color.black);
@@ -335,6 +327,94 @@ public class GameGUI implements ActionListener {
         quitBtn.setVisible(true);
         quitBtn.addActionListener(this);
         content.add(quitBtn);
+    }
+
+    private void displayHelpWindow(){
+        helpWindow = new JFrame(); //initiate help window
+        Container helpContent;
+        JLabel helpTitle;
+
+        //set up help window
+        helpWindow.setSize(500,520);
+        helpWindow.setLocation(1600,500);
+        helpWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        helpWindow.setLayout(null);
+        helpWindow.setVisible(true);
+        helpContent = helpWindow.getContentPane();
+        helpContent.setBackground(Color.decode("#ADC7D9"));
+
+        //help title
+        helpTitle = new JLabel("Need help?", SwingConstants.CENTER);
+        helpTitle.setBounds(50,10,400,50);
+        helpTitle.setFont(titleFont);
+        helpTitle.setForeground(Color.black);
+        helpContent.add(helpTitle,BorderLayout.CENTER);
+
+        //text area for the help window
+        helpText = new JTextArea();
+        helpText.setText("Here are some basic instructions if you get stuck blah blah blah");
+        helpText.setBounds(50,70,400,350);
+        helpText.setForeground(Color.black);
+        helpText.setFont(questionFont);
+        helpText.setLineWrap(true);
+        helpText.setWrapStyleWord(true);
+        helpText.setEditable(false);
+        helpContent.add(helpText);
+
+        //close button for help window
+        helpCloseBtn = new JButton();
+        helpCloseBtn.setBounds(210, 430, 80, 30);
+        helpCloseBtn.setText("Close");
+//        helpCloseBtn.setBackground(Color.white);
+//        helpCloseBtn.setForeground(Color.black);
+//        helpCloseBtn.setFont(normalFont);
+        helpCloseBtn.setVisible(true);
+        helpCloseBtn.addActionListener(this);
+        helpContent.add(helpCloseBtn);
+
+        helpWindow.repaint();
+        helpWindow.revalidate();
+    }
+
+    //*************** ACCESSOR METHODS ***************
+    private void updateHelpScreenText(String newHelpText){
+        helpText.setText(newHelpText);
+    }
+
+    private void updateInstructionsText(String newInstructions){
+        gameInstructions.setText(newInstructions);
+    }
+
+    private void updateCurrentLocation(String newLocation){
+        currLocation.setText(newLocation);
+    }
+
+    private void updateQuestion(String newQuestion){
+        questionText.setText(newQuestion);
+    }
+
+    private void updateOptionA(String newOption){
+        optA.setText(newOption);
+    }
+
+    private void updateOptionB(String newOption){
+        optB.setText(newOption);
+    }
+
+    private void updateOptionC(String newOption){
+        optC.setText(newOption);
+    }
+
+    private void updateOptionD(String newOption){
+        optD.setText(newOption);
+    }
+
+    private void updateLeftLocationButton(String newLocation){
+        leftLocBtn.setText("<<< " + newLocation);
+    }
+
+    private void updateRightLocationButton(String newLocation){
+        rightLocBtn.setText(newLocation + " >>>");
     }
 
     //*************** MAIN (TESTING) ***************
