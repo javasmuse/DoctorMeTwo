@@ -16,7 +16,7 @@ public class GameGUI implements ActionListener {
     private final JFrame window = new JFrame();
     private JFrame helpWindow;
     private JLabel currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
-    private JPanel questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
+    private JPanel gameDescription, questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
     private JTextArea helpText, gameInstructions, questionText;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
@@ -39,7 +39,7 @@ public class GameGUI implements ActionListener {
         content.setBackground(Color.decode("#ADC7D9"));
 
         //Welcome Title
-        welcomeTitle = new JLabel("Welcome to the Doctor Me Game!", SwingConstants.CENTER);
+        welcomeTitle = new JLabel(game.printWelcome(), SwingConstants.CENTER);
         welcomeTitle.setBounds(50,10,950,50);
         welcomeTitle.setForeground(Color.black);
         welcomeTitle.setFont(titleFont);
