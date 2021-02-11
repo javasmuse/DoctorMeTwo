@@ -27,8 +27,12 @@ public class GameGUI implements ActionListener {
     private Game game = new Game();
     private String correctAnswer = "A";
     private ButtonGroup radioGroup;
+    private boolean readyForNextQuestion, hasCorrectAnswer;
 
-    public GameGUI(){
+    public GameGUI(String introTitle, String introInstructions){
+        setHasCorrectAnswer(false);
+        setReadyForNextQuestion(false);
+
         //Setting the GUI window
         window.setSize(1050,520);
         window.setLocation(500,500);
@@ -39,7 +43,7 @@ public class GameGUI implements ActionListener {
         content.setBackground(Color.decode("#ADC7D9"));
 
         //Welcome Title
-        welcomeTitle = new JLabel("Welcome to the Doctor Me Game!", SwingConstants.CENTER);
+        welcomeTitle = new JLabel(introTitle, SwingConstants.CENTER);
         welcomeTitle.setBounds(50,10,950,50);
         welcomeTitle.setForeground(Color.black);
         welcomeTitle.setFont(titleFont);
@@ -53,7 +57,7 @@ public class GameGUI implements ActionListener {
         content.add(enterGamePanel);
 
         gameInstructions = new JTextArea();
-        gameInstructions.setText(game.printInstructions());
+        gameInstructions.setText(introInstructions);
         gameInstructions.setBounds(0,0,950,350);
         gameInstructions.setForeground(Color.black);
         gameInstructions.setFont(questionFont);
@@ -100,7 +104,7 @@ public class GameGUI implements ActionListener {
         }else if(e.getSource() == submit && submit.getText().equals("Submit")) {
             checkAnswer();
         }else if(e.getSource() == submit && submit.getText().equals("Next Question")){
-            getNextQuestion();
+            setReadyForNextQuestion(true);
         }else if(e.getSource() == leftLocBtn){
 //            changeToLeftLoc();
         }else if(e.getSource() == rightLocBtn){
@@ -114,6 +118,16 @@ public class GameGUI implements ActionListener {
     }
 
     //*************** ACCESSORY METHODS ***************
+    public void guiUpdate(){
+        correctLabel.setVisible(false);
+        incorrectLabel.setVisible(false);
+        radioGroup.clearSelection();
+        submit.setText("Submit");
+
+        window.repaint();
+        window.revalidate();
+    }
+
     private void checkAnswer(){
         submit.setText("Next Question");
         if ((optA.isSelected() && correctAnswer.equals("A")) ||
@@ -121,10 +135,12 @@ public class GameGUI implements ActionListener {
             (optC.isSelected() && correctAnswer.equals("C")) ||
             (optD.isSelected() && correctAnswer.equals("D"))){
             correctLabel.setVisible(true);
-            incrementScore();
+            setHasCorrectAnswer(true);
+//            incrementScore();
         }else{
             incorrectLabel.setVisible(true);
-            resetScore();
+            setHasCorrectAnswer(false);
+//            resetScore();
         }
         window.repaint();
         window.revalidate();
@@ -136,16 +152,6 @@ public class GameGUI implements ActionListener {
 
     private void resetScore(){
 
-    }
-
-    private void getNextQuestion(){
-        correctLabel.setVisible(false);
-        incorrectLabel.setVisible(false);
-        radioGroup.clearSelection();
-        submit.setText("Submit");
-
-        window.repaint();
-        window.revalidate();
     }
 
     //*************** SETUP METHODS ***************
@@ -455,6 +461,8 @@ public class GameGUI implements ActionListener {
 
     public void updateQuestion(String newQuestion){
         questionText.setText(newQuestion);
+        setReadyForNextQuestion(false);
+        setHasCorrectAnswer(false);
     }
 
     public void updateOptionA(String newOption){
@@ -481,9 +489,33 @@ public class GameGUI implements ActionListener {
         rightLocBtn.setText(newLocation + " >>>");
     }
 
+    private String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    public boolean isReadyForNextQuestion() {
+        return readyForNextQuestion;
+    }
+
+    private void setReadyForNextQuestion(boolean readyForNextQuestion) {
+        this.readyForNextQuestion = readyForNextQuestion;
+    }
+
+    public boolean hadCorrectAnswer() {
+        return hasCorrectAnswer;
+    }
+
+    private void setHasCorrectAnswer(boolean hasCorrectAnswer) {
+        this.hasCorrectAnswer = hasCorrectAnswer;
+    }
+
     //*************** MAIN (TESTING) ***************
     public static void main(String[] args) {
-        GameGUI gui = new GameGUI();
+        GameGUI gui = new GameGUI("Welcome", "Here are the instructions! Nothing!");
     }
 
 }
