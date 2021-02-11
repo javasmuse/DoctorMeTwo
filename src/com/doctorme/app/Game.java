@@ -31,6 +31,8 @@ public class Game {
     // START HERE
     public void startGame() {
         // TODO: put what is need to run here
+        String welcome = printWelcome();
+        String instructions = printInstructions();
         bringQuestions(); // stock the questions on startup - could ask user to choose topic or increase level through input another xml and adding args to method and method call
         bringLocations(); // same but for locations
         currentPlayer = new Player("Rennie"); // set temp current player name - get from GUI on start up
@@ -44,6 +46,7 @@ public class Game {
         System.out.println(sampleQ + "\n" + possAns + "\nHint: " + sampleQH);
         System.out.println("test answer: option 3");
         checkAnswerByIndex(3, 2); // checks same q for possible answer of 3rd index
+
     }
 
     // SHOW START SCREEN - AND FIRST LOCATION 'ENTRY'
