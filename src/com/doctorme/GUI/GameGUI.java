@@ -1,6 +1,9 @@
 package com.doctorme.GUI;
 
+import com.doctorme.app.Game;
 import com.doctorme.entities.Location;
+import com.doctorme.util.GameText;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -19,6 +22,8 @@ public class GameGUI implements ActionListener {
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
     private static final Font questionFont = new Font("Times New Roman", Font.ITALIC, 16);
     private static final Font normalFont = new Font("Times New Roman", Font.PLAIN, 16);
+    private JScrollPane scrollPane;
+    private Game game = new Game();
 
     GameGUI(){
         //Setting the GUI window
@@ -39,13 +44,23 @@ public class GameGUI implements ActionListener {
         //----Help or Instruction of the game
         enterGamePanel = new JPanel();
         enterGamePanel.setBounds(50,70, 950, 350);
+        enterGamePanel.setBackground(Color.white);
 //        enterGamePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         content.add(enterGamePanel);
 
-        enterGameHelp = new JTextArea("Instructions for the Game: ");
+        enterGameHelp = new JTextArea("Instructions for the Game: \n"+game.printInstructions());
         enterGameHelp.setEditable(false);
+        enterGameHelp.setLineWrap(true);
+        enterGameHelp.setFont(new Font("Comic Sans", Font.BOLD, 15));
+        enterGameHelp.setWrapStyleWord(true);
         enterGameHelp.setBounds(0,0,950,350);
-        enterGamePanel.add(enterGameHelp);
+
+        scrollPane = new JScrollPane(enterGameHelp);
+        scrollPane.setPreferredSize(new Dimension(950,350));
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        enterGamePanel.add(scrollPane);
+
 
         //EnterGame button
         enterGameBtn = new JButton();

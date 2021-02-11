@@ -1,5 +1,6 @@
 package com.doctorme.app;
 
+import com.doctorme.GUI.GameGUI;
 import com.doctorme.entities.Location;
 import com.doctorme.entities.Player;
 import com.doctorme.entities.Question;
@@ -87,9 +88,9 @@ public class Game {
     }
 
     //Instructions
-    public void printInstructions(){
+    public String printInstructions(){
         GameText text = new GameText();
-        System.out.println(text.readInstructions().get(0));
+        return (text.readInstructions().get(0));
     }
 
 }
