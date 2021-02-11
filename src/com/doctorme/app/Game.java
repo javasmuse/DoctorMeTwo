@@ -1,6 +1,7 @@
 package com.doctorme.app;
 
 import com.doctorme.entities.Location;
+import com.doctorme.entities.Player;
 import com.doctorme.entities.Question;
 import com.doctorme.util.GameText;
 import com.doctorme.util.LocationList;
@@ -13,57 +14,32 @@ public class Game {
 
     // TODO: flow of game is controlled here
 
-    // CURRENTLY USED TO CHECK QUESTIONS -- DELETE WHEN TESTS WRITTEN
-
-    String fileName;
-    String nodeNameXML;
+    // FIELDS
+    private String fileName; // useful to allow user to choose different sets of questions or different rooms, also can be used to level up with insertion of more xml
+    private String nodeNameXML; // same as above comment
     // available lists - questions, locations
-    List<Question> listQs = new ArrayList<>();
-    List<Location> listLocas = new ArrayList<>();
-
+    private List<Question> listQs = new ArrayList<>();     // list of questions
+    private List<Location> listLocas = new ArrayList<>();  // list of locations
     // access - question list, location list
-    QuestionList ql = new QuestionList();
-    LocationList ll = new LocationList();
+    private QuestionList ql = new QuestionList();
+    private LocationList ll = new LocationList();
+    private Player currentPlayer = new Player();
 
+    // START HERE
     public void startGame() {
         // TODO: put what is need to run here
-        bringQuestions(); // stock the questions on startup
-        printQ(5);
-        displayHint(5);
-        checkAnswer(5);
-        bringLocations();
-        printL(4);
-        printInstructions();
+        bringQuestions(); // stock the questions on startup - could ask user to choose topic or increase level through input another xml and adding args to method and method call
+        bringLocations(); // same but for locations
+        currentPlayer = new Player("Rennie"); // set temp current player name - get from GUI on start up
     }
 
-    // QUESTION ROUTING - TESTING through souts
-    // we could bring them in directly from the question list class - but here allows there to be multiple xmls of questions and configure this to send for the user requested list
+    // STOCK QUESTION AND LOCATION LISTS- expansion possible for user selected 'topics or level' - alternate xmls
     public void bringQuestions() {
         fileName = "resources/questionsLevelOne";
         nodeNameXML = "questions";
         listQs = ql.allQuestions(fileName, nodeNameXML);
     }
 
-    // user asks for hint
-    public void displayHint(int questID){
-        System.out.println(listQs.get(questID).getHint());
-
-    }
-
-    public void checkAnswer(int questID){
-        int userInput = 3;
-        if (listQs.get(questID).getCorrectAnswer() == userInput ) {
-            System.out.println("YES");
-        } else {
-            System.out.println("NO");
-        }
-    }
-
-    public void printQ(int idx) {
-        System.out.println(listQs.get(idx));
-    }
-
-    // LOCATION ROUTING - TESTING through souts
     public void bringLocations() {
         fileName = "resources/locations.xml";
         nodeNameXML = "location";
@@ -71,8 +47,43 @@ public class Game {
 
     }
 
-    public void printL(int inx) {
-        System.out.println(listLocas.get(inx));
+    // HINTS
+    // user asks for hint - provide hint for specified question by index
+    public String displayHintbyIndex(int questIndx) {
+        return listQs.get(questIndx).getHint();
+    }
+
+    // user asks for hint - provide hint for specified question by question id number
+    public String displayHintbyId(int questID) {
+        for (int i = 0; i < listQs.size(); i++) {
+            if (listQs.get(i).getId() == questID) {
+                return listQs.get(i).getHint();
+            }
+        }
+        return null;
+    }
+
+    // CHECK ANSWER
+    // check user's answer by question index
+    public void checkAnswerByIndex(int questIdx, int userAnswer) {
+        userAnswer = 3; // add
+        if (listQs.get(questIdx).getCorrectAnswer() == userAnswer) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    }
+
+    // check user's answer by question id
+    public void checkAnswerById(int questId, int answerUser) {
+
+        for (int i = 0; i < listQs.size(); i++) {
+            if (listQs.get(i).getId() == questId) {
+                if (listQs.get(i).getCorrectAnswer() == answerUser) {
+                    System.out.println("YES!");
+                }
+            }
+        }
     }
 
     //Instructions
@@ -80,4 +91,5 @@ public class Game {
         GameText text = new GameText();
         System.out.println(text.readInstructions().get(0));
     }
+
 }
