@@ -25,7 +25,7 @@ public class GameGUI implements ActionListener {
     private JScrollPane scrollPane;
     private Game game = new Game();
 
-    GameGUI(){
+    public GameGUI(){
         //Setting the GUI window
         window.setSize(1050,520);
         window.setLocation(500,500);
