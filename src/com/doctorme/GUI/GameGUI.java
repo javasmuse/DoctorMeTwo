@@ -7,15 +7,14 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class GameGUI implements ActionListener {
-    private JButton quitBtn, helpBtn,submit, back, enterGameBtn ;
+    private JButton quitBtn, helpBtn, submit, back, enterGameBtn, leftLocBtn, rightLocBtn;
     private List<Location> board;
     private Container content;
     private final JFrame window = new JFrame();
-    private JLabel currLocation, welcomeTitle, badgeTitle;
-    private JPanel enterGameButtonPanel, welcomeTitlePanel, questionPanel, currLocationPanel, answerPanel, buttonPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
-    private JTextArea questionText, badgeText, scoreText, enterGameHelp;
+    private JLabel currLocation, welcomeTitle, badgeTitle, scoreTitle;
+    private JPanel questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
+    private JTextArea questionText, enterGameHelp;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
     private static final Font questionFont = new Font("Times New Roman", Font.ITALIC, 16);
@@ -23,7 +22,7 @@ public class GameGUI implements ActionListener {
 
     GameGUI(){
         //Setting the GUI window
-        window.setSize(1000,700);
+        window.setSize(1050,520);
         window.setLocation(500,500);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLayout(null);
@@ -32,59 +31,53 @@ public class GameGUI implements ActionListener {
         content.setBackground(Color.decode("#ADC7D9"));
 
         //Welcome Title
-        welcomeTitlePanel = new JPanel();
-        welcomeTitlePanel.setBounds(50,50,600,50);
-//        welcomeTitlePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        welcomeTitlePanel.setBackground(Color.decode("#ADC7D9"));
-        content.add(welcomeTitlePanel);
-        window.setSize(800,800);
-
-        welcomeTitle = new JLabel("Welcome to the Doctor Me Game! ");
-        welcomeTitle.setFont(new Font("Consolas", Font.BOLD, 20 ));
-        welcomeTitle.setBounds(50,1,600,150);
-        welcomeTitlePanel.add(welcomeTitle,BorderLayout.CENTER);
+        welcomeTitle = new JLabel("Welcome to the Doctor Me Game!", SwingConstants.CENTER);
+        welcomeTitle.setFont(titleFont);
+        welcomeTitle.setBounds(50,10,950,50);
+        content.add(welcomeTitle,BorderLayout.CENTER);
 
         //----Help or Instruction of the game
         enterGamePanel = new JPanel();
-        enterGamePanel.setBounds(50,125, 600, 500);
-        enterGamePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        enterGamePanel.setBounds(50,70, 950, 350);
+//        enterGamePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         content.add(enterGamePanel);
 
         enterGameHelp = new JTextArea("Instructions for the Game: ");
         enterGameHelp.setEditable(false);
-        enterGameHelp.setBounds(50,125,600,500);
+        enterGameHelp.setBounds(0,0,950,350);
         enterGamePanel.add(enterGameHelp);
 
-        //EnterGame Panel for button
-        enterGameButtonPanel = new JPanel();
-        enterGameButtonPanel.setBounds(50,650,600,100);
-        enterGameButtonPanel.setBackground(Color.decode("#ADC7D9"));
-//        enterGameButtonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        content.add(enterGameButtonPanel);
-
-        enterGameBtn = new JButton("Enter Game");
-        enterGameBtn.setBounds(300,750,100,100);
-        enterGameButtonPanel.add(enterGameBtn);
+        //EnterGame button
+        enterGameBtn = new JButton();
+        enterGameBtn.setBounds(475, 430, 100, 30);
+        enterGameBtn.setText("Enter Game");
+//         enterGameBtn.setBackground(Color.white);
+//         enterGameBtn.setForeground(Color.black);
+//         enterGameBtn.setFont(normalFont);
+        enterGameBtn.setVisible(true);
         enterGameBtn.addActionListener(this);
+        content.add( enterGameBtn);
 
+        window.repaint();
+        window.revalidate();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==enterGameBtn){
-            window.remove(welcomeTitlePanel);
-            window.remove(enterGamePanel);
-            window.remove(enterGameButtonPanel);
-            gameScreen();
+            content.removeAll();
+            window.repaint();
+            window.revalidate();
+            setup();
         }
         if(e.getSource() == helpBtn){
 
-            window.remove(currLocationPanel);
-            window.remove(questionPanel);
-            window.remove(answerPanel);
-            window.remove(buttonPanel);
-            window.remove(badgePanel);
-            window.remove(scorePanel);
+//            window.remove(currLocationPanel);
+//            window.remove(questionPanel);
+//            window.remove(answerPanel);
+//            window.remove(buttonPanel);
+//            window.remove(badgePanel);
+//            window.remove(scorePanel);
 
             helpPanel = new JPanel();
             helpPanel.setBounds(50,50,600,500);
@@ -117,15 +110,17 @@ public class GameGUI implements ActionListener {
 
     }
 
-    public void gameScreen(){
-        window.setSize(1000,700);
-        window.setLocation(500,500);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLayout(null);
-        window.setVisible(true);
-        content = window.getContentPane();
-        content.setBackground(Color.decode("#ADC7D9"));
+    //*************** SETUP METHODS ***************
+    private void setup(){
+        locationPanelSetup();
+        questionPanelSetup();
+        answerPanelSetup();
+        badgePanelSetup();
+        scorePanelSetup();
+        buttonSetup();
+    }
 
+    private void locationPanelSetup(){
         //Title of Current Location
         currLocationPanel = new JPanel();
         currLocationPanel.setBounds(50,30,600,50);
@@ -138,10 +133,12 @@ public class GameGUI implements ActionListener {
         currLocation.setForeground(Color.white);
         currLocation.setFont(titleFont);
         currLocationPanel.add(currLocation);
+    }
 
+    private void questionPanelSetup(){
         //Panel for Question Display
         questionPanel = new JPanel();
-        questionPanel.setBounds(50,100,600,100);
+        questionPanel.setBounds(50,100,600,130);
         questionPanel.setBackground(Color.white);
         questionPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         content.add(questionPanel);
@@ -154,7 +151,9 @@ public class GameGUI implements ActionListener {
         questionText.setWrapStyleWord(true);
         questionText.setEditable(false);
         questionPanel.add(questionText);
+    }
 
+    private void answerPanelSetup(){
         //Answer Panel
         answerPanel = new JPanel();
         answerPanel.setBounds(50,250,600,200);
@@ -202,7 +201,9 @@ public class GameGUI implements ActionListener {
         submit = new JButton("Submit");
         submit.setBounds(260,165,80,30);
         answerPanel.add(submit);
+    }
 
+    private void badgePanelSetup(){
         //Badge Panel
         badgePanel = new JPanel();
         badgePanel.setBounds(700,30,300,200);
@@ -217,7 +218,6 @@ public class GameGUI implements ActionListener {
         badgeTitle.setBounds(0,0,300,20);
         badgeTitle.setForeground(Color.black);
         badgeTitle.setBackground(Color.white);
-//        badgeTitle.setBorder(BorderFactory.createLineBorder(Color.black));
         badgeTitle.setFont(normalFont);
         badgePanel.add(badgeTitle);
 
@@ -274,38 +274,72 @@ public class GameGUI implements ActionListener {
         badge9.setBackground(Color.white);
         badge9.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge9);
-
-        //Button Panel
-        buttonPanel = new JPanel();
-        buttonPanel.setBounds(50, 470,600,100);
-        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-
-        content.add(buttonPanel);
-
-        helpBtn = new JButton("Help");
-        buttonPanel.add(helpBtn);
-        helpBtn.addActionListener(this);
-
-        quitBtn = new JButton("Quit");
-        buttonPanel.add(quitBtn);
-        quitBtn.addActionListener(this);
-
-        //Score Panel
-        scorePanel = new JPanel();
-        scorePanel.setBounds(700, 250,300,300);
-        badgePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        content.add(scorePanel);
-
-        scoreText = new JTextArea("Score Update: ");
-        scoreText.setEditable(false);
-        scoreText.setBounds(700,250,300,350);
-        scorePanel.add(scoreText);
-
     }
 
+    private void scorePanelSetup(){
+        //Score Panel
+        scorePanel = new JPanel();
+        scorePanel.setBounds(700, 250,300,120);
+        scorePanel.setBackground(Color.white);
+        scorePanel.setFont(normalFont);
+        scorePanel.setLayout(null);
+        scorePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        scorePanel.setVisible(true);
+        content.add(scorePanel);
+
+        scoreTitle = new JLabel("Score", SwingConstants.CENTER);
+        scoreTitle.setBounds(2,2,300,50);
+        scoreTitle.setForeground(Color.black);
+        scoreTitle.setBackground(Color.white);
+        scoreTitle.setFont(normalFont);
+        scorePanel.add(scoreTitle);
+    }
+
+    private void buttonSetup(){
+        leftLocBtn = new JButton();
+        leftLocBtn.setBounds(700, 380, 145, 30);
+        leftLocBtn.setText("<<< Location1");
+//        leftLocBtn.setBackground(Color.white);
+//        leftLocBtn.setForeground(Color.black);
+//        leftLocBtn.setFont(normalFont);
+        leftLocBtn.setVisible(true);
+        leftLocBtn.addActionListener(this);
+        content.add(leftLocBtn);
+
+        rightLocBtn = new JButton();
+        rightLocBtn.setBounds(855, 380, 145, 30);
+        rightLocBtn.setText("Location2 >>>");
+//        rightLocBtn.setBackground(Color.white);
+//        rightLocBtn.setForeground(Color.black);
+//        rightLocBtn.setFont(normalFont);
+        rightLocBtn.setVisible(true);
+        rightLocBtn.addActionListener(this);
+        content.add(rightLocBtn);
+
+        helpBtn = new JButton();
+        helpBtn.setBounds(700, 420, 145, 30);
+        helpBtn.setText("Help");
+//        helpBtn.setBackground(Color.white);
+//        helpBtn.setForeground(Color.black);
+//        helpBtn.setFont(normalFont);
+        helpBtn.setVisible(true);
+        helpBtn.addActionListener(this);
+        content.add(helpBtn);
+
+        quitBtn = new JButton();
+        quitBtn.setBounds(855, 420, 145, 30);
+        quitBtn.setText("Quit");
+//        quitBtn.setBackground(Color.white);
+//        quitBtn.setForeground(Color.black);
+//        quitBtn.setFont(normalFont);
+        quitBtn.setVisible(true);
+        quitBtn.addActionListener(this);
+        content.add(quitBtn);
+    }
+
+    //*************** MAIN (TESTING) ***************
     public static void main(String[] args) {
         GameGUI gui = new GameGUI();
-
     }
 
 }
