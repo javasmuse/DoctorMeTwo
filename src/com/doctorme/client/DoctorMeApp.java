@@ -10,7 +10,7 @@ public class DoctorMeApp {
 
     public static void main(String[] args) throws InterruptedException {
         Game game = new Game();
-        game.startGame();
+        game.startGame(); // change to GameGUI when ready
     }
 
 
