@@ -9,6 +9,7 @@ import com.doctorme.util.QuestionList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Game {
 
@@ -31,7 +32,27 @@ public class Game {
         bringQuestions(); // stock the questions on startup - could ask user to choose topic or increase level through input another xml and adding args to method and method call
         bringLocations(); // same but for locations
         currentPlayer = new Player("Rennie"); // set temp current player name - get from GUI on start up
+        questionsByType("astronomy");
+        questionsByType("body");
+        System.out.println("\nWelcome \n Interested in a PhD?" + "\n Or is your favorite Amazon Leadership Principle 'Learn & Be Curious' ? " + "\n Let's Play Doctor Me!");
+        printInstructions();
+        String sampleQ = questionsByType("body").get(3).getQuestion();
+        List<String> possAns = questionsByType("body").get(3).getPossibleAnswers();
+        String sampleQH = questionsByType("body").get(3).getHint();
+        System.out.println(sampleQ + "\n" + possAns + "\nHint: " + sampleQH);
+        System.out.println("test answer: option 3");
+        checkAnswerByIndex(3, 2); // checks same q for possible answer of 3rd index
     }
+
+    // SHOW START SCREEN - AND FIRST LOCATION 'ENTRY'
+
+   /* SHOW LOCATION AND QUESTIONS - TYPICAL 'PLAY SCENE'
+   --- while loop through
+   --- changing location and available questions
+   --- recording questions - asked & answered
+   --- awarding and tracking player points and badges
+   --- track requirements to 'level up' - send to 'end of this level - celebrate screen'
+    */
 
     // STOCK QUESTION AND LOCATION LISTS- expansion possible for user selected 'topics or level' - alternate xmls
     public void bringQuestions() {
@@ -47,12 +68,16 @@ public class Game {
 
     }
 
+    // RETRIEVE QUESTION BY TYPE
+    // CREATE RANDOMIZED LIST OF QUESTIONS BY TYPE
+
+    // IN CODE RE-FACTOR FROM ORIGINAL - RETAIN THEIR README && USE ONE OF THEIR QUESTIONS FOR FINAL QUESTION && REUSE SOME CODE
+
     // HINTS
     // user asks for hint - provide hint for specified question by index
     public String displayHintbyIndex(int questIndx) {
         return listQs.get(questIndx).getHint();
     }
-
     // user asks for hint - provide hint for specified question by question id number
     public String displayHintbyId(int questID) {
         for (int i = 0; i < listQs.size(); i++) {
@@ -66,14 +91,13 @@ public class Game {
     // CHECK ANSWER
     // check user's answer by question index
     public void checkAnswerByIndex(int questIdx, int userAnswer) {
-        userAnswer = 3; // add
+//        userAnswer = 3; // add
         if (listQs.get(questIdx).getCorrectAnswer() == userAnswer) {
             System.out.println("YES");
         } else {
             System.out.println("NO");
         }
     }
-
     // check user's answer by question id
     public void checkAnswerById(int questId, int answerUser) {
 
@@ -86,7 +110,19 @@ public class Game {
         }
     }
 
-    //Instructions
+
+    // QUESTION LIST BY TYPE - user provided type for arg
+    public List<Question> questionsByType(String typeHere) {
+     List<Question> typeSpecific = listQs.stream()
+             .filter(typ -> typ.getType() .equals(typeHere))
+             .collect(Collectors.toList());
+//        System.out.println(typeSpecific.get(3));
+     return typeSpecific;
+    }
+
+    // Random
+
+    // INSTRUCTIONS DISPLAY
     public void printInstructions(){
         GameText text = new GameText();
         System.out.println(text.readInstructions().get(0));
