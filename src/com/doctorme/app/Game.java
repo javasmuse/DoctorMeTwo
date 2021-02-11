@@ -25,6 +25,7 @@ public class Game {
     private QuestionList ql = new QuestionList();
     private LocationList ll = new LocationList();
     private Player currentPlayer = new Player();
+    private GameText text = new GameText();
 
     // START HERE
     public void startGame() {
@@ -89,8 +90,12 @@ public class Game {
 
     //Instructions
     public String printInstructions(){
-        GameText text = new GameText();
-        return (text.readInstructions().get(0));
+        return (text.readInstructions().get(2));
+    }
+
+    public String printWelcome(){
+        return (text.readInstructions().get(0) + "\n" + text.readInstructions().get(1));
+
     }
 
 }
