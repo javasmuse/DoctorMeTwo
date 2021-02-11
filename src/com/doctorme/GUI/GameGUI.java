@@ -10,20 +10,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameGUI implements ActionListener {
-    private JButton quitBtn, helpBtn, submit, back, enterGameBtn, leftLocBtn, rightLocBtn, helpCloseBtn;
+    private JButton quitBtn, helpBtn, submit, back, enterGameBtn, leftLocBtn, rightLocBtn, helpCloseBtn, nextQuestion;
     private List<Location> board;
     private Container content;
     private final JFrame window = new JFrame();
     private JFrame helpWindow;
-    private JLabel currLocation, welcomeTitle, badgeTitle, scoreTitle;
+    private JLabel currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
     private JPanel questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
     private JTextArea helpText, gameInstructions, questionText;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
     private static final Font questionFont = new Font("Times New Roman", Font.ITALIC, 16);
     private static final Font normalFont = new Font("Times New Roman", Font.PLAIN, 16);
+    private static final Font answerFont = new Font("Times New Roman", Font.BOLD, 24);
     private JScrollPane scrollPane;
     private Game game = new Game();
+    private String correctAnswer = "A";
+    private ButtonGroup radioGroup;
 
     public GameGUI(){
         //Setting the GUI window
@@ -94,13 +97,55 @@ public class GameGUI implements ActionListener {
         }else if(e.getSource() == quitBtn){
             window.dispose();
             System.exit(0);
+        }else if(e.getSource() == submit && submit.getText().equals("Submit")) {
+            checkAnswer();
+        }else if(e.getSource() == submit && submit.getText().equals("Next Question")){
+            getNextQuestion();
+        }else if(e.getSource() == leftLocBtn){
+//            changeToLeftLoc();
+        }else if(e.getSource() == rightLocBtn){
+//            changeToRightLoc();
+        }else{
+            System.out.println("Unrecognized event");
         }
+//        if(e.getSource()==back){
+//            //TODO: Go back to the Game Screen which will be in a function later on
+//        }
+    }
 
-        if(e.getSource()==back){
-            //TODO: Go back to the Game Screen which will be in a function later on
+    //*************** ACCESSORY METHODS ***************
+    private void checkAnswer(){
+        submit.setText("Next Question");
+        if ((optA.isSelected() && correctAnswer.equals("A")) ||
+            (optB.isSelected() && correctAnswer.equals("B")) ||
+            (optC.isSelected() && correctAnswer.equals("C")) ||
+            (optD.isSelected() && correctAnswer.equals("D"))){
+            correctLabel.setVisible(true);
+            incrementScore();
+        }else{
+            incorrectLabel.setVisible(true);
+            resetScore();
         }
+        window.repaint();
+        window.revalidate();
+    }
 
+    private void incrementScore(){
 
+    }
+
+    private void resetScore(){
+
+    }
+
+    private void getNextQuestion(){
+        correctLabel.setVisible(false);
+        incorrectLabel.setVisible(false);
+        radioGroup.clearSelection();
+        submit.setText("Submit");
+
+        window.repaint();
+        window.revalidate();
     }
 
     //*************** SETUP METHODS ***************
@@ -185,7 +230,7 @@ public class GameGUI implements ActionListener {
         optD.setVisible(true);
         answerPanel.add(optD);
 
-        ButtonGroup radioGroup = new ButtonGroup();
+        radioGroup = new ButtonGroup();
         radioGroup.add(optA);
         radioGroup.add(optB);
         radioGroup.add(optC);
@@ -193,7 +238,25 @@ public class GameGUI implements ActionListener {
 
         submit = new JButton("Submit");
         submit.setBounds(260,165,80,30);
+        submit.setVisible(true);
+        submit.addActionListener(this);
         answerPanel.add(submit);
+
+        correctLabel = new JLabel("CORRECT!");
+        correctLabel.setBounds(400,165,150,30);
+        correctLabel.setForeground(Color.green);
+        correctLabel.setBackground(Color.white);
+        correctLabel.setFont(answerFont);
+        correctLabel.setVisible(false);
+        answerPanel.add(correctLabel);
+
+        incorrectLabel = new JLabel("INCORRECT");
+        incorrectLabel.setBounds(400,165,150,30);
+        incorrectLabel.setForeground(Color.red);
+        incorrectLabel.setBackground(Color.white);
+        incorrectLabel.setFont(answerFont);
+        incorrectLabel.setVisible(false);
+        answerPanel.add(incorrectLabel);
     }
 
     private void badgePanelSetup(){
@@ -377,44 +440,44 @@ public class GameGUI implements ActionListener {
         helpWindow.revalidate();
     }
 
-    //*************** ACCESSOR METHODS ***************
-    private void updateHelpScreenText(String newHelpText){
+    //*************** SETTER METHODS ***************
+    public void updateHelpScreenText(String newHelpText){
         helpText.setText(newHelpText);
     }
 
-    private void updateInstructionsText(String newInstructions){
+    public void updateInstructionsText(String newInstructions){
         gameInstructions.setText(newInstructions);
     }
 
-    private void updateCurrentLocation(String newLocation){
+    public void updateCurrentLocation(String newLocation){
         currLocation.setText(newLocation);
     }
 
-    private void updateQuestion(String newQuestion){
+    public void updateQuestion(String newQuestion){
         questionText.setText(newQuestion);
     }
 
-    private void updateOptionA(String newOption){
+    public void updateOptionA(String newOption){
         optA.setText(newOption);
     }
 
-    private void updateOptionB(String newOption){
+    public void updateOptionB(String newOption){
         optB.setText(newOption);
     }
 
-    private void updateOptionC(String newOption){
+    public void updateOptionC(String newOption){
         optC.setText(newOption);
     }
 
-    private void updateOptionD(String newOption){
+    public void updateOptionD(String newOption){
         optD.setText(newOption);
     }
 
-    private void updateLeftLocationButton(String newLocation){
+    public void updateLeftLocationButton(String newLocation){
         leftLocBtn.setText("<<< " + newLocation);
     }
 
-    private void updateRightLocationButton(String newLocation){
+    public void updateRightLocationButton(String newLocation){
         rightLocBtn.setText(newLocation + " >>>");
     }
 
