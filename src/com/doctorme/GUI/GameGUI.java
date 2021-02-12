@@ -2,7 +2,7 @@ package com.doctorme.GUI;
 
 import com.doctorme.app.Game;
 import com.doctorme.entities.Location;
-import com.doctorme.util.GameText;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -131,9 +131,9 @@ public class GameGUI implements ActionListener {
     private void checkAnswer(){
         submit.setText("Next Question");
         if ((optA.isSelected() && correctAnswer.equals("A")) ||
-            (optB.isSelected() && correctAnswer.equals("B")) ||
-            (optC.isSelected() && correctAnswer.equals("C")) ||
-            (optD.isSelected() && correctAnswer.equals("D"))){
+                (optB.isSelected() && correctAnswer.equals("B")) ||
+                (optC.isSelected() && correctAnswer.equals("C")) ||
+                (optD.isSelected() && correctAnswer.equals("D"))){
             correctLabel.setVisible(true);
             setHasCorrectAnswer(true);
 //            incrementScore();
@@ -157,7 +157,7 @@ public class GameGUI implements ActionListener {
     //*************** SETUP METHODS ***************
     private void setup(){
         locationPanelSetup();
-        questionPanelSetup();
+        questionPanelSetup(); // XXX this is to test
         answerPanelSetup();
         badgePanelSetup();
         scorePanelSetup();
@@ -187,7 +187,7 @@ public class GameGUI implements ActionListener {
         questionPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         content.add(questionPanel);
 
-        questionText = new JTextArea("How much wood would a woodchuck chuck if a woodchuck could chuck wood? Peter Piper picked a peck of pickled peppers. If Peter Piper picked a peck of pickled peppers, how many pecks of pickled peppers did Peter Piper pick?");
+        questionText = new JTextArea();
         questionText.setBounds(52,102,596,96);
         questionText.setForeground(Color.black);
         questionText.setFont(questionFont);
