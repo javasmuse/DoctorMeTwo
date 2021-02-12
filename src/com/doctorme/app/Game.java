@@ -82,16 +82,27 @@ public class Game {
         gooey.updateLocationDescription(descripNType);
         gooey.updateLeftLocationButton(leadLocation1);
         gooey.updateRightLocationButton(leadLocation2);
+
+        // update GUI
         gooey.guiUpdate();
 
-        currentPlayer = new Player("Rennie"); // set temp current player name - get from GUI on start up
-        questionsByType("astronomy");
-        questionsByType("body");
 
         while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
             if (gooey.isReadyForNextQuestion()){
+                System.out.println("hello from the code");
                 //TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
-//                if ()
+                // CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
+                if (gooey.hadCorrectAnswer() == true) {
+                    roomQs.remove(currQ);
+                    System.out.println(currQ);
+                }
+                gooey.updateQuestion(questionG);
+                gooey.updateOptionA(optionA);
+                gooey.updateOptionB(optionB);
+                gooey.updateOptionC(optionC);
+                gooey.updateOptionD(optionD);
+                gooey.setCorrectAnswer(correctAns);
+
                 //TODO: update score (if necessary). Still needs to be implemented in GUI
                 gooey.guiUpdate();
             }
