@@ -1,6 +1,7 @@
 package com.doctorme.app;
 
 import com.doctorme.GUI.GameGUI;
+import com.doctorme.entities.Badge;
 import com.doctorme.entities.Location;
 import com.doctorme.entities.Player;
 import com.doctorme.entities.Question;
@@ -22,12 +23,14 @@ public class Game {
     // available lists - questions, locations
     private List<Question> listQs = new ArrayList<>();     // list of questions
     private List<Location> listLocas = new ArrayList<>();  // list of locations
+    private List<Badge> badgesEarned = new ArrayList<>();
     // access - question list, location list
     private QuestionList ql = new QuestionList();
     private LocationList ll = new LocationList();
     private Player currentPlayer = new Player();
     private GameText text = new GameText();
     private Boolean keepGoing = true;
+    private Badge badge = new Badge("badge1");
 
 
     // START HERE
@@ -213,6 +216,14 @@ public class Game {
              .collect(Collectors.toList());
      return typeSpecific;
     }
+
+//    public void awardBadge(){
+//        if(currentPlayer.getPoints()==50){
+//            //Would need to create a list of Badges to keep track of what badges is earned by a player?
+//            System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
+//            badgesEarned.add(badge);
+//        }
+//    }
 
     /* LOCATION METHODS */
     // SET START LOCATION
