@@ -44,15 +44,14 @@ public class Game {
             List<Question> astroQs = questionsByType("astronomy");
             Location currentLocation = location;
             gooey.updateQuestion(bodyQs.get(0).getQuestion());
-//            gooey.updateQuestion("How many lives does a cat have?");
-//            gooey.updateOptionA(bodyQs.get(0).getPossibleAnswers().get(0));
-//            gooey.updateOptionB(bodyQs.get(0).getPossibleAnswers().get(1));
-//            gooey.updateOptionC(bodyQs.get(0).getPossibleAnswers().get(2));
-//            gooey.updateOptionD(bodyQs.get(0).getPossibleAnswers().get(3));
-//            gooey.setCorrectAnswer(String.valueOf(bodyQs.get(0).getCorrectAnswer()));
-//            gooey.updateCurrentLocation(currentLocation.getName());
-//            gooey.updateLeftLocationButton(currentLocation.getRoomLeadTo().get(1));
-//            gooey.updateRightLocationButton(currentLocation.getRoomLeadTo().get(0));
+            gooey.updateOptionA(bodyQs.get(0).getPossibleAnswers().get(0));
+            gooey.updateOptionB(bodyQs.get(0).getPossibleAnswers().get(1));
+            gooey.updateOptionC(bodyQs.get(0).getPossibleAnswers().get(2));
+            gooey.updateOptionD(bodyQs.get(0).getPossibleAnswers().get(3));
+            gooey.setCorrectAnswer(String.valueOf(bodyQs.get(0).getCorrectAnswer()));
+            gooey.updateCurrentLocation(currentLocation.getName());
+            gooey.updateLeftLocationButton(currentLocation.getRoomLeadTo().get(1));
+            gooey.updateRightLocationButton(currentLocation.getRoomLeadTo().get(0));
 
         }
 
