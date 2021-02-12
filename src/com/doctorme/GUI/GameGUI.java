@@ -29,7 +29,7 @@ public class GameGUI implements ActionListener {
     private ButtonGroup radioGroup;
     private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame;
 
-    public GameGUI(String introTitle, String introInstructions){
+    public GameGUI(String introTitle, String introText, String introInstructions){
         setHasCorrectAnswer(false);
         setReadyForNextQuestion(false);
         setEnteredGame(false);
@@ -50,7 +50,7 @@ public class GameGUI implements ActionListener {
         welcomeTitle.setFont(titleFont);
         content.add(welcomeTitle);
 
-        gameDescription = new JLabel("Interested in a PhD? Or is your favorite Amazon Leadership Principle 'Learn & Be Curious' ? Explore DoctorMe", SwingConstants.CENTER);
+        gameDescription = new JLabel(introText, SwingConstants.CENTER);
         gameDescription.setBounds(50,45,950,30);
         gameDescription.setForeground(Color.black);
         gameDescription.setFont(normalFont);
@@ -575,8 +575,8 @@ public class GameGUI implements ActionListener {
     }
 
     //*************** MAIN (TESTING) ***************
-    public static void main(String[] args) {
-        GameGUI gui = new GameGUI("Welcome", "Here are the instructions! Nothing!");
-    }
+//    public static void main(String[] args) {
+//        GameGUI gui = new GameGUI("Welcome", "Here are the instructions! Nothing!");
+//    }
 
 }
