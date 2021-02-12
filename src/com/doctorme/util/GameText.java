@@ -10,6 +10,7 @@ import java.util.List;
 public class GameText {
     XMLReader reader = new XMLReader();
 
+    // passes xml file to xml reader and parses it to a List
     public List<String> readInstructions(){
         List<String> instructions = new ArrayList<>();
         NodeList instNode = reader.readXMLFiles("resources/GameText.xml","textLines");

@@ -12,4 +12,5 @@ public class GameTest {
     public void questionsByType() {
         assertNotNull(game.questionsByType("astronomy"));
     }
+
 }
