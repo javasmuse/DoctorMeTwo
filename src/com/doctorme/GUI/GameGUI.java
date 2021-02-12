@@ -93,7 +93,7 @@ public class GameGUI implements ActionListener {
             content.removeAll();
             window.repaint();
             window.revalidate();
-            setup(updateQuestion(nextQuestion);
+            setup();
         }else if(e.getSource() == helpBtn){
             displayHelpWindow();
         }else if(e.getSource() == helpCloseBtn){
@@ -155,9 +155,9 @@ public class GameGUI implements ActionListener {
     }
 
     //*************** SETUP METHODS ***************
-    private void setup(JTextField q){
+    private void setup(){
         locationPanelSetup();
-        questionPanelSetup(q); // XXX this is to test
+        questionPanelSetup(); // XXX this is to test
         answerPanelSetup();
         badgePanelSetup();
         scorePanelSetup();
@@ -179,7 +179,7 @@ public class GameGUI implements ActionListener {
         currLocationPanel.add(currLocation);
     }
 
-    private void questionPanelSetup(String q){
+    private void questionPanelSetup(){
         //Panel for Question Display
         questionPanel = new JPanel();
         questionPanel.setBounds(50,100,600,130);
@@ -187,7 +187,7 @@ public class GameGUI implements ActionListener {
         questionPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         content.add(questionPanel);
 
-        questionText = new JTextArea(q);
+        questionText = new JTextArea();
         questionText.setBounds(52,102,596,96);
         questionText.setForeground(Color.black);
         questionText.setFont(questionFont);
@@ -460,7 +460,7 @@ public class GameGUI implements ActionListener {
     }
 
     public void updateQuestion(String newQuestion){
-        setup(); /// error is here
+        questionText.setText(newQuestion);
         setReadyForNextQuestion(false);
         setHasCorrectAnswer(false);
     }

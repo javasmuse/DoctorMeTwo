@@ -43,9 +43,7 @@ public class Game {
             List<Question> bodyQs = questionsByType("body");
             List<Question> astroQs = questionsByType("astronomy");
             Location currentLocation = location;
-            String q = bodyQs.get(0).getQuestion();
-
-            gooey.updateQuestion(g);
+            gooey.updateQuestion(bodyQs.get(0).getQuestion());
 //            gooey.updateQuestion("How many lives does a cat have?");
 //            gooey.updateOptionA(bodyQs.get(0).getPossibleAnswers().get(0));
 //            gooey.updateOptionB(bodyQs.get(0).getPossibleAnswers().get(1));
