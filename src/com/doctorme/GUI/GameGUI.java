@@ -16,8 +16,8 @@ public class GameGUI implements ActionListener {
     private final JFrame window = new JFrame();
     private JFrame helpWindow;
     private JLabel gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
-    private JPanel questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
-    private JTextArea helpText, gameInstructions, questionText;
+    private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
+    private JTextArea helpText, gameInstructions, questionText, descriptionText;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
     private static final Font questionFont = new Font("Times New Roman", Font.ITALIC, 16);
@@ -168,6 +168,7 @@ public class GameGUI implements ActionListener {
     //*************** SETUP METHODS ***************
     private void setup(){
         locationPanelSetup();
+        descriptionPanelSetup();
         questionPanelSetup(); // XXX this is to test
         answerPanelSetup();
         badgePanelSetup();
@@ -190,16 +191,34 @@ public class GameGUI implements ActionListener {
         currLocationPanel.add(currLocation);
     }
 
+    private void descriptionPanelSetup(){
+        //Panel for Location Description Display
+        descriptionPanel = new JPanel();
+        descriptionPanel.setBounds(50,80,600,70);
+        descriptionPanel.setBackground(Color.white);
+        descriptionPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        content.add(descriptionPanel);
+
+        descriptionText = new JTextArea();
+        descriptionText.setBounds(52,82,596,66);
+        descriptionText.setForeground(Color.black);
+        descriptionText.setFont(questionFont);
+        descriptionText.setLineWrap(true);
+        descriptionText.setWrapStyleWord(true);
+        descriptionText.setEditable(false);
+        descriptionPanel.add(descriptionText);
+    }
+
     private void questionPanelSetup(){
         //Panel for Question Display
         questionPanel = new JPanel();
-        questionPanel.setBounds(50,100,600,130);
+        questionPanel.setBounds(50,160,600,80);
         questionPanel.setBackground(Color.white);
         questionPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         content.add(questionPanel);
 
         questionText = new JTextArea();
-        questionText.setBounds(52,102,596,96);
+        questionText.setBounds(52,102,596,76);
         questionText.setForeground(Color.black);
         questionText.setFont(questionFont);
         questionText.setLineWrap(true);
@@ -469,6 +488,8 @@ public class GameGUI implements ActionListener {
     public void updateCurrentLocation(String newLocation){
         currLocation.setText(newLocation);
     }
+
+    public void updateLocationDescription(String newDescription){ descriptionText.setText(newDescription);}
 
     public void updateQuestion(String newQuestion){
         questionText.setText(newQuestion);
