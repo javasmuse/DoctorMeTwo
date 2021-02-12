@@ -41,6 +41,8 @@ public class Game {
         List<Question> bodyQs = questionsByType("body");
         List<Question> astroQs = questionsByType("astronomy");
 
+
+
         while(!gooey.isEnteredGame()){  //wait for player to exit initial setup, then set initial values
             try {
                 Thread.sleep(100);
@@ -52,17 +54,23 @@ public class Game {
         // initialize first location and question in GUI
 
         // initialize question and location fields for first display
-        String questionG = bodyQs.get(0).getQuestion();
-        String optionA = bodyQs.get(0).getPossibleAnswers().get(0);
-        String optionB = bodyQs.get(0).getPossibleAnswers().get(1);
-        String optionC = bodyQs.get(0).getPossibleAnswers().get(2);
-        String optionD = bodyQs.get(0).getPossibleAnswers().get(3);
-        String correctAns = convertCorrectAns(bodyQs.get(0).getCorrectAnswer());
-        String hint = bodyQs.get(0).getHint();
+        List<Question> roomQs = questionsByType(location.getType());
+        Question currQ = randoQuestion(roomQs);
+        String questionG = currQ.getQuestion();
+        String optionA = currQ.getPossibleAnswers().get(0);
+        String optionB = currQ.getPossibleAnswers().get(1);
+        String optionC = currQ.getPossibleAnswers().get(2);
+        String optionD = currQ.getPossibleAnswers().get(3);
+        String correctAns = convertCorrectAns(currQ.getCorrectAnswer());
+        String hint = currQ.getHint();
         String currentLocation = location.getName();
+        String currLocalDescrip = location.getDescription();
+        String typeLocal = location.getType();
+        String descripNType = typeLocal + "\n" +  currLocalDescrip;
         String leadLocation1 = location.getRoomLeadTo().get(1);
         String leadLocation2 = location.getRoomLeadTo().get(0);
 
+//        send above fields to gameGUI
         gooey.updateQuestion(questionG);
         gooey.updateOptionA(optionA);
         gooey.updateOptionB(optionB);
@@ -70,9 +78,8 @@ public class Game {
         gooey.updateOptionD(optionD);
         gooey.setCorrectAnswer(correctAns);
         gooey.updateHintText(hint);
-        System.out.println(hint);
-        System.out.println(questionG);
         gooey.updateCurrentLocation(currentLocation);
+        gooey.updateLocationDescription(descripNType);
         gooey.updateLeftLocationButton(leadLocation1);
         gooey.updateRightLocationButton(leadLocation2);
         gooey.guiUpdate();
@@ -84,16 +91,7 @@ public class Game {
         while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
             if (gooey.isReadyForNextQuestion()){
                 //TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
-//                Location currentLocation = location;
-//                gooey.updateQuestion(bodyQs.get(0).getQuestion());
-//                gooey.updateOptionA(bodyQs.get(0).getPossibleAnswers().get(0));
-//                gooey.updateOptionB(bodyQs.get(0).getPossibleAnswers().get(1));
-//                gooey.updateOptionC(bodyQs.get(0).getPossibleAnswers().get(2));
-//                gooey.updateOptionD(bodyQs.get(0).getPossibleAnswers().get(3));
-//                gooey.setCorrectAnswer(String.valueOf(bodyQs.get(0).getCorrectAnswer()));
-//                gooey.updateCurrentLocation(currentLocation.getName());
-//                gooey.updateLeftLocationButton(currentLocation.getRoomLeadTo().get(1));
-//                gooey.updateRightLocationButton(currentLocation.getRoomLeadTo().get(0));
+//                if ()
                 //TODO: update score (if necessary). Still needs to be implemented in GUI
                 gooey.guiUpdate();
             }
@@ -107,8 +105,10 @@ public class Game {
         return null;
     }
 
-
-
+    // retrieve random Question from current room list
+    public Question randoQuestion(List<Question> quests) {
+        return quests.get(randomNumber(quests.size()));
+    }
 
     // SHOW START SCREEN - AND FIRST LOCATION 'ENTRY'
 

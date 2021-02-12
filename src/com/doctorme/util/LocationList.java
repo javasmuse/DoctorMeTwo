@@ -25,6 +25,7 @@ public class LocationList {
         Node node;
         int id;
         String name;
+        String type;
         String description;
         int tierLevel;
         List<String> roomLeadTo;
@@ -43,6 +44,7 @@ public class LocationList {
                 // set Location object fields from xml
                 id = Integer.parseInt(eElement.getElementsByTagName("id").item(0).getTextContent());
                 name = eElement.getElementsByTagName("name").item(0).getTextContent();
+                type = eElement.getElementsByTagName("type").item(0).getTextContent();
                 description = eElement.getElementsByTagName("description").item(0).getTextContent();
                 tierLevel = Integer.parseInt(eElement.getElementsByTagName("level").item(0).getTextContent());
                 len = eElement.getElementsByTagName("exit").getLength();
@@ -54,7 +56,7 @@ public class LocationList {
                 }
 
                 // new temporary location
-                Location local = new Location(id, name, description, tierLevel, roomLeadTo, exits);
+                Location local = new Location(id, name, type, description, tierLevel, roomLeadTo, exits);
 
                 // add new location to List of Locations
                 locations.add(local);

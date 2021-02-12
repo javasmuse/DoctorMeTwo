@@ -6,20 +6,24 @@ public class Location {
     // FIELDS
     private int id;
     private String name;
+    private String type;
     private String description;
     private int tierLevel;
     private List<String> roomLeadTo;
     private List<String> exits;
 
     // CONSTRUCTOR
-    public Location(int id, String name, String description, int tierLevel, List<String> roomLeadTo, List<String> exits) {
+
+    public Location(int id, String name, String type, String description, int tierLevel, List<String> roomLeadTo, List<String> exits) {
         this.id = id;
         this.name = name;
+        this.type = type;
         this.description = description;
         this.tierLevel = tierLevel;
         this.roomLeadTo = roomLeadTo;
         this.exits = exits;
     }
+
 
     // ACCESSORS
 
@@ -37,6 +41,14 @@ public class Location {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDescription() {
@@ -72,11 +84,13 @@ public class Location {
     }
 
     // toString  - the Ugly One - fix later
+
     @Override
     public String toString() {
         return "Location{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
                 ", tierLevel=" + tierLevel +
                 ", roomLeadTo=" + roomLeadTo +
