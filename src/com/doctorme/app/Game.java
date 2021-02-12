@@ -58,7 +58,7 @@ public class Game {
         String optionC = bodyQs.get(0).getPossibleAnswers().get(2);
         String optionD = bodyQs.get(0).getPossibleAnswers().get(3);
         String correctAns = convertCorrectAns(bodyQs.get(0).getCorrectAnswer());
-        System.out.println(correctAns);
+        String hint = bodyQs.get(0).getHint();
         String currentLocation = location.getName();
         String leadLocation1 = location.getRoomLeadTo().get(1);
         String leadLocation2 = location.getRoomLeadTo().get(0);
@@ -69,6 +69,9 @@ public class Game {
         gooey.updateOptionC(optionC);
         gooey.updateOptionD(optionD);
         gooey.setCorrectAnswer(correctAns);
+        gooey.updateHintText(hint);
+        System.out.println(hint);
+        System.out.println(questionG);
         gooey.updateCurrentLocation(currentLocation);
         gooey.updateLeftLocationButton(leadLocation1);
         gooey.updateRightLocationButton(leadLocation2);
@@ -179,13 +182,13 @@ public class Game {
         String alphCorrectAns = "";
 
         switch (localCA) {
-            case 1: alphCorrectAns = "A";
+            case 0: alphCorrectAns = "A";
             break;
-            case 2: alphCorrectAns = "B";
+            case 1: alphCorrectAns = "B";
             break;
-            case 3: alphCorrectAns = "C";
+            case 2: alphCorrectAns = "C";
             break;
-            case 4: alphCorrectAns = "D";
+            case 3: alphCorrectAns = "D";
             break;
         }
         return alphCorrectAns;
