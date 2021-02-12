@@ -10,14 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameGUI implements ActionListener {
-    private JButton quitBtn, helpBtn, submit, back, enterGameBtn, leftLocBtn, rightLocBtn, helpCloseBtn, nextQuestion;
+    private JButton quitBtn, helpBtn, submit, hintBtn, enterGameBtn, leftLocBtn, rightLocBtn, helpCloseBtn, nextQuestion;
     private List<Location> board;
     private Container content;
     private final JFrame window = new JFrame();
     private JFrame helpWindow;
     private JLabel gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
     private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
-    private JTextArea helpText, gameInstructions, questionText, descriptionText;
+    private JTextArea helpText, gameInstructions, questionText, descriptionText, hintText;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
     private static final Font questionFont = new Font("Times New Roman", Font.ITALIC, 16);
@@ -109,9 +109,11 @@ public class GameGUI implements ActionListener {
             displayHelpWindow();
         }else if(e.getSource() == helpCloseBtn){
             helpWindow.dispose();
-        }else if(e.getSource() == quitBtn){
+        }else if(e.getSource() == quitBtn) {
             window.dispose();
             System.exit(0);
+        }else if(e.getSource() == hintBtn){
+            hintText.setVisible(true);
         }else if(e.getSource() == submit && submit.getText().equals("Submit")) {
             checkAnswer();
         }else if(e.getSource() == submit && submit.getText().equals("Next Question")){
@@ -132,6 +134,7 @@ public class GameGUI implements ActionListener {
     public void guiUpdate(){
         correctLabel.setVisible(false);
         incorrectLabel.setVisible(false);
+        hintText.setVisible(false);
         radioGroup.clearSelection();
         submit.setText("Submit");
 
@@ -239,28 +242,28 @@ public class GameGUI implements ActionListener {
         content.add(answerPanel);
 
         optA = new JRadioButton();
-        optA.setBounds(2, 2, 596, 41);
+        optA.setBounds(2, 2, 596, 32);
         optA.setBackground(Color.white);
         optA.setFont(normalFont);
         optA.setVisible(true);
         answerPanel.add(optA);
 
         optB = new JRadioButton();
-        optB.setBounds(2, 42, 596, 41);
+        optB.setBounds(2, 35, 596, 32);
         optB.setBackground(Color.white);
         optB.setFont(normalFont);
         optB.setVisible(true);
         answerPanel.add(optB);
 
         optC = new JRadioButton();
-        optC.setBounds(2, 82, 596, 41);
+        optC.setBounds(2, 68, 596, 32);
         optC.setBackground(Color.white);
         optC.setFont(normalFont);
         optC.setVisible(true);
         answerPanel.add(optC);
 
         optD = new JRadioButton();
-        optD.setBounds(2, 122, 596, 41);
+        optD.setBounds(2, 101, 596, 32);
         optD.setBackground(Color.white);
         optD.setFont(normalFont);
         optD.setVisible(true);
@@ -272,8 +275,24 @@ public class GameGUI implements ActionListener {
         radioGroup.add(optC);
         radioGroup.add(optD);
 
+        hintText = new JTextArea();
+        hintText.setBounds(2, 134, 596, 30);
+        hintText.setForeground(Color.black);
+        hintText.setFont(questionFont);
+        hintText.setLineWrap(true);
+        hintText.setWrapStyleWord(true);
+        hintText.setEditable(false);
+        hintText.setVisible(false);
+        answerPanel.add(hintText);
+
+        hintBtn = new JButton("Hint");
+        hintBtn.setBounds(10,165,60,30);
+        hintBtn.setVisible(true);
+        hintBtn.addActionListener(this);
+        answerPanel.add(hintBtn);
+
         submit = new JButton("Submit");
-        submit.setBounds(260,165,80,30);
+        submit.setBounds(240,165,120,30);
         submit.setVisible(true);
         submit.addActionListener(this);
         answerPanel.add(submit);
@@ -512,6 +531,8 @@ public class GameGUI implements ActionListener {
     public void updateOptionD(String newOption){
         optD.setText(newOption);
     }
+
+    public void updateHintText(String newHint) { hintText.setText(newHint);}
 
     public void updateLeftLocationButton(String newLocation){
         leftLocBtn.setText("<<< " + newLocation);
