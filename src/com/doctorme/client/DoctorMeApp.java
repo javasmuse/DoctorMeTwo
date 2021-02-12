@@ -10,9 +10,8 @@ import java.util.*;
 public class DoctorMeApp {
 
     public static void main(String[] args) throws InterruptedException {
-//        Game game = new Game();
-//        game.startGame(); // change to GameGUI when ready
-//        GameGUI gui = new GameGUI();
+        Game game = new Game();
+        game.startGame();
     }
 
 
