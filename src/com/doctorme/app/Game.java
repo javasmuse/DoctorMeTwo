@@ -58,6 +58,8 @@ public class Game {
 //            gooey.updateCurrentLocation(currentLocation.getName());
 //            gooey.updateLeftLocationButton(currentLocation.getRoomLeadTo().get(1));
 //            gooey.updateRightLocationButton(currentLocation.getRoomLeadTo().get(0));
+            System.out.println("hello " + currentLocation.getRoomLeadTo().get(0));
+            System.out.println("hello " + currentLocation.getRoomLeadTo().get(1));
             keepGoing = false;
         }
 
