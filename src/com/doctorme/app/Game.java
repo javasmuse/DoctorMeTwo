@@ -99,12 +99,14 @@ public class Game {
                     roomQs.remove(currQ);
                     System.out.println(currQ);
                 }
+
                 gooey.updateQuestion(questionG);
                 gooey.updateOptionA(optionA);
                 gooey.updateOptionB(optionB);
                 gooey.updateOptionC(optionC);
                 gooey.updateOptionD(optionD);
                 gooey.setCorrectAnswer(correctAns);
+
 
                 //TODO: update score (if necessary). Still needs to be implemented in GUI
                 gooey.guiUpdate();
