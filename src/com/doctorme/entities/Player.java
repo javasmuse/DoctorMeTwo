@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Player {
     private String name;
-    private int points;
+    private int points = 0;
     private List<Badge> badges;
 
     //*************** CONSTRUCTORS/ DESTRUCTORS ***************

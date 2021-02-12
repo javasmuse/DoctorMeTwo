@@ -2,6 +2,7 @@ package com.doctorme.GUI;
 
 import com.doctorme.app.Game;
 import com.doctorme.entities.Location;
+import com.doctorme.entities.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,11 +24,15 @@ public class GameGUI implements ActionListener {
     private static final Font questionFont = new Font("Times New Roman", Font.ITALIC, 16);
     private static final Font normalFont = new Font("Times New Roman", Font.PLAIN, 16);
     private static final Font answerFont = new Font("Times New Roman", Font.BOLD, 24);
+
     private JScrollPane scrollPane;
     private Game game = new Game();
+    private Player player = new Player();
+    int points = player.getPoints();
     private String correctAnswer = "A";
     private ButtonGroup radioGroup;
     private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame;
+
 
     public GameGUI(String introTitle, String introText, String introInstructions){
         setHasCorrectAnswer(false);
@@ -150,7 +155,8 @@ public class GameGUI implements ActionListener {
                 (optD.isSelected() && correctAnswer.equals("D"))){
             correctLabel.setVisible(true);
             setHasCorrectAnswer(true);
-//            incrementScore();
+            incrementScore();
+            scoreTitle.setText("Score: " + points + " points");
         }else{
             incorrectLabel.setVisible(true);
             setHasCorrectAnswer(false);
@@ -160,8 +166,12 @@ public class GameGUI implements ActionListener {
         window.revalidate();
     }
 
-    private void incrementScore(){
+    private int incrementScore(){
 
+        if(hasCorrectAnswer==true){
+            return points += 10;
+        }
+        return points;
     }
 
     private void resetScore(){
@@ -398,7 +408,7 @@ public class GameGUI implements ActionListener {
         scorePanel.setVisible(true);
         content.add(scorePanel);
 
-        scoreTitle = new JLabel("Score", SwingConstants.CENTER);
+        scoreTitle = new JLabel("Score: " + points + " points", SwingConstants.CENTER);
         scoreTitle.setBounds(2,2,300,50);
         scoreTitle.setForeground(Color.black);
         scoreTitle.setBackground(Color.white);
