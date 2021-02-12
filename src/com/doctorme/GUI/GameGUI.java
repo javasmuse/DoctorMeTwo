@@ -27,11 +27,12 @@ public class GameGUI implements ActionListener {
     private Game game = new Game();
     private String correctAnswer = "A";
     private ButtonGroup radioGroup;
-    private boolean readyForNextQuestion, hasCorrectAnswer;
+    private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame;
 
     public GameGUI(String introTitle, String introInstructions){
         setHasCorrectAnswer(false);
         setReadyForNextQuestion(false);
+        setEnteredGame(false);
 
         //Setting the GUI window
         window.setSize(1050,520);
@@ -102,6 +103,8 @@ public class GameGUI implements ActionListener {
             window.repaint();
             window.revalidate();
             setup();
+            setEnteredGame(true);
+//            setReadyForNextQuestion(true);
         }else if(e.getSource() == helpBtn){
             displayHelpWindow();
         }else if(e.getSource() == helpCloseBtn){
@@ -180,7 +183,7 @@ public class GameGUI implements ActionListener {
         currLocationPanel.setBackground(Color.decode("#043769"));
         content.add(currLocationPanel);
 
-        currLocation = new JLabel("Current Location");
+        currLocation = new JLabel();
         currLocation.setBounds(50,50,600,30);
         currLocation.setForeground(Color.white);
         currLocation.setFont(titleFont);
@@ -216,28 +219,28 @@ public class GameGUI implements ActionListener {
         answerPanel.setVisible(true);
         content.add(answerPanel);
 
-        optA = new JRadioButton("Option A: A lot of wood");
+        optA = new JRadioButton();
         optA.setBounds(2, 2, 596, 41);
         optA.setBackground(Color.white);
         optA.setFont(normalFont);
         optA.setVisible(true);
         answerPanel.add(optA);
 
-        optB = new JRadioButton("Option B: Peter Piper's woodchuck");
+        optB = new JRadioButton();
         optB.setBounds(2, 42, 596, 41);
         optB.setBackground(Color.white);
         optB.setFont(normalFont);
         optB.setVisible(true);
         answerPanel.add(optB);
 
-        optC = new JRadioButton("Option C: A peck of wood");
+        optC = new JRadioButton();
         optC.setBounds(2, 82, 596, 41);
         optC.setBackground(Color.white);
         optC.setFont(normalFont);
         optC.setVisible(true);
         answerPanel.add(optC);
 
-        optD = new JRadioButton("Option D: Peterpickledpiperpeppersppspspsps?????");
+        optD = new JRadioButton();
         optD.setBounds(2, 122, 596, 41);
         optD.setBackground(Color.white);
         optD.setFont(normalFont);
@@ -519,6 +522,14 @@ public class GameGUI implements ActionListener {
 
     private void setHasCorrectAnswer(boolean hasCorrectAnswer) {
         this.hasCorrectAnswer = hasCorrectAnswer;
+    }
+
+    public boolean isEnteredGame() {
+        return enteredGame;
+    }
+
+    private void setEnteredGame(boolean enteredGame) {
+        this.enteredGame = enteredGame;
     }
 
     //*************** MAIN (TESTING) ***************

@@ -37,21 +37,44 @@ public class Game {
         bringQuestions(); // stock the questions on startup - could ask user to choose topic or increase level through input another xml and adding args to method and method call
         bringLocations(); // same but for locations
         // current location in game initialized with 'entry'
-        Location location = listLocas.get(0);
+        Location location = listLocas.get(1);
+        List<Question> bodyQs = questionsByType("body");
+//        List<Question> astroQs = questionsByType("astronomy");
 
-        while (keepGoing) {
-            List<Question> bodyQs = questionsByType("body");
-            List<Question> astroQs = questionsByType("astronomy");
-            Location currentLocation = location;
-            gooey.updateQuestion(bodyQs.get(0).getQuestion());
-            gooey.updateOptionA(bodyQs.get(0).getPossibleAnswers().get(0));
-            gooey.updateOptionB(bodyQs.get(0).getPossibleAnswers().get(1));
-            gooey.updateOptionC(bodyQs.get(0).getPossibleAnswers().get(2));
-            gooey.updateOptionD(bodyQs.get(0).getPossibleAnswers().get(3));
-            gooey.setCorrectAnswer(String.valueOf(bodyQs.get(0).getCorrectAnswer()));
-            gooey.updateCurrentLocation(currentLocation.getName());
-            gooey.updateLeftLocationButton(currentLocation.getRoomLeadTo().get(1));
-            gooey.updateRightLocationButton(currentLocation.getRoomLeadTo().get(0));
+        while(!gooey.isEnteredGame()){  //wait for player to exit initial setup, then set initial values
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        gooey.updateQuestion(bodyQs.get(0).getQuestion());
+        gooey.updateOptionA(bodyQs.get(0).getPossibleAnswers().get(0));
+        gooey.updateOptionB(bodyQs.get(0).getPossibleAnswers().get(1));
+        gooey.updateOptionC(bodyQs.get(0).getPossibleAnswers().get(2));
+        gooey.updateOptionD(bodyQs.get(0).getPossibleAnswers().get(3));
+        gooey.setCorrectAnswer(String.valueOf(bodyQs.get(0).getCorrectAnswer()));
+        gooey.updateCurrentLocation(location.getName());
+        gooey.updateLeftLocationButton(location.getRoomLeadTo().get(1));
+        gooey.updateRightLocationButton(location.getRoomLeadTo().get(0));
+        gooey.guiUpdate();
+
+        while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
+            if (gooey.isReadyForNextQuestion()){
+                //TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
+                Location currentLocation = location;
+                gooey.updateQuestion(bodyQs.get(0).getQuestion());
+                gooey.updateOptionA(bodyQs.get(0).getPossibleAnswers().get(0));
+                gooey.updateOptionB(bodyQs.get(0).getPossibleAnswers().get(1));
+                gooey.updateOptionC(bodyQs.get(0).getPossibleAnswers().get(2));
+                gooey.updateOptionD(bodyQs.get(0).getPossibleAnswers().get(3));
+                gooey.setCorrectAnswer(String.valueOf(bodyQs.get(0).getCorrectAnswer()));
+                gooey.updateCurrentLocation(currentLocation.getName());
+                gooey.updateLeftLocationButton(currentLocation.getRoomLeadTo().get(1));
+                gooey.updateRightLocationButton(currentLocation.getRoomLeadTo().get(0));
+                //TODO: update score (if necessary). Still needs to be implemented in GUI
+                gooey.guiUpdate();
+            }
 
         }
 
