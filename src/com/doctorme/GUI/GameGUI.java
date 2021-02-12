@@ -15,8 +15,8 @@ public class GameGUI implements ActionListener {
     private Container content;
     private final JFrame window = new JFrame();
     private JFrame helpWindow;
-    private JLabel currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
-    private JPanel gameDescription, questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
+    private JLabel gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
+    private JPanel questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
     private JTextArea helpText, gameInstructions, questionText;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
@@ -44,14 +44,21 @@ public class GameGUI implements ActionListener {
 
         //Welcome Title
         welcomeTitle = new JLabel(introTitle, SwingConstants.CENTER);
-        welcomeTitle.setBounds(50,10,950,50);
+        welcomeTitle.setBounds(50,10,950,35);
         welcomeTitle.setForeground(Color.black);
         welcomeTitle.setFont(titleFont);
         content.add(welcomeTitle);
 
+        gameDescription = new JLabel("Interested in a PhD? Or is your favorite Amazon Leadership Principle 'Learn & Be Curious' ? Explore DoctorMe", SwingConstants.CENTER);
+        gameDescription.setBounds(50,45,950,30);
+        gameDescription.setForeground(Color.black);
+        gameDescription.setFont(normalFont);
+        content.add(gameDescription);
+
+
         //----Help or Instruction of the game
         enterGamePanel = new JPanel();
-        enterGamePanel.setBounds(50,70, 950, 350);
+        enterGamePanel.setBounds(50,90, 950, 350);
         enterGamePanel.setBackground(Color.white);
 //        enterGamePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         content.add(enterGamePanel);
@@ -66,6 +73,7 @@ public class GameGUI implements ActionListener {
         gameInstructions.setEditable(false);
         enterGamePanel.add(gameInstructions);
 
+
 //        scrollPane = new JScrollPane(gameInstructions);
 //        scrollPane.setPreferredSize(new Dimension(950,350));
 //        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -73,7 +81,7 @@ public class GameGUI implements ActionListener {
 
         //EnterGame button
         enterGameBtn = new JButton();
-        enterGameBtn.setBounds(475, 430, 100, 30);
+        enterGameBtn.setBounds(475, 450, 100, 30);
         enterGameBtn.setText("Enter Game");
 //         enterGameBtn.setBackground(Color.white);
 //         enterGameBtn.setForeground(Color.black);
