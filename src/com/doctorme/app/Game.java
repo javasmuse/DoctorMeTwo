@@ -57,7 +57,7 @@ public class Game {
         String optionB = bodyQs.get(0).getPossibleAnswers().get(1);
         String optionC = bodyQs.get(0).getPossibleAnswers().get(2);
         String optionD = bodyQs.get(0).getPossibleAnswers().get(3);
-        String correctAns = convertCorrectAns(bodyQs.get(0).getCorrectAnswer());
+        String correctAns = convertCorrectAns(bodyQs.get(0).getCorrectAnswer() + 1);
         System.out.println(correctAns);
         String currentLocation = location.getName();
         String leadLocation1 = location.getRoomLeadTo().get(1);
