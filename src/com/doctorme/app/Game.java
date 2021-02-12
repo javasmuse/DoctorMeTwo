@@ -33,28 +33,33 @@ public class Game {
     // START HERE
     public void startGame() {
         // instantiate and start the GUI
-        GameGUI gooey = new GameGUI(printWelcome(), printInstructions());
+        GameGUI gooey = new GameGUI(printWelcome(), printIntro(), printInstructions());
         bringQuestions(); // stock the questions on startup - could ask user to choose topic or increase level through input another xml and adding args to method and method call
         bringLocations(); // same but for locations
         // current location in game initialized with 'entry'
-        Location location = listLocas.get(0);
+        Location location = listLocas.get(1);
 
         while (keepGoing) {
+            // this games list of questions by type - delete, randomize as necessary
+            System.out.println("Dogs sleep loudly. Test in while loop");
             List<Question> bodyQs = questionsByType("body");
             List<Question> astroQs = questionsByType("astronomy");
+
             Location currentLocation = location;
-            gooey.updateQuestion(bodyQs.get(0).getQuestion());
-            gooey.updateOptionA(bodyQs.get(0).getPossibleAnswers().get(0));
-            gooey.updateOptionB(bodyQs.get(0).getPossibleAnswers().get(1));
-            gooey.updateOptionC(bodyQs.get(0).getPossibleAnswers().get(2));
-            gooey.updateOptionD(bodyQs.get(0).getPossibleAnswers().get(3));
-            gooey.setCorrectAnswer(String.valueOf(bodyQs.get(0).getCorrectAnswer()));
-            gooey.updateCurrentLocation(currentLocation.getName());
-            gooey.updateLeftLocationButton(currentLocation.getRoomLeadTo().get(1));
-            gooey.updateRightLocationButton(currentLocation.getRoomLeadTo().get(0));
-
+            System.out.println(currentLocation.getName());
+            System.out.println(currentLocation.getDescription());
+            System.out.println("This room leads to :" + currentLocation.getRoomLeadTo());
+//            gooey.updateQuestion(bodyQs.get(0).getQuestion());
+//            gooey.updateOptionA(bodyQs.get(0).getPossibleAnswers().get(0));
+//            gooey.updateOptionB(bodyQs.get(0).getPossibleAnswers().get(1));
+//            gooey.updateOptionC(bodyQs.get(0).getPossibleAnswers().get(2));
+//            gooey.updateOptionD(bodyQs.get(0).getPossibleAnswers().get(3));
+//            gooey.setCorrectAnswer(String.valueOf(bodyQs.get(0).getCorrectAnswer()));
+//            gooey.updateCurrentLocation(currentLocation.getName());
+//            gooey.updateLeftLocationButton(currentLocation.getRoomLeadTo().get(1));
+//            gooey.updateRightLocationButton(currentLocation.getRoomLeadTo().get(0));
+            keepGoing = false;
         }
-
 
         currentPlayer = new Player("Rennie"); // set temp current player name - get from GUI on start up
         questionsByType("astronomy");
@@ -68,6 +73,14 @@ public class Game {
         checkAnswerByIndex(3, 2); // checks same q for possible answer of 3rd index
 
     }
+
+    // Track current games question list by type - removing correct answers
+    public List<Question> trakQuestion(List<Question> locall, String typ){
+
+        return null;
+    }
+
+
 
 
     // SHOW START SCREEN - AND FIRST LOCATION 'ENTRY'
@@ -154,6 +167,9 @@ public class Game {
     }
 
     // RANDOM number generator
+    public int randomNumber(int local){
+        return (int)(Math.random() * local);
+    }
 
     //
 
