@@ -36,41 +36,81 @@ public class Game {
     // START HERE
     public void startGame() {
         // instantiate and start the GUI
-        GameGUI gooey = new GameGUI(printWelcome(), printInstructions());
+        GameGUI gooey = new GameGUI(printWelcome(), printIntro(), printInstructions());
         bringQuestions(); // stock the questions on startup - could ask user to choose topic or increase level through input another xml and adding args to method and method call
         bringLocations(); // same but for locations
-        // current location in game initialized with 'entry'
-        Location location = listLocas.get(0);
+        // current location in game initialized with 'Invictus'
+        Location location = listLocas.get(1);
+        List<Question> bodyQs = questionsByType("body");
+        List<Question> astroQs = questionsByType("astronomy");
 
-        while (keepGoing) {
-            List<Question> bodyQs = questionsByType("body");
-            List<Question> astroQs = questionsByType("astronomy");
-            Location currentLocation = location;
-            gooey.updateQuestion(bodyQs.get(0).getQuestion());
-            gooey.updateOptionA(bodyQs.get(0).getPossibleAnswers().get(0));
-            gooey.updateOptionB(bodyQs.get(0).getPossibleAnswers().get(1));
-            gooey.updateOptionC(bodyQs.get(0).getPossibleAnswers().get(2));
-            gooey.updateOptionD(bodyQs.get(0).getPossibleAnswers().get(3));
-            gooey.setCorrectAnswer(String.valueOf(bodyQs.get(0).getCorrectAnswer()));
-            gooey.updateCurrentLocation(currentLocation.getName());
-            gooey.updateLeftLocationButton(currentLocation.getRoomLeadTo().get(1));
-            gooey.updateRightLocationButton(currentLocation.getRoomLeadTo().get(0));
-
+        while(!gooey.isEnteredGame()){  //wait for player to exit initial setup, then set initial values
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
         }
 
+        // initialize first location and question in GUI
+
+        // initialize question and location fields for first display
+        String questionG = bodyQs.get(0).getQuestion();
+        String optionA = bodyQs.get(0).getPossibleAnswers().get(0);
+        String optionB = bodyQs.get(0).getPossibleAnswers().get(1);
+        String optionC = bodyQs.get(0).getPossibleAnswers().get(2);
+        String optionD = bodyQs.get(0).getPossibleAnswers().get(3);
+        String correctAns = convertCorrectAns(bodyQs.get(0).getCorrectAnswer());
+        String hint = bodyQs.get(0).getHint();
+        String currentLocation = location.getName();
+        String leadLocation1 = location.getRoomLeadTo().get(1);
+        String leadLocation2 = location.getRoomLeadTo().get(0);
+
+        gooey.updateQuestion(questionG);
+        gooey.updateOptionA(optionA);
+        gooey.updateOptionB(optionB);
+        gooey.updateOptionC(optionC);
+        gooey.updateOptionD(optionD);
+        gooey.setCorrectAnswer(correctAns);
+        gooey.updateHintText(hint);
+        System.out.println(hint);
+        System.out.println(questionG);
+        gooey.updateCurrentLocation(currentLocation);
+        gooey.updateLeftLocationButton(leadLocation1);
+        gooey.updateRightLocationButton(leadLocation2);
+        gooey.guiUpdate();
 
         currentPlayer = new Player("Rennie"); // set temp current player name - get from GUI on start up
         questionsByType("astronomy");
         questionsByType("body");
 
-        String sampleQ = questionsByType("body").get(3).getQuestion();
-        List<String> possAns = questionsByType("body").get(3).getPossibleAnswers();
-        String sampleQH = questionsByType("body").get(3).getHint();
-        System.out.println(sampleQ + "\n" + possAns + "\nHint: " + sampleQH);
-        System.out.println("test answer: option 3");
-        checkAnswerByIndex(3, 2); // checks same q for possible answer of 3rd index
-
+        while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
+            if (gooey.isReadyForNextQuestion()){
+                //TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
+//                Location currentLocation = location;
+//                gooey.updateQuestion(bodyQs.get(0).getQuestion());
+//                gooey.updateOptionA(bodyQs.get(0).getPossibleAnswers().get(0));
+//                gooey.updateOptionB(bodyQs.get(0).getPossibleAnswers().get(1));
+//                gooey.updateOptionC(bodyQs.get(0).getPossibleAnswers().get(2));
+//                gooey.updateOptionD(bodyQs.get(0).getPossibleAnswers().get(3));
+//                gooey.setCorrectAnswer(String.valueOf(bodyQs.get(0).getCorrectAnswer()));
+//                gooey.updateCurrentLocation(currentLocation.getName());
+//                gooey.updateLeftLocationButton(currentLocation.getRoomLeadTo().get(1));
+//                gooey.updateRightLocationButton(currentLocation.getRoomLeadTo().get(0));
+                //TODO: update score (if necessary). Still needs to be implemented in GUI
+                gooey.guiUpdate();
+            }
+        }
     }
+
+    // Track current games question list by type - removing correct answers
+    public List<Question> trakQuestion(List<Question> locall, String typ){
+
+
+        return null;
+    }
+
+
 
 
     // SHOW START SCREEN - AND FIRST LOCATION 'ENTRY'
@@ -120,7 +160,7 @@ public class Game {
     }
 
     // CHECK ANSWER
-    // check user's answer by question index
+    // check user's answer by question index -- checking is done on GUI side
     public Boolean checkAnswerByIndex(int questIdx, int userAnswer) {
         if (listQs.get(questIdx).getCorrectAnswer() == userAnswer) {
             return true;
@@ -128,7 +168,6 @@ public class Game {
             return false;
         }
     }
-
     // check user's answer by question id
     public void checkAnswerById(int questId, int answerUser) {
 
@@ -139,6 +178,23 @@ public class Game {
                 }
             }
         }
+    }
+
+    // CONVERT LOCATION INT OF CORRECT ANSWER TO A B C D
+    public String convertCorrectAns(int localCA){
+        String alphCorrectAns = "";
+
+        switch (localCA) {
+            case 0: alphCorrectAns = "A";
+            break;
+            case 1: alphCorrectAns = "B";
+            break;
+            case 2: alphCorrectAns = "C";
+            break;
+            case 3: alphCorrectAns = "D";
+            break;
+        }
+        return alphCorrectAns;
     }
 
 
@@ -165,6 +221,9 @@ public class Game {
     }
 
     // RANDOM number generator
+    public int randomNumber(int local){
+        return (int)(Math.random() * local);
+    }
 
     //
 
