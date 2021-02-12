@@ -2,7 +2,7 @@ package com.doctorme.GUI;
 
 import com.doctorme.app.Game;
 import com.doctorme.entities.Location;
-import com.doctorme.util.GameText;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -15,7 +15,7 @@ public class GameGUI implements ActionListener {
     private Container content;
     private final JFrame window = new JFrame();
     private JFrame helpWindow;
-    private JLabel currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
+    private JLabel gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
     private JPanel questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
     private JTextArea helpText, gameInstructions, questionText;
     private JRadioButton optA, optB, optC, optD;
@@ -27,8 +27,13 @@ public class GameGUI implements ActionListener {
     private Game game = new Game();
     private String correctAnswer = "A";
     private ButtonGroup radioGroup;
+    private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame;
 
-    public GameGUI(){
+    public GameGUI(String introTitle, String introInstructions){
+        setHasCorrectAnswer(false);
+        setReadyForNextQuestion(false);
+        setEnteredGame(false);
+
         //Setting the GUI window
         window.setSize(1050,520);
         window.setLocation(500,500);
@@ -39,21 +44,28 @@ public class GameGUI implements ActionListener {
         content.setBackground(Color.decode("#ADC7D9"));
 
         //Welcome Title
-        welcomeTitle = new JLabel("Welcome to the Doctor Me Game!", SwingConstants.CENTER);
-        welcomeTitle.setBounds(50,10,950,50);
+        welcomeTitle = new JLabel(introTitle, SwingConstants.CENTER);
+        welcomeTitle.setBounds(50,10,950,35);
         welcomeTitle.setForeground(Color.black);
         welcomeTitle.setFont(titleFont);
         content.add(welcomeTitle);
 
+        gameDescription = new JLabel("Interested in a PhD? Or is your favorite Amazon Leadership Principle 'Learn & Be Curious' ? Explore DoctorMe", SwingConstants.CENTER);
+        gameDescription.setBounds(50,45,950,30);
+        gameDescription.setForeground(Color.black);
+        gameDescription.setFont(normalFont);
+        content.add(gameDescription);
+
+
         //----Help or Instruction of the game
         enterGamePanel = new JPanel();
-        enterGamePanel.setBounds(50,70, 950, 350);
+        enterGamePanel.setBounds(50,90, 950, 350);
         enterGamePanel.setBackground(Color.white);
 //        enterGamePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         content.add(enterGamePanel);
 
         gameInstructions = new JTextArea();
-        gameInstructions.setText(game.printInstructions());
+        gameInstructions.setText(introInstructions);
         gameInstructions.setBounds(0,0,950,350);
         gameInstructions.setForeground(Color.black);
         gameInstructions.setFont(questionFont);
@@ -62,6 +74,7 @@ public class GameGUI implements ActionListener {
         gameInstructions.setEditable(false);
         enterGamePanel.add(gameInstructions);
 
+
 //        scrollPane = new JScrollPane(gameInstructions);
 //        scrollPane.setPreferredSize(new Dimension(950,350));
 //        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -69,7 +82,7 @@ public class GameGUI implements ActionListener {
 
         //EnterGame button
         enterGameBtn = new JButton();
-        enterGameBtn.setBounds(475, 430, 100, 30);
+        enterGameBtn.setBounds(475, 450, 100, 30);
         enterGameBtn.setText("Enter Game");
 //         enterGameBtn.setBackground(Color.white);
 //         enterGameBtn.setForeground(Color.black);
@@ -90,6 +103,8 @@ public class GameGUI implements ActionListener {
             window.repaint();
             window.revalidate();
             setup();
+            setEnteredGame(true);
+//            setReadyForNextQuestion(true);
         }else if(e.getSource() == helpBtn){
             displayHelpWindow();
         }else if(e.getSource() == helpCloseBtn){
@@ -100,7 +115,7 @@ public class GameGUI implements ActionListener {
         }else if(e.getSource() == submit && submit.getText().equals("Submit")) {
             checkAnswer();
         }else if(e.getSource() == submit && submit.getText().equals("Next Question")){
-            getNextQuestion();
+            setReadyForNextQuestion(true);
         }else if(e.getSource() == leftLocBtn){
 //            changeToLeftLoc();
         }else if(e.getSource() == rightLocBtn){
@@ -114,17 +129,29 @@ public class GameGUI implements ActionListener {
     }
 
     //*************** ACCESSORY METHODS ***************
+    public void guiUpdate(){
+        correctLabel.setVisible(false);
+        incorrectLabel.setVisible(false);
+        radioGroup.clearSelection();
+        submit.setText("Submit");
+
+        window.repaint();
+        window.revalidate();
+    }
+
     private void checkAnswer(){
         submit.setText("Next Question");
         if ((optA.isSelected() && correctAnswer.equals("A")) ||
-            (optB.isSelected() && correctAnswer.equals("B")) ||
-            (optC.isSelected() && correctAnswer.equals("C")) ||
-            (optD.isSelected() && correctAnswer.equals("D"))){
+                (optB.isSelected() && correctAnswer.equals("B")) ||
+                (optC.isSelected() && correctAnswer.equals("C")) ||
+                (optD.isSelected() && correctAnswer.equals("D"))){
             correctLabel.setVisible(true);
-            incrementScore();
+            setHasCorrectAnswer(true);
+//            incrementScore();
         }else{
             incorrectLabel.setVisible(true);
-            resetScore();
+            setHasCorrectAnswer(false);
+//            resetScore();
         }
         window.repaint();
         window.revalidate();
@@ -138,20 +165,10 @@ public class GameGUI implements ActionListener {
 
     }
 
-    private void getNextQuestion(){
-        correctLabel.setVisible(false);
-        incorrectLabel.setVisible(false);
-        radioGroup.clearSelection();
-        submit.setText("Submit");
-
-        window.repaint();
-        window.revalidate();
-    }
-
     //*************** SETUP METHODS ***************
     private void setup(){
         locationPanelSetup();
-        questionPanelSetup();
+        questionPanelSetup(); // XXX this is to test
         answerPanelSetup();
         badgePanelSetup();
         scorePanelSetup();
@@ -166,7 +183,7 @@ public class GameGUI implements ActionListener {
         currLocationPanel.setBackground(Color.decode("#043769"));
         content.add(currLocationPanel);
 
-        currLocation = new JLabel("Current Location");
+        currLocation = new JLabel();
         currLocation.setBounds(50,50,600,30);
         currLocation.setForeground(Color.white);
         currLocation.setFont(titleFont);
@@ -181,7 +198,7 @@ public class GameGUI implements ActionListener {
         questionPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         content.add(questionPanel);
 
-        questionText = new JTextArea("How much wood would a woodchuck chuck if a woodchuck could chuck wood? Peter Piper picked a peck of pickled peppers. If Peter Piper picked a peck of pickled peppers, how many pecks of pickled peppers did Peter Piper pick?");
+        questionText = new JTextArea();
         questionText.setBounds(52,102,596,96);
         questionText.setForeground(Color.black);
         questionText.setFont(questionFont);
@@ -202,28 +219,28 @@ public class GameGUI implements ActionListener {
         answerPanel.setVisible(true);
         content.add(answerPanel);
 
-        optA = new JRadioButton("Option A: A lot of wood");
+        optA = new JRadioButton();
         optA.setBounds(2, 2, 596, 41);
         optA.setBackground(Color.white);
         optA.setFont(normalFont);
         optA.setVisible(true);
         answerPanel.add(optA);
 
-        optB = new JRadioButton("Option B: Peter Piper's woodchuck");
+        optB = new JRadioButton();
         optB.setBounds(2, 42, 596, 41);
         optB.setBackground(Color.white);
         optB.setFont(normalFont);
         optB.setVisible(true);
         answerPanel.add(optB);
 
-        optC = new JRadioButton("Option C: A peck of wood");
+        optC = new JRadioButton();
         optC.setBounds(2, 82, 596, 41);
         optC.setBackground(Color.white);
         optC.setFont(normalFont);
         optC.setVisible(true);
         answerPanel.add(optC);
 
-        optD = new JRadioButton("Option D: Peterpickledpiperpeppersppspspsps?????");
+        optD = new JRadioButton();
         optD.setBounds(2, 122, 596, 41);
         optD.setBackground(Color.white);
         optD.setFont(normalFont);
@@ -455,6 +472,8 @@ public class GameGUI implements ActionListener {
 
     public void updateQuestion(String newQuestion){
         questionText.setText(newQuestion);
+        setReadyForNextQuestion(false);
+        setHasCorrectAnswer(false);
     }
 
     public void updateOptionA(String newOption){
@@ -481,9 +500,41 @@ public class GameGUI implements ActionListener {
         rightLocBtn.setText(newLocation + " >>>");
     }
 
+    private String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    public boolean isReadyForNextQuestion() {
+        return readyForNextQuestion;
+    }
+
+    private void setReadyForNextQuestion(boolean readyForNextQuestion) {
+        this.readyForNextQuestion = readyForNextQuestion;
+    }
+
+    public boolean hadCorrectAnswer() {
+        return hasCorrectAnswer;
+    }
+
+    private void setHasCorrectAnswer(boolean hasCorrectAnswer) {
+        this.hasCorrectAnswer = hasCorrectAnswer;
+    }
+
+    public boolean isEnteredGame() {
+        return enteredGame;
+    }
+
+    private void setEnteredGame(boolean enteredGame) {
+        this.enteredGame = enteredGame;
+    }
+
     //*************** MAIN (TESTING) ***************
     public static void main(String[] args) {
-        GameGUI gui = new GameGUI();
+        GameGUI gui = new GameGUI("Welcome", "Here are the instructions! Nothing!");
     }
 
 }
