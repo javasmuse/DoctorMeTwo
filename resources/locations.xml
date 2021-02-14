@@ -87,9 +87,11 @@
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
         <leadTo>Doppler</leadTo>
+        <leadTo>Invictus</leadTo>
         <leadTo>Cricket</leadTo>
         <leadTo>Kumo</leadTo>
         <exit>north</exit>
+        <exit>south</exit>
         <exit>east</exit>
         <exit>west</exit>
     </location>
