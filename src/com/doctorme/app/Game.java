@@ -86,30 +86,25 @@ public class Game {
         // update GUI
         gooey.guiUpdate();
 
-        System.out.println("Entering while loop");
         while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
-            System.out.println(gooey.isReadyForNextQuestion());
             if (gooey.isReadyForNextQuestion()){
-                System.out.println(gooey.isReadyForNextQuestion());
-                break;
-//                System.out.println("hello from the code");
-                //TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
-                // CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
-//                if (gooey.hadCorrectAnswer() == true) {
-//                    roomQs.remove(currQ);
-//                    System.out.println(currQ);
-//                }
-//
-//                gooey.updateQuestion(questionG);
-//                gooey.updateOptionA(optionA);
-//                gooey.updateOptionB(optionB);
-//                gooey.updateOptionC(optionC);
-//                gooey.updateOptionD(optionD);
-//                gooey.setCorrectAnswer(correctAns);
-//
-//
-//                //TODO: update score (if necessary). Still needs to be implemented in GUI
-//                gooey.guiUpdate();
+//                TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
+//                 CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
+                if (gooey.hadCorrectAnswer()) {
+                    roomQs.remove(currQ);
+                    System.out.println(currQ);
+                }
+
+                gooey.updateQuestion(questionG);
+                gooey.updateOptionA(optionA);
+                gooey.updateOptionB(optionB);
+                gooey.updateOptionC(optionC);
+                gooey.updateOptionD(optionD);
+                gooey.setCorrectAnswer(correctAns);
+
+
+                //TODO: update score (if necessary). Still needs to be implemented in GUI
+                gooey.guiUpdate();
             }
         }
     }
