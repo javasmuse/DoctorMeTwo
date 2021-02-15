@@ -31,6 +31,7 @@ public class Game {
     private GameTextGenerator gtg = new GameTextGenerator();
     private Boolean keepGoing = true;
     private Badge badge = new Badge("badge1");
+    private int currQpoints;
     private int currentGameScore= 0;
 
 
@@ -54,7 +55,7 @@ public class Game {
 
         // initialize first location and question in GUI
         // current location in game initialized with 'Invictus'
-        Location location = listLocas.get(1);
+        Location location = listLocas.get(7);
 
         // initialize question and location fields for first display
         // STOCKS FIRST QUESTION - send in first location
@@ -72,8 +73,6 @@ public class Game {
         while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
             // if the player clicks the "next question" button
 
-            System.out.println("line 75");
-
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ie) {
@@ -81,12 +80,13 @@ public class Game {
             }
 
             if (gooey.isReadyForNextQuestion()){
-                System.out.println("line 78");
+
 //             TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
 //             TODO: CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
                 //TODO: update score (if necessary). Still needs to be implemented in GUI
-//                setCurrentGameScore(getCurrentGameScore() + currQ.getPoints());
-//                gooey.setCurrentScore(getCurrentGameScore());
+                setCurrentGameScore(getCurrentGameScore() + currQpoints);
+                // TODO: WORKS BUT IS DIRTY FIX - UPDATES ON NEXT QUESTION, NOT ON CORRECT ANSWER, NEED TRIGGER FROM GUI TO PUT IN RIGHT PLACE
+                gooey.setCurrentScore(getCurrentGameScore());
 
                 // set next Question object in GUI
                 stockNextQuestion(gooey, location);
@@ -105,6 +105,7 @@ public class Game {
     // STOCK THE QUESTION OBJECT
     private void stockNextQuestion(GameGUI gooey, Location location) {
         Question currQ = qg.nextQuestion(location);
+        currQpoints = currQ.getPoints();
         gooey.updateQuestion(currQ.getQuestion());
         gooey.updateOptionA(currQ.getPossibleAnswers().get(0));
         gooey.updateOptionB(currQ.getPossibleAnswers().get(1));
@@ -113,6 +114,7 @@ public class Game {
         gooey.setCorrectAnswer(conAns.convertCorrectAns(currQ.getCorrectAnswer()));
         gooey.updateHintText(currQ.getHint());
         gooey.updateCurrentLocation(location.getName());
+
     }
 
 
@@ -137,26 +139,7 @@ public class Game {
     /* QUESTION METHODS  are all in the Question Generator*/
 
 
-    // CHECK ANSWER
-    // check user's answer by question index -- checking is done on GUI side
-    public Boolean checkAnswerByIndex(int questIdx, int userAnswer) {
-        if (listQs.get(questIdx).getCorrectAnswer() == userAnswer) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    // check user's answer by question id
-    public void checkAnswerById(int questId, int answerUser) {
 
-        for (int i = 0; i < listQs.size(); i++) {
-            if (listQs.get(i).getId() == questId) {
-                if (listQs.get(i).getCorrectAnswer() == answerUser) {
-                    System.out.println("YES!");
-                }
-            }
-        }
-    }
 
     public void awardBadge(){
         if(currentPlayer.getPoints()==30){  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
