@@ -5,9 +5,7 @@ import com.doctorme.entities.Badge;
 import com.doctorme.entities.Location;
 import com.doctorme.entities.Player;
 import com.doctorme.entities.Question;
-import com.doctorme.util.GameText;
-import com.doctorme.util.LocationList;
-import com.doctorme.util.QuestionList;
+import com.doctorme.util.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +25,10 @@ public class Game {
     // access - question list, location list
     private QuestionList ql = new QuestionList();
     private LocationList ll = new LocationList();
+    private QuestionGenerator qg = new QuestionGenerator();
     private Player currentPlayer = new Player();
-    private GameText text = new GameText();
+    private ConvertAnswer conAns = new ConvertAnswer();
+    private GameTextGenerator gtg = new GameTextGenerator();
     private Boolean keepGoing = true;
     private Badge badge = new Badge("badge1");
 
@@ -36,14 +36,12 @@ public class Game {
     // START HERE
     public void startGame() {
         // instantiate and start the GUI
-        GameGUI gooey = new GameGUI(printWelcome(), printIntro(), printInstructions());
-        bringQuestions(); // stock the questions on startup - could ask user to choose topic or increase level through input another xml and adding args to method and method call
-        bringLocations(); // same but for locations
-        // current location in game initialized with 'Invictus'
-        Location location = listLocas.get(7);
-        List<Question> bodyQs = questionsByType("body");
-        List<Question> astroQs = questionsByType("astronomy");
+        GameGUI gooey = new GameGUI(gtg.printWelcome(), gtg.printIntro(), gtg.printInstructions());
 
+        bringLocations(); // set locations
+        qg.bringQuestions(); // set questions
+
+        // stretch goal - user given option to choose 'topic' or 'level' and enter their name - before entering game loop
 
 
         while(!gooey.isEnteredGame()){  //wait for player to exit initial setup, then set initial values
@@ -55,32 +53,18 @@ public class Game {
         }
 
         // initialize first location and question in GUI
+        // current location in game initialized with 'Invictus'
+        Location location = listLocas.get(1);
 
         // initialize question and location fields for first display
-        List<Question> roomQs = questionsByType(location.getType());
-        Question currQ = randoQuestion(roomQs);
-        String questionG = currQ.getQuestion();
-        String optionA = currQ.getPossibleAnswers().get(0);
-        String optionB = currQ.getPossibleAnswers().get(1);
-        String optionC = currQ.getPossibleAnswers().get(2);
-        String optionD = currQ.getPossibleAnswers().get(3);
-        String correctAns = convertCorrectAns(currQ.getCorrectAnswer());
-        String hint = currQ.getHint();
-        String currentLocation = location.getName();
+
+
+        // STOCKS FIRST QUESTION
+        stockNextQuestion(gooey, location);
+
         String currLocalDescrip = location.getDescription();
         String typeLocal = location.getType();
-        String descripNType = typeLocal + "\n" +  currLocalDescrip;
-
-//        send above fields to gameGUI
-        gooey.updateQuestion(questionG);
-        gooey.updateOptionA(optionA);
-        gooey.updateOptionB(optionB);
-        gooey.updateOptionC(optionC);
-        gooey.updateOptionD(optionD);
-        gooey.setCorrectAnswer(correctAns);
-        gooey.updateHintText(hint);
-        gooey.updateCurrentLocation(currentLocation);
-        gooey.updateLocationDescription(descripNType);
+        gooey.updateLocationDescription(typeLocal + "\n" +  currLocalDescrip);
         gooey.updateNextLocations(location.getRoomLeadTo());
 
         // update GUI
@@ -88,26 +72,46 @@ public class Game {
 
         while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
             // if the player clicks the "next question" button
+            System.out.println("line 75");
+
             if (gooey.isReadyForNextQuestion()){
-//                TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
-//                 CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
-                if (gooey.hadCorrectAnswer()) {
-                    roomQs.remove(currQ);
-                    System.out.println(currQ);
-                }
+                System.out.println("line 78");
+//             TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
+//             TODO: CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
 
-                gooey.updateQuestion(questionG);
-                gooey.updateOptionA(optionA);
-                gooey.updateOptionB(optionB);
-                gooey.updateOptionC(optionC);
-                gooey.updateOptionD(optionD);
-                gooey.setCorrectAnswer(correctAns);
+                // set next Question object in GUI
+                stockNextQuestion(gooey, location);
+                currLocalDescrip = location.getDescription();
+                typeLocal = location.getType();
+                gooey.updateLocationDescription(typeLocal + "\n" +  currLocalDescrip);
+                gooey.updateNextLocations(location.getRoomLeadTo());
 
+                // update GUI
+                gooey.guiUpdate();
 
                 //TODO: update score (if necessary). Still needs to be implemented in GUI
-                gooey.guiUpdate();
+
             }
         }
+    }
+
+    // STOCK THE QUESTION OBJECT
+    private void stockNextQuestion(GameGUI gooey, Location location) {
+        Question currQ = qg.nextQuestion(location);
+        gooey.updateQuestion(currQ.getQuestion());
+        gooey.updateOptionA(currQ.getPossibleAnswers().get(0));
+        gooey.updateOptionB(currQ.getPossibleAnswers().get(1));
+        gooey.updateOptionC(currQ.getPossibleAnswers().get(2));
+        gooey.updateOptionD(currQ.getPossibleAnswers().get(3));
+        gooey.setCorrectAnswer(conAns.convertCorrectAns(currQ.getCorrectAnswer()));
+        gooey.updateHintText(currQ.getHint());
+        gooey.updateCurrentLocation(location.getName());
+    }
+
+    // RETRIEVE QUESTION BY TYPE
+    public List<Question> nextQuestion(List<Question> roomQuestions){
+//        roomQuestions.
+        return null;
     }
 
     // Track current games question list by type - removing correct answers
@@ -117,10 +121,6 @@ public class Game {
         return null;
     }
 
-    // retrieve random Question from current room list
-    public Question randoQuestion(List<Question> quests) {
-        return quests.get(randomNumber(quests.size()));
-    }
 
     // SHOW START SCREEN - AND FIRST LOCATION 'ENTRY'
 
@@ -133,11 +133,6 @@ public class Game {
     */
 
     // STOCK QUESTION AND LOCATION LISTS- expansion possible for user selected 'topics or level' - alternate xmls
-    public void bringQuestions() {
-        fileName = "resources/questionsLevelOne";
-        nodeNameXML = "questions";
-        listQs = ql.allQuestions(fileName, nodeNameXML);
-    }
 
     public void bringLocations() {
         fileName = "resources/locations.xml";
@@ -146,7 +141,8 @@ public class Game {
 
     }
 
-    // RETRIEVE QUESTION BY TYPE
+
+
     // CREATE RANDOMIZED LIST OF QUESTIONS BY TYPE
 
     // IN CODE RE-FACTOR FROM ORIGINAL - RETAIN THEIR README && USE ONE OF THEIR QUESTIONS FOR FINAL QUESTION && REUSE SOME CODE
@@ -189,60 +185,41 @@ public class Game {
         }
     }
 
-    // CONVERT LOCATION INT OF CORRECT ANSWER TO A B C D
-    public String convertCorrectAns(int localCA){
-        String alphCorrectAns = "";
-
-        switch (localCA) {
-            case 0: alphCorrectAns = "A";
-            break;
-            case 1: alphCorrectAns = "B";
-            break;
-            case 2: alphCorrectAns = "C";
-            break;
-            case 3: alphCorrectAns = "D";
-            break;
-        }
-        return alphCorrectAns;
-    }
-
-
-    // QUESTION LIST BY TYPE - user provided type for arg
-    public List<Question> questionsByType(String typeHere) {
-     List<Question> typeSpecific = listQs.stream()
-             .filter(typ -> typ.getType() .equals(typeHere))
-             .collect(Collectors.toList());
-     return typeSpecific;
-    }
-
-//    public void awardBadge(){
-//        if(currentPlayer.getPoints()==50){
-//            //Would need to create a list of Badges to keep track of what badges is earned by a player?
-//            System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
-//            badgesEarned.add(badge);
+//    // CONVERT LOCATION INT OF CORRECT ANSWER TO A B C D
+//    public String convertCorrectAns(int localCA){
+//        String alphCorrectAns = "";
+//
+//        switch (localCA) {
+//            case 0: alphCorrectAns = "A";
+//            break;
+//            case 1: alphCorrectAns = "B";
+//            break;
+//            case 2: alphCorrectAns = "C";
+//            break;
+//            case 3: alphCorrectAns = "D";
+//            break;
 //        }
+//        return alphCorrectAns;
 //    }
 
-    /* LOCATION METHODS */
-    // SET START LOCATION
-    public Location startLocation(){
-        return listLocas.get(0);
+
+//    // QUESTION LIST BY TYPE - user provided type for arg
+//    public List<Question> questionsByType(String typeHere) {
+//     List<Question> typeSpecific = listQs.stream()
+//             .filter(typ -> typ.getType() .equals(typeHere))
+//             .collect(Collectors.toList());
+//     return typeSpecific;
+//    }
+
+    public void awardBadge(){
+        if(currentPlayer.getPoints()==30){  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
+            //Would need to create a list of Badges to keep track of what badges is earned by a player? - Player.Badges List
+            System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
+            badgesEarned.add(badge);
+        }
     }
 
-    // RANDOM number generator
-    public int randomNumber(int local){
-        return (int)(Math.random() * local);
-    }
 
-    //
 
-    // GAME TEXT DISPLAY  - Welcome - Intro - Instructions
-    public String printInstructions(){
-        return (text.readInstructions().get(2));
-    }
-
-    public String printWelcome(){ return (text.readInstructions().get(0)); }
-
-    public String printIntro(){ return text.readInstructions().get(1); }
 
 }
