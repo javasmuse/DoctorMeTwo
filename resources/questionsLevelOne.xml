@@ -121,4 +121,604 @@
         <points>10</points>
         <hint>Limes once helped prevent scurvy among the crews of British ships.</hint>
     </questions>
+    <questions>
+        <id>11</id>
+        <type>Physics</type>
+        <question>Earth is located in which galaxy?</question>
+        <possibleAnswers1>Canis Major Dwarf</possibleAnswers1>
+        <possibleAnswers2>Andromeda Galaxy</possibleAnswers2>
+        <possibleAnswers3>The Milky Way galaxy</possibleAnswers3>
+        <possibleAnswers4>Backward Galaxy</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>12</id>
+        <type>Physics</type>
+        <question>What scientist is well known for his theory of relativity?</question>
+        <possibleAnswers1>Albert Einstein</possibleAnswers1>
+        <possibleAnswers2>Michael Faraday</possibleAnswers2>
+        <possibleAnswers3>Paul Dirac</possibleAnswers3>
+        <possibleAnswers4>Ernest Rutherford</possibleAnswers4>
+        <correctAnswer>0</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>13</id>
+        <type>Physics</type>
+        <question>Electric power is typically measured in what units?</question>
+        <possibleAnswers1>Coulomb</possibleAnswers1>
+        <possibleAnswers2>Newton</possibleAnswers2>
+        <possibleAnswers3>Ampere</possibleAnswers3>
+        <possibleAnswers4>Watts</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>14</id>
+        <type>Physics</type>
+        <question>The wire inside an electric bulb is known as the what?</question>
+        <possibleAnswers1>Live Wire</possibleAnswers1>
+        <possibleAnswers2>Earth Wire</possibleAnswers2>
+        <possibleAnswers3>Filament</possibleAnswers3>
+        <possibleAnswers4>Neutral Wire</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>15</id>
+        <type>Physics</type>
+        <question>What is the earth’s primary source of energy?</question>
+        <possibleAnswers1>Water</possibleAnswers1>
+        <possibleAnswers2>Wind</possibleAnswers2>
+        <possibleAnswers3>Sun</possibleAnswers3>
+        <possibleAnswers4>Gasoline</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>16</id>
+        <type>Mathematics</type>
+        <question>What is the only even prime number?</question>
+        <possibleAnswers1>2</possibleAnswers1>
+        <possibleAnswers2>18</possibleAnswers2>
+        <possibleAnswers3>22</possibleAnswers3>
+        <possibleAnswers4>32</possibleAnswers4>
+        <correctAnswer>0</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>17</id>
+        <type>Mathematics</type>
+        <question>Which number is considered a “magic number?”</question>
+        <possibleAnswers1>3</possibleAnswers1>
+        <possibleAnswers2>6</possibleAnswers2>
+        <possibleAnswers3>9</possibleAnswers3>
+        <possibleAnswers4>12</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>18</id>
+        <type>Mathematics</type>
+        <question>What is the smallest perfect number?</question>
+        <possibleAnswers1>3</possibleAnswers1>
+        <possibleAnswers2>4</possibleAnswers2>
+        <possibleAnswers3>5</possibleAnswers3>
+        <possibleAnswers4>6</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>19</id>
+        <type>Mathematics</type>
+        <question>What number doesn’t have its own Roman numeral?</question>
+        <possibleAnswers1>0</possibleAnswers1>
+        <possibleAnswers2>5</possibleAnswers2>
+        <possibleAnswers3>10</possibleAnswers3>
+        <possibleAnswers4>50</possibleAnswers4>
+        <correctAnswer>0</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>20</id>
+        <type>Mathematics</type>
+        <question>How many seconds are in one day?</question>
+        <possibleAnswers1>99,600</possibleAnswers1>
+        <possibleAnswers2>88,780</possibleAnswers2>
+        <possibleAnswers3>86,400</possibleAnswers3>
+        <possibleAnswers4>82,500</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>21</id>
+        <type>US History</type>
+        <question>Independence Day was first established as a holiday by Congress in what year?</question>
+        <possibleAnswers1>1853</possibleAnswers1>
+        <possibleAnswers2>1776</possibleAnswers2>
+        <possibleAnswers3>1938</possibleAnswers3>
+        <possibleAnswers4>1870</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>22</id>
+        <type>US History</type>
+        <question>Who was the first President to live in The White House?</question>
+        <possibleAnswers1>John Adams</possibleAnswers1>
+        <possibleAnswers2>Thomas Jefferson</possibleAnswers2>
+        <possibleAnswers3>George Washington</possibleAnswers3>
+        <possibleAnswers4>James Madison</possibleAnswers4>
+        <correctAnswer>0</correctAnswer>
+        <points>10</points>
+        <hint>This happened in November 1, 1800.</hint>
+    </questions>
+    <questions>
+        <id>23</id>
+        <type>US History</type>
+        <question>On July 4, 1976, Americans all over the country celebrated our nation's 200th birthday. How many tons of fireworks were exploded in a magnificient display above The Washington Monument in Washington, D.C.?</question>
+        <possibleAnswers1>5</possibleAnswers1>
+        <possibleAnswers2>17</possibleAnswers2>
+        <possibleAnswers3>24</possibleAnswers3>
+        <possibleAnswers4>33</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint>The number is heavier than a humpback whale! </hint>
+    </questions>
+    <questions>
+        <id>24</id>
+        <type>US History</type>
+        <question>Where was the first fourth of July celebration with a fireworks display held?</question>
+        <possibleAnswers1>Washington, D.C.</possibleAnswers1>
+        <possibleAnswers2>New York, New York</possibleAnswers2>
+        <possibleAnswers3>Boston, Massachusetts</possibleAnswers3>
+        <possibleAnswers4>Atlanta, Georgia</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>25</id>
+        <type>US History</type>
+        <question>2014 marked the 200th birthday of :</question>
+        <possibleAnswers1>The Lincoln Memorial</possibleAnswers1>
+        <possibleAnswers2>The Smithsonian Institution</possibleAnswers2>
+        <possibleAnswers3>The Star-Spangled Banner</possibleAnswers3>
+        <possibleAnswers4>The American flag</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>26</id>
+        <type>Java</type>
+        <question>What is a correct syntax to output "Hello World" in Java?</question>
+        <possibleAnswers1>echo("Hello World");</possibleAnswers1>
+        <possibleAnswers2>print("Hello World");</possibleAnswers2>
+        <possibleAnswers3>Console.WriteLine("Hello World");</possibleAnswers3>
+        <possibleAnswers4>System.out.println("Hello World");</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>27</id>
+        <type>Java</type>
+        <question>Which data type is used to create a variable that should store text?</question>
+        <possibleAnswers1>string</possibleAnswers1>
+        <possibleAnswers2>String</possibleAnswers2>
+        <possibleAnswers3>myString</possibleAnswers3>
+        <possibleAnswers4>Txt</possibleAnswers4>
+        <correctAnswer>1</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>28</id>
+        <type>Java</type>
+        <question>Which method can be used to find the length of a string?</question>
+        <possibleAnswers1>getLength()</possibleAnswers1>
+        <possibleAnswers2>len()</possibleAnswers2>
+        <possibleAnswers3>length()</possibleAnswers3>
+        <possibleAnswers4>getSize()</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>29</id>
+        <type>Java</type>
+        <question>What is the correct way to create an object called myObj of MyClass?</question>
+        <possibleAnswers1>new myObj = MyClass();</possibleAnswers1>
+        <possibleAnswers2>class MyClass = new myObj();</possibleAnswers2>
+        <possibleAnswers3>class myObj = new MyClass();</possibleAnswers3>
+        <possibleAnswers4>MyClass myobj = new MyClass();</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>30</id>
+        <type>Java</type>
+        <question>Which statement is used to stop a loop?</question>
+        <possibleAnswers1>break</possibleAnswers1>
+        <possibleAnswers2>stop</possibleAnswers2>
+        <possibleAnswers3>return</possibleAnswers3>
+        <possibleAnswers4>exit</possibleAnswers4>
+        <correctAnswer>0</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>31</id>
+        <type>World Capitals</type>
+        <question>Capital of Nicaragua is :</question>
+        <possibleAnswers1>Sao Tome</possibleAnswers1>
+        <possibleAnswers2>N'Djamena</possibleAnswers2>
+        <possibleAnswers3>Managua</possibleAnswers3>
+        <possibleAnswers4>Saint John's</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>32</id>
+        <type>World Capitals</type>
+        <question>Capital of Grenada is :</question>
+        <possibleAnswers1>Saint George's</possibleAnswers1>
+        <possibleAnswers2>Nay Pyi Taw</possibleAnswers2>
+        <possibleAnswers3>Helsinki</possibleAnswers3>
+        <possibleAnswers4>Harare</possibleAnswers4>
+        <correctAnswer>0</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>33</id>
+        <type>World Capitals</type>
+        <question>Capital of Peru is :</question>
+        <possibleAnswers1>Palikir</possibleAnswers1>
+        <possibleAnswers2>Lima</possibleAnswers2>
+        <possibleAnswers3>P'yongyang</possibleAnswers3>
+        <possibleAnswers4>Madrid</possibleAnswers4>
+        <correctAnswer>1</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>34</id>
+        <type>World Capitals</type>
+        <question>Capital of Indonesia is :</question>
+        <possibleAnswers1>Minsk</possibleAnswers1>
+        <possibleAnswers2>Ankara</possibleAnswers2>
+        <possibleAnswers3>Jakarta</possibleAnswers3>
+        <possibleAnswers4>Maputo</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>35</id>
+        <type>World Capitals</type>
+        <question>Capital of The Bahamas is :</question>
+        <possibleAnswers1>Cairo</possibleAnswers1>
+        <possibleAnswers2>Copenhagen</possibleAnswers2>
+        <possibleAnswers3>Nassau</possibleAnswers3>
+        <possibleAnswers4>Bairiki, Ambo and Betio </possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>36</id>
+        <type>Geology</type>
+        <question>What is the center of most layers of the Earth?</question>
+        <possibleAnswers1>Outer core</possibleAnswers1>
+        <possibleAnswers2>Inner core</possibleAnswers2>
+        <possibleAnswers3>Mantle</possibleAnswers3>
+        <possibleAnswers4>Troposphere</possibleAnswers4>
+        <correctAnswer>1</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>37</id>
+        <type>Geology</type>
+        <question>The layer of the Earth that is both liquid and solid is the :</question>
+        <possibleAnswers1>Outer core</possibleAnswers1>
+        <possibleAnswers2>Inner core</possibleAnswers2>
+        <possibleAnswers3>Mantle</possibleAnswers3>
+        <possibleAnswers4>Crust</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>38</id>
+        <type>Geology</type>
+        <question>The solid least dense layer of the Earth is the :</question>
+        <possibleAnswers1>Mantle</possibleAnswers1>
+        <possibleAnswers2>Inner core</possibleAnswers2>
+        <possibleAnswers3>Outer core</possibleAnswers3>
+        <possibleAnswers4>Crust</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>39</id>
+        <type>Geology</type>
+        <question>What happens to density as you go deeper into the Earth?</question>
+        <possibleAnswers1>It decreases</possibleAnswers1>
+        <possibleAnswers2>It stays the same </possibleAnswers2>
+        <possibleAnswers3>It increases</possibleAnswers3>
+        <possibleAnswers4>No one knows</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>40</id>
+        <type>Geology</type>
+        <question>The layer on which we live is the:</question>
+        <possibleAnswers1>Outer core</possibleAnswers1>
+        <possibleAnswers2>Troposphere</possibleAnswers2>
+        <possibleAnswers3>Crust</possibleAnswers3>
+        <possibleAnswers4>Mantle</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>41</id>
+        <type>Spanish</type>
+        <question>You're Welcome: </question>
+        <possibleAnswers1>Buenos</possibleAnswers1>
+        <possibleAnswers2>Gracias</possibleAnswers2>
+        <possibleAnswers3>De Nada</possibleAnswers3>
+        <possibleAnswers4>Que Pasa</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>42</id>
+        <type>Spanish</type>
+        <question>Dollars: </question>
+        <possibleAnswers1>Camas</possibleAnswers1>
+        <possibleAnswers2>Chicas</possibleAnswers2>
+        <possibleAnswers3>Ropa</possibleAnswers3>
+        <possibleAnswers4>Dolares</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>43</id>
+        <type>Spanish</type>
+        <question>Bed: </question>
+        <possibleAnswers1>Verde</possibleAnswers1>
+        <possibleAnswers2>Ropa</possibleAnswers2>
+        <possibleAnswers3>Cama</possibleAnswers3>
+        <possibleAnswers4>Vieja</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>44</id>
+        <type>Spanish</type>
+        <question>Four: </question>
+        <possibleAnswers1>Uno</possibleAnswers1>
+        <possibleAnswers2>Tres</possibleAnswers2>
+        <possibleAnswers3>Cuartro</possibleAnswers3>
+        <possibleAnswers4>Cinco</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>45</id>
+        <type>Spanish</type>
+        <question>Key: </question>
+        <possibleAnswers1>Llave</possibleAnswers1>
+        <possibleAnswers2>Mano</possibleAnswers2>
+        <possibleAnswers3>Ropa</possibleAnswers3>
+        <possibleAnswers4>Flora</possibleAnswers4>
+        <correctAnswer>0</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>45</id>
+        <type>Nutrition</type>
+        <question>Which of these is NOT considered a nutrient?</question>
+        <possibleAnswers1>Vitamins</possibleAnswers1>
+        <possibleAnswers2>Minerals</possibleAnswers2>
+        <possibleAnswers3>Fiber</possibleAnswers3>
+        <possibleAnswers4>Fats</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>46</id>
+        <type>Nutrition</type>
+        <question>Which of these is added to the food label because people sometimes don't eat ENOUGH of this?</question>
+        <possibleAnswers1>Calcium</possibleAnswers1>
+        <possibleAnswers2>Sodium</possibleAnswers2>
+        <possibleAnswers3>Cholesterol</possibleAnswers3>
+        <possibleAnswers4>Fat</possibleAnswers4>
+        <correctAnswer>0</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>47</id>
+        <type>Nutrition</type>
+        <question>The bread, cereal, rice and pasta group is a good source of _______?</question>
+        <possibleAnswers1>Vitamin C</possibleAnswers1>
+        <possibleAnswers2>Sodium</possibleAnswers2>
+        <possibleAnswers3>Carbohydrate</possibleAnswers3>
+        <possibleAnswers4>Vitamin D</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>48</id>
+        <type>Nutrition</type>
+        <question>Which of the following is NOT true about water?</question>
+        <possibleAnswers1>Drinking water boost metabolism</possibleAnswers1>
+        <possibleAnswers2>85% of human brain tissue is water</possibleAnswers2>
+        <possibleAnswers3>A good rule of thumb is to drink 10-12 glasses of water a day</possibleAnswers3>
+        <possibleAnswers4>Water reduces kidney stones</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>49</id>
+        <type>Nutrition</type>
+        <question>People with a body mass index (BMI) value of ________ or more are considered obese.</question>
+        <possibleAnswers1>20</possibleAnswers1>
+        <possibleAnswers2>25</possibleAnswers2>
+        <possibleAnswers3>29</possibleAnswers3>
+        <possibleAnswers4>30</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>50</id>
+        <type>Nutrition</type>
+        <question>Which of these seafoods should we NOT eat more of?</question>
+        <possibleAnswers1>King mackerel</possibleAnswers1>
+        <possibleAnswers2>Salmon</possibleAnswers2>
+        <possibleAnswers3>Shrimp</possibleAnswers3>
+        <possibleAnswers4>Tilapia</possibleAnswers4>
+        <correctAnswer>0</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>51</id>
+        <type>Zoology</type>
+        <question>Seeds are made by: </question>
+        <possibleAnswers1>Rain</possibleAnswers1>
+        <possibleAnswers2>Soil</possibleAnswers2>
+        <possibleAnswers3>Plants</possibleAnswers3>
+        <possibleAnswers4>Clouds</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>52</id>
+        <type>Zoology</type>
+        <question>Which part of the plant take up the nutrients and water?</question>
+        <possibleAnswers1>Leaves</possibleAnswers1>
+        <possibleAnswers2>Roots</possibleAnswers2>
+        <possibleAnswers3>Seeds</possibleAnswers3>
+        <possibleAnswers4>Stem</possibleAnswers4>
+        <correctAnswer>1</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>54</id>
+        <type>Zoology</type>
+        <question>Which part of the plant carries and protects the seed?</question>
+        <possibleAnswers1>Flower</possibleAnswers1>
+        <possibleAnswers2>Roots</possibleAnswers2>
+        <possibleAnswers3>Fruit</possibleAnswers3>
+        <possibleAnswers4>Stem</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>55</id>
+        <type>Zoology</type>
+        <question>Which part of the plant allows it to reproduce?</question>
+        <possibleAnswers1>Flower</possibleAnswers1>
+        <possibleAnswers2>Roots</possibleAnswers2>
+        <possibleAnswers3>Seeds</possibleAnswers3>
+        <possibleAnswers4>Stem</possibleAnswers4>
+        <correctAnswer>2</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>56</id>
+        <type>Sociology</type>
+        <question>Sociology is the study of: </question>
+        <possibleAnswers1>People in a society</possibleAnswers1>
+        <possibleAnswers2>Interactions among people</possibleAnswers2>
+        <possibleAnswers3>Social institutions</possibleAnswers3>
+        <possibleAnswers4>All of the above</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>57</id>
+        <type>Sociology</type>
+        <question>Which theory believes that people in society battle over scarce resources like money, power, and prestige?</question>
+        <possibleAnswers1>Structural functionalism</possibleAnswers1>
+        <possibleAnswers2>Conflict</possibleAnswers2>
+        <possibleAnswers3>Feminist</possibleAnswers3>
+        <possibleAnswers4>Symbolic interaction</possibleAnswers4>
+        <correctAnswer>1</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>58</id>
+        <type>Sociology</type>
+        <question>Which research method utilizes public records such as marriage and divorce certificates, police records, and birth and death certificates?</question>
+        <possibleAnswers1>Survey research</possibleAnswers1>
+        <possibleAnswers2>Participant observation</possibleAnswers2>
+        <possibleAnswers3>Experiment</possibleAnswers3>
+        <possibleAnswers4> Secondary data analysis</possibleAnswers4>
+        <correctAnswer>3</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>59</id>
+        <type>Sociology</type>
+        <question>If a researcher wished to collect data from a group such as females in California or men over the age of 30, these groups would be known as:</question>
+        <possibleAnswers1>Sub-grouping</possibleAnswers1>
+        <possibleAnswers2>Population</possibleAnswers2>
+        <possibleAnswers3>Sample</possibleAnswers3>
+        <possibleAnswers4>Random Sample</possibleAnswers4>
+        <correctAnswer>1</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
+    <questions>
+        <id>60</id>
+        <type>Sociology</type>
+        <question>Which research method would be likely to yield the most valid results for respondents in their natural setting?</question>
+        <possibleAnswers1>Experiment</possibleAnswers1>
+        <possibleAnswers2>Observation</possibleAnswers2>
+        <possibleAnswers3>Survey research</possibleAnswers3>
+        <possibleAnswers4>Data analysis</possibleAnswers4>
+        <correctAnswer>1</correctAnswer>
+        <points>10</points>
+        <hint></hint>
+    </questions>
 </gameQuestions>

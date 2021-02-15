@@ -31,6 +31,7 @@ public class Game {
     private GameText text = new GameText();
     private Boolean keepGoing = true;
     private Badge badge = new Badge("badge1");
+    private int currentGameScore= 0;
 
 
     // START HERE
@@ -82,18 +83,26 @@ public class Game {
         gooey.updateCurrentLocation(currentLocation);
         gooey.updateLocationDescription(descripNType);
         gooey.updateNextLocations(location.getRoomLeadTo());
+        gooey.setCurrentScore(0);
 
         // update GUI
         gooey.guiUpdate();
 
         while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
             // if the player clicks the "next question" button
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
             if (gooey.isReadyForNextQuestion()){
 //                TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
 //                 CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
                 if (gooey.hadCorrectAnswer()) {
                     roomQs.remove(currQ);
                     System.out.println(currQ);
+                    setCurrentGameScore(getCurrentGameScore()+ currQ.getPoints());
+                    gooey.setCurrentScore(getCurrentGameScore());
                 }
 
                 gooey.updateQuestion(questionG);
@@ -102,6 +111,7 @@ public class Game {
                 gooey.updateOptionC(optionC);
                 gooey.updateOptionD(optionD);
                 gooey.setCorrectAnswer(correctAns);
+
 
 
                 //TODO: update score (if necessary). Still needs to be implemented in GUI
@@ -245,4 +255,14 @@ public class Game {
 
     public String printIntro(){ return text.readInstructions().get(1); }
 
+    //Getter and Setter
+
+
+    public int getCurrentGameScore() {
+        return currentGameScore;
+    }
+
+    public void setCurrentGameScore(int currentGameScore) {
+        this.currentGameScore = currentGameScore;
+    }
 }
