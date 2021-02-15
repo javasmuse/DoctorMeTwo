@@ -101,6 +101,7 @@ public class GameGUI implements ActionListener {
         name.setBounds(220,450,100,30);
         content.add(name);
 
+        //label for player to enter their name
         JTextField playerName = new JTextField();
         playerName.setBounds(300,450,150,30);
         content.add(playerName);
