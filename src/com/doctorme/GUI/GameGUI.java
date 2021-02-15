@@ -97,6 +97,7 @@ public class GameGUI implements ActionListener {
         enterGameBtn.addActionListener(this);
         content.add( enterGameBtn);
 
+        //label to prompt player for name
         name = new JLabel("Player Name:");
         name.setBounds(220,450,100,30);
         content.add(name);
