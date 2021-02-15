@@ -256,7 +256,7 @@ public class GameGUI implements ActionListener {
     private void answerPanelSetup(){
         //Answer Panel
         answerPanel = new JPanel();
-        answerPanel.setBounds(50,250,600,200);
+        answerPanel.setBounds(50,250,600,230);
         answerPanel.setBackground(Color.white);
         answerPanel.setFont(normalFont);
         answerPanel.setLayout(null);
@@ -309,13 +309,13 @@ public class GameGUI implements ActionListener {
         answerPanel.add(hintText);
 
         hintBtn = new JButton("Hint");
-        hintBtn.setBounds(10,165,60,30);
+        hintBtn.setBounds(10,190,60,30);
         hintBtn.setVisible(true);
         hintBtn.addActionListener(this);
         answerPanel.add(hintBtn);
 
         submit = new JButton("Submit");
-        submit.setBounds(240,165,120,30);
+        submit.setBounds(240,190,120,30);
         submit.setVisible(true);
         submit.addActionListener(this);
         answerPanel.add(submit);
