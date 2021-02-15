@@ -13,14 +13,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameGUI implements ActionListener {
-    private JButton quitBtn, helpBtn, submit, hintBtn, enterGameBtn, leftTopLocBtn, rightTopLocBtn, leftBotLocBtn, rightBotLocBtn, helpCloseBtn, nextQuestion;
-    private List<Location> board;
+    private JButton quitBtn, helpBtn, submit, hintBtn, enterGameBtn, leftTopLocBtn, rightTopLocBtn, leftBotLocBtn, rightBotLocBtn, helpCloseBtn;
     private List<String> nextLocs = new ArrayList<>();
     private Container content;
     private final JFrame window = new JFrame();
     private JFrame helpWindow;
     private JLabel name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
-    private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
+    private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
     private JTextArea helpText, gameInstructions, questionText, descriptionText, hintText;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
@@ -33,12 +32,13 @@ public class GameGUI implements ActionListener {
     private String correctAnswer = "A";
     private String nextLocation = "";
     private ButtonGroup radioGroup;
-    private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame, wantsToChangeLocation;
+    private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame, wantsToChangeLocation, hasSubmittedAnswer;
 
     public GameGUI(String introTitle, String introText, String introInstructions){
         setHasCorrectAnswer(false);
         setReadyForNextQuestion(false);
         setEnteredGame(false);
+        setHasSubmittedAnswer(false);
 
         //Setting the GUI window
         window.setSize(1050,520);
@@ -120,7 +120,6 @@ public class GameGUI implements ActionListener {
             window.revalidate();
             setup();
             setEnteredGame(true);
-//            setReadyForNextQuestion(true);
         }else if(e.getSource() == helpBtn){
             displayHelpWindow();
         }else if(e.getSource() == helpCloseBtn){
@@ -132,6 +131,7 @@ public class GameGUI implements ActionListener {
             hintText.setVisible(true);
         }else if(e.getSource() == submit && submit.getText().equals("Submit")) {
             checkAnswer();
+            setHasSubmittedAnswer(true);
         }else if(e.getSource() == submit && submit.getText().equals("Next Question")){
             setReadyForNextQuestion(true);
         }else if(e.getSource() == leftTopLocBtn){
@@ -688,17 +688,29 @@ public class GameGUI implements ActionListener {
         this.wantsToChangeLocation = wantsToChangeLocation;
     }
 
+    public boolean isHasSubmittedAnswer() {
+        return hasSubmittedAnswer;
+    }
+
+    private void setHasSubmittedAnswer(boolean hasSubmittedAnswer) {
+        this.hasSubmittedAnswer = hasSubmittedAnswer;
+    }
+
     private int getCurrentScore() {
         return currentScore;
     }
 
     public void setCurrentScore(int currentScore) {
         this.currentScore = currentScore;
-        scoreTitle.setText("Score: " + getCurrentScore() + " points");
+        scoreTitle.setText("Score: " + currentScore + " points");
+        setHasSubmittedAnswer(false);
+
+        window.repaint();
+        window.revalidate();
     }
+
     //*************** MAIN (TESTING) ***************
 //    public static void main(String[] args) {
 //        GameGUI gui = new GameGUI("Welcome", "Here are the instructions! Nothing!");
 //    }
-
 }
