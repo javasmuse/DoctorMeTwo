@@ -42,8 +42,7 @@ public class Game {
         bringLocations(); // set locations
         qg.bringQuestions(); // set questions
 
-        // stretch goal - user given option to choose 'topic' or 'level' and enter their name - before entering game loop
-
+        // STRETCH GOAL - user given option to choose 'topic' or 'level' and enter their name - before entering game loop
 
         while(!gooey.isEnteredGame()){  //wait for player to exit initial setup, then set initial values
             try {
@@ -58,11 +57,9 @@ public class Game {
         Location location = listLocas.get(1);
 
         // initialize question and location fields for first display
-
-
-        // STOCKS FIRST QUESTION
+        // STOCKS FIRST QUESTION - send in first location
         stockNextQuestion(gooey, location);
-
+        // STOCKS FIRST LOCATION in GUI
         String currLocalDescrip = location.getDescription();
         String typeLocal = location.getType();
         gooey.updateLocationDescription(typeLocal + "\n" +  currLocalDescrip);
@@ -87,6 +84,9 @@ public class Game {
                 System.out.println("line 78");
 //             TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
 //             TODO: CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
+                //TODO: update score (if necessary). Still needs to be implemented in GUI
+//                setCurrentGameScore(getCurrentGameScore() + currQ.getPoints());
+//                gooey.setCurrentScore(getCurrentGameScore());
 
                 // set next Question object in GUI
                 stockNextQuestion(gooey, location);
@@ -97,9 +97,6 @@ public class Game {
 
                 // update GUI
                 gooey.guiUpdate();
-
-
-                //TODO: update score (if necessary). Still needs to be implemented in GUI
 
             }
         }
@@ -118,21 +115,6 @@ public class Game {
         gooey.updateCurrentLocation(location.getName());
     }
 
-    // RETRIEVE QUESTION BY TYPE
-    public List<Question> nextQuestion(List<Question> roomQuestions){
-//        roomQuestions.
-        return null;
-    }
-
-    // Track current games question list by type - removing correct answers
-    public List<Question> trakQuestion(List<Question> locall, String typ){
-
-
-        return null;
-    }
-
-
-    // SHOW START SCREEN - AND FIRST LOCATION 'ENTRY'
 
    /* SHOW LOCATION AND QUESTIONS - TYPICAL 'PLAY SCENE'
    --- while loop through
@@ -141,6 +123,7 @@ public class Game {
    --- awarding and tracking player points and badges
    --- track requirements to 'level up' - send to 'end of this level - celebrate screen'
     */
+    // IN CODE RE-FACTOR FROM ORIGINAL - RETAIN THEIR README && USE ONE OF THEIR QUESTIONS FOR FINAL QUESTION && REUSE SOME CODE
 
     // STOCK QUESTION AND LOCATION LISTS- expansion possible for user selected 'topics or level' - alternate xmls
 
@@ -151,24 +134,8 @@ public class Game {
 
     }
 
-    // IN CODE RE-FACTOR FROM ORIGINAL - RETAIN THEIR README && USE ONE OF THEIR QUESTIONS FOR FINAL QUESTION && REUSE SOME CODE
+    /* QUESTION METHODS  are all in the Question Generator*/
 
-    /* QUESTION METHODS */
-
-    // HINTS  --- Probably don't need, but verify
-    // user asks for hint - provide hint for specified question by index
-    public String displayHintbyIndex(int questIndx) {
-        return listQs.get(questIndx).getHint();
-    }
-    // user asks for hint - provide hint for specified question by question id number
-    public String displayHintbyId(int questID) {
-        for (int i = 0; i < listQs.size(); i++) {
-            if (listQs.get(i).getId() == questID) {
-                return listQs.get(i).getHint();
-            }
-        }
-        return null;
-    }
 
     // CHECK ANSWER
     // check user's answer by question index -- checking is done on GUI side
@@ -198,9 +165,6 @@ public class Game {
             badgesEarned.add(badge);
         }
     }
-
-
-
 
     //Getter and Setter
 
