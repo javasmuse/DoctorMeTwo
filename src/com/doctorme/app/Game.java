@@ -31,6 +31,7 @@ public class Game {
     private GameText text = new GameText();
     private Boolean keepGoing = true;
     private Badge badge = new Badge("badge1");
+    private int currentGameScore= 0;
 
 
     // START HERE
@@ -82,6 +83,7 @@ public class Game {
         gooey.updateCurrentLocation(currentLocation);
         gooey.updateLocationDescription(descripNType);
         gooey.updateNextLocations(location.getRoomLeadTo());
+        gooey.setCurrentScore(0);
 
         // update GUI
         gooey.guiUpdate();
@@ -94,7 +96,10 @@ public class Game {
                 if (gooey.hadCorrectAnswer()) {
                     roomQs.remove(currQ);
                     System.out.println(currQ);
+                    setCurrentGameScore(getCurrentGameScore()+ currQ.getPoints());
+                    gooey.setCurrentScore(getCurrentGameScore());
                 }
+                System.out.println("Test");
 
                 gooey.updateQuestion(questionG);
                 gooey.updateOptionA(optionA);
@@ -102,6 +107,7 @@ public class Game {
                 gooey.updateOptionC(optionC);
                 gooey.updateOptionD(optionD);
                 gooey.setCorrectAnswer(correctAns);
+
 
 
                 //TODO: update score (if necessary). Still needs to be implemented in GUI
@@ -245,4 +251,14 @@ public class Game {
 
     public String printIntro(){ return text.readInstructions().get(1); }
 
+    //Getter and Setter
+
+
+    public int getCurrentGameScore() {
+        return currentGameScore;
+    }
+
+    public void setCurrentGameScore(int currentGameScore) {
+        this.currentGameScore = currentGameScore;
+    }
 }
