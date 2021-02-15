@@ -87,6 +87,7 @@ public class Game {
         gooey.guiUpdate();
 
         while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
+            // if the player clicks the "next question" button
             if (gooey.isReadyForNextQuestion()){
 //                TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
 //                 CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
