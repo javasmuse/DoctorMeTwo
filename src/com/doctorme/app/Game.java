@@ -79,15 +79,15 @@ public class Game {
                 Thread.currentThread().interrupt();
             }
 
-            if (gooey.isReadyForNextQuestion()){
-
+            if (gooey.isHasSubmittedAnswer()){
+                System.out.println("Hello");
+                if (gooey.hadCorrectAnswer()){
+                    setCurrentGameScore(getCurrentGameScore() + currQpoints);
+                    gooey.setCurrentScore(getCurrentGameScore());
+                    //TODO: CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
+                }
+            }else if (gooey.isReadyForNextQuestion()){
 //             TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
-//             TODO: CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
-                //TODO: update score (if necessary). Still needs to be implemented in GUI
-                setCurrentGameScore(getCurrentGameScore() + currQpoints);
-                // TODO: WORKS BUT IS DIRTY FIX - UPDATES ON NEXT QUESTION, NOT ON CORRECT ANSWER, NEED TRIGGER FROM GUI TO PUT IN RIGHT PLACE
-                gooey.setCurrentScore(getCurrentGameScore());
-
                 // set next Question object in GUI
                 stockNextQuestion(gooey, location);
                 currLocalDescrip = location.getDescription();
@@ -97,7 +97,9 @@ public class Game {
 
                 // update GUI
                 gooey.guiUpdate();
-
+            }else if (gooey.isWantsToChangeLocation()){
+                String nextDesiredLocation = gooey.getNextLocation();
+                //TODO: find matching location and setup
             }
         }
     }
