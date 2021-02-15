@@ -19,7 +19,7 @@ public class GameGUI implements ActionListener {
     private Container content;
     private final JFrame window = new JFrame();
     private JFrame helpWindow;
-    private JLabel gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
+    private JLabel name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
     private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
     private JTextArea helpText, gameInstructions, questionText, descriptionText, hintText;
     private JRadioButton optA, optB, optC, optD;
@@ -96,6 +96,16 @@ public class GameGUI implements ActionListener {
         enterGameBtn.setVisible(true);
         enterGameBtn.addActionListener(this);
         content.add( enterGameBtn);
+
+        //label to prompt player for name
+        name = new JLabel("Player Name:");
+        name.setBounds(220,450,100,30);
+        content.add(name);
+
+        //label for player to enter their name
+        JTextField playerName = new JTextField();
+        playerName.setBounds(300,450,150,30);
+        content.add(playerName);
 
         window.repaint();
         window.revalidate();
