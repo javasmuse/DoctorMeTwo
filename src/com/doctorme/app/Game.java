@@ -40,7 +40,7 @@ public class Game {
         bringQuestions(); // stock the questions on startup - could ask user to choose topic or increase level through input another xml and adding args to method and method call
         bringLocations(); // same but for locations
         // current location in game initialized with 'Invictus'
-        Location location = listLocas.get(1);
+        Location location = listLocas.get(7);
         List<Question> bodyQs = questionsByType("body");
         List<Question> astroQs = questionsByType("astronomy");
 
@@ -70,8 +70,6 @@ public class Game {
         String currLocalDescrip = location.getDescription();
         String typeLocal = location.getType();
         String descripNType = typeLocal + "\n" +  currLocalDescrip;
-        String leadLocation1 = location.getRoomLeadTo().get(1);
-        String leadLocation2 = location.getRoomLeadTo().get(0);
 
 //        send above fields to gameGUI
         gooey.updateQuestion(questionG);
@@ -83,19 +81,17 @@ public class Game {
         gooey.updateHintText(hint);
         gooey.updateCurrentLocation(currentLocation);
         gooey.updateLocationDescription(descripNType);
-        gooey.updateLeftLocationButton(leadLocation1);
-        gooey.updateRightLocationButton(leadLocation2);
+        gooey.updateNextLocations(location.getRoomLeadTo());
 
         // update GUI
         gooey.guiUpdate();
 
-
         while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
+            // if the player clicks the "next question" button
             if (gooey.isReadyForNextQuestion()){
-                System.out.println("hello from the code");
-                //TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
-                // CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
-                if (gooey.hadCorrectAnswer() == true) {
+//                TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
+//                 CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
+                if (gooey.hadCorrectAnswer()) {
                     roomQs.remove(currQ);
                     System.out.println(currQ);
                 }
