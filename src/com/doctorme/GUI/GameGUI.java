@@ -29,8 +29,7 @@ public class GameGUI implements ActionListener {
     private static final Font answerFont = new Font("Times New Roman", Font.BOLD, 24);
     private JScrollPane scrollPane;
     private Game game = new Game();
-    private Player player = new Player();
-    int points = player.getPoints();
+    int currentScore;
     private String correctAnswer = "A";
     private String nextLocation = "";
     private ButtonGroup radioGroup;
@@ -164,7 +163,6 @@ public class GameGUI implements ActionListener {
                 (optD.isSelected() && correctAnswer.equals("D"))){
             correctLabel.setVisible(true);
             setHasCorrectAnswer(true);
-            scoreTitle.setText("Score: " + points + " points");
         }else{
             incorrectLabel.setVisible(true);
             setHasCorrectAnswer(false);
@@ -661,6 +659,14 @@ public class GameGUI implements ActionListener {
         this.wantsToChangeLocation = wantsToChangeLocation;
     }
 
+    private int getCurrentScore() {
+        return currentScore;
+    }
+
+    public void setCurrentScore(int currentScore) {
+        this.currentScore = currentScore;
+        scoreTitle.setText("Score: " + getCurrentScore() + " points");
+    }
     //*************** MAIN (TESTING) ***************
 //    public static void main(String[] args) {
 //        GameGUI gui = new GameGUI("Welcome", "Here are the instructions! Nothing!");

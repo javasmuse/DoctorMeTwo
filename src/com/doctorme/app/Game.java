@@ -31,6 +31,7 @@ public class Game {
     private GameTextGenerator gtg = new GameTextGenerator();
     private Boolean keepGoing = true;
     private Badge badge = new Badge("badge1");
+    private int currentGameScore= 0;
 
 
     // START HERE
@@ -66,13 +67,21 @@ public class Game {
         String typeLocal = location.getType();
         gooey.updateLocationDescription(typeLocal + "\n" +  currLocalDescrip);
         gooey.updateNextLocations(location.getRoomLeadTo());
+        gooey.setCurrentScore(0);
 
         // update GUI
         gooey.guiUpdate();
 
         while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
             // if the player clicks the "next question" button
+
             System.out.println("line 75");
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
 
             if (gooey.isReadyForNextQuestion()){
                 System.out.println("line 78");
@@ -88,6 +97,7 @@ public class Game {
 
                 // update GUI
                 gooey.guiUpdate();
+
 
                 //TODO: update score (if necessary). Still needs to be implemented in GUI
 
@@ -141,15 +151,11 @@ public class Game {
 
     }
 
-
-
-    // CREATE RANDOMIZED LIST OF QUESTIONS BY TYPE
-
     // IN CODE RE-FACTOR FROM ORIGINAL - RETAIN THEIR README && USE ONE OF THEIR QUESTIONS FOR FINAL QUESTION && REUSE SOME CODE
 
     /* QUESTION METHODS */
 
-    // HINTS
+    // HINTS  --- Probably don't need, but verify
     // user asks for hint - provide hint for specified question by index
     public String displayHintbyIndex(int questIndx) {
         return listQs.get(questIndx).getHint();
@@ -185,32 +191,6 @@ public class Game {
         }
     }
 
-//    // CONVERT LOCATION INT OF CORRECT ANSWER TO A B C D
-//    public String convertCorrectAns(int localCA){
-//        String alphCorrectAns = "";
-//
-//        switch (localCA) {
-//            case 0: alphCorrectAns = "A";
-//            break;
-//            case 1: alphCorrectAns = "B";
-//            break;
-//            case 2: alphCorrectAns = "C";
-//            break;
-//            case 3: alphCorrectAns = "D";
-//            break;
-//        }
-//        return alphCorrectAns;
-//    }
-
-
-//    // QUESTION LIST BY TYPE - user provided type for arg
-//    public List<Question> questionsByType(String typeHere) {
-//     List<Question> typeSpecific = listQs.stream()
-//             .filter(typ -> typ.getType() .equals(typeHere))
-//             .collect(Collectors.toList());
-//     return typeSpecific;
-//    }
-
     public void awardBadge(){
         if(currentPlayer.getPoints()==30){  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
             //Would need to create a list of Badges to keep track of what badges is earned by a player? - Player.Badges List
@@ -222,4 +202,13 @@ public class Game {
 
 
 
+    //Getter and Setter
+
+    public int getCurrentGameScore() {
+        return currentGameScore;
+    }
+
+    public void setCurrentGameScore(int currentGameScore) {
+        this.currentGameScore = currentGameScore;
+    }
 }
