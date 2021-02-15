@@ -90,6 +90,11 @@ public class Game {
 
         while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
             // if the player clicks the "next question" button
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
             if (gooey.isReadyForNextQuestion()){
 //                TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
 //                 CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
@@ -99,7 +104,6 @@ public class Game {
                     setCurrentGameScore(getCurrentGameScore()+ currQ.getPoints());
                     gooey.setCurrentScore(getCurrentGameScore());
                 }
-                System.out.println("Test");
 
                 gooey.updateQuestion(questionG);
                 gooey.updateOptionA(optionA);
