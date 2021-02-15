@@ -35,7 +35,7 @@
     <location>
         <id>4</id>
         <name>Gatsby</name>
-        <type>astronomy</type>
+        <type>Physics</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
         <leadTo>Galaxy</leadTo>
@@ -46,7 +46,7 @@
     <location>
         <id>5</id>
         <name>Kumo</name>
-        <type>body</type>
+        <type>Mathematics</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
         <leadTo>Delight</leadTo>
@@ -59,7 +59,7 @@
     <location>
         <id>6</id>
         <name>Delight</name>
-        <type>astronomy</type>
+        <type>US History</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
         <leadTo>Kumo</leadTo>
@@ -70,7 +70,7 @@
     <location>
         <id>7</id>
         <name>Doppler</name>
-        <type>body</type>
+        <type>Java</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
         <leadTo>Coral</leadTo>
@@ -83,7 +83,7 @@
     <location>
         <id>8</id>
         <name>Coral</name>
-        <type>astronomy</type>
+        <type>World Capitals</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
         <leadTo>Doppler</leadTo>
@@ -98,7 +98,7 @@
     <location>
         <id>9</id>
         <name>Arizona</name>
-        <type>body</type>
+        <type>Geology</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>2</level>
         <leadTo>Doppler</leadTo>
@@ -111,7 +111,7 @@
     <location>
         <id>10</id>
         <name>Fiona</name>
-        <type>astronomy</type>
+        <type>Spanish</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>2</level>
         <leadTo>Arizona</leadTo>
@@ -122,7 +122,7 @@
     <location>
         <id>11</id>
         <name>Alexandria</name>
-        <type>body</type>
+        <type>Nutrition</type>
         <description>Like the library, books floor to ceiling, door desks, dogs napping.</description>
         <level>2</level>
         <leadTo>Cricket</leadTo>
@@ -135,7 +135,7 @@
     <location>
         <id>12</id>
         <name>Cricket</name>
-        <type>body</type>
+        <type>Zoology</type>
         <description>Door desks, dogs playing, keyboards clicking.</description>
         <level>2</level>
         <leadTo>Alexandria</leadTo>
