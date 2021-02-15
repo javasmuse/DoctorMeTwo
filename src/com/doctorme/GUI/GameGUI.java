@@ -20,7 +20,7 @@ public class GameGUI implements ActionListener {
     private final JFrame window = new JFrame();
     private JFrame helpWindow;
     private JLabel name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel;
-    private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9;
+    private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, helpPanel, buttonPanelHelpPage, badgePanel, scorePanel, enterGamePanel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
     private JTextArea helpText, gameInstructions, questionText, descriptionText, hintText;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
@@ -256,7 +256,7 @@ public class GameGUI implements ActionListener {
     private void answerPanelSetup(){
         //Answer Panel
         answerPanel = new JPanel();
-        answerPanel.setBounds(50,250,600,200);
+        answerPanel.setBounds(50,250,600,230);
         answerPanel.setBackground(Color.white);
         answerPanel.setFont(normalFont);
         answerPanel.setLayout(null);
@@ -309,13 +309,13 @@ public class GameGUI implements ActionListener {
         answerPanel.add(hintText);
 
         hintBtn = new JButton("Hint");
-        hintBtn.setBounds(10,165,60,30);
+        hintBtn.setBounds(10,190,60,30);
         hintBtn.setVisible(true);
         hintBtn.addActionListener(this);
         answerPanel.add(hintBtn);
 
         submit = new JButton("Submit");
-        submit.setBounds(240,165,120,30);
+        submit.setBounds(240,190,120,30);
         submit.setVisible(true);
         submit.addActionListener(this);
         answerPanel.add(submit);
@@ -356,64 +356,83 @@ public class GameGUI implements ActionListener {
         badgePanel.add(badgeTitle);
 
         badge1 = new JPanel();
-        badge1.setBounds(0,20,100,60);
+        badge1.setBounds(0,20,100,50);
         badge1.setBackground(Color.white);
         badge1.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge1);
 
         badge2 = new JPanel();
-        badge2.setBounds(100,20,100,60);
+        badge2.setBounds(100,20,100,50);
         badge2.setBackground(Color.white);
         badge2.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge2);
 
         badge3 = new JPanel();
-        badge3.setBounds(200,20,100,60);
+        badge3.setBounds(200,20,100,50);
         badge3.setBackground(Color.white);
         badge3.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge3);
 
         badge4 = new JPanel();
-        badge4.setBounds(0,80,100,60);
+        badge4.setBounds(0,70,100,50);
         badge4.setBackground(Color.white);
         badge4.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge4);
 
         badge5 = new JPanel();
-        badge5.setBounds(100,80,100,60);
+        badge5.setBounds(100,70,100,50);
         badge5.setBackground(Color.white);
         badge5.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge5);
 
         badge6 = new JPanel();
-        badge6.setBounds(200,80,100,60);
+        badge6.setBounds(200,70,100,50);
         badge6.setBackground(Color.white);
         badge6.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge6);
 
         badge7 = new JPanel();
-        badge7.setBounds(0,140,100,60);
+        badge7.setBounds(0,110,100,50);
         badge7.setBackground(Color.white);
         badge7.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge7);
 
         badge8 = new JPanel();
-        badge8.setBounds(100,140,100,60);
+        badge8.setBounds(100,110,100,50);
         badge8.setBackground(Color.white);
         badge8.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge8);
 
         badge9 = new JPanel();
-        badge9.setBounds(200,140,100,60);
+        badge9.setBounds(200,110,100,50);
         badge9.setBackground(Color.white);
         badge9.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge9);
+
+        badge10 = new JPanel();
+        badge10.setBounds(0,150,100,50);
+        badge10.setBackground(Color.white);
+        badge10.setBorder(BorderFactory.createLineBorder(Color.black));
+        badgePanel.add(badge10);
+
+        badge11 = new JPanel();
+        badge11.setBounds(100,150,100,50);
+        badge11.setBackground(Color.white);
+        badge11.setBorder(BorderFactory.createLineBorder(Color.black));
+        badgePanel.add(badge11);
+
+        badge12 = new JPanel();
+        badge12.setBounds(200,150,100,50);
+        badge12.setBackground(Color.white);
+        badge12.setBorder(BorderFactory.createLineBorder(Color.black));
+        badgePanel.add(badge12);
+
     }
 
     private void scorePanelSetup(){
         //Score Panel
         scorePanel = new JPanel();
-        scorePanel.setBounds(700, 250,300,120);
+        scorePanel.setBounds(700, 250,300,100);
         scorePanel.setBackground(Color.white);
         scorePanel.setFont(normalFont);
         scorePanel.setLayout(null);
