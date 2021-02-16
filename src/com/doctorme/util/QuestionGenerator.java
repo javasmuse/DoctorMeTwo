@@ -48,11 +48,22 @@ public class QuestionGenerator {
         // initialize question and location fields for first display
         List<Question> roomQs = questionsByType(location.getType()); // set list of questions by room type
         if (roomQs.isEmpty()) {
+            currQ = dummyQuest();
             System.out.println("Sorry there are no more of that type of question. Please change rooms.");
         } else {
             currentRoomQs(location, roomQs); // set this rooms questions
             currQ = randoQuestion(roomQs); // return one q from the roomQs list
         }
+        return currQ;
+    }
+
+    public Question dummyQuest(){
+        List<String> dummy = new ArrayList<>();
+        String dumOne = "";
+        for(int i = 0; i < 4; i++){
+            dummy.add(dumOne);
+        }
+        currQ = new Question(999, "none", "", dummy, 2, 0, "" );
         return currQ;
     }
 
