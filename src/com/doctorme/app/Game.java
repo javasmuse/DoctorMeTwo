@@ -8,6 +8,7 @@ import com.doctorme.entities.Question;
 import com.doctorme.util.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Game {
@@ -33,6 +34,7 @@ public class Game {
 //    private Badge badge = new Badge("badge1");
     private int currQpoints;
     private int currentGameScore = 0;
+//    private HashMap<String, Integer> points = new HashMap<>();
 
 
     // START HERE
@@ -42,6 +44,7 @@ public class Game {
 
         lg.bringLocations(); // set locations
         qg.bringQuestions(); // set questions
+        setBadges(new BadgeGenerator().allBadges());
 
         // STRETCH GOAL - user given option to choose 'topic' or 'level' and enter their name - before entering game loop
 
@@ -175,5 +178,16 @@ public class Game {
 
     public void setCurrentGameScore(int currentGameScore) {
         this.currentGameScore = currentGameScore;
+    }
+
+    public List<Badge> getBadges() {
+        return badges;
+    }
+
+    private void setBadges(List<Badge> badges) {
+        this.badges.clear();
+        for(Badge badge: badges){
+            this.badges.add(badge);
+        }
     }
 }
