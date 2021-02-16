@@ -13,6 +13,7 @@ public class QuestionGenerator {
     private String fileName; // available for future use to allow user or designer to choose or change files
     private String nodeNameXML; // ditto ^
     private List<Question> currentRoomQues = new ArrayList<>();
+    private Question currQ = new Question();
 //    List<Question> bodyQs = questionsByType("body");
 //    List<Question> astroQs = questionsByType("astronomy");   not needed, set by room type in method questionsByType
 
@@ -29,6 +30,10 @@ public class QuestionGenerator {
         return currentRoomQues;
     }
 
+    public List<Question> removeCorrAnsQuest(){
+        listQ.remove(currQ);
+        return listQ;
+    }
 
     // QUESTION LIST BY TYPE - user provided type for arg
     public List<Question> questionsByType(String typeHere) {
@@ -42,12 +47,14 @@ public class QuestionGenerator {
 
         // initialize question and location fields for first display
         List<Question> roomQs = questionsByType(location.getType()); // set list of questions by room type
-        currentRoomQs(location, roomQs); // set this rooms questions
-        Question currQ = randoQuestion(roomQs); // return one q from the roomQs list
-
+        if (roomQs.isEmpty()) {
+            System.out.println("Sorry there are no more of that type of question. Please change rooms.");
+        } else {
+            currentRoomQs(location, roomQs); // set this rooms questions
+            currQ = randoQuestion(roomQs); // return one q from the roomQs list
+        }
         return currQ;
     }
-
 
     // retrieve random Question from current room list
     public Question randoQuestion(List<Question> quests) {
@@ -59,5 +66,9 @@ public class QuestionGenerator {
         return (int)(Math.random() * local);
     }
 
+    // ACCESSORS
+    public Question getCurrQ() {
+        return currQ;
+    }
 
 }
