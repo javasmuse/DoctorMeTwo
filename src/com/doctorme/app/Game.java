@@ -114,7 +114,6 @@ public class Game {
                     gooey.setHasSubmittedAnswer(false);
                 }
             }else if (gooey.isReadyForNextQuestion()) {
-                System.out.println("ready");
 //             TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
                 // set next Question object in GUI
                 stockNextQuestion(gooey, location);
@@ -181,12 +180,11 @@ public class Game {
 
     public void awardBadge(String questType) {
         for(Badge bad : badges){
-            if(bad.getType().equals(questType)){
+            if(bad.getType().toLowerCase().equals(questType)){
                 currentPlayer.addBadge(bad);
                 break;
             }
         }
-
     }
 
     //Getter and Setter

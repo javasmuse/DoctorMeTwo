@@ -24,28 +24,15 @@ public class BadgeGenerator {
                 Element eElement = (Element) nod;
 
                 String name = eElement.getElementsByTagName("name").item(0).getTextContent();
-                String type = eElement.getElementsByTagName("type").item(0).getTextContent();
                 String imageFile = eElement.getElementsByTagName("imageFile").item(0).getTextContent();
+                String type = eElement.getElementsByTagName("type").item(0).getTextContent();
                 String hexColor = eElement.getElementsByTagName("hexColor").item(0).getTextContent();
 
-                if(name.equals(null)){
-                    name = "";
-                }
-                if(type.equals(null)){
-                    type = "";
-                }
-                if(imageFile.equals(null)){
-                    imageFile = "";
-                }
-                if(hexColor.equals(null)){
-                    hexColor = "";
-                }
-
-                Badge bad = new Badge(name,imageFile,type,hexColor);
+                Badge bad = new Badge(name, imageFile, type, hexColor);
                 badges.add(bad);
             }
 
-            }
-            return badges;
+        }
+        return badges;
     }
 }

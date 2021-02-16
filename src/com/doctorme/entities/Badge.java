@@ -34,7 +34,7 @@ public class Badge {
     }
     public Badge(String name, String imageFile, String type, String hexColor) {
         setName(name);
-        setImageFile(imageFile);
+        setType(type);
         setImageFile(imageFile);
         setHexColor(hexColor);
     }
