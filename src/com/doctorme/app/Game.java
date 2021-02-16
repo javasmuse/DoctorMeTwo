@@ -86,6 +86,15 @@ public class Game {
 
             if (gooey.isHasSubmittedAnswer()) {
                 if (gooey.hadCorrectAnswer()) {
+                    qg.removeCorrAnsQuest(); // see comment block below
+                    /* removes correctly answered question from the list
+                    -- need trigger in GUI to convey this,
+                    currently responds via sout
+                     */
+
+                    // grab current question object and do whatever is needed for points / badge
+                    qg.getCurrQ().getType();
+
                     setCurrentGameScore(getCurrentGameScore() + currQpoints);
                     gooey.setCurrentScore(getCurrentGameScore());
                     //TODO: CHECK IF USER ANSWERED CORRECTLY remove that one from the room question list

@@ -26,6 +26,10 @@ public class Question {
         this.hint = hint;
     }
 
+    public Question() {
+        //no-arg
+    }
+
 
     // ACCESSORS
     public int getId() {
