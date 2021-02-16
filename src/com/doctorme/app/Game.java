@@ -9,7 +9,6 @@ import com.doctorme.util.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Game {
 
@@ -33,7 +32,7 @@ public class Game {
     private Boolean keepGoing = true;
     private Badge badge = new Badge("badge1");
     private int currQpoints;
-    private int currentGameScore= 0;
+    private int currentGameScore = 0;
 
 
     // START HERE
@@ -46,7 +45,7 @@ public class Game {
 
         // STRETCH GOAL - user given option to choose 'topic' or 'level' and enter their name - before entering game loop
 
-        while(!gooey.isEnteredGame()){  //wait for player to exit initial setup, then set initial values
+        while (!gooey.isEnteredGame()) {  //wait for player to exit initial setup, then set initial values
 
             try {
                 Thread.sleep(100);
@@ -54,6 +53,7 @@ public class Game {
                 Thread.currentThread().interrupt();
             }
         }
+
         // INITIALIZE - first location and question in GUI
         // current location - randomized start, same map, changeable if fixed starter preferred
         Location location = lg.startLocation();  // calls to location generator and returns a random room
@@ -80,53 +80,59 @@ public class Game {
                 Thread.currentThread().interrupt();
             }
 
-            // insert listener to check answer here instead of below on 92
+//  TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
+//  TODO: CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
+//  TODO: update score (if necessary). Still needs to be implemented in GUI
 
-            if (gooey.isReadyForNextQuestion()){
-
+            if (gooey.isHasSubmittedAnswer()) {
+                System.out.println("Hello");
+                if (gooey.hadCorrectAnswer()) {
+                    setCurrentGameScore(getCurrentGameScore() + currQpoints);
+                    gooey.setCurrentScore(getCurrentGameScore());
+                    //TODO: CHECK IF USER ANSWERED CORRECTLY remove that one from the room question list
+                }
+            } else if (gooey.isReadyForNextQuestion()) {
 //             TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
-//             TODO: CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
-                //TODO: update score (if necessary). Still needs to be implemented in GUI
-
-
                 // set next Question object in GUI
                 stockNextQuestion(gooey, location);
                 stockLocation(gooey, location);
 
-
                 // update GUI
                 gooey.guiUpdate();
-
+            } else if (gooey.isWantsToChangeLocation()) {
+                String nextDesiredLocation = gooey.getNextLocation();
+                //TODO: find matching location and setup
             }
         }
     }
 
-    // STOCK THE QUESTION OBJECT
-    private void stockNextQuestion(GameGUI gooey, Location location) {
-        Question currQ = qg.nextQuestion(location);
-        currQpoints = currQ.getPoints();
-        gooey.updateQuestion(currQ.getQuestion());
-        gooey.updateOptionA(currQ.getPossibleAnswers().get(0));
-        gooey.updateOptionB(currQ.getPossibleAnswers().get(1));
-        gooey.updateOptionC(currQ.getPossibleAnswers().get(2));
-        gooey.updateOptionD(currQ.getPossibleAnswers().get(3));
-        gooey.setCorrectAnswer(conAns.convertCorrectAns(currQ.getCorrectAnswer()));
-        gooey.updateHintText(currQ.getHint());
-        gooey.updateCurrentLocation(location.getName());
 
-    }
+        // STOCK THE QUESTION OBJECT
+        private void stockNextQuestion (GameGUI gooey, Location location){
+            Question currQ = qg.nextQuestion(location);
+            currQpoints = currQ.getPoints();
+            gooey.updateQuestion(currQ.getQuestion());
+            gooey.updateOptionA(currQ.getPossibleAnswers().get(0));
+            gooey.updateOptionB(currQ.getPossibleAnswers().get(1));
+            gooey.updateOptionC(currQ.getPossibleAnswers().get(2));
+            gooey.updateOptionD(currQ.getPossibleAnswers().get(3));
+            gooey.setCorrectAnswer(conAns.convertCorrectAns(currQ.getCorrectAnswer()));
+            gooey.updateHintText(currQ.getHint());
+            gooey.updateCurrentLocation(location.getName());
 
-    // STOCK THE LOCATION OBJECT
-    private void stockLocation(GameGUI gooey, Location location){
-        Location currL = location;
+        }
 
-        String currLocalDescrip = currL.getDescription();
-        String typeLocal = currL.getType();
-        gooey.updateLocationDescription("Subject: " + typeLocal + "\n" + "View of room: " + currLocalDescrip);
-        gooey.updateNextLocations(location.getRoomLeadTo());
-        gooey.updateNextLocations(location.getRoomLeadTo());
+        // STOCK THE LOCATION OBJECT
+        private void stockLocation (GameGUI gooey, Location location){
+            Location currL = location;
 
-    }
+            String currLocalDescrip = currL.getDescription();
+            String typeLocal = currL.getType();
+            gooey.updateLocationDescription("Subject: " + typeLocal + "\n" + "View of room: " + currLocalDescrip);
+            gooey.updateNextLocations(location.getRoomLeadTo());
+            gooey.updateNextLocations(location.getRoomLeadTo());
+
+        }
 
 
    /* SHOW LOCATION AND QUESTIONS - TYPICAL 'PLAY SCENE'
@@ -136,20 +142,29 @@ public class Game {
    --- awarding and tracking player points and badges
    --- track requirements to 'level up' - send to 'end of this level - celebrate screen'
     */
-    // IN CODE RE-FACTOR FROM ORIGINAL - RETAIN THEIR README && USE ONE OF THEIR QUESTIONS FOR FINAL QUESTION && REUSE SOME CODE
+        // IN CODE RE-FACTOR FROM ORIGINAL - RETAIN THEIR README && USE ONE OF THEIR QUESTIONS FOR FINAL QUESTION && REUSE SOME CODE
 
-    // STOCK QUESTION AND LOCATION LISTS- expansion possible for user selected 'topics or level' - alternate xmls
+        // STOCK QUESTION AND LOCATION LISTS- expansion possible for user selected 'topics or level' - alternate xmls
 
-    /* QUESTION METHODS  are all in the Question Generator*/
-    /* LOCATION METHODS are all in the Location Generator */
+        /* QUESTION METHODS  are all in the Question Generator*/
+        /* LOCATION METHODS are all in the Location Generator */
 
-    public void awardBadge(){
-        if(currentPlayer.getPoints()==30){  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
-            //Would need to create a list of Badges to keep track of what badges is earned by a player? - Player.Badges List
-            System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
-            badgesEarned.add(badge);
+        public void awardBadge () {
+            if (currentPlayer.getPoints() == 30) {  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
+                //Would need to create a list of Badges to keep track of what badges is earned by a player? - Player.Badges List
+                System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
+                badgesEarned.add(badge);
+            }
         }
+
+
+    //Getter and Setter
+
+    public int getCurrentGameScore() {
+        return currentGameScore;
     }
 
-
+    public void setCurrentGameScore(int currentGameScore) {
+        this.currentGameScore = currentGameScore;
+    }
 }
