@@ -321,7 +321,7 @@ public class GameGUI implements ActionListener {
         answerPanel.add(submit);
 
         correctLabel = new JLabel("CORRECT!");
-        correctLabel.setBounds(400,165,150,30);
+        correctLabel.setBounds(400,190,150,30);
         correctLabel.setForeground(Color.green);
         correctLabel.setBackground(Color.white);
         correctLabel.setFont(answerFont);
@@ -329,7 +329,7 @@ public class GameGUI implements ActionListener {
         answerPanel.add(correctLabel);
 
         incorrectLabel = new JLabel("INCORRECT");
-        incorrectLabel.setBounds(400,165,150,30);
+        incorrectLabel.setBounds(400,190,150,30);
         incorrectLabel.setForeground(Color.red);
         incorrectLabel.setBackground(Color.white);
         incorrectLabel.setFont(answerFont);
@@ -693,7 +693,7 @@ public class GameGUI implements ActionListener {
         return hasSubmittedAnswer;
     }
 
-    private void setHasSubmittedAnswer(boolean hasSubmittedAnswer) {
+    public void setHasSubmittedAnswer(boolean hasSubmittedAnswer) {
         this.hasSubmittedAnswer = hasSubmittedAnswer;
     }
 
