@@ -110,6 +110,12 @@ public class Game {
 
                 gooey.guiUpdate();
             }
+
+
+            if(currentGameScore==30){
+                awardBadge();
+                break;
+            }
         }
     }
 
@@ -163,7 +169,6 @@ public class Game {
             badgesEarned.add(badge);
         }
     }
-
 
     //Getter and Setter
 
