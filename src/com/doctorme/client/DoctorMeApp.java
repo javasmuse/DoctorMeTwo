@@ -13,6 +13,4 @@ public class DoctorMeApp {
         Game game = new Game();
         game.startGame();
     }
-
-
 }

@@ -39,7 +39,7 @@ public class QuestionList {
                 possibleAnswers.add(eElement.getElementsByTagName("possibleAnswers3").item(0).getTextContent());
                 possibleAnswers.add(eElement.getElementsByTagName("possibleAnswers4").item(0).getTextContent());
                 int correctAnswer = Integer.parseInt(eElement.getElementsByTagName("correctAnswer").item(0).getTextContent()); // correct answer corresponds to index + 1 of possibleAnswers
-                int points = Integer.parseInt(eElement.getElementsByTagName("correctAnswer").item(0).getTextContent());
+                int points = Integer.parseInt(eElement.getElementsByTagName("points").item(0).getTextContent());
                 String hint = eElement.getElementsByTagName("hint").item(0).getTextContent();
 
                 // new temporary question
