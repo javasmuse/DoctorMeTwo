@@ -14,6 +14,8 @@ public class Badge {
     private String name;
     //in string format so GUI can load the file
     private String imageFile;
+    private String type;
+    private String hexColor;
 
     //*************** CONSTRUCTORS/ DESTRUCTORS ***************
     public Badge(){

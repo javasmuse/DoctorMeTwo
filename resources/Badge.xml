@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Badge>
+<Badge>
+    <badges>
+        <name>Badge 1</name>
+        <imageFile></imageFile>
+        <type>Astronomy</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Badge 2</name>
+        <imageFile></imageFile>
+        <type>Body</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Badge 3</name>
+        <imageFile></imageFile>
+        <type>Physics</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Badge 4</name>
+        <imageFile></imageFile>
+        <type>Mathematics</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Badge 5</name>
+        <imageFile></imageFile>
+        <type>US History</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Badge 6</name>
+        <imageFile></imageFile>
+        <type>Java</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Badge 7</name>
+        <imageFile></imageFile>
+        <type>World Capitals</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Badge 8</name>
+        <imageFile></imageFile>
+        <type>Geology</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Badge 9</name>
+        <imageFile></imageFile>
+        <type>Spanish</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Badge 10</name>
+        <imageFile></imageFile>
+        <type>Nutrition</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Badge 11</name>
+        <imageFile></imageFile>
+        <type>Zoology</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Badge 12</name>
+        <imageFile></imageFile>
+        <type>Sociology</type>
+        <hexColor></hexColor>
+    </badges>
+</Badge>
