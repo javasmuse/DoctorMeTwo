@@ -20,7 +20,7 @@ public class Game {
     // available lists - questions, locations
     private List<Question> listQs = new ArrayList<>();     // list of questions
     private List<Location> listLocas = new ArrayList<>();  // list of locations
-    private List<Badge> badgesEarned = new ArrayList<>();
+    private List<Badge> badges = new ArrayList<>();
     // access - question list, location list
     private QuestionList ql = new QuestionList();
     private LocationList ll = new LocationList();
@@ -30,7 +30,7 @@ public class Game {
     private ConvertAnswer conAns = new ConvertAnswer();
     private GameTextGenerator gtg = new GameTextGenerator();
     private Boolean keepGoing = true;
-    private Badge badge = new Badge("badge1");
+//    private Badge badge = new Badge("badge1");
     private int currQpoints;
     private int currentGameScore = 0;
 
@@ -89,9 +89,11 @@ public class Game {
                     setCurrentGameScore(getCurrentGameScore() + currQpoints);
                     gooey.setCurrentScore(getCurrentGameScore());
                     //TODO: CHECK IF USER ANSWERED CORRECTLY remove that one from the room question list
-//                }
+                }else{
+                    gooey.setHasSubmittedAnswer(false);
                 }
-            } else if (gooey.isReadyForNextQuestion()) {
+            }else if (gooey.isReadyForNextQuestion()) {
+                System.out.println("ready");
 //             TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
                 // set next Question object in GUI
                 stockNextQuestion(gooey, location);
@@ -157,11 +159,11 @@ public class Game {
     /* LOCATION METHODS are all in the Location Generator */
 
     public void awardBadge() {
-        if (currentPlayer.getPoints() == 30) {  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
-            //Would need to create a list of Badges to keep track of what badges is earned by a player? - Player.Badges List
-            System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
-            badgesEarned.add(badge);
-        }
+//        if (currentPlayer.getPoints() == 30) {  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
+//            //Would need to create a list of Badges to keep track of what badges is earned by a player? - Player.Badges List
+//            System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
+//            badges.add(badge);
+//        }
     }
 
 
