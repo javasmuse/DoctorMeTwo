@@ -100,16 +100,15 @@ public class Game {
                 gooey.guiUpdate();
             } else if (gooey.isWantsToChangeLocation()) {
 
-//                System.out.println("next location button was pushed - I'm line 103 in the Game");
-
+                // retrieves location name from GUI button press - send String locationName to Location generator for next location to retrieve object location
                 location = lg.nextLocation((gooey.getNextLocation()));
-                System.out.println("Hello from 105 " + gooey.getNextLocation());
+                System.out.println(location.getName());
 
-//                location = lg.nextLocation(location.getRoomLeadTo().get(0));
+                // use new location to reset room and questions
+                stockLocation(gooey, location);
+                stockNextQuestion(gooey, location);
 
-//                stockNextQuestion(gooey, location);
-//                stockLocation(gooey, location);
-//                gooey.guiUpdate();
+                gooey.guiUpdate();
             }
         }
     }
@@ -135,9 +134,10 @@ public class Game {
 
         String currLocalDescrip = currL.getDescription();
         String typeLocal = currL.getType();
+        gooey.updateCurrentLocation(currL.getName());  // added in attempt to get name
         gooey.updateLocationDescription("Subject: " + typeLocal + "\n" + "View of room: " + currLocalDescrip);
         gooey.updateNextLocations(location.getRoomLeadTo());
-        gooey.updateNextLocations(location.getRoomLeadTo());
+
 
     }
 

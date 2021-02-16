@@ -607,6 +607,7 @@ public class GameGUI implements ActionListener {
 
     public void updateCurrentLocation(String newLocation){
         currLocation.setText(newLocation);
+        setWantsToChangeLocation(false);
     }
 
     public void updateLocationDescription(String newDescription){ descriptionText.setText(newDescription);}
