@@ -57,6 +57,7 @@ public class QuestionGenerator {
         return currQ;
     }
 
+    // creating a dummy question to send in case the list is empty of type - this empty string will allow the GUI to trigger
     public Question dummyQuest(){
         List<String> dummy = new ArrayList<>();
         String dumOne = "";

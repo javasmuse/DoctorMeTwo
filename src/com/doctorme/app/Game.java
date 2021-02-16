@@ -31,6 +31,7 @@ public class Game {
     private GameTextGenerator gtg = new GameTextGenerator();
     private Boolean keepGoing = true;
 //    private Badge badge = new Badge("badge1");
+    private XMLWriter xmlW = new XMLWriter();
     private int currQpoints;
     private int currentGameScore = 0;
 
@@ -42,6 +43,10 @@ public class Game {
 
         lg.bringLocations(); // set locations
         qg.bringQuestions(); // set questions
+
+        xmlW.readXMLFiles();
+
+
 
         // STRETCH GOAL - user given option to choose 'topic' or 'level' and enter their name - before entering game loop
 
