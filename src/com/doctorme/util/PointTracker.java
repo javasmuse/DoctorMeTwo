@@ -1,4 +1,5 @@
 package com.doctorme.util;
 
-public class UpdateScore {
+public class PointTracker {
+
 }
