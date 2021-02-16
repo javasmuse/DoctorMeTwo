@@ -56,7 +56,6 @@ public class QuestionGenerator {
         return currQ;
     }
 
-
     // retrieve random Question from current room list
     public Question randoQuestion(List<Question> quests) {
         return quests.get(randomNumber(quests.size()));
