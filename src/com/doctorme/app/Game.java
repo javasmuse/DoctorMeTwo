@@ -85,54 +85,61 @@ public class Game {
 //  TODO: update score (if necessary). Still needs to be implemented in GUI
 
             if (gooey.isHasSubmittedAnswer()) {
-                System.out.println("Hello");
                 if (gooey.hadCorrectAnswer()) {
                     setCurrentGameScore(getCurrentGameScore() + currQpoints);
                     gooey.setCurrentScore(getCurrentGameScore());
                     //TODO: CHECK IF USER ANSWERED CORRECTLY remove that one from the room question list
+//                }
                 }
             } else if (gooey.isReadyForNextQuestion()) {
 //             TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
                 // set next Question object in GUI
                 stockNextQuestion(gooey, location);
-                stockLocation(gooey, location);
 
                 // update GUI
                 gooey.guiUpdate();
             } else if (gooey.isWantsToChangeLocation()) {
-                String nextDesiredLocation = gooey.getNextLocation();
-                //TODO: find matching location and setup
+
+//                System.out.println("next location button was pushed - I'm line 103 in the Game");
+
+                location = lg.nextLocation((gooey.getNextLocation()));
+                System.out.println("Hello from 105 " + gooey.getNextLocation());
+
+//                location = lg.nextLocation(location.getRoomLeadTo().get(0));
+
+//                stockNextQuestion(gooey, location);
+//                stockLocation(gooey, location);
+//                gooey.guiUpdate();
             }
         }
     }
 
+    // STOCK THE QUESTION OBJECT
+    private void stockNextQuestion(GameGUI gooey, Location location) {
+        Question currQ = qg.nextQuestion(location);
+        currQpoints = currQ.getPoints();
+        gooey.updateQuestion(currQ.getQuestion());
+        gooey.updateOptionA(currQ.getPossibleAnswers().get(0));
+        gooey.updateOptionB(currQ.getPossibleAnswers().get(1));
+        gooey.updateOptionC(currQ.getPossibleAnswers().get(2));
+        gooey.updateOptionD(currQ.getPossibleAnswers().get(3));
+        gooey.setCorrectAnswer(conAns.convertCorrectAns(currQ.getCorrectAnswer()));
+        gooey.updateHintText(currQ.getHint());
+        gooey.updateCurrentLocation(location.getName());
 
-        // STOCK THE QUESTION OBJECT
-        private void stockNextQuestion (GameGUI gooey, Location location){
-            Question currQ = qg.nextQuestion(location);
-            currQpoints = currQ.getPoints();
-            gooey.updateQuestion(currQ.getQuestion());
-            gooey.updateOptionA(currQ.getPossibleAnswers().get(0));
-            gooey.updateOptionB(currQ.getPossibleAnswers().get(1));
-            gooey.updateOptionC(currQ.getPossibleAnswers().get(2));
-            gooey.updateOptionD(currQ.getPossibleAnswers().get(3));
-            gooey.setCorrectAnswer(conAns.convertCorrectAns(currQ.getCorrectAnswer()));
-            gooey.updateHintText(currQ.getHint());
-            gooey.updateCurrentLocation(location.getName());
+    }
 
-        }
+    // STOCK THE LOCATION OBJECT
+    private void stockLocation(GameGUI gooey, Location location) {
+        Location currL = location;
 
-        // STOCK THE LOCATION OBJECT
-        private void stockLocation (GameGUI gooey, Location location){
-            Location currL = location;
+        String currLocalDescrip = currL.getDescription();
+        String typeLocal = currL.getType();
+        gooey.updateLocationDescription("Subject: " + typeLocal + "\n" + "View of room: " + currLocalDescrip);
+        gooey.updateNextLocations(location.getRoomLeadTo());
+        gooey.updateNextLocations(location.getRoomLeadTo());
 
-            String currLocalDescrip = currL.getDescription();
-            String typeLocal = currL.getType();
-            gooey.updateLocationDescription("Subject: " + typeLocal + "\n" + "View of room: " + currLocalDescrip);
-            gooey.updateNextLocations(location.getRoomLeadTo());
-            gooey.updateNextLocations(location.getRoomLeadTo());
-
-        }
+    }
 
 
    /* SHOW LOCATION AND QUESTIONS - TYPICAL 'PLAY SCENE'
@@ -142,20 +149,20 @@ public class Game {
    --- awarding and tracking player points and badges
    --- track requirements to 'level up' - send to 'end of this level - celebrate screen'
     */
-        // IN CODE RE-FACTOR FROM ORIGINAL - RETAIN THEIR README && USE ONE OF THEIR QUESTIONS FOR FINAL QUESTION && REUSE SOME CODE
+    // IN CODE RE-FACTOR FROM ORIGINAL - RETAIN THEIR README && USE ONE OF THEIR QUESTIONS FOR FINAL QUESTION && REUSE SOME CODE
 
-        // STOCK QUESTION AND LOCATION LISTS- expansion possible for user selected 'topics or level' - alternate xmls
+    // STOCK QUESTION AND LOCATION LISTS- expansion possible for user selected 'topics or level' - alternate xmls
 
-        /* QUESTION METHODS  are all in the Question Generator*/
-        /* LOCATION METHODS are all in the Location Generator */
+    /* QUESTION METHODS  are all in the Question Generator*/
+    /* LOCATION METHODS are all in the Location Generator */
 
-        public void awardBadge () {
-            if (currentPlayer.getPoints() == 30) {  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
-                //Would need to create a list of Badges to keep track of what badges is earned by a player? - Player.Badges List
-                System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
-                badgesEarned.add(badge);
-            }
+    public void awardBadge() {
+        if (currentPlayer.getPoints() == 30) {  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
+            //Would need to create a list of Badges to keep track of what badges is earned by a player? - Player.Badges List
+            System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
+            badgesEarned.add(badge);
         }
+    }
 
 
     //Getter and Setter

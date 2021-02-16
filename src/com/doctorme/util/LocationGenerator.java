@@ -13,7 +13,7 @@ public class LocationGenerator {
     private List<Location> listLocas = new ArrayList<>();
     private String fileName; // available for future use to allow user or designer to choose or change files
     private String nodeNameXML; // ditto ^
-    private List<Location> currentLocal = new ArrayList<>();
+    private Location currLoc;
 //    private Location current = listLocas.get(1);
 
     // STOCK LOCATION LIST - expansion possible for user or designer selected 'topics or level' - alternate xmls
@@ -25,6 +25,17 @@ public class LocationGenerator {
 
     public Location startLocation(){
         return  randoLocation(listLocas);
+    }
+
+    public Location nextLocation(String locationName){
+
+        for (int i = 0; i < listLocas.size(); i++) {
+            if(locationName.equals(listLocas.get(i).getName())) {
+               currLoc = listLocas.get(i);
+               return currLoc;
+            }
+        }
+        return currLoc;
     }
 
     // retrieve random Question from current room list
