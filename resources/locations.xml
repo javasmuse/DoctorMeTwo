@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE GameLocations>
 <GameLocations>
-    <location>
-        <id>1</id>
-        <name>Entry</name>
-        <type>body</type>
-        <description>Entry room, chalkboard on left, window to the right. No challenge here.</description>
-        <level>1</level>
-        <badgeName>badge1</badgeName>
-        <badgeImage></badgeImage>
-        <leadTo>Invictus</leadTo>
-        <exit>north</exit>
-    </location>
+<!--    <location>-->
+<!--        <id>1</id>-->
+<!--        <name>Entry</name>-->
+<!--        <type>body</type>-->
+<!--        <description>Entry room, chalkboard on left, window to the right. No challenge here.</description>-->
+<!--        <level>1</level>-->
+<!--        <leadTo>Invictus</leadTo>-->
+<!--        <exit>north</exit>-->
+<!--    </location>-->
     <location>
         <id>2</id>
         <name>Invictus</name>
         <type>astronomy</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
-        <badgeName>badge2</badgeName>
-        <badgeImage></badgeImage>
         <leadTo>Alexandria</leadTo>
         <leadTo>Galaxy</leadTo>
         <exit>east</exit>
@@ -31,8 +27,6 @@
         <type>body</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
-        <badgeName>badge3</badgeName>
-        <badgeImage></badgeImage>
         <leadTo>Gatsby</leadTo>
         <leadTo>Invictus</leadTo>
         <exit>north</exit>
@@ -44,8 +38,6 @@
         <type>Physics</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
-        <badgeName>badge4</badgeName>
-        <badgeImage></badgeImage>
         <leadTo>Galaxy</leadTo>
         <leadTo>Kumo</leadTo>
         <exit>south</exit>
@@ -57,8 +49,6 @@
         <type>Mathematics</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
-        <badgeName>badge5</badgeName>
-        <badgeImage></badgeImage>
         <leadTo>Delight</leadTo>
         <leadTo>Coral</leadTo>
         <leadTo>Gatsby</leadTo>
@@ -72,8 +62,6 @@
         <type>US History</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
-        <badgeName>badge6</badgeName>
-        <badgeImage></badgeImage>
         <leadTo>Kumo</leadTo>
         <leadTo>Doppler</leadTo>
         <exit>south</exit>
@@ -85,8 +73,6 @@
         <type>Java</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
-        <badgeName>badge7</badgeName>
-        <badgeImage></badgeImage>
         <leadTo>Coral</leadTo>
         <leadTo>Arizona</leadTo>
         <leadTo>Delight</leadTo>
@@ -100,8 +86,6 @@
         <type>World Capitals</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
-        <badgeName>badge8</badgeName>
-        <badgeImage></badgeImage>
         <leadTo>Doppler</leadTo>
         <leadTo>Invictus</leadTo>
         <leadTo>Cricket</leadTo>
@@ -117,182 +101,9 @@
         <type>Geology</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>2</level>
-        <badgeName>badge9</badgeName>
-        <badgeImage></badgeImage>
         <leadTo>Doppler</leadTo>
         <leadTo>Fiona</leadTo>
-        <leadTo>Invict<?xml version="1.0" encoding="UTF-8" ?>
-            <!DOCTYPE GameLocations>
-            <GameLocations>
-                <location>
-                    <id>1</id>
-                    <name>Entry</name>
-                    <type>body</type>
-                    <description>Entry room, chalkboard on left, window to the right. No challenge here.</description>
-                    <level>1</level>
-                    <badgeName>badge1</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Invictus</leadTo>
-                    <exit>north</exit>
-                </location>
-                <location>
-                    <id>2</id>
-                    <name>Invictus</name>
-                    <type>astronomy</type>
-                    <description>Basic room, whiteboard, door desks, coffee machine</description>
-                    <level>1</level>
-                    <badgeName>badge2</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Alexandria</leadTo>
-                    <leadTo>Galaxy</leadTo>
-                    <exit>east</exit>
-                    <exit>west</exit>
-                </location>
-                <location>
-                    <id>3</id>
-                    <name>Galaxy</name>
-                    <type>body</type>
-                    <description>Basic room, whiteboard, door desks, coffee machine</description>
-                    <level>1</level>
-                    <badgeName>badge3</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Gatsby</leadTo>
-                    <leadTo>Invictus</leadTo>
-                    <exit>north</exit>
-                    <exit>east</exit>
-                </location>
-                <location>
-                    <id>4</id>
-                    <name>Gatsby</name>
-                    <type>Physics</type>
-                    <description>Basic room, whiteboard, door desks, coffee machine</description>
-                    <level>1</level>
-                    <badgeName>badge4</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Galaxy</leadTo>
-                    <leadTo>Kumo</leadTo>
-                    <exit>south</exit>
-                    <exit>east</exit>
-                </location>
-                <location>
-                    <id>5</id>
-                    <name>Kumo</name>
-                    <type>Mathematics</type>
-                    <description>Basic room, whiteboard, door desks, coffee machine</description>
-                    <level>1</level>
-                    <badgeName>badge5</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Delight</leadTo>
-                    <leadTo>Coral</leadTo>
-                    <leadTo>Gatsby</leadTo>
-                    <exit>north</exit>
-                    <exit>east</exit>
-                    <exit>west</exit>
-                </location>
-                <location>
-                    <id>6</id>
-                    <name>Delight</name>
-                    <type>US History</type>
-                    <description>Basic room, whiteboard, door desks, coffee machine</description>
-                    <level>1</level>
-                    <badgeName>badge6</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Kumo</leadTo>
-                    <leadTo>Doppler</leadTo>
-                    <exit>south</exit>
-                    <exit>east</exit>
-                </location>
-                <location>
-                    <id>7</id>
-                    <name>Doppler</name>
-                    <type>Java</type>
-                    <description>Basic room, whiteboard, door desks, coffee machine</description>
-                    <level>1</level>
-                    <badgeName>badge7</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Coral</leadTo>
-                    <leadTo>Arizona</leadTo>
-                    <leadTo>Delight</leadTo>
-                    <exit>south</exit>
-                    <exit>east</exit>
-                    <exit>west</exit>
-                </location>
-                <location>
-                    <id>8</id>
-                    <name>Coral</name>
-                    <type>World Capitals</type>
-                    <description>Basic room, whiteboard, door desks, coffee machine</description>
-                    <level>1</level>
-                    <badgeName>badge8</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Doppler</leadTo>
-                    <leadTo>Invictus</leadTo>
-                    <leadTo>Cricket</leadTo>
-                    <leadTo>Kumo</leadTo>
-                    <exit>north</exit>
-                    <exit>south</exit>
-                    <exit>east</exit>
-                    <exit>west</exit>
-                </location>
-                <location>
-                    <id>9</id>
-                    <name>Arizona</name>
-                    <type>Geology</type>
-                    <description>Basic room, whiteboard, door desks, coffee machine</description>
-                    <level>2</level>
-                    <badgeName>badge9</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Doppler</leadTo>
-                    <leadTo>Fiona</leadTo>
-                    <leadTo>Invictus</leadTo>
-                    <exit>north</exit>
-                    <exit>south</exit>
-                    <exit>west</exit>
-                </location>
-                <location>
-                    <id>10</id>
-                    <name>Fiona</name>
-                    <type>Spanish</type>
-                    <description>Basic room, whiteboard, door desks, coffee machine</description>
-                    <level>2</level>
-                    <badgeName>badge10</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Arizona</leadTo>
-                    <leadTo>Alexandria</leadTo>
-                    <exit>north</exit>
-                    <exit>west</exit>
-                </location>
-                <location>
-                    <id>11</id>
-                    <name>Alexandria</name>
-                    <type>Nutrition</type>
-                    <description>Like the library, books floor to ceiling, door desks, dogs napping.</description>
-                    <level>2</level>
-                    <badgeName>badge11</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Cricket</leadTo>
-                    <leadTo>Fiona</leadTo>
-                    <leadTo>Invictus</leadTo>
-                    <exit>north</exit>
-                    <exit>east</exit>
-                    <exit>west</exit>
-                </location>
-                <location>
-                    <id>12</id>
-                    <name>Cricket</name>
-                    <type>Zoology</type>
-                    <description>Door desks, dogs playing, keyboards clicking.</description>
-                    <level>2</level>
-                    <badgeName>badge12</badgeName>
-                    <badgeImage></badgeImage>
-                    <leadTo>Alexandria</leadTo>
-                    <leadTo>Arizona</leadTo>
-                    <leadTo>Coral</leadTo>
-                    <exit>south</exit>
-                    <exit>east</exit>
-                    <exit>west</exit>
-                </location>
-            </GameLocations>us</leadTo>
+        <leadTo>Invictus</leadTo>
         <exit>north</exit>
         <exit>south</exit>
         <exit>west</exit>
@@ -303,8 +114,6 @@
         <type>Spanish</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>2</level>
-        <badgeName>badge10</badgeName>
-        <badgeImage></badgeImage>
         <leadTo>Arizona</leadTo>
         <leadTo>Alexandria</leadTo>
         <exit>north</exit>
@@ -316,8 +125,6 @@
         <type>Nutrition</type>
         <description>Like the library, books floor to ceiling, door desks, dogs napping.</description>
         <level>2</level>
-        <badgeName>badge11</badgeName>
-        <badgeImage></badgeImage>
         <leadTo>Cricket</leadTo>
         <leadTo>Fiona</leadTo>
         <leadTo>Invictus</leadTo>
@@ -331,8 +138,6 @@
         <type>Zoology</type>
         <description>Door desks, dogs playing, keyboards clicking.</description>
         <level>2</level>
-        <badgeName>badge12</badgeName>
-        <badgeImage></badgeImage>
         <leadTo>Alexandria</leadTo>
         <leadTo>Arizona</leadTo>
         <leadTo>Coral</leadTo>
