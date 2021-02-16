@@ -8,6 +8,7 @@ import com.doctorme.entities.Question;
 import com.doctorme.util.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Game {
@@ -33,7 +34,7 @@ public class Game {
 //    private Badge badge = new Badge("badge1");
     private XMLWriter xmlW = new XMLWriter();
     private int currQpoints;
-    private int currentGameScore = 0;
+    private HashMap<String, Integer> categoryPoints = new HashMap<>();
 
 
     // START HERE
@@ -43,6 +44,7 @@ public class Game {
 
         lg.bringLocations(); // set locations
         qg.bringQuestions(); // set questions
+        setBadges(new BadgeGenerator().allBadges());
 
         xmlW.readXMLFiles();
 
@@ -98,8 +100,18 @@ public class Game {
                      */
 
                     // grab current question object and do whatever is needed for points / badge
-                    qg.getCurrQ().getType();
+                    String questType = qg.getCurrQ().getType().toLowerCase();
 
+                    if(categoryPoints.containsKey(questType)){
+                        categoryPoints.put(questType,categoryPoints.get(questType)+currQpoints);
+                    }
+                    else{
+                        categoryPoints.put(questType,currQpoints);
+                    }
+
+                    if(categoryPoints.get(questType)>=30){
+                        awardBadge(questType);
+                    }
                     setCurrentGameScore(getCurrentGameScore() + currQpoints);
                     gooey.setCurrentScore(getCurrentGameScore());
                     //TODO: CHECK IF USER ANSWERED CORRECTLY remove that one from the room question list
@@ -107,7 +119,6 @@ public class Game {
                     gooey.setHasSubmittedAnswer(false);
                 }
             }else if (gooey.isReadyForNextQuestion()) {
-                System.out.println("ready");
 //             TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
                 // set next Question object in GUI
                 stockNextQuestion(gooey, location);
@@ -172,22 +183,33 @@ public class Game {
     /* QUESTION METHODS  are all in the Question Generator*/
     /* LOCATION METHODS are all in the Location Generator */
 
-    public void awardBadge() {
-//        if (currentPlayer.getPoints() == 30) {  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
-//            //Would need to create a list of Badges to keep track of what badges is earned by a player? - Player.Badges List
-//            System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
-//            badges.add(badge);
-//        }
+    public void awardBadge(String questType) {
+        for(Badge bad : badges){
+            if(bad.getType().toLowerCase().equals(questType)){
+                currentPlayer.addBadge(bad);
+                break;
+            }
+        }
     }
-
 
     //Getter and Setter
 
     public int getCurrentGameScore() {
-        return currentGameScore;
+        return currentPlayer.getPoints();
     }
 
     public void setCurrentGameScore(int currentGameScore) {
-        this.currentGameScore = currentGameScore;
+        currentPlayer.setPoints(currentGameScore);
+    }
+
+    public List<Badge> getBadges() {
+        return badges;
+    }
+
+    private void setBadges(List<Badge> badges) {
+        this.badges.clear();
+        for(Badge badge: badges){
+            this.badges.add(badge);
+        }
     }
 }

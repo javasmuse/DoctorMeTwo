@@ -3,7 +3,7 @@
 <gameQuestions>
     <questions>
         <id>1</id>
-        <type>astronomy</type>
+        <type>Astronomy</type>
         <question>Which is the largest planet in our solar system?</question>
         <possibleAnswers1>Saturn</possibleAnswers1>
         <possibleAnswers2>Pluto</possibleAnswers2>
@@ -15,7 +15,7 @@
     </questions>
     <questions>
         <id>2</id>
-        <type>astronomy</type>
+        <type>Astronomy</type>
         <question>The Earth's moon appears to rise in which direction; as seen from Earth?</question>
         <possibleAnswers1>North</possibleAnswers1>
         <possibleAnswers2>South</possibleAnswers2>
@@ -27,7 +27,7 @@
     </questions>
     <questions>
         <id>3</id>
-        <type>astronomy</type>
+        <type>Astronomy</type>
         <question>How many moons does Mars have?</question>
         <possibleAnswers1>1</possibleAnswers1>
         <possibleAnswers2>2</possibleAnswers2>
@@ -39,7 +39,7 @@
     </questions>
     <questions>
         <id>4</id>
-        <type>astronomy</type>
+        <type>Astronomy</type>
         <question>Though other planets have rings, which planet is famous for its rings?</question>
         <possibleAnswers1>Pluto</possibleAnswers1>
         <possibleAnswers2>Mercury</possibleAnswers2>
@@ -51,7 +51,7 @@
     </questions>
     <questions>
         <id>5</id>
-        <type>astronomy</type>
+        <type>Astronomy</type>
         <question>The smallest planet is?</question>
         <possibleAnswers1>Venus</possibleAnswers1>
         <possibleAnswers2>Pluto</possibleAnswers2>
@@ -63,7 +63,7 @@
     </questions>
     <questions>
         <id>6</id>
-        <type>body</type>
+        <type>Body</type>
         <question>How many bones are in the human body?</question>
         <possibleAnswers1>32</possibleAnswers1>
         <possibleAnswers2>206</possibleAnswers2>
@@ -75,7 +75,7 @@
     </questions>
     <questions>
         <id>7</id>
-        <type>body</type>
+        <type>Body</type>
         <question>Which blood type is known as the universal donor?</question>
         <possibleAnswers1>AB</possibleAnswers1>
         <possibleAnswers2>A</possibleAnswers2>
@@ -87,7 +87,7 @@
     </questions>
     <questions>
         <id>8</id>
-        <type>body</type>
+        <type>Body</type>
         <question>Which is longer?</question>
         <possibleAnswers1>Large intestine</possibleAnswers1>
         <possibleAnswers2>Small intestine</possibleAnswers2>
@@ -99,7 +99,7 @@
     </questions>
     <questions>
         <id>9</id>
-        <type>body</type>
+        <type>Body</type>
         <question>People and animals with more than five digits on a hand or foot are</question>
         <possibleAnswers1>Weird</possibleAnswers1>
         <possibleAnswers2>Common</possibleAnswers2>
@@ -111,7 +111,7 @@
     </questions>
     <questions>
         <id>10</id>
-        <type>body</type>
+        <type>Body</type>
         <question>Which of the following nutritional deficiencies is caused by a lack of vitamin C?</question>
         <possibleAnswers1>Scurvy</possibleAnswers1>
         <possibleAnswers2>Pellagra</possibleAnswers2>

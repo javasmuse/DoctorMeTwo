@@ -29,10 +29,10 @@ public class GameGUI implements ActionListener {
     private JScrollPane scrollPane;
     private Game game = new Game();
     int currentScore;
-    private String correctAnswer = "A";
-    private String nextLocation = "";
+    private String correctAnswer, nextLocation, playerName;
     private ButtonGroup radioGroup;
     private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame, wantsToChangeLocation, hasSubmittedAnswer;
+    private JTextField userName;
 
     public GameGUI(String introTitle, String introText, String introInstructions){
         setHasCorrectAnswer(false);
@@ -103,9 +103,9 @@ public class GameGUI implements ActionListener {
         content.add(name);
 
         //label for player to enter their name
-        JTextField playerName = new JTextField();
-        playerName.setBounds(300,450,150,30);
-        content.add(playerName);
+        userName = new JTextField();
+        userName.setBounds(300,450,150,30);
+        content.add(userName);
 
         window.repaint();
         window.revalidate();
@@ -115,6 +115,7 @@ public class GameGUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == enterGameBtn){
+            setPlayerName(userName.getText());
             content.removeAll();
             window.repaint();
             window.revalidate();
@@ -708,6 +709,14 @@ public class GameGUI implements ActionListener {
 
         window.repaint();
         window.revalidate();
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    private void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
     //*************** MAIN (TESTING) ***************
