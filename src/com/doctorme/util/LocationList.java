@@ -19,17 +19,10 @@ public class LocationList {
         // pass in file link and node name in a call on XMLReader to return a node list of Questions
         // block level fields
         NodeList locaNod = xmlR.readXMLFiles("resources/locations.xml", "location");  // change to call from Game w/ choice of xml and sub in correct file with args
-        String adjacentRoom;
-        String direction;
-        int len;
+        String adjacentRoom, direction, name, type, description, badgeName;
+        int len, id, tierLevel;
         Node node;
-        int id;
-        String name;
-        String type;
-        String description;
-        int tierLevel;
-        List<String> roomLeadTo;
-        List<String> exits;
+        List<String> roomLeadTo, exits;
 
         //iterate through the node list to extract each location and store it in an object list of locations
         for(int i = 0; i < locaNod.getLength(); i++) {
@@ -45,6 +38,7 @@ public class LocationList {
                 id = Integer.parseInt(eElement.getElementsByTagName("id").item(0).getTextContent());
                 name = eElement.getElementsByTagName("name").item(0).getTextContent();
                 type = eElement.getElementsByTagName("type").item(0).getTextContent();
+                badgeName = eElement.getElementsByTagName("badgeName").item(0).getTextContent();
                 description = eElement.getElementsByTagName("description").item(0).getTextContent();
                 tierLevel = Integer.parseInt(eElement.getElementsByTagName("level").item(0).getTextContent());
                 len = eElement.getElementsByTagName("exit").getLength();
