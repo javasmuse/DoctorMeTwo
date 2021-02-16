@@ -183,7 +183,7 @@ public class GameGUI implements ActionListener {
 
     private void clearButtons(){
         List<Component> components = Arrays.asList(content.getComponents());
-        if (components.contains(leftBotLocBtn)) content.remove(leftTopLocBtn);
+        if (components.contains(leftTopLocBtn)) content.remove(leftTopLocBtn);
         if (components.contains(rightTopLocBtn)) content.remove(rightTopLocBtn);
         if (components.contains(leftBotLocBtn)) content.remove(leftBotLocBtn);
         if (components.contains(rightBotLocBtn)) content.remove(rightBotLocBtn);
