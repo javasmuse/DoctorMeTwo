@@ -33,8 +33,7 @@ public class Game {
     private Boolean keepGoing = true;
 //    private Badge badge = new Badge("badge1");
     private int currQpoints;
-    private int currentGameScore = 0;
-//    private HashMap<String, Integer> points = new HashMap<>();
+    private HashMap<String, Integer> categoryPoints = new HashMap<>();
 
 
     // START HERE
@@ -96,8 +95,18 @@ public class Game {
                      */
 
                     // grab current question object and do whatever is needed for points / badge
-                    qg.getCurrQ().getType();
+                    String questType = qg.getCurrQ().getType().toLowerCase();
 
+                    if(categoryPoints.containsKey(questType)){
+                        categoryPoints.put(questType,categoryPoints.get(questType)+currQpoints);
+                    }
+                    else{
+                        categoryPoints.put(questType,currQpoints);
+                    }
+
+                    if(categoryPoints.get(questType)>=30){
+                        awardBadge(questType);
+                    }
                     setCurrentGameScore(getCurrentGameScore() + currQpoints);
                     gooey.setCurrentScore(getCurrentGameScore());
                     //TODO: CHECK IF USER ANSWERED CORRECTLY remove that one from the room question list
@@ -170,23 +179,24 @@ public class Game {
     /* QUESTION METHODS  are all in the Question Generator*/
     /* LOCATION METHODS are all in the Location Generator */
 
-    public void awardBadge() {
-//        if (currentPlayer.getPoints() == 30) {  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
-//            //Would need to create a list of Badges to keep track of what badges is earned by a player? - Player.Badges List
-//            System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
-//            badges.add(badge);
-//        }
-    }
+    public void awardBadge(String questType) {
+        for(Badge bad : badges){
+            if(bad.getType().equals(questType)){
+                currentPlayer.addBadge(bad);
+                break;
+            }
+        }
 
+    }
 
     //Getter and Setter
 
     public int getCurrentGameScore() {
-        return currentGameScore;
+        return currentPlayer.getPoints();
     }
 
     public void setCurrentGameScore(int currentGameScore) {
-        this.currentGameScore = currentGameScore;
+        currentPlayer.setPoints(currentGameScore);
     }
 
     public List<Badge> getBadges() {
