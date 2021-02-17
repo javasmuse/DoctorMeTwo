@@ -106,12 +106,11 @@ public class Game {
                     }
 
                     if(categoryPoints.get(questType)>=30){
-                        awardBadge(questType);
+                        if (awardBadge(questType)) gooey.setBadges(currentPlayer.getBadges());
                     }
                     setCurrentGameScore(getCurrentGameScore() + currQpoints);
                     gooey.setCurrentScore(getCurrentGameScore());
-                    gooey.setBadges(currentPlayer.getBadges());
-                    //TODO: CHECK IF USER ANSWERED CORRECTLY remove that one from the room question list
+
                 }else{
                     gooey.setHasSubmittedAnswer(false);
                 }
@@ -149,7 +148,6 @@ public class Game {
         gooey.setCorrectAnswer(conAns.convertCorrectAns(currQ.getCorrectAnswer()));
         gooey.updateHintText(currQ.getHint());
         gooey.updateCurrentLocation(location.getName());
-
     }
 
     // STOCK THE LOCATION OBJECT
@@ -180,13 +178,13 @@ public class Game {
     /* QUESTION METHODS  are all in the Question Generator*/
     /* LOCATION METHODS are all in the Location Generator */
 
-    public void awardBadge(String questType) {
+    public boolean awardBadge(String questType) {
         for(Badge bad : badges){
             if(bad.getType().toLowerCase().equals(questType)){
-                currentPlayer.addBadge(bad);
-                break;
+                return currentPlayer.addBadge(bad);
             }
         }
+        return false;
     }
 
     //Getter and Setter
