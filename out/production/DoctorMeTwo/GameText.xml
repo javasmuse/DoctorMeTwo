@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Texts>
+<Texts>
+    <textLines>
+        <welcome>
+            Welcome to Doctor Me !!
+        </welcome>
+        <intro>
+            Interested in a PhD? Is your favorite Amazon Leadership Principle 'Learn &amp; Be Curious' ? Explore Dr. Me!
+        </intro>
+        <instructions>
+            In this game, there are 12 locations present but only 4 open to explore for beginners.
+            Solve the questions in each location to unlock higher levels and earn cool badges along the way!
+        Level 1 -> 4 Locations
+        Level 2 -> 4 Locations
+        Level 3 -> 3 Locations
+        Level 4 -> 1 Location
+        </instructions>
+
+    </textLines>
+</Texts>

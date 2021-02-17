@@ -11,16 +11,11 @@ import java.util.List;
 public class LocationGenerator {
     private LocationList ll = new LocationList();
     private List<Location> listLocas = new ArrayList<>();
-    private String fileName; // available for future use to allow user or designer to choose or change files
-    private String nodeNameXML; // ditto ^
     private Location currLoc;
-//    private Location current = listLocas.get(1);
 
     // STOCK LOCATION LIST - expansion possible for user or designer selected 'topics or level' - alternate xmls
     public void bringLocations() {
-        fileName = "resources/locations.xml";
-        nodeNameXML = "location";
-        listLocas = ll.allLocations(fileName, nodeNameXML);
+        listLocas = ll.allLocations();
     }
 
     public Location startLocation(){
