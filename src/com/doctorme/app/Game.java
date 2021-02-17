@@ -32,9 +32,10 @@ public class Game {
     private GameTextGenerator gtg = new GameTextGenerator();
     private Boolean keepGoing = true;
 //    private Badge badge = new Badge("badge1");
+//    private XMLWriter xmlW = new XMLWriter();
+//    private QuestionSaver qs = new QuestionSaver();
     private int currQpoints;
     private HashMap<String, Integer> categoryPoints = new HashMap<>();
-
 
     // START HERE
     public void startGame() {
