@@ -16,12 +16,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameGUI implements ActionListener {
-    private JButton quitBtn, helpBtn, submit, hintBtn, enterGameBtn, leftTopLocBtn, rightTopLocBtn, leftBotLocBtn, rightBotLocBtn, helpCloseBtn;
+    private JButton mapCloseBtn, mapBtn, quitBtn, helpBtn, submit, hintBtn, enterGameBtn, leftTopLocBtn, rightTopLocBtn, leftBotLocBtn, rightBotLocBtn, helpCloseBtn;
     private List<String> nextLocs = new ArrayList<>();
     private Container content;
     private final JFrame window = new JFrame();
-    private JFrame helpWindow;
-    private JLabel name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
+    private JFrame helpWindow, mapWindow;
+    private JLabel gameMap, mapTitle, name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
     private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, badgePanel, scorePanel, enterGamePanel;
     private JTextArea helpText, gameInstructions, questionText, descriptionText, hintText, noMoreQuestionsText;
     private JRadioButton optA, optB, optC, optD;
@@ -129,11 +129,16 @@ public class GameGUI implements ActionListener {
             window.revalidate();
             setup();
             setEnteredGame(true);
+        }else if(e.getSource() == mapBtn){
+            displayMapWindow();
         }else if(e.getSource() == helpBtn){
             displayHelpWindow();
         }else if(e.getSource() == helpCloseBtn){
             helpWindow.dispose();
-        }else if(e.getSource() == quitBtn) {
+        }else if(e.getSource() == mapCloseBtn){
+            mapWindow.dispose();
+        }
+        else if(e.getSource() == quitBtn) {
             window.dispose();
             System.exit(0);
         }else if(e.getSource() == hintBtn){
@@ -198,6 +203,7 @@ public class GameGUI implements ActionListener {
         if (components.contains(rightBotLocBtn)) content.remove(rightBotLocBtn);
         if (components.contains(helpBtn)) content.remove(helpBtn);
         if (components.contains(quitBtn)) content.remove(quitBtn);
+        if(components.contains(mapBtn)) content.remove(mapBtn);
     }
 
     private void updateBadges(){
@@ -517,17 +523,20 @@ public class GameGUI implements ActionListener {
             setLeftTopLocBtn(300, nextLocs.get(0));
             setHelpBtn(420);
             setQuitBtn(420);
+            setMapBtn(420);
         }else if (nextLocs.size() == 2){
             setLeftTopLocBtn(145, nextLocs.get(0));
             setRightTopLocBtn(nextLocs.get(1));
             setHelpBtn(420);
             setQuitBtn(420);
+            setMapBtn(420);
         }else if (nextLocs.size() == 3){
             setLeftTopLocBtn(145, nextLocs.get(0));
             setRightTopLocBtn(nextLocs.get(1));
             setLeftBotLocBtn(300, nextLocs.get(2));
             setHelpBtn(460);
             setQuitBtn(460);
+            setMapBtn(460);
         }else if (nextLocs.size() == 4){
             setLeftTopLocBtn(145, nextLocs.get(0));
             setRightTopLocBtn(nextLocs.get(1));
@@ -535,15 +544,25 @@ public class GameGUI implements ActionListener {
             setRightBotLocBtn(nextLocs.get(3));
             setHelpBtn(460);
             setQuitBtn(460);
+            setMapBtn(460);
         }else{
             setHelpBtn(420);
             setQuitBtn(420);
+            setMapBtn(420);
         }
     }
 
+    private void setMapBtn(int y){
+        mapBtn = new JButton();
+        mapBtn.setText("Map");
+        mapBtn.setBounds(900,y,100,30);
+        mapBtn.setVisible(true);
+        mapBtn.addActionListener(this);
+        content.add(mapBtn);
+    }
     private void setHelpBtn(int y){
         helpBtn = new JButton();
-        helpBtn.setBounds(700, y, 145, 30);
+        helpBtn.setBounds(700, y, 100, 30);
         helpBtn.setText("Help");
 //        helpBtn.setBackground(Color.white);
 //        helpBtn.setForeground(Color.black);
@@ -555,7 +574,7 @@ public class GameGUI implements ActionListener {
 
     private void setQuitBtn(int y){
         quitBtn = new JButton();
-        quitBtn.setBounds(855, y, 145, 30);
+        quitBtn.setBounds(800, y, 100, 30);
         quitBtn.setText("Quit");
 //        quitBtn.setBackground(Color.white);
 //        quitBtn.setForeground(Color.black);
@@ -613,6 +632,51 @@ public class GameGUI implements ActionListener {
         content.add(rightBotLocBtn);
     }
 
+    private void displayMapWindow(){
+        mapWindow = new JFrame();
+        Container mapContent;
+
+        mapWindow.setSize(900,800);
+        mapWindow.setLocation(1600,500);
+        mapWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mapWindow.setLayout(null);
+        mapWindow.setVisible(true);
+        mapContent = mapWindow.getContentPane();
+        mapContent.setBackground(Color.decode("#ADC7D9"));
+
+        mapTitle = new JLabel("The Map of Doctor Me Game",SwingConstants.CENTER);
+        mapTitle.setBounds(100,10,500,50);
+        mapTitle.setFont(titleFont);
+        mapTitle.setForeground(Color.black);
+        mapContent.add(mapTitle,BorderLayout.CENTER);
+
+        gameMap = new JLabel();
+        gameMap.setBounds(20,70,850,650);
+        gameMap.setBackground(Color.green);
+        gameMap.setBorder(BorderFactory.createLineBorder(Color.black));
+        mapContent.add(gameMap);
+
+        BufferedImage mapImg = null;
+        try{
+            mapImg = ImageIO.read(new File("gameMap.png"));
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+
+        assert mapImg != null;
+        Image mpImage = mapImg.getScaledInstance(850,650,Image.SCALE_SMOOTH);
+        ImageIcon img1 = new ImageIcon(mpImage);
+        gameMap.setIcon(img1);
+
+        mapCloseBtn = new JButton();
+        mapCloseBtn.setBounds(450, 730, 100, 30);
+        mapCloseBtn.setText("Close");
+        mapCloseBtn.setVisible(true);
+        mapCloseBtn.addActionListener(this);
+        mapContent.add(mapCloseBtn);
+
+    }
     private void displayHelpWindow(){
         helpWindow = new JFrame(); //initiate help window
         Container helpContent;
