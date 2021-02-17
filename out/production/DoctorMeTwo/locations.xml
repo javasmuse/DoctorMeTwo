@@ -16,8 +16,10 @@
         <type>Astronomy</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
+        <leadTo>Coral</leadTo>
         <leadTo>Alexandria</leadTo>
         <leadTo>Galaxy</leadTo>
+        <exit>north</exit>
         <exit>east</exit>
         <exit>west</exit>
     </location>
@@ -103,7 +105,7 @@
         <level>2</level>
         <leadTo>Doppler</leadTo>
         <leadTo>Fiona</leadTo>
-        <leadTo>Invictus</leadTo>
+        <leadTo>Cricket</leadTo>
         <exit>north</exit>
         <exit>south</exit>
         <exit>west</exit>
