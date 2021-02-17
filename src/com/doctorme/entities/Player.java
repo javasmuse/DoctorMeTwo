@@ -18,7 +18,6 @@ public class Player {
 
     //*************** CONSTRUCTORS/ DESTRUCTORS ***************
     public Player(){
-        setName("NULL");
         setPoints(0);
         badges = new ArrayList<>();
     }
