@@ -23,16 +23,17 @@ public class GameGUI implements ActionListener {
     private JFrame helpWindow;
     private JLabel name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
     private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, badgePanel, scorePanel, enterGamePanel;
-    private JTextArea helpText, gameInstructions, questionText, descriptionText, hintText;
+    private JTextArea helpText, gameInstructions, questionText, descriptionText, hintText, noMoreQuestionsText;
     private JRadioButton optA, optB, optC, optD;
     private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
     private static final Font questionFont = new Font("Times New Roman", Font.ITALIC, 16);
     private static final Font normalFont = new Font("Times New Roman", Font.PLAIN, 16);
     private static final Font answerFont = new Font("Times New Roman", Font.BOLD, 24);
+    private static final Font noQuestionsFont = new Font("Times New Roman", Font.BOLD, 28);
     private JScrollPane scrollPane;
     private Game game = new Game();
     int currentScore;
-    private String correctAnswer, nextLocation, playerName;
+    private String correctAnswer, nextLocation, playerName, backgroundHexColor, locationHexColor, buttonHexColor;
     private ButtonGroup radioGroup;
     private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame, wantsToChangeLocation, hasSubmittedAnswer;
     private JTextField userName;
@@ -44,15 +45,17 @@ public class GameGUI implements ActionListener {
         setReadyForNextQuestion(false);
         setEnteredGame(false);
         setHasSubmittedAnswer(false);
+        setBackgroundHexColor("#ADC7D9");
+        setLocationHexColor("#043769");
 
         //Setting the GUI window
-        window.setSize(1050,520);
+        window.setSize(1050,540);
         window.setLocation(500,500);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLayout(null);
         window.setVisible(true);
         content = window.getContentPane();
-        content.setBackground(Color.decode("#ADC7D9"));
+        content.setBackground(Color.decode(getBackgroundHexColor()));
 
         //Welcome Title
         welcomeTitle = new JLabel(introTitle, SwingConstants.CENTER);
@@ -230,6 +233,7 @@ public class GameGUI implements ActionListener {
     private void setup(){
         locationPanelSetup();
         descriptionPanelSetup();
+        outOfQuestionsSetup();
         questionPanelSetup(); // XXX this is to test
         answerPanelSetup();
         badgePanelSetup();
@@ -242,7 +246,7 @@ public class GameGUI implements ActionListener {
         currLocationPanel = new JPanel();
         currLocationPanel.setBounds(50,30,600,50);
         currLocationPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        currLocationPanel.setBackground(Color.decode("#043769"));
+        currLocationPanel.setBackground(Color.decode(getLocationHexColor()));
         content.add(currLocationPanel);
 
         currLocation = new JLabel();
@@ -268,6 +272,20 @@ public class GameGUI implements ActionListener {
         descriptionText.setWrapStyleWord(true);
         descriptionText.setEditable(false);
         descriptionPanel.add(descriptionText);
+    }
+
+    private void outOfQuestionsSetup(){
+        noMoreQuestionsText = new JTextArea();
+        noMoreQuestionsText.setBounds(50,260,600,200);
+        noMoreQuestionsText.setForeground(Color.black);
+        noMoreQuestionsText.setBackground(Color.decode(getBackgroundHexColor()));
+        noMoreQuestionsText.setFont(noQuestionsFont);
+        noMoreQuestionsText.setLineWrap(true);
+        noMoreQuestionsText.setWrapStyleWord(true);
+        noMoreQuestionsText.setEditable(false);
+        noMoreQuestionsText.setVisible(false);
+        noMoreQuestionsText.setText("You've already correctly answered all the questions for this location! Please navigate to a different location to answer more questions.");
+        content.add(noMoreQuestionsText);
     }
 
     private void questionPanelSetup(){
@@ -607,7 +625,7 @@ public class GameGUI implements ActionListener {
         helpWindow.setLayout(null);
         helpWindow.setVisible(true);
         helpContent = helpWindow.getContentPane();
-        helpContent.setBackground(Color.decode("#ADC7D9"));
+        helpContent.setBackground(Color.decode(backgroundHexColor));
 
         //help title
         helpTitle = new JLabel("Need help?", SwingConstants.CENTER);
@@ -659,7 +677,16 @@ public class GameGUI implements ActionListener {
     public void updateLocationDescription(String newDescription){ descriptionText.setText(newDescription);}
 
     public void updateQuestion(String newQuestion){
-        questionText.setText(newQuestion);
+        if (newQuestion.equals("")){
+            questionPanel.setVisible(false);
+            answerPanel.setVisible(false);
+            noMoreQuestionsText.setVisible(true);
+        }else{
+            questionPanel.setVisible(true);
+            answerPanel.setVisible(true);
+            noMoreQuestionsText.setVisible(false);
+            questionText.setText(newQuestion);
+        }
         setReadyForNextQuestion(false);
         setHasCorrectAnswer(false);
     }
@@ -774,8 +801,27 @@ public class GameGUI implements ActionListener {
         updateBadges();
     }
 
-    //*************** MAIN (TESTING) ***************
-//    public static void main(String[] args) {
-//        GameGUI gui = new GameGUI("Welcome", "Here are the instructions! Nothing!");
-//    }
+    private String getBackgroundHexColor() {
+        return backgroundHexColor;
+    }
+
+    private void setBackgroundHexColor(String backgroundHexColor) {
+        this.backgroundHexColor = backgroundHexColor;
+    }
+
+    private String getLocationHexColor() {
+        return locationHexColor;
+    }
+
+    private void setLocationHexColor(String locationHexColor) {
+        this.locationHexColor = locationHexColor;
+    }
+
+    private String getButtonHexColor() {
+        return buttonHexColor;
+    }
+
+    private void setButtonHexColor(String buttonHexColor) {
+        this.buttonHexColor = buttonHexColor;
+    }
 }
