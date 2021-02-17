@@ -13,7 +13,7 @@
     <location>
         <id>2</id>
         <name>Invictus</name>
-        <type>astronomy</type>
+        <type>Astronomy</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
         <leadTo>Alexandria</leadTo>
@@ -24,7 +24,7 @@
     <location>
         <id>3</id>
         <name>Galaxy</name>
-        <type>body</type>
+        <type>Body</type>
         <description>Basic room, whiteboard, door desks, coffee machine</description>
         <level>1</level>
         <leadTo>Gatsby</leadTo>

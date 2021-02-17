@@ -109,6 +109,7 @@ public class Game {
                     }
                     setCurrentGameScore(getCurrentGameScore() + currQpoints);
                     gooey.setCurrentScore(getCurrentGameScore());
+                    gooey.setBadges(currentPlayer.getBadges());
                     //TODO: CHECK IF USER ANSWERED CORRECTLY remove that one from the room question list
                 }else{
                     gooey.setHasSubmittedAnswer(false);
