@@ -19,13 +19,10 @@ public class Badge {
 
     //*************** CONSTRUCTORS/ DESTRUCTORS ***************
     public Badge(){
-        setName("NULL");
-        setImageFile("NULL");
     }
 
     public Badge(String name) {
         setName(name);
-        setImageFile("NULL");
     }
 
     public Badge(String name, String imageFile) {

@@ -2,74 +2,74 @@
 <!DOCTYPE Badge>
 <Badge>
     <badges>
-        <name>Badge 1</name>
-        <imageFile></imageFile>
+        <name>Astronomy</name>
+        <imageFile>astronomy.png</imageFile>
         <type>Astronomy</type>
         <hexColor></hexColor>
     </badges>
     <badges>
-        <name>Badge 2</name>
-        <imageFile></imageFile>
+        <name>Human Body</name>
+        <imageFile>body.png</imageFile>
         <type>Body</type>
         <hexColor></hexColor>
     </badges>
     <badges>
-        <name>Badge 3</name>
-        <imageFile></imageFile>
+        <name>Physics</name>
+        <imageFile>physics.png</imageFile>
         <type>Physics</type>
         <hexColor></hexColor>
     </badges>
     <badges>
-        <name>Badge 4</name>
-        <imageFile></imageFile>
+        <name>Math</name>
+        <imageFile>mathematics.png</imageFile>
         <type>Mathematics</type>
         <hexColor></hexColor>
     </badges>
     <badges>
-        <name>Badge 5</name>
-        <imageFile></imageFile>
+        <name>U.S. History</name>
+        <imageFile>usHistory.png</imageFile>
         <type>US History</type>
         <hexColor></hexColor>
     </badges>
     <badges>
-        <name>Badge 6</name>
-        <imageFile></imageFile>
+        <name>Java</name>
+        <imageFile>java.png</imageFile>
         <type>Java</type>
         <hexColor></hexColor>
     </badges>
     <badges>
-        <name>Badge 7</name>
-        <imageFile></imageFile>
+        <name>World Capitals</name>
+        <imageFile>worldCapital.png</imageFile>
         <type>World Capitals</type>
         <hexColor></hexColor>
     </badges>
     <badges>
-        <name>Badge 8</name>
-        <imageFile></imageFile>
+        <name>Geology</name>
+        <imageFile>geology.png</imageFile>
         <type>Geology</type>
         <hexColor></hexColor>
     </badges>
     <badges>
-        <name>Badge 9</name>
-        <imageFile></imageFile>
+        <name>Spanish</name>
+        <imageFile>spanish.png</imageFile>
         <type>Spanish</type>
         <hexColor></hexColor>
     </badges>
     <badges>
-        <name>Badge 10</name>
-        <imageFile></imageFile>
+        <name>Nutrition</name>
+        <imageFile>nutrition.png</imageFile>
         <type>Nutrition</type>
         <hexColor></hexColor>
     </badges>
     <badges>
-        <name>Badge 11</name>
-        <imageFile></imageFile>
+        <name>Zoology</name>
+        <imageFile>zoology.png</imageFile>
         <type>Zoology</type>
         <hexColor></hexColor>
     </badges>
     <badges>
-        <name>Badge 12</name>
-        <imageFile></imageFile>
+        <name>Sociology</name>
+        <imageFile>sociology.png</imageFile>
         <type>Sociology</type>
         <hexColor></hexColor>
     </badges>
