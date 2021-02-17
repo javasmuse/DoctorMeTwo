@@ -6,6 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +15,10 @@ public class BadgeGenerator {
 
     public List<Badge> allBadges() {
         List<Badge> badges = new ArrayList<>();
+        InputStream is = getClass().getClassLoader().getResourceAsStream("Badge.xml");
+        String nodeNameXML = "badges";
 
-        NodeList badgeNode = xmlR.readXMLFiles("resources/Badge.xml", "badges");
+        NodeList badgeNode = xmlR.readXMLFiles(is, nodeNameXML);
 
         for (int i = 0; i < badgeNode.getLength(); i++) {
             Node nod = badgeNode.item(i);
