@@ -210,7 +210,7 @@ public class GameGUI implements ActionListener {
         if (toBeAdded.getImageFile() != null){
             BufferedImage bufImg = null;
             try {
-                bufImg = ImageIO.read(new File(toBeAdded.getImageFile()));
+                bufImg = ImageIO.read(new File(toBeAdded.getImageFile())); // getter on badge
             } catch (IOException e) {
                 e.printStackTrace();
             }
