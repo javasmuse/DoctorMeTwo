@@ -111,6 +111,7 @@ public class Game {
                     }
                     setCurrentGameScore(getCurrentGameScore() + currQpoints);
                     gooey.setCurrentScore(getCurrentGameScore());
+                    gooey.setBadgeProgress(categoryPoints.get(questType) / currQpoints);
 
                 }else{
                     gooey.setHasSubmittedAnswer(false);
@@ -126,11 +127,15 @@ public class Game {
 
                 // retrieves location name from GUI button press - send String locationName to Location generator for next location to retrieve object location
                 location = lg.nextLocation((gooey.getNextLocation()));
-                System.out.println(location.getName());
 
                 // use new location to reset room and questions
                 stockLocation(gooey, location);
                 stockNextQuestion(gooey, location);
+                if (categoryPoints.get(qg.getCurrQ().getType().toLowerCase()) != null){
+                    gooey.setBadgeProgress(categoryPoints.get(qg.getCurrQ().getType().toLowerCase()) / currQpoints);
+                }else{
+                    gooey.setBadgeProgress(0);
+                }
 
                 gooey.guiUpdate();
             }
@@ -148,7 +153,6 @@ public class Game {
         gooey.updateOptionD(currQ.getPossibleAnswers().get(3));
         gooey.setCorrectAnswer(conAns.convertCorrectAns(currQ.getCorrectAnswer()));
         gooey.updateHintText(currQ.getHint());
-        gooey.updateCurrentLocation(location.getName());
     }
 
     // STOCK THE LOCATION OBJECT
@@ -160,8 +164,6 @@ public class Game {
         gooey.updateCurrentLocation(currL.getName());  // added in attempt to get name
         gooey.updateLocationDescription("Subject: " + typeLocal + "\n" + "View of room: " + currLocalDescrip);
         gooey.updateNextLocations(location.getRoomLeadTo());
-
-
     }
 
 
