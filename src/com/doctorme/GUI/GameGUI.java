@@ -22,7 +22,7 @@ public class GameGUI implements ActionListener {
     private Container content;
     private final JFrame window = new JFrame();
     private JFrame helpWindow, mapWindow;
-    private JLabel gameMap, mapTitle, name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
+    private JLabel timeToAnswer, gameMap, mapTitle, name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
     private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, badgePanel, scorePanel, enterGamePanel;
     private JTextArea helpText, gameInstructions, questionText, descriptionText, hintText, noMoreQuestionsText;
     private JRadioButton optA, optB, optC, optD;
@@ -40,6 +40,7 @@ public class GameGUI implements ActionListener {
     private JTextField userName;
     private List<Badge> badges = new ArrayList<>();
     private List<JLabel> badgeLabels = new ArrayList<>();
+    private long startQuestion,endQuestion, startBadgeTimer, endBadgeTimer;
 
     public GameGUI(String introTitle, String introText, String introInstructions){
         setHasCorrectAnswer(false);
@@ -145,20 +146,35 @@ public class GameGUI implements ActionListener {
         }else if(e.getSource() == hintBtn){
             hintText.setVisible(true);
         }else if(e.getSource() == submit && submit.getText().equals("Submit")) {
+            endQuestion = System.currentTimeMillis();
             checkAnswer();
             setHasSubmittedAnswer(true);
         }else if(e.getSource() == submit && submit.getText().equals("Next Question")){
+            timeToAnswer.setText("");
+            startQuestion = System.currentTimeMillis();
             setReadyForNextQuestion(true);
         }else if(e.getSource() == leftTopLocBtn){
+            timeToAnswer.setText("");
+            startQuestion = System.currentTimeMillis();
+            startBadgeTimer = System.currentTimeMillis();
             setNextLocation(nextLocs.get(0));
             setWantsToChangeLocation(true);
         }else if(e.getSource() == rightTopLocBtn) {
+            timeToAnswer.setText("");
+            startQuestion = System.currentTimeMillis();
+            startBadgeTimer = System.currentTimeMillis();
             setNextLocation(nextLocs.get(1));
             setWantsToChangeLocation(true);
         }else if(e.getSource() == leftBotLocBtn) {
+            timeToAnswer.setText("");
+            startQuestion = System.currentTimeMillis();
+            startBadgeTimer = System.currentTimeMillis();
             setNextLocation(nextLocs.get(2));
             setWantsToChangeLocation(true);
         }else if(e.getSource() == rightBotLocBtn){
+            timeToAnswer.setText("");
+            startQuestion = System.currentTimeMillis();
+            startBadgeTimer = System.currentTimeMillis();
             setNextLocation(nextLocs.get(3));
             setWantsToChangeLocation(true);
         }else{
@@ -182,6 +198,9 @@ public class GameGUI implements ActionListener {
 
     private void checkAnswer(){
         submit.setText("Next Question");
+        timeToAnswer = new JLabel("You took " + ((endQuestion - startQuestion)/1000) + " seconds to answer the question!");
+        timeToAnswer.setBounds(50,485,650,30);
+        window.add(timeToAnswer);
         if ((optA.isSelected() && correctAnswer.equals("A")) ||
                 (optB.isSelected() && correctAnswer.equals("B")) ||
                 (optC.isSelected() && correctAnswer.equals("C")) ||
@@ -216,6 +235,11 @@ public class GameGUI implements ActionListener {
     }
 
     private void updateBadgePanel(JLabel badgeP, int index){
+        //timer ends
+        endBadgeTimer = System.currentTimeMillis();
+        timeToAnswer.setText("");
+        timeToAnswer.setText("You took " + ((endQuestion - startQuestion)/1000) + " seconds to answer the question! and You took " + (endBadgeTimer - startBadgeTimer)/1000 + " seconds to earn a badge for this room!");
+        timeToAnswer.setFont(normalFont);
         Badge toBeAdded = badges.get(index);
         if (toBeAdded.getImageFile() != null){
             BufferedImage bufImg = null;
@@ -309,6 +333,8 @@ public class GameGUI implements ActionListener {
         questionText.setBounds(52,102,596,76);
         questionText.setForeground(Color.black);
         questionText.setFont(questionFont);
+        startBadgeTimer = System.currentTimeMillis();
+        startQuestion = System.currentTimeMillis();
         questionText.setLineWrap(true);
         questionText.setWrapStyleWord(true);
         questionText.setEditable(false);
