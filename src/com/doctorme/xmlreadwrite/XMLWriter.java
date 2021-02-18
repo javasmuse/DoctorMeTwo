@@ -13,11 +13,18 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.List;
 
 public class XMLWriter {
 
-    String xmlFilePath = "resources/leaderBoard.xml";
+//    String xmlFilePath = "resources/leaderBoard.xml";
+
+    InputStream is = getClass().getClassLoader().getResourceAsStream("leaderBoard.xml");
+    URL os = getClass().getClassLoader().getResource("leaderBoard.xml");
+
 
     public void xmlWrite(List<LeaderBoard> leeB) throws TransformerException {
 
