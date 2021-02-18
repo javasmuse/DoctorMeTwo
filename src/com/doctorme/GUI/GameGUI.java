@@ -244,7 +244,6 @@ public class GameGUI implements ActionListener {
         if (toBeAdded.getImageFile() != null){
             BufferedImage bufImg = null;
             InputStream is = getClass().getClassLoader().getResourceAsStream("images/" + toBeAdded.getImageFile());
-            System.out.println("GUI 223 hello");
             try {
                 bufImg = ImageIO.read(is);
             } catch (IOException e) {
@@ -387,7 +386,7 @@ public class GameGUI implements ActionListener {
         radioGroup.add(optD);
 
         hintText = new JTextArea();
-        hintText.setBounds(2, 134, 596, 30);
+        hintText.setBounds(2, 134, 596, 40);
         hintText.setForeground(Color.black);
         hintText.setFont(questionFont);
         hintText.setLineWrap(true);
@@ -763,7 +762,7 @@ public class GameGUI implements ActionListener {
     }
 
     public void updateCurrentLocation(String newLocation){
-        currLocation.setText(newLocation);
+        currLocation.setText("You are in building: "+ newLocation);
         setWantsToChangeLocation(false);
     }
 
