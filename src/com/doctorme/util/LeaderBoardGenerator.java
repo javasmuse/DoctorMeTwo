@@ -4,17 +4,20 @@ import com.doctorme.entities.LeaderBoard;
 import com.doctorme.entities.Player;
 import com.doctorme.xmlreadwrite.XMLWriter;
 
+import javax.xml.transform.TransformerException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerInfoGenerator {
+public class LeaderBoardGenerator {
     XMLWriter xmlw = new XMLWriter();
-    List<Player> players = new ArrayList<>();
-    List<LeaderBoard> pads = new ArrayList<>();
+    private List<LeaderBoard> leaderBoards = new ArrayList<>(); // list to read and repost to the leaderboard
 
-    LeaderBoard leebor = new LeaderBoard("Max", "150", "8");
-    LeaderBoard leebor2 = new LeaderBoard("Wade", "140", "9");
-    LeaderBoard leebor3 = new LeaderBoard("Sue", "180", "3");
+
+    // READ IN CURRENT LEADERBOARD XML
+
+    // CONTINUALLY UPDATE CURRENT PLAYER XML
+
+
 
 
     // LEADER BOARD XML WRITER BASED ON LEADERBOARD CLASS USE ARRAY LIST TO FEED IN INFO
@@ -25,13 +28,9 @@ public class PlayerInfoGenerator {
     -- IF THE JAR TAKES THE XML WITH, IT WILL THEN POPULATE IT DURING THE GAME AND CONTINUALLY 'SAVE'
      */
 
-    public void genLeadBored(){
-        pads.add(leebor);
-        pads.add(leebor2);
-        pads.add(leebor3);
-
-        xmlw.xmlWrite(pads);
-
+    public void postPlayerLB(LeaderBoard leaderBoard) throws TransformerException {
+        leaderBoards.add(leaderBoard);
+        xmlw.xmlWrite(leaderBoards);
     }
 
 

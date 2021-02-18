@@ -1,1 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><leaderBoard><playerInfo><name>Max</name><points>150</points><badges>8</badges><name>Wade</name><points>140</points><badges>9</badges><name>Sue</name><points>180</points><badges>3</badges></playerInfo></leaderBoard>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<leaderBoard>
+    <playerInfo>
+        <name>Paul</name>
+        <points>0</points>
+        <badges>[]</badges>
+        <name>Paul</name>
+        <points>10</points>
+        <badges>[]</badges>
+        <name>Paul</name>
+        <points>20</points>
+        <badges>[]</badges>
+    </playerInfo>
+</leaderBoard>

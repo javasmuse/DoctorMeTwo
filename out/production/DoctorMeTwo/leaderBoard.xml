@@ -1,1 +1,47 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><leaderBoard><playerInfo><name>Max</name><points>150</points><badges>8</badges><name>Wade</name><points>140</points><badges>9</badges><name>Sue</name><points>180</points><badges>3</badges></playerInfo></leaderBoard>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<leaderBoard>
+    <playerInfo>
+        <name>Maxine</name>
+        <points>0</points>
+        <badges>[]</badges>
+        <name>Maxine</name>
+        <points>10</points>
+        <badges>[]</badges>
+        <name>Maxine</name>
+        <points>20</points>
+        <badges>[]</badges>
+        <name>Maxine</name>
+        <points>30</points>
+        <badges>[Nutrition]</badges>
+        <name>Maxine</name>
+        <points>40</points>
+        <badges>[Nutrition]</badges>
+        <name>Maxine</name>
+        <points>50</points>
+        <badges>[Nutrition]</badges>
+        <name>Maxine</name>
+        <points>60</points>
+        <badges>[Nutrition, World Capitals]</badges>
+        <name>Maxine</name>
+        <points>70</points>
+        <badges>[Nutrition, World Capitals]</badges>
+        <name>Maxine</name>
+        <points>80</points>
+        <badges>[Nutrition, World Capitals]</badges>
+        <name>Maxine</name>
+        <points>90</points>
+        <badges>[Nutrition, World Capitals]</badges>
+        <name>Maxine</name>
+        <points>100</points>
+        <badges>[Nutrition, World Capitals, Human Body]</badges>
+        <name>Maxine</name>
+        <points>110</points>
+        <badges>[Nutrition, World Capitals, Human Body]</badges>
+        <name>Maxine</name>
+        <points>120</points>
+        <badges>[Nutrition, World Capitals, Human Body]</badges>
+        <name>Maxine</name>
+        <points>130</points>
+        <badges>[Nutrition, World Capitals, Human Body]</badges>
+    </playerInfo>
+</leaderBoard>

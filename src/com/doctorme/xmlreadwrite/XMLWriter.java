@@ -19,7 +19,7 @@ public class XMLWriter {
 
     String xmlFilePath = "resources/leaderBoard.xml";
 
-    public void xmlWrite(List<LeaderBoard> leeB) {
+    public void xmlWrite(List<LeaderBoard> leeB) throws TransformerException {
 
         try {
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
@@ -76,9 +76,6 @@ public class XMLWriter {
         } catch (
                 ParserConfigurationException pce) {
             pce.printStackTrace();
-        } catch (
-                TransformerException tfe) {
-            tfe.printStackTrace();
         }
     }
 }

@@ -4,34 +4,22 @@ import java.util.List;
 
 public class LeaderBoard {
 
-    Player player = new Player();
-    // FIELDS
-    String name = player.getName();
-    String points;
-    String badges;
-    String time;
-    String level;
+    private Player player = new Player();
+    private String name;
+    private String points;
+    private String badges;
+    private String time;
+    private String level;
 
     // CONSTRUCTORS
-
     public LeaderBoard(String name, String points, String badges) {
         this.name = name;
         this.points = points;
         this.badges = badges;
     }
 
-
     // ACCESSORS
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public String getName() {
+     public String getName() {
         return name;
     }
 
