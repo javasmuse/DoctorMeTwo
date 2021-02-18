@@ -1,6 +1,5 @@
 package com.doctorme.GUI;
 
-import com.doctorme.app.Game;
 import com.doctorme.entities.Badge;
 
 import javax.imageio.ImageIO;
@@ -22,21 +21,21 @@ public class GameGUI implements ActionListener {
     private Container content;
     private final JFrame window = new JFrame();
     private JFrame helpWindow, mapWindow;
-    private JLabel timeToAnswer, gameMap, mapTitle, name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, correctLabel, incorrectLabel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
+    private JLabel timeToAnswer, gameMap, mapTitle, name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, scoreBox, progressTitle, progressBox, correctLabel, incorrectLabel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
     private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, badgePanel, scorePanel, enterGamePanel;
     private JTextArea helpText, gameInstructions, questionText, descriptionText, hintText, noMoreQuestionsText;
     private JRadioButton optA, optB, optC, optD;
-    private static final Font titleFont = new Font("Times New Roman", Font.BOLD, 32);
-    private static final Font questionFont = new Font("Times New Roman", Font.ITALIC, 16);
-    private static final Font normalFont = new Font("Times New Roman", Font.PLAIN, 16);
-    private static final Font answerFont = new Font("Times New Roman", Font.BOLD, 24);
-    private static final Font noQuestionsFont = new Font("Times New Roman", Font.BOLD, 28);
+    private static final Font TITLE_FONT = new Font("Times New Roman", Font.BOLD, 32);
+    private static final Font SUB_TITLE_FONT = new Font("Times New Roman", Font.BOLD, 16);
+    private static final Font QUESTION_FONT = new Font("Times New Roman", Font.ITALIC, 16);
+    private static final Font NORMAL_FONT = new Font("Times New Roman", Font.PLAIN, 16);
+    private static final Font ANSWER_FONT = new Font("Times New Roman", Font.BOLD, 24);
+    private static final Font NO_QUESTIONS_FONT = new Font("Times New Roman", Font.BOLD, 28);
     private JScrollPane scrollPane;
-    private Game game = new Game();
-    int currentScore;
+    int currentScore, badgeProgress;
     private String correctAnswer, nextLocation, playerName, backgroundHexColor, locationHexColor, buttonHexColor;
     private ButtonGroup radioGroup;
-    private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame, wantsToChangeLocation, hasSubmittedAnswer;
+    private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame, wantsToChangeLocation, hasSubmittedAnswer, badgeEarned;
     private JTextField userName;
     private List<Badge> badges = new ArrayList<>();
     private List<JLabel> badgeLabels = new ArrayList<>();
@@ -63,13 +62,13 @@ public class GameGUI implements ActionListener {
         welcomeTitle = new JLabel(introTitle, SwingConstants.CENTER);
         welcomeTitle.setBounds(50,10,950,35);
         welcomeTitle.setForeground(Color.black);
-        welcomeTitle.setFont(titleFont);
+        welcomeTitle.setFont(TITLE_FONT);
         content.add(welcomeTitle);
 
         gameDescription = new JLabel(introText, SwingConstants.CENTER);
         gameDescription.setBounds(50,45,950,30);
         gameDescription.setForeground(Color.black);
-        gameDescription.setFont(normalFont);
+        gameDescription.setFont(NORMAL_FONT);
         content.add(gameDescription);
 
 
@@ -84,7 +83,7 @@ public class GameGUI implements ActionListener {
         gameInstructions.setText(introInstructions);
         gameInstructions.setBounds(0,0,950,350);
         gameInstructions.setForeground(Color.black);
-        gameInstructions.setFont(questionFont);
+        gameInstructions.setFont(QUESTION_FONT);
         gameInstructions.setLineWrap(true);
         gameInstructions.setWrapStyleWord(true);
         gameInstructions.setEditable(false);
@@ -239,7 +238,7 @@ public class GameGUI implements ActionListener {
         endBadgeTimer = System.currentTimeMillis();
         timeToAnswer.setText("");
         timeToAnswer.setText("You took " + ((endQuestion - startQuestion)/1000) + " seconds to answer the question! and You took " + (endBadgeTimer - startBadgeTimer)/1000 + " seconds to earn a badge for this room!");
-        timeToAnswer.setFont(normalFont);
+        timeToAnswer.setFont(NORMAL_FONT);
         Badge toBeAdded = badges.get(index);
         if (toBeAdded.getImageFile() != null){
             BufferedImage bufImg = null;
@@ -284,7 +283,7 @@ public class GameGUI implements ActionListener {
         currLocation = new JLabel();
         currLocation.setBounds(50,50,600,30);
         currLocation.setForeground(Color.white);
-        currLocation.setFont(titleFont);
+        currLocation.setFont(TITLE_FONT);
         currLocationPanel.add(currLocation);
     }
 
@@ -299,7 +298,7 @@ public class GameGUI implements ActionListener {
         descriptionText = new JTextArea();
         descriptionText.setBounds(52,82,596,66);
         descriptionText.setForeground(Color.black);
-        descriptionText.setFont(questionFont);
+        descriptionText.setFont(QUESTION_FONT);
         descriptionText.setLineWrap(true);
         descriptionText.setWrapStyleWord(true);
         descriptionText.setEditable(false);
@@ -311,7 +310,7 @@ public class GameGUI implements ActionListener {
         noMoreQuestionsText.setBounds(50,260,600,200);
         noMoreQuestionsText.setForeground(Color.black);
         noMoreQuestionsText.setBackground(Color.decode(getBackgroundHexColor()));
-        noMoreQuestionsText.setFont(noQuestionsFont);
+        noMoreQuestionsText.setFont(NO_QUESTIONS_FONT);
         noMoreQuestionsText.setLineWrap(true);
         noMoreQuestionsText.setWrapStyleWord(true);
         noMoreQuestionsText.setEditable(false);
@@ -331,7 +330,7 @@ public class GameGUI implements ActionListener {
         questionText = new JTextArea();
         questionText.setBounds(52,102,596,76);
         questionText.setForeground(Color.black);
-        questionText.setFont(questionFont);
+        questionText.setFont(QUESTION_FONT);
         startBadgeTimer = System.currentTimeMillis();
         startQuestion = System.currentTimeMillis();
         questionText.setLineWrap(true);
@@ -345,7 +344,7 @@ public class GameGUI implements ActionListener {
         answerPanel = new JPanel();
         answerPanel.setBounds(50,250,600,230);
         answerPanel.setBackground(Color.white);
-        answerPanel.setFont(normalFont);
+        answerPanel.setFont(NORMAL_FONT);
         answerPanel.setLayout(null);
         answerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         answerPanel.setVisible(true);
@@ -354,28 +353,28 @@ public class GameGUI implements ActionListener {
         optA = new JRadioButton();
         optA.setBounds(2, 2, 596, 32);
         optA.setBackground(Color.white);
-        optA.setFont(normalFont);
+        optA.setFont(NORMAL_FONT);
         optA.setVisible(true);
         answerPanel.add(optA);
 
         optB = new JRadioButton();
         optB.setBounds(2, 35, 596, 32);
         optB.setBackground(Color.white);
-        optB.setFont(normalFont);
+        optB.setFont(NORMAL_FONT);
         optB.setVisible(true);
         answerPanel.add(optB);
 
         optC = new JRadioButton();
         optC.setBounds(2, 68, 596, 32);
         optC.setBackground(Color.white);
-        optC.setFont(normalFont);
+        optC.setFont(NORMAL_FONT);
         optC.setVisible(true);
         answerPanel.add(optC);
 
         optD = new JRadioButton();
         optD.setBounds(2, 101, 596, 32);
         optD.setBackground(Color.white);
-        optD.setFont(normalFont);
+        optD.setFont(NORMAL_FONT);
         optD.setVisible(true);
         answerPanel.add(optD);
 
@@ -388,7 +387,7 @@ public class GameGUI implements ActionListener {
         hintText = new JTextArea();
         hintText.setBounds(2, 134, 596, 40);
         hintText.setForeground(Color.black);
-        hintText.setFont(questionFont);
+        hintText.setFont(QUESTION_FONT);
         hintText.setLineWrap(true);
         hintText.setWrapStyleWord(true);
         hintText.setEditable(false);
@@ -411,7 +410,7 @@ public class GameGUI implements ActionListener {
         correctLabel.setBounds(400,190,150,30);
         correctLabel.setForeground(Color.green);
         correctLabel.setBackground(Color.white);
-        correctLabel.setFont(answerFont);
+        correctLabel.setFont(ANSWER_FONT);
         correctLabel.setVisible(false);
         answerPanel.add(correctLabel);
 
@@ -419,7 +418,7 @@ public class GameGUI implements ActionListener {
         incorrectLabel.setBounds(400,190,150,30);
         incorrectLabel.setForeground(Color.red);
         incorrectLabel.setBackground(Color.white);
-        incorrectLabel.setFont(answerFont);
+        incorrectLabel.setFont(ANSWER_FONT);
         incorrectLabel.setVisible(false);
         answerPanel.add(incorrectLabel);
     }
@@ -429,7 +428,7 @@ public class GameGUI implements ActionListener {
         badgePanel = new JPanel();
         badgePanel.setBounds(700,30,300,220);
         badgePanel.setBackground(Color.white);
-        badgePanel.setFont(normalFont);
+        badgePanel.setFont(NORMAL_FONT);
         badgePanel.setLayout(null);
         badgePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.setVisible(true);
@@ -437,9 +436,10 @@ public class GameGUI implements ActionListener {
 
         badgeTitle = new JLabel("Badges", SwingConstants.CENTER);
         badgeTitle.setBounds(0,0,300,20);
-        badgeTitle.setForeground(Color.black);
-        badgeTitle.setBackground(Color.white);
-        badgeTitle.setFont(normalFont);
+        badgeTitle.setOpaque(true);
+        badgeTitle.setForeground(Color.white);
+        badgeTitle.setBackground(Color.decode(getLocationHexColor()));
+        badgeTitle.setFont(SUB_TITLE_FONT);
         badgePanel.add(badgeTitle);
 
         badge1 = new JLabel();
@@ -532,18 +532,42 @@ public class GameGUI implements ActionListener {
         scorePanel = new JPanel();
         scorePanel.setBounds(700, 260,300,100);
         scorePanel.setBackground(Color.white);
-        scorePanel.setFont(normalFont);
+        scorePanel.setFont(NORMAL_FONT);
         scorePanel.setLayout(null);
         scorePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         scorePanel.setVisible(true);
         content.add(scorePanel);
 
         scoreTitle = new JLabel("Score", SwingConstants.CENTER);
-        scoreTitle.setBounds(2,2,300,50);
-        scoreTitle.setForeground(Color.black);
-        scoreTitle.setBackground(Color.white);
-        scoreTitle.setFont(normalFont);
+        scoreTitle.setBounds(0,0,300,20);
+        scoreTitle.setOpaque(true);
+        scoreTitle.setForeground(Color.white);
+        scoreTitle.setBackground(Color.decode(getLocationHexColor()));
+        scoreTitle.setFont(SUB_TITLE_FONT);
+        scoreTitle.setBorder(BorderFactory.createLineBorder(Color.black));
         scorePanel.add(scoreTitle);
+
+        scoreBox = new JLabel("", SwingConstants.CENTER);
+        scoreBox.setBounds(0,20,300,30);
+        scoreBox.setForeground(Color.black);
+        scoreBox.setBackground(Color.white);
+        scoreBox.setFont(NORMAL_FONT);
+        scorePanel.add(scoreBox);
+
+        progressTitle = new JLabel("Badge Progress", SwingConstants.CENTER);
+        progressTitle.setBounds(0,50,300,20);
+        progressTitle.setOpaque(true);
+        progressTitle.setForeground(Color.white);
+        progressTitle.setBackground(Color.decode(getLocationHexColor()));
+        progressTitle.setFont(SUB_TITLE_FONT);
+        scorePanel.add(progressTitle);
+
+        progressBox = new JLabel("0/3", SwingConstants.CENTER);
+        progressBox.setBounds(0,70,300,30);
+        progressBox.setForeground(Color.black);
+        progressBox.setBackground(Color.white);
+        progressBox.setFont(NORMAL_FONT);
+        scorePanel.add(progressBox);
     }
 
     private void buttonSetup(){
@@ -674,7 +698,7 @@ public class GameGUI implements ActionListener {
 
         mapTitle = new JLabel("The Map of Doctor Me Game",SwingConstants.CENTER);
         mapTitle.setBounds(100,10,500,50);
-        mapTitle.setFont(titleFont);
+        mapTitle.setFont(TITLE_FONT);
         mapTitle.setForeground(Color.black);
         mapContent.add(mapTitle,BorderLayout.CENTER);
 
@@ -722,7 +746,7 @@ public class GameGUI implements ActionListener {
         //help title
         helpTitle = new JLabel("Need help?", SwingConstants.CENTER);
         helpTitle.setBounds(50,10,400,50);
-        helpTitle.setFont(titleFont);
+        helpTitle.setFont(TITLE_FONT);
         helpTitle.setForeground(Color.black);
         helpContent.add(helpTitle,BorderLayout.CENTER);
 
@@ -731,7 +755,7 @@ public class GameGUI implements ActionListener {
         helpText.setText("Here are some basic instructions if you get stuck blah blah blah");
         helpText.setBounds(50,70,400,350);
         helpText.setForeground(Color.black);
-        helpText.setFont(questionFont);
+        helpText.setFont(QUESTION_FONT);
         helpText.setLineWrap(true);
         helpText.setWrapStyleWord(true);
         helpText.setEditable(false);
@@ -762,7 +786,7 @@ public class GameGUI implements ActionListener {
     }
 
     public void updateCurrentLocation(String newLocation){
-        currLocation.setText("You are in building: "+ newLocation);
+        currLocation.setText(newLocation);
         setWantsToChangeLocation(false);
     }
 
@@ -868,11 +892,20 @@ public class GameGUI implements ActionListener {
 
     public void setCurrentScore(int currentScore) {
         this.currentScore = currentScore;
-        scoreTitle.setText("Score: " + currentScore + " points");
+        scoreBox.setText(currentScore + " points");
         setHasSubmittedAnswer(false);
 
         window.repaint();
         window.revalidate();
+    }
+
+    private int getBadgeProgress() {
+        return badgeProgress;
+    }
+
+    public void setBadgeProgress(int badgeProgress) {
+        this.badgeProgress = badgeProgress;
+        setBadgeEarned(badgeProgress >= 3);
     }
 
     public String getPlayerName() {
@@ -915,5 +948,19 @@ public class GameGUI implements ActionListener {
 
     private void setButtonHexColor(String buttonHexColor) {
         this.buttonHexColor = buttonHexColor;
+    }
+
+    private boolean isBadgeEarned() {
+        return badgeEarned;
+    }
+
+    private void setBadgeEarned(boolean badgeEarned) {
+        this.badgeEarned = badgeEarned;
+        progressBox.setText(getBadgeProgress() + "/3");
+        if (badgeEarned){
+            progressBox.setForeground(Color.green);
+        }else {
+            progressBox.setForeground(Color.red);
+        }
     }
 }
