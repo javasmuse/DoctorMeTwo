@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -242,8 +243,10 @@ public class GameGUI implements ActionListener {
         Badge toBeAdded = badges.get(index);
         if (toBeAdded.getImageFile() != null){
             BufferedImage bufImg = null;
+            InputStream is = getClass().getClassLoader().getResourceAsStream("images/" + toBeAdded.getImageFile());
+            System.out.println("GUI 223 hello");
             try {
-                bufImg = ImageIO.read(new File("resources/images/" + toBeAdded.getImageFile()));
+                bufImg = ImageIO.read(is);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -314,7 +317,7 @@ public class GameGUI implements ActionListener {
         noMoreQuestionsText.setWrapStyleWord(true);
         noMoreQuestionsText.setEditable(false);
         noMoreQuestionsText.setVisible(false);
-        noMoreQuestionsText.setText("You've already correctly answered all the questions for this location! Please navigate to a different location to answer more questions.");
+        noMoreQuestionsText.setText("All questions here answered correctly! \n\nPlease move to a new location for more questions.");
         content.add(noMoreQuestionsText);
     }
 
