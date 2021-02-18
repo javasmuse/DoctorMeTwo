@@ -1,11 +1,9 @@
 package com.doctorme.app;
 
 import com.doctorme.GUI.GameGUI;
-import com.doctorme.entities.Badge;
-import com.doctorme.entities.Location;
-import com.doctorme.entities.Player;
-import com.doctorme.entities.Question;
+import com.doctorme.entities.*;
 import com.doctorme.util.*;
+import com.doctorme.xmlreadwrite.XMLWriter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +30,8 @@ public class Game {
     private GameTextGenerator gtg = new GameTextGenerator();
     private Boolean keepGoing = true;
 //    private Badge badge = new Badge("badge1");
-//    private XMLWriter xmlW = new XMLWriter();
+    private XMLWriter xmlW = new XMLWriter();
+    private PlayerInfoGenerator pig = new PlayerInfoGenerator();
 //    private QuestionSaver qs = new QuestionSaver();
     private int currQpoints;
     private HashMap<String, Integer> categoryPoints = new HashMap<>();
@@ -41,6 +40,8 @@ public class Game {
     public void startGame() {
         // instantiate and start the GUI
         GameGUI gooey = new GameGUI(gtg.printWelcome(), gtg.printIntro(), gtg.printInstructions());
+
+        pig.genLeadBored();
 
         lg.bringLocations(); // set locations
         qg.bringQuestions(); // set questions

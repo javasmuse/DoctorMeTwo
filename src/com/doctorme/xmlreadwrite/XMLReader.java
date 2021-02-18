@@ -1,4 +1,4 @@
-package com.doctorme.util;
+package com.doctorme.xmlreadwrite;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;

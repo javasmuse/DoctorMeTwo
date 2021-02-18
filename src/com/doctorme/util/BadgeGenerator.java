@@ -1,7 +1,7 @@
 package com.doctorme.util;
 
 import com.doctorme.entities.Badge;
-import com.doctorme.entities.Question;
+import com.doctorme.xmlreadwrite.XMLReader;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
