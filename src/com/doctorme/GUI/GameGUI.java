@@ -762,7 +762,7 @@ public class GameGUI implements ActionListener {
     }
 
     public void updateCurrentLocation(String newLocation){
-        currLocation.setText("You are in building: "+ newLocation);
+        currLocation.setText(newLocation);
         setWantsToChangeLocation(false);
     }
 
