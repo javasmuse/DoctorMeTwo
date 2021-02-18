@@ -3,9 +3,7 @@ package com.doctorme.app;
 import com.doctorme.GUI.GameGUI;
 import com.doctorme.entities.*;
 import com.doctorme.util.*;
-import com.doctorme.xmlreadwrite.XMLWriter;
 
-import javax.xml.transform.TransformerException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,15 +29,11 @@ public class Game {
     private GameTextGenerator gtg = new GameTextGenerator();
     private Boolean keepGoing = true;
 //    private Badge badge = new Badge("badge1");
-    private XMLWriter xmlW = new XMLWriter();
-    private LeaderBoardGenerator pig = new LeaderBoardGenerator();
-    private LeaderBoard leaderBoard;
-//    private QuestionSaver qs = new QuestionSaver();
     private int currQpoints;
     private HashMap<String, Integer> categoryPoints = new HashMap<>();
 
     // START HERE
-    public void startGame() throws TransformerException {
+    public void startGame() {
         // instantiate and start the GUI
         GameGUI gooey = new GameGUI(gtg.printWelcome(), gtg.printIntro(), gtg.printInstructions());
 
@@ -95,10 +89,6 @@ public class Game {
                     -- need trigger in GUI to convey this,
                     currently responds via sout
                      */
-
-                    // UPDATE Leaderboard - keeps running tally, so if game interrupted by power loss, current score is still 'saved'
-                    leaderBoard = new LeaderBoard(gooey.getPlayerName(), String.valueOf(currentPlayer.getPoints()), String.valueOf(currentPlayer.getBadges()));
-                    pig.postPlayerLB(leaderBoard);
 
                     // grab current question object and do whatever is needed for points / badge
                     String questType = qg.getCurrQ().getType().toLowerCase();
