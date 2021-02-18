@@ -14,7 +14,7 @@
         <id>2</id>
         <name>Invictus</name>
         <type>Astronomy</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>white walls, whiteboard, door desks, coffee machine</description>
         <level>1</level>
         <leadTo>Coral</leadTo>
         <leadTo>Alexandria</leadTo>
@@ -27,7 +27,7 @@
         <id>3</id>
         <name>Galaxy</name>
         <type>Body</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>Computers, door desks, free roaming cat</description>
         <level>1</level>
         <leadTo>Gatsby</leadTo>
         <leadTo>Invictus</leadTo>
@@ -38,7 +38,7 @@
         <id>4</id>
         <name>Gatsby</name>
         <type>Physics</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>Five whiteboards, two door desks, one pinball machine</description>
         <level>1</level>
         <leadTo>Galaxy</leadTo>
         <leadTo>Kumo</leadTo>
@@ -49,7 +49,7 @@
         <id>5</id>
         <name>Kumo</name>
         <type>Mathematics</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>Map of ancient Greece on the east wall, door desks, a prime number of snacks on the table</description>
         <level>1</level>
         <leadTo>Delight</leadTo>
         <leadTo>Coral</leadTo>

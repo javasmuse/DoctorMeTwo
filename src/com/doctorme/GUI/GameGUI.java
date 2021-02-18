@@ -197,7 +197,7 @@ public class GameGUI implements ActionListener {
 
     private void checkAnswer(){
         submit.setText("Next Question");
-        timeToAnswer = new JLabel("You took " + ((endQuestion - startQuestion)/1000) + " seconds to answer the question!");
+        timeToAnswer = new JLabel("Seconds to answer question: " + ((endQuestion - startQuestion)/1000));
         timeToAnswer.setBounds(50,485,650,30);
         window.add(timeToAnswer);
         if ((optA.isSelected() && correctAnswer.equals("A")) ||
@@ -237,7 +237,7 @@ public class GameGUI implements ActionListener {
         //timer ends
         endBadgeTimer = System.currentTimeMillis();
         timeToAnswer.setText("");
-        timeToAnswer.setText("You took " + ((endQuestion - startQuestion)/1000) + " seconds to answer the question! and You took " + (endBadgeTimer - startBadgeTimer)/1000 + " seconds to earn a badge for this room!");
+        timeToAnswer.setText("You took " + ((endQuestion - startQuestion)/1000) + " seconds to answer the question! and You took " + (endBadgeTimer - startBadgeTimer)/1000 + " seconds to earn the badge for this room!");
         timeToAnswer.setFont(NORMAL_FONT);
         Badge toBeAdded = badges.get(index);
         if (toBeAdded.getImageFile() != null){
@@ -315,7 +315,7 @@ public class GameGUI implements ActionListener {
         noMoreQuestionsText.setWrapStyleWord(true);
         noMoreQuestionsText.setEditable(false);
         noMoreQuestionsText.setVisible(false);
-        noMoreQuestionsText.setText("All questions here answered correctly! \n\nPlease move to a new location for more questions.");
+        noMoreQuestionsText.setText("All location questions answered correctly! \n\nPlease move to a new location for more questions.");
         content.add(noMoreQuestionsText);
     }
 
