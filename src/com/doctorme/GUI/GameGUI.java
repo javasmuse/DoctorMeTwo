@@ -219,7 +219,7 @@ public class GameGUI implements ActionListener {
         if (toBeAdded.getImageFile() != null){
             BufferedImage bufImg = null;
             try {
-                bufImg = ImageIO.read(new File(toBeAdded.getImageFile())); // getter on badge
+                bufImg = ImageIO.read(new File("resources/images/" + toBeAdded.getImageFile()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -658,7 +658,7 @@ public class GameGUI implements ActionListener {
 
         BufferedImage mapImg = null;
         try{
-            mapImg = ImageIO.read(new File("gameMap.png"));
+            mapImg = ImageIO.read(new File("resources/images/gameMap.png"));
         }
         catch(IOException e){
             e.printStackTrace();
