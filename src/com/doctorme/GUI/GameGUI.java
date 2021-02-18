@@ -385,7 +385,7 @@ public class GameGUI implements ActionListener {
         radioGroup.add(optD);
 
         hintText = new JTextArea();
-        hintText.setBounds(2, 134, 596, 30);
+        hintText.setBounds(2, 134, 596, 40);
         hintText.setForeground(Color.black);
         hintText.setFont(QUESTION_FONT);
         hintText.setLineWrap(true);
@@ -786,7 +786,7 @@ public class GameGUI implements ActionListener {
     }
 
     public void updateCurrentLocation(String newLocation){
-        currLocation.setText(newLocation);
+        currLocation.setText("You are in building: "+ newLocation);
         setWantsToChangeLocation(false);
     }
 
