@@ -11,7 +11,7 @@
         <possibleAnswers4>Jupiter</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint>The largest planet shares it's name with the King of Gods in Roman mythology. It is located between Mars and Saturn.</hint>
+        <hint>Hint: The largest planet shares it's name with the King of Gods in Roman mythology. It is located between Mars and Saturn.</hint>
     </questions>
     <questions>
         <id>2</id>
@@ -23,7 +23,7 @@
         <possibleAnswers4>West</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint>Though seen in some movies, you will not in reality see the sunset and moonrise in the same view.</hint>
+        <hint>Hint: Though seen in some movies, you will not in reality see the sunset and moonrise in the same view.</hint>
     </questions>
     <questions>
         <id>3</id>
@@ -35,7 +35,7 @@
         <possibleAnswers4>4</possibleAnswers4>
         <correctAnswer>1</correctAnswer>
         <points>10</points>
-        <hint>Mars moons are small compared to the Earths and there aren't very many. They are named for the Greek mythological characters of fear and panic.</hint>
+        <hint>Hint: Mars moons are small compared to the Earths and there aren't very many. They are named for the Greek mythological characters of fear and panic.</hint>
     </questions>
     <questions>
         <id>4</id>
@@ -47,7 +47,7 @@
         <possibleAnswers4>Earth</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint>Neptune, Uranus, and Jupiter all have rings, but aren't famous for them.</hint>
+        <hint>Hint: Neptune, Uranus, and Jupiter all have rings, but aren't famous for them.</hint>
     </questions>
     <questions>
         <id>5</id>
@@ -59,7 +59,7 @@
         <possibleAnswers4>Neptune</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint>The planets closest to the sun are generally smaller than the further ones.</hint>
+        <hint>Hint: The planets closest to the sun are generally smaller than the further ones.</hint>
     </questions>
     <questions>
         <id>6</id>
@@ -71,7 +71,7 @@
         <possibleAnswers4>162</possibleAnswers4>
         <correctAnswer>1</correctAnswer>
         <points>10</points>
-        <hint>Sorry this one is tough. Try counting them.</hint>
+        <hint>Hint: If you spell the number, you will employ all the vowels only once!</hint>
     </questions>
     <questions>
         <id>7</id>
@@ -83,7 +83,7 @@
         <possibleAnswers4>O</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint>Universal donor means this type is accepted by all other types. For example people with type A blood can accept their own or the universal.</hint>
+        <hint>Hint: Universal donor means this type is accepted by all other types. For example people with type A blood can accept their own or the universal.</hint>
     </questions>
     <questions>
         <id>8</id>
@@ -95,7 +95,7 @@
         <possibleAnswers4>Spleen</possibleAnswers4>
         <correctAnswer>1</correctAnswer>
         <points>10</points>
-        <hint>The Spleen is fairly short in comparison and Tibia is a lower leg bone.</hint>
+        <hint>Hint: The Spleen is fairly short in comparison and Tibia is a lower leg bone.</hint>
     </questions>
     <questions>
         <id>9</id>
@@ -107,7 +107,7 @@
         <possibleAnswers4>Ambidextrous</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint>The famous Hemingway cats have this trait.</hint>
+        <hint>Hint: The famous Hemingway cats have this trait.</hint>
     </questions>
     <questions>
         <id>10</id>
@@ -119,7 +119,7 @@
         <possibleAnswers4>Anemia</possibleAnswers4>
         <correctAnswer>0</correctAnswer>
         <points>10</points>
-        <hint>Limes once helped prevent scurvy among the crews of British ships.</hint>
+        <hint>Hint: Limes once helped prevent scurvy among the crews of British ships.</hint>
     </questions>
     <questions>
         <id>11</id>
@@ -131,7 +131,7 @@
         <possibleAnswers4>Backward Galaxy</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: More than half the stars found in this galaxy are older than 4.5-billion-year-old sun.</hint>
     </questions>
     <questions>
         <id>12</id>
@@ -143,7 +143,7 @@
         <possibleAnswers4>Ernest Rutherford</possibleAnswers4>
         <correctAnswer>0</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: E=mc^2</hint>
     </questions>
     <questions>
         <id>13</id>
@@ -155,7 +155,7 @@
         <possibleAnswers4>Watts</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Hope you weren't thinking Ampere! Current is measured in Amperes. </hint>
     </questions>
     <questions>
         <id>14</id>
@@ -167,7 +167,7 @@
         <possibleAnswers4>Neutral Wire</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: The wire is also known as electron emitting element in a vacuum tube! It's made up of tungsten.</hint>
     </questions>
     <questions>
         <id>15</id>
@@ -179,7 +179,7 @@
         <possibleAnswers4>Gasoline</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Hot! Hot! Hot! This source of energy is heating up!</hint>
     </questions>
     <questions>
         <id>16</id>
@@ -191,19 +191,19 @@
         <possibleAnswers4>32</possibleAnswers4>
         <correctAnswer>0</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: The Square Root of this number is Called "Pythagoras' Constant."</hint>
     </questions>
     <questions>
         <id>17</id>
         <type>Mathematics</type>
         <question>Which number is considered a “magic number?”</question>
-        <possibleAnswers1>3</possibleAnswers1>
-        <possibleAnswers2>6</possibleAnswers2>
+        <possibleAnswers1>0</possibleAnswers1>
+        <possibleAnswers2>5</possibleAnswers2>
         <possibleAnswers3>9</possibleAnswers3>
-        <possibleAnswers4>12</possibleAnswers4>
+        <possibleAnswers4>50</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: When you multiply this number by any number and add up the digits of the answer, you get the same number. </hint>
     </questions>
     <questions>
         <id>18</id>
@@ -215,7 +215,7 @@
         <possibleAnswers4>6</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: (9*1080)-(216*45)+((7*8)/2)-22 </hint>
     </questions>
     <questions>
         <id>19</id>
@@ -223,11 +223,11 @@
         <question>What number doesn’t have its own Roman numeral?</question>
         <possibleAnswers1>0</possibleAnswers1>
         <possibleAnswers2>5</possibleAnswers2>
-        <possibleAnswers3>10</possibleAnswers3>
+        <possibleAnswers3>-10</possibleAnswers3>
         <possibleAnswers4>50</possibleAnswers4>
         <correctAnswer>0</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Not a negative number, not a positive number.</hint>
     </questions>
     <questions>
         <id>20</id>
@@ -239,7 +239,7 @@
         <possibleAnswers4>82,500</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: 1 day has 24 hours, each hour has 60 minutes and each minute has 60 seconds!</hint>
     </questions>
     <questions>
         <id>21</id>
@@ -251,7 +251,7 @@
         <possibleAnswers4>1870</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Franco-Prussian War was going on during this year.</hint>
     </questions>
     <questions>
         <id>22</id>
@@ -263,7 +263,7 @@
         <possibleAnswers4>James Madison</possibleAnswers4>
         <correctAnswer>0</correctAnswer>
         <points>10</points>
-        <hint>This happened on November 1, 1800.</hint>
+        <hint>Hint: This happened on November 1, 1800.</hint>
     </questions>
     <questions>
         <id>23</id>
@@ -275,7 +275,7 @@
         <possibleAnswers4>33</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint>The number is heavier than a humpback whale! </hint>
+        <hint>Hint: The number is heavier than a humpback whale! </hint>
     </questions>
     <questions>
         <id>24</id>
@@ -287,7 +287,7 @@
         <possibleAnswers4>Atlanta, Georgia</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This city is named after a town in England! Also, this city is home to the oldest public park in the U.S. </hint>
     </questions>
     <questions>
         <id>25</id>
@@ -299,7 +299,7 @@
         <possibleAnswers4>The American flag</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: It was The American flag's 237th birthday!</hint>
     </questions>
     <questions>
         <id>26</id>
@@ -311,7 +311,7 @@
         <possibleAnswers4>System.out.println("Hello World");</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: You are a developer! This is an easy question! Sorry, no hints available!</hint>
     </questions>
     <questions>
         <id>27</id>
@@ -323,7 +323,7 @@
         <possibleAnswers4>Txt</possibleAnswers4>
         <correctAnswer>1</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: focus on the cases! (Uppercase or lowercase)</hint>
     </questions>
     <questions>
         <id>28</id>
@@ -335,7 +335,7 @@
         <possibleAnswers4>getSize()</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: I am sure you know this! You've coded this hundreds of times!</hint>
     </questions>
     <questions>
         <id>29</id>
@@ -347,7 +347,7 @@
         <possibleAnswers4>MyClass myobj = new MyClass();</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This is easy. Classname objectName = new Classname();</hint>
     </questions>
     <questions>
         <id>30</id>
@@ -359,7 +359,7 @@
         <possibleAnswers4>exit</possibleAnswers4>
         <correctAnswer>0</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: You wouldn't "stop" the loop but you would stop it!</hint>
     </questions>
     <questions>
         <id>31</id>
@@ -371,7 +371,7 @@
         <possibleAnswers4>Saint John's</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This city is the largest city in the country!</hint>
     </questions>
     <questions>
         <id>32</id>
@@ -383,19 +383,19 @@
         <possibleAnswers4>Harare</possibleAnswers4>
         <correctAnswer>0</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This city is known around the world as the "Spice Island", thanks to its spices and herbs!</hint>
     </questions>
     <questions>
         <id>33</id>
         <type>World Capitals</type>
-        <question>Capital of Peru is :</question>
-        <possibleAnswers1>Palikir</possibleAnswers1>
-        <possibleAnswers2>Lima</possibleAnswers2>
-        <possibleAnswers3>P'yongyang</possibleAnswers3>
-        <possibleAnswers4>Madrid</possibleAnswers4>
+        <question>Capital of Nepal is :</question>
+        <possibleAnswers1>Pokhara</possibleAnswers1>
+        <possibleAnswers2>Kathmandu</possibleAnswers2>
+        <possibleAnswers3>Kulung</possibleAnswers3>
+        <possibleAnswers4>Bhaktapur</possibleAnswers4>
         <correctAnswer>1</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This valley was actually a huge lake which was surrounded by the Himalayan mountain range. </hint>
     </questions>
     <questions>
         <id>34</id>
@@ -407,7 +407,7 @@
         <possibleAnswers4>Maputo</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Famous iconic landmarks such as Monas and The Merdeka Palace can be found in this capital.</hint>
     </questions>
     <questions>
         <id>35</id>
@@ -419,7 +419,7 @@
         <possibleAnswers4>Bairiki, Ambo and Betio </possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This capital is the fourth largest island in The Bahamas!</hint>
     </questions>
     <questions>
         <id>36</id>
@@ -431,7 +431,7 @@
         <possibleAnswers4>Troposphere</possibleAnswers4>
         <correctAnswer>1</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: You have to even go deeper than Mantle!</hint>
     </questions>
     <questions>
         <id>37</id>
@@ -443,7 +443,7 @@
         <possibleAnswers4>Crust</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This layer is also the Earth's thickest layer!</hint>
     </questions>
     <questions>
         <id>38</id>
@@ -455,7 +455,7 @@
         <possibleAnswers4>Crust</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This is the layer we all live in!</hint>
     </questions>
     <questions>
         <id>39</id>
@@ -467,7 +467,7 @@
         <possibleAnswers4>No one knows</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: The least dense layer is the lithosphere.</hint>
     </questions>
     <questions>
         <id>40</id>
@@ -479,7 +479,7 @@
         <possibleAnswers4>Mantle</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This is the layer that is above the mantle.</hint>
     </questions>
     <questions>
         <id>41</id>
@@ -491,7 +491,7 @@
         <possibleAnswers4>Que Pasa</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Gracias = Thank you. :) </hint>
     </questions>
     <questions>
         <id>42</id>
@@ -503,7 +503,7 @@
         <possibleAnswers4>Dolares</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Give it a try, it almost sounds similar.</hint>
     </questions>
     <questions>
         <id>43</id>
@@ -515,7 +515,7 @@
         <possibleAnswers4>Vieja</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: It's not Ropa. Ropa = Clothing.</hint>
     </questions>
     <questions>
         <id>44</id>
@@ -527,7 +527,7 @@
         <possibleAnswers4>Cinco</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Tres is three.</hint>
     </questions>
     <questions>
         <id>45</id>
@@ -539,7 +539,7 @@
         <possibleAnswers4>Flora</possibleAnswers4>
         <correctAnswer>0</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: No, No, not Ropa, Remember Ropa = Clothing!</hint>
     </questions>
     <questions>
         <id>45</id>
@@ -551,7 +551,7 @@
         <possibleAnswers4>Fats</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Red meat, milk, cream, cheese</hint>
     </questions>
     <questions>
         <id>46</id>
@@ -563,7 +563,7 @@
         <possibleAnswers4>Fat</possibleAnswers4>
         <correctAnswer>0</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: A great source of this is found in milk.</hint>
     </questions>
     <questions>
         <id>47</id>
@@ -575,7 +575,7 @@
         <possibleAnswers4>Vitamin D</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: People on a keto diet avoid carbs.</hint>
     </questions>
     <questions>
         <id>48</id>
@@ -587,7 +587,7 @@
         <possibleAnswers4>Water reduces kidney stones</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Interestingly it is possible to get too much water!</hint>
     </questions>
     <questions>
         <id>49</id>
@@ -599,7 +599,7 @@
         <possibleAnswers4>30</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Go large!</hint>
     </questions>
     <questions>
         <id>50</id>
@@ -611,7 +611,7 @@
         <possibleAnswers4>Tilapia</possibleAnswers4>
         <correctAnswer>0</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Bigger fish frequently contain more heavy metals, like mercury.</hint>
     </questions>
     <questions>
         <id>51</id>
@@ -623,7 +623,7 @@
         <possibleAnswers4>Clouds</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Seeds are sometimes encased in fruits, but not always!</hint>
     </questions>
     <questions>
         <id>52</id>
@@ -635,7 +635,7 @@
         <possibleAnswers4>Stem</possibleAnswers4>
         <correctAnswer>1</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This part helps anchor the plant to the soil.</hint>
     </questions>
     <questions>
         <id>54</id>
@@ -647,7 +647,7 @@
         <possibleAnswers4>Stem</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This part may be fleshy like berries, or hard and dry, like nuts.</hint>
     </questions>
     <questions>
         <id>55</id>
@@ -659,7 +659,7 @@
         <possibleAnswers4>Stem</possibleAnswers4>
         <correctAnswer>2</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Did you know sprouted beans is an example of seed?</hint>
     </questions>
     <questions>
         <id>56</id>
@@ -671,7 +671,7 @@
         <possibleAnswers4>All of the above</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Anything related to society and humans. </hint>
     </questions>
     <questions>
         <id>57</id>
@@ -683,7 +683,7 @@
         <possibleAnswers4>Symbolic interaction</possibleAnswers4>
         <correctAnswer>1</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Battle = Fight = ? (think of a synonym)</hint>
     </questions>
     <questions>
         <id>58</id>
@@ -692,10 +692,10 @@
         <possibleAnswers1>Survey research</possibleAnswers1>
         <possibleAnswers2>Participant observation</possibleAnswers2>
         <possibleAnswers3>Experiment</possibleAnswers3>
-        <possibleAnswers4> Secondary data analysis</possibleAnswers4>
+        <possibleAnswers4>Secondary data analysis</possibleAnswers4>
         <correctAnswer>3</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: This methods does not require talking to or being with people or experiments.</hint>
     </questions>
     <questions>
         <id>59</id>
@@ -707,7 +707,7 @@
         <possibleAnswers4>Random Sample</possibleAnswers4>
         <correctAnswer>1</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Its not Random Sample! we can not randomize since we know we either want to collect data from females in California or men over the age of 30.</hint>
     </questions>
     <questions>
         <id>60</id>
@@ -719,6 +719,6 @@
         <possibleAnswers4>Data analysis</possibleAnswers4>
         <correctAnswer>1</correctAnswer>
         <points>10</points>
-        <hint></hint>
+        <hint>Hint: Think about standing in a corner and viewing while making notes of what you see!</hint>
     </questions>
 </gameQuestions>
