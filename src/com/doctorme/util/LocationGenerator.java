@@ -16,19 +16,23 @@ public class LocationGenerator {
     }
 
     // start location from a random choice from the list
-    public Location startLocation(){
-        return  randoLocation(listLocas);
+    public Location startLocation() {
+        return randoLocation(listLocas);
     }
 
     // move to next room
-    public Location nextLocation(String locationName){
+    public Location nextLocation(String locationName) {
 
         for (int i = 0; i < listLocas.size(); i++) {
-            if(locationName.equals(listLocas.get(i).getName())) {
-               currLoc = listLocas.get(i);
-               return currLoc;
+            if (locationName.equals("?????")) {
+                locationName = "Secret Room";
+            }
+            if (locationName.equals(listLocas.get(i).getName())) {
+                currLoc = listLocas.get(i);
+                return currLoc;
             }
         }
+
         return currLoc;
     }
 
@@ -38,8 +42,8 @@ public class LocationGenerator {
     }
 
     // RANDOM number generator
-    public int randomNumber(int local){
-        return (int)(Math.random() * local);
+    public int randomNumber(int local) {
+        return (int) (Math.random() * local);
     }
 
 
