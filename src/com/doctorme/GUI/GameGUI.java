@@ -186,7 +186,7 @@ public class GameGUI implements ActionListener {
 
     private void checkAnswer(){
         submit.setText("Next Question");
-        timeToAnswer = new JLabel("Seconds to answer question: " + ((endQuestion - startQuestion)/1000));
+        timeToAnswer = new JLabel("Question answered in: " + ((endQuestion - startQuestion)/1000) + "seconds!");
         timeToAnswer.setBounds(50,485,650,30);
         window.add(timeToAnswer);
         if ((optA.isSelected() && correctAnswer.equals("A")) ||
@@ -226,7 +226,7 @@ public class GameGUI implements ActionListener {
         //timer ends
         long endBadgeTimer = System.currentTimeMillis();
         timeToAnswer.setText("");
-        timeToAnswer.setText("You took " + ((endQuestion - startQuestion)/1000) + " seconds to answer the question! and You took " + (endBadgeTimer - startBadgeTimer)/1000 + " seconds to earn the badge for this room!");
+        timeToAnswer.setText("Question answered in " + ((endQuestion - startQuestion)/1000) + " seconds. Badge earned in " + (endBadgeTimer - startBadgeTimer)/1000 + " seconds!");
         timeToAnswer.setFont(NORMAL_FONT);
         Badge toBeAdded = badges.get(index);
         if (toBeAdded.getImageFile() != null){
