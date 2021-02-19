@@ -388,7 +388,7 @@ public class GameGUI implements ActionListener {
         radioGroup.add(optD);
 
         hintText = new JTextArea();
-        hintText.setBounds(2, 134, 596, 40);
+        hintText.setBounds(10, 136, 588, 40);
         hintText.setForeground(Color.black);
         hintText.setFont(QUESTION_FONT);
         hintText.setLineWrap(true);
