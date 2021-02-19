@@ -8,14 +8,33 @@
         <intro>
             Interested in a PhD? Is your favorite Amazon Leadership Principle 'Learn &amp; Be Curious' ? Explore Dr. Me!
         </intro>
-        <instructions>
-            In this game, there are 12 locations present but only 4 open to explore for beginners.
-            Solve the questions in each location to unlock higher levels and earn cool badges along the way!
-        Level 1 -> 4 Locations
-        Level 2 -> 4 Locations
-        Level 3 -> 3 Locations
-        Level 4 -> 1 Location
-        </instructions>
+        <welcomeInstruction>
+            In this game, you will find 4 Levels – Level 1 through Level 4 – which ranges from easy to difficult questions. There are varying number of rooms in each location where you will find questions of different subjects. Explore your way through the game to learn while you earn points and some cool badges!
 
+            Level 1 -> 12 Locations
+            Level 2 -> More Information Coming Soon!
+            Level 3 -> More Information Coming Soon!
+            Level 4 -> More Information Coming Soon!
+
+            All 12 locations in Level 1 are accessible to you! You can switch between rooms to move to the next room. Please click the Map button to view how each rooms are connected.
+            If you need a little push to answer the questions, there is a Hint button available that will get you close to the correct answer.
+            A timer is available that lets you know how much time was taken to answer a particular question and to earn a badge in each room. Challenge yourself to beat your timings while answering more and more questions!!
+
+            The trick to proceed to the next Level is to earn all badges in the previous level! Good luck on your learning adventure!
+
+        </welcomeInstruction>
+        <helpScreen>
+            Click the buttons on the left to select answer.
+            
+            Click Submit to check if the answer you selected is correct or incorrect.
+
+            Answer the question or move locations by clicking next location buttons located on lower right corner.
+
+            Press Hint button to see hints for the question.
+
+            Click Map button to view the Game Map.
+
+            Click Quit button to quit the game.
+        </helpScreen>
     </textLines>
 </Texts>

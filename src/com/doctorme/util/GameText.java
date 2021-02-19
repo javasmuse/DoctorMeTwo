@@ -29,9 +29,9 @@ public class GameText {
                 Element eElement = (Element) nod;
                 instructions.add(eElement.getElementsByTagName("welcome").item(0).getTextContent());
                 instructions.add(eElement.getElementsByTagName("intro").item(0).getTextContent());
-                instructions.add(eElement.getElementsByTagName("instructions").item(0).getTextContent());
+                instructions.add(eElement.getElementsByTagName("welcomeInstruction").item(0).getTextContent());
+                instructions.add(eElement.getElementsByTagName("helpScreen").item(0).getTextContent());
             }
-
         }
         return instructions;
     }
