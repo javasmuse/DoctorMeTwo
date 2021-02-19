@@ -25,16 +25,17 @@ public class GameGUI implements ActionListener {
     private static final Font NO_QUESTIONS_FONT = Roboto.BOLD.deriveFont((float) 28);
     private static final Font BUTTON_FONT = Roboto.BOLD.deriveFont((float) 12);
     private final Container content;
+    private Container nextLevelContent;
     private final JFrame window = new JFrame();
-    private JFrame helpWindow, mapWindow;
+    private JFrame helpWindow, mapWindow,nextLevel;
     private JPanel questionPanel, answerPanel;
-    private JLabel timeToAnswer, currLocation, scoreBox, progressBox, correctLabel, incorrectLabel;
+    private JLabel nextLevelPara,congratulationsLabel,timeToAnswer, currLocation, scoreBox, progressBox, correctLabel, incorrectLabel;
     private final JTextArea gameInstructions;
     private JTextArea helpText, questionText, descriptionText, hintText, noMoreQuestionsText;
     private final JTextField userName;
     private JScrollPane scrollPane;
     private final JButton enterGameBtn;
-    private JButton mapCloseBtn, mapBtn, quitBtn, helpBtn, submit, hintBtn, leftTopLocBtn, rightTopLocBtn, leftBotLocBtn, rightBotLocBtn, helpCloseBtn;
+    private JButton nextLevelBtn, mapCloseBtn, mapBtn, quitBtn, helpBtn, submit, hintBtn, leftTopLocBtn, rightTopLocBtn, leftBotLocBtn, rightBotLocBtn, helpCloseBtn;
     private JRadioButton optA, optB, optC, optD;
     private ButtonGroup radioGroup;
     private final List<JLabel> badgeLabels = new ArrayList<>();
@@ -144,6 +145,8 @@ public class GameGUI implements ActionListener {
             helpWindow.dispose();
         }else if(e.getSource() == mapCloseBtn){
             mapWindow.dispose();
+        }else if(e.getSource()==nextLevelBtn){
+            //Level 2 should load up! Coming Soon!
         }
         else if(e.getSource() == quitBtn) {
             window.dispose();
@@ -247,6 +250,10 @@ public class GameGUI implements ActionListener {
             }
             badgeP.setText(toBeAdded.getName());
         }
+
+        if(badges.size() == 12 && nextLevel == null){
+            winLevel1Screen();
+        }
     }
 
     private void timerSetHelper(){
@@ -272,6 +279,51 @@ public class GameGUI implements ActionListener {
         scorePanelSetup();
         buttonSetup();
         timerSetup();
+    }
+
+    private void winLevel1Screen(){
+        nextLevel = new JFrame();
+        nextLevel.setSize(1050,450);
+        nextLevel.setLocation(500,500);
+        nextLevel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        nextLevel.setLayout(null);
+        nextLevel.setVisible(true);
+        nextLevelContent = nextLevel.getContentPane();
+        nextLevelContent.setBackground(Color.decode(getBackgroundHexColor()));
+
+        congratulationsLabel = new JLabel();
+        congratulationsLabel.setBounds(50,50,900,250);
+        congratulationsLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        nextLevelContent.add(congratulationsLabel);
+
+        BufferedImage congratsImg = null;
+        try{
+            congratsImg = ImageIO.read(new File("resources/images/congratulations.png"));
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+
+        assert congratsImg != null;
+        Image cgImage = congratsImg.getScaledInstance(900,250,Image.SCALE_SMOOTH);
+        ImageIcon img1 = new ImageIcon(cgImage);
+        congratulationsLabel.setIcon(img1);
+
+        nextLevelPara = new JLabel("Level 2 has now been unlocked.", SwingConstants.CENTER);
+        nextLevelPara.setBounds(50,310,900,100);
+        nextLevelPara.setVisible(true);
+        nextLevelPara.setForeground(Color.black);
+        nextLevelPara.setFont(SUB_TITLE_FONT);
+        nextLevelContent.add(nextLevelPara);
+
+        nextLevelBtn = new JButton("Level 2");
+        nextLevelBtn.setBounds(450,375,100,30);
+        nextLevelBtn.addActionListener(this);
+        nextLevelContent.add(nextLevelBtn);
+
+        nextLevel.repaint();
+        nextLevel.revalidate();
+
     }
 
     private void locationPanelSetup(){
