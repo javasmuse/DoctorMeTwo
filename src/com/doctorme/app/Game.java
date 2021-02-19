@@ -21,12 +21,8 @@ possibilities are endless, host your own trivia night :)
     private String fileName; // Expansion - to allow user to choose different sets of questions or different rooms, also can be used to level up with insertion of more xml
     private String nodeNameXML; // same as above comment
     // available lists - questions, locations
-    private List<Question> listQs = new ArrayList<>();     // list of questions
-    private List<Location> listLocas = new ArrayList<>();  // list of locations
     private List<Badge> badges = new ArrayList<>(); // list of badges
     // access other classes
-    private QuestionList ql = new QuestionList();
-    private LocationList ll = new LocationList();
     private QuestionGenerator qg = new QuestionGenerator();
     private LocationGenerator lg = new LocationGenerator();
     private Player currentPlayer = new Player();
