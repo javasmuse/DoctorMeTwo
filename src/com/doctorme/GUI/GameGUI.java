@@ -383,7 +383,7 @@ public class GameGUI implements ActionListener {
         content.add(questionPanel);
 
         questionText = new JTextArea();
-        questionText.setBounds(52,102,596,76);
+        questionText.setBounds(2,2,596,76);
         questionText.setForeground(Color.black);
         questionText.setFont(QUESTION_FONT);
         startBadgeTimer = System.currentTimeMillis();
