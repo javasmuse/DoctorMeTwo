@@ -40,7 +40,7 @@ possibilities are endless, host your own trivia night :)
     public void startGame() {
         // instantiate and start the GUI, send in the welcome and instruction text from game text generator
         GameGUI gooey = new GameGUI(gtg.printWelcome(), gtg.printIntro(), gtg.printInstructions());
-
+        gooey.updateHelpScreenText(gtg.printGameScreenHelpInstruction());
         lg.bringLocations(); // set locations
         qg.bringQuestions(); // set questions
         setBadges(new BadgeGenerator().allBadges());
