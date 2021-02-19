@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE GameLocations>
 <GameLocations>
-<!--    <location>-->
-<!--        <id>1</id>-->
-<!--        <name>Entry</name>-->
-<!--        <type>body</type>-->
-<!--        <description>Entry room, chalkboard on left, window to the right. No challenge here.</description>-->
-<!--        <level>1</level>-->
-<!--        <leadTo>Invictus</leadTo>-->
-<!--        <exit>north</exit>-->
-<!--    </location>-->
+    <location>
+        <id>1</id>
+        <name>Secret Room</name>
+        <type>Sociology</type>
+        <description>ssh, this one's a secret</description>
+        <level>1</level>
+        <leadTo>Delight</leadTo>
+        <exit>east</exit>
+    </location>
     <location>
         <id>2</id>
         <name>Invictus</name>
@@ -66,8 +66,10 @@
         <level>1</level>
         <leadTo>Kumo</leadTo>
         <leadTo>Doppler</leadTo>
+        <leadTo>Delight</leadTo>
         <exit>south</exit>
         <exit>east</exit>
+        <exit>west</exit>
     </location>
     <location>
         <id>7</id>
