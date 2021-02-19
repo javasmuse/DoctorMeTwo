@@ -30,9 +30,8 @@ public class GameText {
                 instructions.add(eElement.getElementsByTagName("welcome").item(0).getTextContent());
                 instructions.add(eElement.getElementsByTagName("intro").item(0).getTextContent());
                 instructions.add(eElement.getElementsByTagName("welcomeInstruction").item(0).getTextContent());
-                instructions.add(eElement.getElementsByTagName("gameScreenInstruction").item(0).getTextContent());
+                instructions.add(eElement.getElementsByTagName("helpScreen").item(0).getTextContent());
             }
-
         }
         return instructions;
     }

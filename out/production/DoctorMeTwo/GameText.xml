@@ -23,8 +23,18 @@
             The trick to proceed to the next Level is to earn all badges in the previous level! Good luck on your learning adventure!
 
         </welcomeInstruction>
-        <gameScreenInstruction>
-            gameScreenInstruction
-        </gameScreenInstruction>
+        <helpScreen>
+            Click the buttons on the left to select answer.
+            
+            Click Submit to check if the answer you selected is correct or incorrect.
+
+            Answer the question or move locations by clicking next location buttons located on lower right corner.
+
+            Press Hint button to see hints for the question.
+
+            Click Map button to view the Game Map.
+
+            Click Quit button to quit the game.
+        </helpScreen>
     </textLines>
 </Texts>
