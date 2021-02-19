@@ -19,6 +19,7 @@ public class QuestionList {
     public List<Question> allQuestions() {
 
         List<Question> questions = new ArrayList<>();
+        // ALLOWS EXPORT TO JAR
         InputStream is = getClass().getClassLoader().getResourceAsStream("questionsLevelOne.xml");
         String nodeNameXML = "questions";
 

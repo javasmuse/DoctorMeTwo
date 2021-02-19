@@ -3,6 +3,7 @@ package com.doctorme.util;
 public class ConvertAnswer {
 
     // CONVERT LOCATION INT OF CORRECT ANSWER TO A B C D
+    // Convert here pass to GUI through game controller
     public String convertCorrectAns(int localCA){
         String alphCorrectAns = "";
 

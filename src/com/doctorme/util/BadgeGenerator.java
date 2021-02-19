@@ -13,6 +13,10 @@ import java.util.List;
 public class BadgeGenerator {
     XMLReader xmlR = new XMLReader();
 
+    /*
+    read in Badge xml holding links to png files and route via game controller to GUI
+     */
+
     public List<Badge> allBadges() {
         List<Badge> badges = new ArrayList<>();
         InputStream is = getClass().getClassLoader().getResourceAsStream("Badge.xml");

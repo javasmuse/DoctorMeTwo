@@ -1,6 +1,7 @@
 package com.doctorme.GUI;
 
 import com.doctorme.entities.Badge;
+import com.doctorme.util.Roboto;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,38 +17,42 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameGUI implements ActionListener {
-    private JButton nextLevelBtn, mapCloseBtn, mapBtn, quitBtn, helpBtn, submit, hintBtn, enterGameBtn, leftTopLocBtn, rightTopLocBtn, leftBotLocBtn, rightBotLocBtn, helpCloseBtn;
-    private List<String> nextLocs = new ArrayList<>();
-    private Container content,nextLevelContent;
+    private static final Font TITLE_FONT = Roboto.REGULAR.deriveFont((float)32);
+    private static final Font SUB_TITLE_FONT = Roboto.BOLD.deriveFont((float) 16);
+    private static final Font QUESTION_FONT = Roboto.ITALIC.deriveFont((float) 16);
+    private static final Font NORMAL_FONT = Roboto.REGULAR.deriveFont((float) 16);
+    private static final Font ANSWER_FONT = Roboto.BOLD.deriveFont((float) 24);
+    private static final Font NO_QUESTIONS_FONT = Roboto.BOLD.deriveFont((float) 28);
+    private static final Font BUTTON_FONT = Roboto.BOLD.deriveFont((float) 12);
+    private final Container content;
+    private Container nextLevelContent;
     private final JFrame window = new JFrame();
     private JFrame helpWindow, mapWindow,nextLevel;
-    private JLabel nextLevelPara,congratulationsLabel, timeToAnswer, gameMap, mapTitle, name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, scoreBox, progressTitle, progressBox, correctLabel, incorrectLabel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
-    private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, badgePanel, scorePanel, enterGamePanel;
-    private JTextArea helpText, gameInstructions, questionText, descriptionText, hintText, noMoreQuestionsText;
-    private JRadioButton optA, optB, optC, optD;
-    private static final Font TITLE_FONT = new Font("Times New Roman", Font.BOLD, 32);
-    private static final Font SUB_TITLE_FONT = new Font("Times New Roman", Font.BOLD, 16);
-    private static final Font QUESTION_FONT = new Font("Times New Roman", Font.ITALIC, 16);
-    private static final Font NORMAL_FONT = new Font("Times New Roman", Font.PLAIN, 16);
-    private static final Font ANSWER_FONT = new Font("Times New Roman", Font.BOLD, 24);
-    private static final Font NO_QUESTIONS_FONT = new Font("Times New Roman", Font.BOLD, 28);
+    private JPanel questionPanel, answerPanel;
+    private JLabel nextLevelPara,congratulationsLabel,timeToAnswer, currLocation, scoreBox, progressBox, correctLabel, incorrectLabel;
+    private final JTextArea gameInstructions;
+    private JTextArea helpText, questionText, descriptionText, hintText, noMoreQuestionsText;
+    private final JTextField userName;
     private JScrollPane scrollPane;
-    int currentScore, badgeProgress;
-    private String correctAnswer, nextLocation, playerName, backgroundHexColor, locationHexColor, buttonHexColor;
+    private final JButton enterGameBtn;
+    private JButton nextLevelBtn, mapCloseBtn, mapBtn, quitBtn, helpBtn, submit, hintBtn, leftTopLocBtn, rightTopLocBtn, leftBotLocBtn, rightBotLocBtn, helpCloseBtn;
+    private JRadioButton optA, optB, optC, optD;
     private ButtonGroup radioGroup;
+    private final List<JLabel> badgeLabels = new ArrayList<>();
+    private final List<Badge> badges = new ArrayList<>();
+    private final List<String> nextLocs = new ArrayList<>();
+    private String correctAnswer, nextLocation, playerName, backgroundHexColor, locationHexColor, buttonHexColor;
+    private int currentScore, badgeProgress;
+    private long startQuestion, endQuestion, startBadgeTimer;
     private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame, wantsToChangeLocation, hasSubmittedAnswer, badgeEarned;
-    private JTextField userName;
-    private List<Badge> badges = new ArrayList<>();
-    private List<JLabel> badgeLabels = new ArrayList<>();
-    private long startQuestion,endQuestion, startBadgeTimer, endBadgeTimer;
 
     public GameGUI(String introTitle, String introText, String introInstructions){
         setHasCorrectAnswer(false);
         setReadyForNextQuestion(false);
         setEnteredGame(false);
         setHasSubmittedAnswer(false);
-        setBackgroundHexColor("#ADC7D9");
-        setLocationHexColor("#043769");
+        setBackgroundHexColor("#146EB4");  // brad
+        setLocationHexColor("#043769"); // brad
 
         //Setting the GUI window
         window.setSize(1050,540);
@@ -59,13 +64,13 @@ public class GameGUI implements ActionListener {
         content.setBackground(Color.decode(getBackgroundHexColor()));
 
         //Welcome Title
-        welcomeTitle = new JLabel(introTitle, SwingConstants.CENTER);
+        JLabel welcomeTitle = new JLabel(introTitle, SwingConstants.CENTER);
         welcomeTitle.setBounds(50,10,950,35);
         welcomeTitle.setForeground(Color.black);
         welcomeTitle.setFont(TITLE_FONT);
         content.add(welcomeTitle);
 
-        gameDescription = new JLabel(introText, SwingConstants.CENTER);
+        JLabel gameDescription = new JLabel(introText, SwingConstants.CENTER);
         gameDescription.setBounds(50,45,950,30);
         gameDescription.setForeground(Color.black);
         gameDescription.setFont(NORMAL_FONT);
@@ -73,7 +78,7 @@ public class GameGUI implements ActionListener {
 
 
         //----Help or Instruction of the game
-        enterGamePanel = new JPanel();
+        JPanel enterGamePanel = new JPanel();
         enterGamePanel.setBounds(50,90, 950, 350);
         enterGamePanel.setBackground(Color.white);
 //        enterGamePanel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -95,26 +100,28 @@ public class GameGUI implements ActionListener {
 //        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 //        enterGamePanel.add(scrollPane);
 
-        //EnterGame button
-        enterGameBtn = new JButton();
-        enterGameBtn.setBounds(475, 450, 100, 30);
-        enterGameBtn.setText("Enter Game");
-//         enterGameBtn.setBackground(Color.white);
-//         enterGameBtn.setForeground(Color.black);
-//         enterGameBtn.setFont(normalFont);
-        enterGameBtn.setVisible(true);
-        enterGameBtn.addActionListener(this);
-        content.add( enterGameBtn);
-
         //label to prompt player for name
-        name = new JLabel("Player Name:");
-        name.setBounds(220,450,100,30);
+        JLabel name = new JLabel("Player Name:");
+        name.setBounds(200,450,100,30);
+        name.setFont(NORMAL_FONT);
         content.add(name);
 
         //label for player to enter their name
         userName = new JTextField();
         userName.setBounds(300,450,150,30);
         content.add(userName);
+
+        //EnterGame button
+        enterGameBtn = new JButton();
+        enterGameBtn.setBounds(475, 450, 100, 30);
+        enterGameBtn.setText("Enter Game");
+        enterGameBtn.setFont(BUTTON_FONT);
+//         enterGameBtn.setBackground(Color.white);
+//         enterGameBtn.setForeground(Color.black);
+//         enterGameBtn.setFont(normalFont);
+        enterGameBtn.setVisible(true);
+        enterGameBtn.addActionListener(this);
+        content.add( enterGameBtn);
 
         window.repaint();
         window.revalidate();
@@ -151,33 +158,16 @@ public class GameGUI implements ActionListener {
             checkAnswer();
             setHasSubmittedAnswer(true);
         }else if(e.getSource() == submit && submit.getText().equals("Next Question")){
-            timeToAnswer.setText("");
-            startQuestion = System.currentTimeMillis();
+            timerSetHelper();
             setReadyForNextQuestion(true);
         }else if(e.getSource() == leftTopLocBtn){
-            timeToAnswer.setText("");
-            startQuestion = System.currentTimeMillis();
-            startBadgeTimer = System.currentTimeMillis();
-            setNextLocation(nextLocs.get(0));
-            setWantsToChangeLocation(true);
+            locationSetHelper(0);
         }else if(e.getSource() == rightTopLocBtn) {
-            timeToAnswer.setText("");
-            startQuestion = System.currentTimeMillis();
-            startBadgeTimer = System.currentTimeMillis();
-            setNextLocation(nextLocs.get(1));
-            setWantsToChangeLocation(true);
+            locationSetHelper(1);
         }else if(e.getSource() == leftBotLocBtn) {
-            timeToAnswer.setText("");
-            startQuestion = System.currentTimeMillis();
-            startBadgeTimer = System.currentTimeMillis();
-            setNextLocation(nextLocs.get(2));
-            setWantsToChangeLocation(true);
+            locationSetHelper(2);
         }else if(e.getSource() == rightBotLocBtn){
-            timeToAnswer.setText("");
-            startQuestion = System.currentTimeMillis();
-            startBadgeTimer = System.currentTimeMillis();
-            setNextLocation(nextLocs.get(3));
-            setWantsToChangeLocation(true);
+            locationSetHelper(3);
         }else{
             System.out.println("Unrecognized event");
         }
@@ -199,7 +189,7 @@ public class GameGUI implements ActionListener {
 
     private void checkAnswer(){
         submit.setText("Next Question");
-        timeToAnswer.setText("You took " + ((endQuestion - startQuestion)/1000) + " seconds to answer the question!");
+        timeToAnswer = new JLabel("Question answered in: " + ((endQuestion - startQuestion)/1000) + "seconds!");
         timeToAnswer.setBounds(50,485,650,30);
         window.add(timeToAnswer);
         if ((optA.isSelected() && correctAnswer.equals("A")) ||
@@ -233,14 +223,13 @@ public class GameGUI implements ActionListener {
         for (int i = 0; i < numBadges; i++){
             updateBadgePanel(badgeLabels.get(i), i);
         }
-
     }
 
     private void updateBadgePanel(JLabel badgeP, int index){
         //timer ends
-        endBadgeTimer = System.currentTimeMillis();
+        long endBadgeTimer = System.currentTimeMillis();
         timeToAnswer.setText("");
-        timeToAnswer.setText("You took " + ((endQuestion - startQuestion)/1000) + " seconds to answer the question! and You took " + (endBadgeTimer - startBadgeTimer)/1000 + " seconds to earn a badge for this room!");
+        timeToAnswer.setText("Question answered in " + ((endQuestion - startQuestion)/1000) + " seconds. Badge earned in " + (endBadgeTimer - startBadgeTimer)/1000 + " seconds!");
         timeToAnswer.setFont(NORMAL_FONT);
         Badge toBeAdded = badges.get(index);
         if (toBeAdded.getImageFile() != null){
@@ -265,6 +254,18 @@ public class GameGUI implements ActionListener {
         if(badges.size() == 12 && nextLevel == null){
             winLevel1Screen();
         }
+    }
+
+    private void timerSetHelper(){
+        timeToAnswer.setText("");
+        startQuestion = System.currentTimeMillis();
+    }
+
+    private void locationSetHelper(int index){
+        timerSetHelper();
+        startBadgeTimer = System.currentTimeMillis();
+        setNextLocation(nextLocs.get(index));
+        setWantsToChangeLocation(true);
     }
 
     //*************** SETUP METHODS ***************
@@ -327,7 +328,7 @@ public class GameGUI implements ActionListener {
 
     private void locationPanelSetup(){
         //Title of Current Location
-        currLocationPanel = new JPanel();
+        JPanel currLocationPanel = new JPanel();
         currLocationPanel.setBounds(50,30,600,50);
         currLocationPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         currLocationPanel.setBackground(Color.decode(getLocationHexColor()));
@@ -342,7 +343,7 @@ public class GameGUI implements ActionListener {
 
     private void descriptionPanelSetup(){
         //Panel for Location Description Display
-        descriptionPanel = new JPanel();
+        JPanel descriptionPanel = new JPanel();
         descriptionPanel.setBounds(50,80,600,70);
         descriptionPanel.setBackground(Color.white);
         descriptionPanel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -368,7 +369,8 @@ public class GameGUI implements ActionListener {
         noMoreQuestionsText.setWrapStyleWord(true);
         noMoreQuestionsText.setEditable(false);
         noMoreQuestionsText.setVisible(false);
-        noMoreQuestionsText.setText("All questions here answered correctly! \n\nPlease move to a new location for more questions.");
+        // acknowledging this should really be in the GameText and routed in through the GameText Generator and controoler (Game)
+        noMoreQuestionsText.setText("All location questions answered correctly! \n\nPlease move to a new location for questions.");
         content.add(noMoreQuestionsText);
     }
 
@@ -478,7 +480,7 @@ public class GameGUI implements ActionListener {
 
     private void badgePanelSetup(){
         //Badge Panel
-        badgePanel = new JPanel();
+        JPanel badgePanel = new JPanel();
         badgePanel.setBounds(700,30,300,220);
         badgePanel.setBackground(Color.white);
         badgePanel.setFont(NORMAL_FONT);
@@ -487,7 +489,7 @@ public class GameGUI implements ActionListener {
         badgePanel.setVisible(true);
         content.add(badgePanel);
 
-        badgeTitle = new JLabel("Badges", SwingConstants.CENTER);
+        JLabel badgeTitle = new JLabel("Badges", SwingConstants.CENTER);
         badgeTitle.setBounds(0,0,300,20);
         badgeTitle.setOpaque(true);
         badgeTitle.setForeground(Color.white);
@@ -495,84 +497,84 @@ public class GameGUI implements ActionListener {
         badgeTitle.setFont(SUB_TITLE_FONT);
         badgePanel.add(badgeTitle);
 
-        badge1 = new JLabel();
+        JLabel badge1 = new JLabel();
         badge1.setBounds(0,20,100,50);
         badge1.setBackground(Color.white);
         badge1.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge1);
         badgeLabels.add(badge1);
 
-        badge2 = new JLabel();
+        JLabel badge2 = new JLabel();
         badge2.setBounds(100,20,100,50);
         badge2.setBackground(Color.white);
         badge2.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge2);
         badgeLabels.add(badge2);
 
-        badge3 = new JLabel();
+        JLabel badge3 = new JLabel();
         badge3.setBounds(200,20,100,50);
         badge3.setBackground(Color.white);
         badge3.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge3);
         badgeLabels.add(badge3);
 
-        badge4 = new JLabel();
+        JLabel badge4 = new JLabel();
         badge4.setBounds(0,70,100,50);
         badge4.setBackground(Color.white);
         badge4.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge4);
         badgeLabels.add(badge4);
 
-        badge5 = new JLabel();
+        JLabel badge5 = new JLabel();
         badge5.setBounds(100,70,100,50);
         badge5.setBackground(Color.white);
         badge5.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge5);
         badgeLabels.add(badge5);
 
-        badge6 = new JLabel();
+        JLabel badge6 = new JLabel();
         badge6.setBounds(200,70,100,50);
         badge6.setBackground(Color.white);
         badge6.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge6);
         badgeLabels.add(badge6);
 
-        badge7 = new JLabel();
+        JLabel badge7 = new JLabel();
         badge7.setBounds(0,120,100,50);
         badge7.setBackground(Color.white);
         badge7.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge7);
         badgeLabels.add(badge7);
 
-        badge8 = new JLabel();
+        JLabel badge8 = new JLabel();
         badge8.setBounds(100,120,100,50);
         badge8.setBackground(Color.white);
         badge8.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge8);
         badgeLabels.add(badge8);
 
-        badge9 = new JLabel();
+        JLabel badge9 = new JLabel();
         badge9.setBounds(200,120,100,50);
         badge9.setBackground(Color.white);
         badge9.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge9);
         badgeLabels.add(badge9);
 
-        badge10 = new JLabel();
+        JLabel badge10 = new JLabel();
         badge10.setBounds(0,170,100,50);
         badge10.setBackground(Color.white);
         badge10.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge10);
         badgeLabels.add(badge10);
 
-        badge11 = new JLabel();
+        JLabel badge11 = new JLabel();
         badge11.setBounds(100,170,100,50);
         badge11.setBackground(Color.white);
         badge11.setBorder(BorderFactory.createLineBorder(Color.black));
         badgePanel.add(badge11);
         badgeLabels.add(badge11);
 
-        badge12 = new JLabel();
+        JLabel badge12 = new JLabel();
         badge12.setBounds(200,170,100,50);
         badge12.setBackground(Color.white);
         badge12.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -582,16 +584,16 @@ public class GameGUI implements ActionListener {
 
     private void scorePanelSetup(){
         //Score Panel
-        scorePanel = new JPanel();
-        scorePanel.setBounds(700, 260,300,100);
-        scorePanel.setBackground(Color.white);
+        JPanel scorePanel = new JPanel();
+        scorePanel.setBounds(700, 260,300,110);
+        scorePanel.setBackground(Color.decode(getBackgroundHexColor()));
         scorePanel.setFont(NORMAL_FONT);
         scorePanel.setLayout(null);
-        scorePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+//        scorePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         scorePanel.setVisible(true);
         content.add(scorePanel);
 
-        scoreTitle = new JLabel("Score", SwingConstants.CENTER);
+        JLabel scoreTitle = new JLabel("Score", SwingConstants.CENTER);
         scoreTitle.setBounds(0,0,300,20);
         scoreTitle.setOpaque(true);
         scoreTitle.setForeground(Color.white);
@@ -602,13 +604,14 @@ public class GameGUI implements ActionListener {
 
         scoreBox = new JLabel("", SwingConstants.CENTER);
         scoreBox.setBounds(0,20,300,30);
+        scoreBox.setOpaque(true);
         scoreBox.setForeground(Color.black);
         scoreBox.setBackground(Color.white);
         scoreBox.setFont(NORMAL_FONT);
         scorePanel.add(scoreBox);
 
-        progressTitle = new JLabel("Badge Progress", SwingConstants.CENTER);
-        progressTitle.setBounds(0,50,300,20);
+        JLabel progressTitle = new JLabel("Badge Progress", SwingConstants.CENTER);
+        progressTitle.setBounds(0,60,300,20);
         progressTitle.setOpaque(true);
         progressTitle.setForeground(Color.white);
         progressTitle.setBackground(Color.decode(getLocationHexColor()));
@@ -616,8 +619,9 @@ public class GameGUI implements ActionListener {
         scorePanel.add(progressTitle);
 
         progressBox = new JLabel("0/3", SwingConstants.CENTER);
-        progressBox.setBounds(0,70,300,30);
-        progressBox.setForeground(Color.black);
+        progressBox.setBounds(0,80,300,30);
+        progressBox.setOpaque(true);
+        progressBox.setForeground(Color.red);
         progressBox.setBackground(Color.white);
         progressBox.setFont(NORMAL_FONT);
         scorePanel.add(progressBox);
@@ -630,41 +634,37 @@ public class GameGUI implements ActionListener {
             setQuitBtn(420);
             setMapBtn(420);
         }else if (nextLocs.size() == 2){
-            setLeftTopLocBtn(145, nextLocs.get(0));
+            setLeftTopLocBtn(150, nextLocs.get(0));
             setRightTopLocBtn(nextLocs.get(1));
             setHelpBtn(420);
             setQuitBtn(420);
             setMapBtn(420);
         }else if (nextLocs.size() == 3){
-            setLeftTopLocBtn(145, nextLocs.get(0));
+            setLeftTopLocBtn(150, nextLocs.get(0));
             setRightTopLocBtn(nextLocs.get(1));
             setLeftBotLocBtn(300, nextLocs.get(2));
-            setHelpBtn(460);
-            setQuitBtn(460);
-            setMapBtn(460);
+            setHelpBtn(450);
+            setQuitBtn(450);
+            setMapBtn(450);
         }else if (nextLocs.size() == 4){
-            setLeftTopLocBtn(145, nextLocs.get(0));
+            setLeftTopLocBtn(150, nextLocs.get(0));
             setRightTopLocBtn(nextLocs.get(1));
-            setLeftBotLocBtn(145, nextLocs.get(2));
+            setLeftBotLocBtn(150, nextLocs.get(2));
             setRightBotLocBtn(nextLocs.get(3));
-            setHelpBtn(460);
-            setQuitBtn(460);
-            setMapBtn(460);
+            setHelpBtn(450);
+            setQuitBtn(450);
+            setMapBtn(450);
         }else{
             setHelpBtn(420);
             setQuitBtn(420);
             setMapBtn(420);
         }
     }
-    private void timerSetup(){
-        timeToAnswer = new JLabel();
-        timeToAnswer.setBounds(50,485,650,30);
-        timeToAnswer.setText("");
-    }
 
     private void setMapBtn(int y){
         mapBtn = new JButton();
         mapBtn.setText("Map");
+        mapBtn.setFont(BUTTON_FONT);
         mapBtn.setBounds(900,y,100,30);
         mapBtn.setVisible(true);
         mapBtn.addActionListener(this);
@@ -674,6 +674,7 @@ public class GameGUI implements ActionListener {
         helpBtn = new JButton();
         helpBtn.setBounds(700, y, 100, 30);
         helpBtn.setText("Help");
+        helpBtn.setFont(BUTTON_FONT);
 //        helpBtn.setBackground(Color.white);
 //        helpBtn.setForeground(Color.black);
 //        helpBtn.setFont(normalFont);
@@ -686,6 +687,7 @@ public class GameGUI implements ActionListener {
         quitBtn = new JButton();
         quitBtn.setBounds(800, y, 100, 30);
         quitBtn.setText("Quit");
+        quitBtn.setFont(BUTTON_FONT);
 //        quitBtn.setBackground(Color.white);
 //        quitBtn.setForeground(Color.black);
 //        quitBtn.setFont(normalFont);
@@ -698,6 +700,7 @@ public class GameGUI implements ActionListener {
         leftTopLocBtn = new JButton();
         leftTopLocBtn.setBounds(700, 380, width, 30);
         leftTopLocBtn.setText("<<< " + name);
+        leftTopLocBtn.setFont(BUTTON_FONT);
 //        leftTopLocBtn.setBackground(Color.white);
 //        leftTopLocBtn.setForeground(Color.black);
 //        leftTopLocBtn.setFont(normalFont);
@@ -708,8 +711,9 @@ public class GameGUI implements ActionListener {
 
     private void setRightTopLocBtn(String name){
         rightTopLocBtn = new JButton();
-        rightTopLocBtn.setBounds(855, 380, 145, 30);
+        rightTopLocBtn.setBounds(850, 380, 150, 30);
         rightTopLocBtn.setText(name + " >>>");
+        rightTopLocBtn.setFont(BUTTON_FONT);
 //        rightTopLocBtn.setBackground(Color.white);
 //        rightTopLocBtn.setForeground(Color.black);
 //        rightTopLocBtn.setFont(normalFont);
@@ -720,8 +724,9 @@ public class GameGUI implements ActionListener {
 
     private void setLeftBotLocBtn(int width, String name){
         leftBotLocBtn = new JButton();
-        leftBotLocBtn.setBounds(700, 420, width, 30);
+        leftBotLocBtn.setBounds(700, 410, width, 30);
         leftBotLocBtn.setText("<<< " + name);
+        leftBotLocBtn.setFont(BUTTON_FONT);
 //        leftBotLocBtn.setBackground(Color.white);
 //        leftBotLocBtn.setForeground(Color.black);
 //        leftBotLocBtn.setFont(normalFont);
@@ -732,14 +737,22 @@ public class GameGUI implements ActionListener {
 
     private void setRightBotLocBtn(String name){
         rightBotLocBtn = new JButton();
-        rightBotLocBtn.setBounds(855, 420, 145, 30);
+        rightBotLocBtn.setBounds(850, 410, 150, 30);
         rightBotLocBtn.setText(name + " >>>");
+        rightBotLocBtn.setFont(BUTTON_FONT);
 //        rightBotLocBtn.setBackground(Color.white);
 //        rightBotLocBtn.setForeground(Color.black);
 //        rightBotLocBtn.setFont(normalFont);
         rightBotLocBtn.setVisible(true);
         rightBotLocBtn.addActionListener(this);
         content.add(rightBotLocBtn);
+    }
+
+    private void timerSetup(){
+        timeToAnswer = new JLabel();
+        timeToAnswer.setBounds(50,485,650,30);
+        timeToAnswer.setText("");
+        timeToAnswer.setFont(NORMAL_FONT);
     }
 
     private void displayMapWindow(){
@@ -754,13 +767,13 @@ public class GameGUI implements ActionListener {
         mapContent = mapWindow.getContentPane();
         mapContent.setBackground(Color.decode("#ADC7D9"));
 
-        mapTitle = new JLabel("The Map of Doctor Me Game",SwingConstants.CENTER);
+        JLabel mapTitle = new JLabel("The Map of Doctor Me Game", SwingConstants.CENTER);
         mapTitle.setBounds(100,10,500,50);
         mapTitle.setFont(TITLE_FONT);
         mapTitle.setForeground(Color.black);
         mapContent.add(mapTitle,BorderLayout.CENTER);
 
-        gameMap = new JLabel();
+        JLabel gameMap = new JLabel();
         gameMap.setBounds(20,70,850,650);
         gameMap.setBackground(Color.green);
         gameMap.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -782,6 +795,7 @@ public class GameGUI implements ActionListener {
         mapCloseBtn = new JButton();
         mapCloseBtn.setBounds(450, 730, 100, 30);
         mapCloseBtn.setText("Close");
+        mapCloseBtn.setFont(BUTTON_FONT);
         mapCloseBtn.setVisible(true);
         mapCloseBtn.addActionListener(this);
         mapContent.add(mapCloseBtn);
@@ -823,6 +837,7 @@ public class GameGUI implements ActionListener {
         helpCloseBtn = new JButton();
         helpCloseBtn.setBounds(210, 430, 80, 30);
         helpCloseBtn.setText("Close");
+        helpCloseBtn.setFont(BUTTON_FONT);
 //        helpCloseBtn.setBackground(Color.white);
 //        helpCloseBtn.setForeground(Color.black);
 //        helpCloseBtn.setFont(normalFont);
