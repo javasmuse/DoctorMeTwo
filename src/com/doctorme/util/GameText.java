@@ -12,10 +12,14 @@ import java.util.List;
 public class GameText {
     XMLReader reader = new XMLReader();
 
+    /*
+    game or story text feeds from xml and routes through the game text generator via game controller to GUI
+     */
+
     // passes xml file to xml reader and parses it to a List
     public List<String> readInstructions(){
         List<String> instructions = new ArrayList<>();
-        InputStream is = getClass().getClassLoader().getResourceAsStream("GameText.xml");
+        InputStream is = getClass().getClassLoader().getResourceAsStream("GameText.xml"); // added to enable use with JAR
         String nodeNameXML = "textLines";
 
         NodeList instNode = reader.readXMLFiles(is, nodeNameXML);

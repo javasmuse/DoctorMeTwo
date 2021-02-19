@@ -50,8 +50,8 @@ public class GameGUI implements ActionListener {
         setReadyForNextQuestion(false);
         setEnteredGame(false);
         setHasSubmittedAnswer(false);
-        setBackgroundHexColor("#146EB4");
-        setLocationHexColor("#043769");
+        setBackgroundHexColor("#146EB4");  // brad
+        setLocationHexColor("#043769"); // brad
 
         //Setting the GUI window
         window.setSize(1050,540);
@@ -186,7 +186,7 @@ public class GameGUI implements ActionListener {
 
     private void checkAnswer(){
         submit.setText("Next Question");
-        timeToAnswer.setText("You took " + ((endQuestion - startQuestion)/1000) + " seconds to answer the question!");
+        timeToAnswer = new JLabel("Question answered in: " + ((endQuestion - startQuestion)/1000) + "seconds!");
         timeToAnswer.setBounds(50,485,650,30);
         window.add(timeToAnswer);
         if ((optA.isSelected() && correctAnswer.equals("A")) ||
@@ -226,7 +226,7 @@ public class GameGUI implements ActionListener {
         //timer ends
         long endBadgeTimer = System.currentTimeMillis();
         timeToAnswer.setText("");
-        timeToAnswer.setText("You took " + ((endQuestion - startQuestion)/1000) + " seconds to answer the question! and You took " + (endBadgeTimer - startBadgeTimer)/1000 + " seconds to earn a badge for this room!");
+        timeToAnswer.setText("Question answered in " + ((endQuestion - startQuestion)/1000) + " seconds. Badge earned in " + (endBadgeTimer - startBadgeTimer)/1000 + " seconds!");
         timeToAnswer.setFont(NORMAL_FONT);
         Badge toBeAdded = badges.get(index);
         if (toBeAdded.getImageFile() != null){
@@ -317,7 +317,8 @@ public class GameGUI implements ActionListener {
         noMoreQuestionsText.setWrapStyleWord(true);
         noMoreQuestionsText.setEditable(false);
         noMoreQuestionsText.setVisible(false);
-        noMoreQuestionsText.setText("All location questions answered correctly! \n\nPlease move to a new location for more questions.");
+        // acknowledging this should really be in the GameText and routed in through the GameText Generator and controoler (Game)
+        noMoreQuestionsText.setText("All location questions answered correctly! \n\nPlease move to a new location for questions.");
         content.add(noMoreQuestionsText);
     }
 

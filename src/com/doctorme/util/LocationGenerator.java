@@ -1,12 +1,9 @@
 package com.doctorme.util;
 
 import com.doctorme.entities.Location;
-import com.doctorme.entities.Question;
 
 import java.util.ArrayList;
 import java.util.List;
-
-// TODO: this class - currently all kinds of junk - fix me
 
 public class LocationGenerator {
     private LocationList ll = new LocationList();
@@ -18,10 +15,12 @@ public class LocationGenerator {
         listLocas = ll.allLocations();
     }
 
+    // start location from a random choice from the list
     public Location startLocation(){
         return  randoLocation(listLocas);
     }
 
+    // move to next room
     public Location nextLocation(String locationName){
 
         for (int i = 0; i < listLocas.size(); i++) {
@@ -44,8 +43,16 @@ public class LocationGenerator {
     }
 
 
+    // ACCESSORS
+    public LocationList getLl() {
+        return ll;
+    }
 
+    public List<Location> getListLocas() {
+        return listLocas;
+    }
 
-
-
+    public Location getCurrLoc() {
+        return currLoc;
+    }
 }

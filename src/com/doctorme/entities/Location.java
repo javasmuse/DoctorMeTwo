@@ -13,7 +13,6 @@ public class Location {
     private List<String> exits;
 
     // CONSTRUCTOR
-
     public Location(int id, String name, String type, String description, int tierLevel, List<String> roomLeadTo, List<String> exits) {
         this.id = id;
         this.name = name;
@@ -26,7 +25,6 @@ public class Location {
 
 
     // ACCESSORS
-
     public int getId() {
         return id;
     }

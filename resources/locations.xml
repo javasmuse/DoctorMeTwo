@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE GameLocations>
 <GameLocations>
-<!--    <location>-->
-<!--        <id>1</id>-->
-<!--        <name>Entry</name>-->
-<!--        <type>body</type>-->
-<!--        <description>Entry room, chalkboard on left, window to the right. No challenge here.</description>-->
-<!--        <level>1</level>-->
-<!--        <leadTo>Invictus</leadTo>-->
-<!--        <exit>north</exit>-->
-<!--    </location>-->
+    <location>
+        <id>1</id>
+        <name>Secret Room</name>
+        <type>Sociology</type>
+        <description>ssh, this one's a secret</description>
+        <level>1</level>
+        <leadTo>Delight</leadTo>
+        <exit>east</exit>
+    </location>
     <location>
         <id>2</id>
         <name>Invictus</name>
         <type>Astronomy</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>White walls, whiteboard, door desks, coffee machine</description>
         <level>1</level>
         <leadTo>Coral</leadTo>
         <leadTo>Alexandria</leadTo>
@@ -27,7 +27,7 @@
         <id>3</id>
         <name>Galaxy</name>
         <type>Body</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>Computers, door desks, a free roaming cat</description>
         <level>1</level>
         <leadTo>Gatsby</leadTo>
         <leadTo>Invictus</leadTo>
@@ -38,7 +38,7 @@
         <id>4</id>
         <name>Gatsby</name>
         <type>Physics</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>Five whiteboards, two door desks, one pinball machine</description>
         <level>1</level>
         <leadTo>Galaxy</leadTo>
         <leadTo>Kumo</leadTo>
@@ -49,7 +49,7 @@
         <id>5</id>
         <name>Kumo</name>
         <type>Mathematics</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>Portrait of Pi on the wall, door desks, a prime number of snacks on the table</description>
         <level>1</level>
         <leadTo>Delight</leadTo>
         <leadTo>Coral</leadTo>
@@ -62,18 +62,20 @@
         <id>6</id>
         <name>Delight</name>
         <type>US History</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>People chatting on a sofa, door desks, ice cream machine</description>
         <level>1</level>
         <leadTo>Kumo</leadTo>
         <leadTo>Doppler</leadTo>
+        <leadTo>Delight</leadTo>
         <exit>south</exit>
         <exit>east</exit>
+        <exit>west</exit>
     </location>
     <location>
         <id>7</id>
         <name>Doppler</name>
         <type>Java</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>Table tennis tables, door desks, coffee bean grinder, espresso machine</description>
         <level>1</level>
         <leadTo>Coral</leadTo>
         <leadTo>Arizona</leadTo>
@@ -86,7 +88,7 @@
         <id>8</id>
         <name>Coral</name>
         <type>World Capitals</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>Bowl of bananas, whiteboard, door desks, dogs playing</description>
         <level>1</level>
         <leadTo>Doppler</leadTo>
         <leadTo>Invictus</leadTo>
@@ -101,7 +103,7 @@
         <id>9</id>
         <name>Arizona</name>
         <type>Geology</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>Computers, door desks, meteorites on tables, nice view of Mt. Rainier</description>
         <level>2</level>
         <leadTo>Doppler</leadTo>
         <leadTo>Fiona</leadTo>
@@ -114,7 +116,7 @@
         <id>10</id>
         <name>Fiona</name>
         <type>Spanish</type>
-        <description>Basic room, whiteboard, door desks, coffee machine</description>
+        <description>los escritorios, gatos durmiendo la siesta, cafe</description>
         <level>2</level>
         <leadTo>Arizona</leadTo>
         <leadTo>Alexandria</leadTo>
@@ -125,7 +127,7 @@
         <id>11</id>
         <name>Alexandria</name>
         <type>Nutrition</type>
-        <description>Like the library, books floor to ceiling, door desks, dogs napping.</description>
+        <description>Like the library, books floor to ceiling, door desks</description>
         <level>2</level>
         <leadTo>Cricket</leadTo>
         <leadTo>Fiona</leadTo>
