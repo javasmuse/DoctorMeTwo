@@ -270,6 +270,7 @@ public class GameGUI implements ActionListener {
         badgePanelSetup();
         scorePanelSetup();
         buttonSetup();
+        timerSetup();
     }
 
     private void locationPanelSetup(){
@@ -602,6 +603,11 @@ public class GameGUI implements ActionListener {
             setQuitBtn(420);
             setMapBtn(420);
         }
+    }
+    private void timerSetup(){
+        timeToAnswer = new JLabel();
+        timeToAnswer.setBounds(50,485,650,30);
+        timeToAnswer.setText("");
     }
 
     private void setMapBtn(int y){
