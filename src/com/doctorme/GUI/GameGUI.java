@@ -16,12 +16,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameGUI implements ActionListener {
-    private JButton mapCloseBtn, mapBtn, quitBtn, helpBtn, submit, hintBtn, enterGameBtn, leftTopLocBtn, rightTopLocBtn, leftBotLocBtn, rightBotLocBtn, helpCloseBtn;
+    private JButton nextLevelBtn, mapCloseBtn, mapBtn, quitBtn, helpBtn, submit, hintBtn, enterGameBtn, leftTopLocBtn, rightTopLocBtn, leftBotLocBtn, rightBotLocBtn, helpCloseBtn;
     private List<String> nextLocs = new ArrayList<>();
-    private Container content;
+    private Container content,nextLevelContent;
     private final JFrame window = new JFrame();
-    private JFrame helpWindow, mapWindow;
-    private JLabel timeToAnswer, gameMap, mapTitle, name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, scoreBox, progressTitle, progressBox, correctLabel, incorrectLabel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
+    private JFrame helpWindow, mapWindow,nextLevel;
+    private JLabel nextLevelPara,congratulationsLabel, timeToAnswer, gameMap, mapTitle, name, gameDescription, currLocation, welcomeTitle, badgeTitle, scoreTitle, scoreBox, progressTitle, progressBox, correctLabel, incorrectLabel, badge1, badge2, badge3, badge4, badge5, badge6, badge7, badge8, badge9, badge10, badge11, badge12;
     private JPanel descriptionPanel, questionPanel, currLocationPanel, answerPanel, badgePanel, scorePanel, enterGamePanel;
     private JTextArea helpText, gameInstructions, questionText, descriptionText, hintText, noMoreQuestionsText;
     private JRadioButton optA, optB, optC, optD;
@@ -138,6 +138,8 @@ public class GameGUI implements ActionListener {
             helpWindow.dispose();
         }else if(e.getSource() == mapCloseBtn){
             mapWindow.dispose();
+        }else if(e.getSource()==nextLevelBtn){
+            //Level 2 should load up! Coming Soon!
         }
         else if(e.getSource() == quitBtn) {
             window.dispose();
@@ -231,6 +233,7 @@ public class GameGUI implements ActionListener {
         for (int i = 0; i < numBadges; i++){
             updateBadgePanel(badgeLabels.get(i), i);
         }
+
     }
 
     private void updateBadgePanel(JLabel badgeP, int index){
@@ -258,6 +261,10 @@ public class GameGUI implements ActionListener {
             }
             badgeP.setText(toBeAdded.getName());
         }
+
+        if(badges.size() == 12 && nextLevel == null){
+            winLevel1Screen();
+        }
     }
 
     //*************** SETUP METHODS ***************
@@ -271,6 +278,51 @@ public class GameGUI implements ActionListener {
         scorePanelSetup();
         buttonSetup();
         timerSetup();
+    }
+
+    private void winLevel1Screen(){
+        nextLevel = new JFrame();
+        nextLevel.setSize(1050,450);
+        nextLevel.setLocation(500,500);
+        nextLevel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        nextLevel.setLayout(null);
+        nextLevel.setVisible(true);
+        nextLevelContent = nextLevel.getContentPane();
+        nextLevelContent.setBackground(Color.decode(getBackgroundHexColor()));
+
+        congratulationsLabel = new JLabel();
+        congratulationsLabel.setBounds(50,50,900,250);
+        congratulationsLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        nextLevelContent.add(congratulationsLabel);
+
+        BufferedImage congratsImg = null;
+        try{
+            congratsImg = ImageIO.read(new File("resources/images/congratulations.png"));
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+
+        assert congratsImg != null;
+        Image cgImage = congratsImg.getScaledInstance(900,250,Image.SCALE_SMOOTH);
+        ImageIcon img1 = new ImageIcon(cgImage);
+        congratulationsLabel.setIcon(img1);
+
+        nextLevelPara = new JLabel("Level 2 has now been unlocked.", SwingConstants.CENTER);
+        nextLevelPara.setBounds(50,310,900,100);
+        nextLevelPara.setVisible(true);
+        nextLevelPara.setForeground(Color.black);
+        nextLevelPara.setFont(SUB_TITLE_FONT);
+        nextLevelContent.add(nextLevelPara);
+
+        nextLevelBtn = new JButton("Level 2");
+        nextLevelBtn.setBounds(450,375,100,30);
+        nextLevelBtn.addActionListener(this);
+        nextLevelContent.add(nextLevelBtn);
+
+        nextLevel.repaint();
+        nextLevel.revalidate();
+
     }
 
     private void locationPanelSetup(){
