@@ -11,4 +11,6 @@ bring in the game text and provide methods for the controller to pass text to GU
     public String printWelcome(){ return (text.readInstructions().get(0)); }
 
     public String printIntro(){ return text.readInstructions().get(1); }
+
+    public String printGameScreenHelpInstruction(){ return text.readInstructions().get(3); }
 }

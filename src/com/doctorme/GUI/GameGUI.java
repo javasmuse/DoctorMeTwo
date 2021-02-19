@@ -31,7 +31,8 @@ public class GameGUI implements ActionListener {
     private JPanel questionPanel, answerPanel;
     private JLabel nextLevelPara,congratulationsLabel,timeToAnswer, currLocation, scoreBox, progressBox, correctLabel, incorrectLabel;
     private final JTextArea gameInstructions;
-    private JTextArea helpText, questionText, descriptionText, hintText, noMoreQuestionsText;
+    private final JTextArea helpText;
+    private JTextArea questionText, descriptionText, hintText, noMoreQuestionsText;
     private final JTextField userName;
     private JScrollPane scrollPane;
     private final JButton enterGameBtn;
@@ -53,7 +54,7 @@ public class GameGUI implements ActionListener {
         setHasSubmittedAnswer(false);
         setBackgroundHexColor("#146EB4");  // brad
         setLocationHexColor("#043769"); // brad
-
+        helpText = new JTextArea();
         //Setting the GUI window
         window.setSize(1050,540);
         window.setLocation(500,500);
@@ -383,7 +384,7 @@ public class GameGUI implements ActionListener {
         content.add(questionPanel);
 
         questionText = new JTextArea();
-        questionText.setBounds(52,102,596,76);
+        questionText.setBounds(2,2,596,76);
         questionText.setForeground(Color.black);
         questionText.setFont(QUESTION_FONT);
         startBadgeTimer = System.currentTimeMillis();
@@ -823,8 +824,8 @@ public class GameGUI implements ActionListener {
         helpContent.add(helpTitle,BorderLayout.CENTER);
 
         //text area for the help window
-        helpText = new JTextArea();
-        helpText.setText("Here are some basic instructions if you get stuck blah blah blah");
+//        helpText = new JTextArea();
+//        helpText.setText("Here are some basic instructions if you get stuck blah blah blah");
         helpText.setBounds(50,70,400,350);
         helpText.setForeground(Color.black);
         helpText.setFont(QUESTION_FONT);

@@ -21,22 +21,24 @@ possibilities are endless, host your own trivia night :)
     private String fileName; // Expansion - to allow user to choose different sets of questions or different rooms, also can be used to level up with insertion of more xml
     private String nodeNameXML; // same as above comment
     // available lists - questions, locations
-    private List<Badge> badges = new ArrayList<>(); // list of badges
+
+    private final List<Badge> badges = new ArrayList<>(); // list of badges
     // access other classes
-    private QuestionGenerator qg = new QuestionGenerator();
-    private LocationGenerator lg = new LocationGenerator();
-    private Player currentPlayer = new Player();
-    private ConvertAnswer conAns = new ConvertAnswer();
-    private GameTextGenerator gtg = new GameTextGenerator();
-    private Boolean keepGoing = true;
-    private int currQpoints;
-    private HashMap<String, Integer> categoryPoints = new HashMap<>();
+    private final QuestionGenerator qg = new QuestionGenerator();
+    private final LocationGenerator lg = new LocationGenerator();
+    private final Player currentPlayer = new Player();
+    private final ConvertAnswer conAns = new ConvertAnswer();
+    private final GameTextGenerator gtg = new GameTextGenerator();
+    private final HashMap<String, Integer> categoryPoints = new HashMap<>();
+    private int currentLevel;
 
     // START HERE
     public void startGame() {
         // instantiate and start the GUI, send in the welcome and instruction text from game text generator
         GameGUI gooey = new GameGUI(gtg.printWelcome(), gtg.printIntro(), gtg.printInstructions());
+        gooey.updateHelpScreenText(gtg.printGameScreenHelpInstruction());
 
+        setCurrentLevel(1);
         lg.bringLocations(); // set locations
         qg.bringQuestions(); // set questions
         setBadges(new BadgeGenerator().allBadges());
@@ -64,8 +66,7 @@ possibilities are endless, host your own trivia night :)
         // update GUI
         gooey.guiUpdate();
 
-        while (keepGoing) {
-
+        while (true) {
             // allows pause for code to enter if statement
             try {
                 Thread.sleep(100);
@@ -83,18 +84,18 @@ possibilities are endless, host your own trivia night :)
                     String questType = qg.getCurrQ().getType().toLowerCase();
 
                     if(categoryPoints.containsKey(questType)){
-                        categoryPoints.put(questType,categoryPoints.get(questType)+currQpoints);
+                        categoryPoints.put(questType,categoryPoints.get(questType)+(currentLevel * 10));
                     }
                     else{
-                        categoryPoints.put(questType,currQpoints);
+                        categoryPoints.put(questType, currentLevel * 10);
                     }
 
                     if(categoryPoints.get(questType)>=30){
                         if (awardBadge(questType)) gooey.setBadges(currentPlayer.getBadges());
                     }
-                    setCurrentGameScore(getCurrentGameScore() + currQpoints);
+                    setCurrentGameScore(getCurrentGameScore() + currentLevel * 10);
                     gooey.setCurrentScore(getCurrentGameScore());
-                    gooey.setBadgeProgress(categoryPoints.get(questType) / currQpoints);
+                    gooey.setBadgeProgress(categoryPoints.get(questType) / (currentLevel * 10));
 
                     // if wrong answer
                 }else{
@@ -117,8 +118,8 @@ possibilities are endless, host your own trivia night :)
                 // use new location to reset room and questions
                 stockLocation(gooey, location);
                 stockNextQuestion(gooey, location);
-                if (categoryPoints.get(qg.getCurrQ().getType().toLowerCase()) != null){
-                    gooey.setBadgeProgress(categoryPoints.get(qg.getCurrQ().getType().toLowerCase()) / currQpoints);
+                if (categoryPoints.get(location.getType().toLowerCase()) != null){
+                    gooey.setBadgeProgress(categoryPoints.get(location.getType().toLowerCase()) / (currentLevel * 10));
                 }else{
                     gooey.setBadgeProgress(0);
                 }
@@ -130,7 +131,6 @@ possibilities are endless, host your own trivia night :)
     // STOCK THE QUESTION OBJECT
     private void stockNextQuestion(GameGUI gooey, Location location) {
         Question currQ = qg.nextQuestion(location);
-        currQpoints = currQ.getPoints();
         gooey.updateQuestion(currQ.getQuestion());
         gooey.updateOptionA(currQ.getPossibleAnswers().get(0));
         gooey.updateOptionB(currQ.getPossibleAnswers().get(1));
@@ -142,10 +142,9 @@ possibilities are endless, host your own trivia night :)
 
     // STOCK THE LOCATION OBJECT
     private void stockLocation(GameGUI gooey, Location location) {
-        Location currL = location;
-        String currLocalDescrip = currL.getDescription();
-        String typeLocal = currL.getType();
-        gooey.updateCurrentLocation(currL.getName());
+        String currLocalDescrip = location.getDescription();
+        String typeLocal = location.getType();
+        gooey.updateCurrentLocation(location.getName());
         gooey.updateLocationDescription("Subject: " + typeLocal + "\n" + "View: " + currLocalDescrip);
         gooey.updateNextLocations(location.getRoomLeadTo());
     }
@@ -182,5 +181,13 @@ possibilities are endless, host your own trivia night :)
         for(Badge badge: badges){
             this.badges.add(badge);
         }
+    }
+
+    private int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    private void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }
