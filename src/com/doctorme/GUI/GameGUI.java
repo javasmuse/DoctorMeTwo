@@ -383,7 +383,7 @@ public class GameGUI implements ActionListener {
         content.add(questionPanel);
 
         questionText = new JTextArea();
-        questionText.setBounds(52,102,596,76);
+        questionText.setBounds(2,2,596,76);
         questionText.setForeground(Color.black);
         questionText.setFont(QUESTION_FONT);
         startBadgeTimer = System.currentTimeMillis();
@@ -440,7 +440,7 @@ public class GameGUI implements ActionListener {
         radioGroup.add(optD);
 
         hintText = new JTextArea();
-        hintText.setBounds(2, 134, 596, 40);
+        hintText.setBounds(10, 136, 588, 40);
         hintText.setForeground(Color.black);
         hintText.setFont(QUESTION_FONT);
         hintText.setLineWrap(true);
