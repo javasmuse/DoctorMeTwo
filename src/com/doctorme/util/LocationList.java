@@ -17,6 +17,7 @@ public class LocationList {
     public List<Location> allLocations() {
 
         List<Location> locations = new ArrayList<>();
+        // Used to readXML in JAR
         InputStream is = getClass().getClassLoader().getResourceAsStream("locations.xml");
         String nodeNameXML = "location";
 

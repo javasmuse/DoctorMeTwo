@@ -3,7 +3,6 @@ package com.doctorme.util;
 import com.doctorme.entities.Location;
 import com.doctorme.entities.Question;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +25,7 @@ public class QuestionGenerator {
         return currentRoomQues;
     }
 
+    // REMOVE CORRECTLY ANSWERED QUESTION FROM CURRENT TYPE LIST
     public List<Question> removeCorrAnsQuest() {
         listQ.remove(currQ);
         return listQ;
@@ -46,10 +46,9 @@ public class QuestionGenerator {
 
         if (roomQs.isEmpty()) {
             currQ = dummyQuest();
-            System.out.println("Sorry there are no more of that type of question. Please change rooms.");
         } else {
             currentRoomQs(location, roomQs); // set this rooms questions
-            currQ = randoQuestion(roomQs); // return one q from the roomQs list
+            currQ = randoQuestion(roomQs); // return one random q from the roomQs list
         }
         return currQ;
     }
@@ -80,9 +79,16 @@ public class QuestionGenerator {
         return currQ;
     }
 
+    public QuestionList getQl() {
+        return ql;
+    }
+
     public List<Question> getListQ() {
         return listQ;
     }
 
-
+    public List<Question> getCurrentRoomQues() {
+        return currentRoomQues;
+    }
 }
+

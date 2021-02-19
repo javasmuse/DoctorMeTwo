@@ -50,8 +50,8 @@ public class GameGUI implements ActionListener {
         setReadyForNextQuestion(false);
         setEnteredGame(false);
         setHasSubmittedAnswer(false);
-        setBackgroundHexColor("#146EB4");
-        setLocationHexColor("#043769");
+        setBackgroundHexColor("#146EB4");  // brad
+        setLocationHexColor("#043769"); // brad
 
         //Setting the GUI window
         window.setSize(1050,540);
@@ -317,7 +317,8 @@ public class GameGUI implements ActionListener {
         noMoreQuestionsText.setWrapStyleWord(true);
         noMoreQuestionsText.setEditable(false);
         noMoreQuestionsText.setVisible(false);
-        noMoreQuestionsText.setText("All location questions answered correctly! \n\nPlease move to a new location for more questions.");
+        // acknowledging this should really be in the GameText and routed in through the GameText Generator and controoler (Game)
+        noMoreQuestionsText.setText("All location questions answered correctly! \n\nPlease move to a new location for questions.");
         content.add(noMoreQuestionsText);
     }
 
