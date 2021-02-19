@@ -51,8 +51,9 @@ public class GameGUI implements ActionListener {
         setReadyForNextQuestion(false);
         setEnteredGame(false);
         setHasSubmittedAnswer(false);
-        setBackgroundHexColor("#146EB4");  // brad
-        setLocationHexColor("#043769"); // brad
+        setBackgroundHexColor("#ADC7D9");  // #146EB4 (darker blue), #F9F3E6 (linen)
+        setLocationHexColor("#242F41"); // #043769
+        setButtonHexColor("#F3A847");
 
         //Setting the GUI window
         window.setSize(1050,540);
@@ -116,9 +117,8 @@ public class GameGUI implements ActionListener {
         enterGameBtn.setBounds(475, 450, 100, 30);
         enterGameBtn.setText("Enter Game");
         enterGameBtn.setFont(BUTTON_FONT);
-//         enterGameBtn.setBackground(Color.white);
-//         enterGameBtn.setForeground(Color.black);
-//         enterGameBtn.setFont(normalFont);
+        enterGameBtn.setBackground(Color.decode(getButtonHexColor()));
+        enterGameBtn.setForeground(Color.decode(getLocationHexColor()));
         enterGameBtn.setVisible(true);
         enterGameBtn.addActionListener(this);
         content.add( enterGameBtn);
@@ -319,6 +319,9 @@ public class GameGUI implements ActionListener {
         nextLevelBtn = new JButton("Level 2");
         nextLevelBtn.setBounds(450,375,100,30);
         nextLevelBtn.addActionListener(this);
+        nextLevelBtn.setFont(BUTTON_FONT);
+        nextLevelBtn.setBackground(Color.decode(getButtonHexColor()));
+        nextLevelBtn.setForeground(Color.decode(getLocationHexColor()));
         nextLevelContent.add(nextLevelBtn);
 
         nextLevel.repaint();
@@ -453,12 +456,18 @@ public class GameGUI implements ActionListener {
         hintBtn.setBounds(10,190,60,30);
         hintBtn.setVisible(true);
         hintBtn.addActionListener(this);
+        hintBtn.setFont(BUTTON_FONT);
+        hintBtn.setBackground(Color.decode(getButtonHexColor()));
+        hintBtn.setForeground(Color.decode(getLocationHexColor()));
         answerPanel.add(hintBtn);
 
         submit = new JButton("Submit");
         submit.setBounds(240,190,120,30);
         submit.setVisible(true);
         submit.addActionListener(this);
+        submit.setFont(BUTTON_FONT);
+        submit.setBackground(Color.decode(getButtonHexColor()));
+        submit.setForeground(Color.decode(getLocationHexColor()));
         answerPanel.add(submit);
 
         correctLabel = new JLabel("CORRECT!");
@@ -668,6 +677,9 @@ public class GameGUI implements ActionListener {
         mapBtn.setBounds(900,y,100,30);
         mapBtn.setVisible(true);
         mapBtn.addActionListener(this);
+        mapBtn.setFont(BUTTON_FONT);
+        mapBtn.setBackground(Color.decode(getButtonHexColor()));
+        mapBtn.setForeground(Color.decode(getLocationHexColor()));
         content.add(mapBtn);
     }
     private void setHelpBtn(int y){
@@ -675,9 +687,8 @@ public class GameGUI implements ActionListener {
         helpBtn.setBounds(700, y, 100, 30);
         helpBtn.setText("Help");
         helpBtn.setFont(BUTTON_FONT);
-//        helpBtn.setBackground(Color.white);
-//        helpBtn.setForeground(Color.black);
-//        helpBtn.setFont(normalFont);
+        helpBtn.setBackground(Color.decode(getButtonHexColor()));
+        helpBtn.setForeground(Color.decode(getLocationHexColor()));
         helpBtn.setVisible(true);
         helpBtn.addActionListener(this);
         content.add(helpBtn);
@@ -688,9 +699,8 @@ public class GameGUI implements ActionListener {
         quitBtn.setBounds(800, y, 100, 30);
         quitBtn.setText("Quit");
         quitBtn.setFont(BUTTON_FONT);
-//        quitBtn.setBackground(Color.white);
-//        quitBtn.setForeground(Color.black);
-//        quitBtn.setFont(normalFont);
+        quitBtn.setBackground(Color.decode(getButtonHexColor()));
+        quitBtn.setForeground(Color.decode(getLocationHexColor()));
         quitBtn.setVisible(true);
         quitBtn.addActionListener(this);
         content.add(quitBtn);
@@ -701,9 +711,8 @@ public class GameGUI implements ActionListener {
         leftTopLocBtn.setBounds(700, 380, width, 30);
         leftTopLocBtn.setText("<<< " + name);
         leftTopLocBtn.setFont(BUTTON_FONT);
-//        leftTopLocBtn.setBackground(Color.white);
-//        leftTopLocBtn.setForeground(Color.black);
-//        leftTopLocBtn.setFont(normalFont);
+        leftTopLocBtn.setBackground(Color.decode(getButtonHexColor()));
+        leftTopLocBtn.setForeground(Color.decode(getLocationHexColor()));
         leftTopLocBtn.setVisible(true);
         leftTopLocBtn.addActionListener(this);
         content.add(leftTopLocBtn);
@@ -714,9 +723,8 @@ public class GameGUI implements ActionListener {
         rightTopLocBtn.setBounds(850, 380, 150, 30);
         rightTopLocBtn.setText(name + " >>>");
         rightTopLocBtn.setFont(BUTTON_FONT);
-//        rightTopLocBtn.setBackground(Color.white);
-//        rightTopLocBtn.setForeground(Color.black);
-//        rightTopLocBtn.setFont(normalFont);
+        rightTopLocBtn.setBackground(Color.decode(getButtonHexColor()));
+        rightTopLocBtn.setForeground(Color.decode(getLocationHexColor()));
         rightTopLocBtn.setVisible(true);
         rightTopLocBtn.addActionListener(this);
         content.add(rightTopLocBtn);
@@ -727,9 +735,8 @@ public class GameGUI implements ActionListener {
         leftBotLocBtn.setBounds(700, 410, width, 30);
         leftBotLocBtn.setText("<<< " + name);
         leftBotLocBtn.setFont(BUTTON_FONT);
-//        leftBotLocBtn.setBackground(Color.white);
-//        leftBotLocBtn.setForeground(Color.black);
-//        leftBotLocBtn.setFont(normalFont);
+        leftBotLocBtn.setBackground(Color.decode(getButtonHexColor()));
+        leftBotLocBtn.setForeground(Color.decode(getLocationHexColor()));
         leftBotLocBtn.setVisible(true);
         leftBotLocBtn.addActionListener(this);
         content.add(leftBotLocBtn);
@@ -740,9 +747,8 @@ public class GameGUI implements ActionListener {
         rightBotLocBtn.setBounds(850, 410, 150, 30);
         rightBotLocBtn.setText(name + " >>>");
         rightBotLocBtn.setFont(BUTTON_FONT);
-//        rightBotLocBtn.setBackground(Color.white);
-//        rightBotLocBtn.setForeground(Color.black);
-//        rightBotLocBtn.setFont(normalFont);
+        rightBotLocBtn.setBackground(Color.decode(getButtonHexColor()));
+        rightBotLocBtn.setForeground(Color.decode(getLocationHexColor()));
         rightBotLocBtn.setVisible(true);
         rightBotLocBtn.addActionListener(this);
         content.add(rightBotLocBtn);
@@ -765,7 +771,7 @@ public class GameGUI implements ActionListener {
         mapWindow.setLayout(null);
         mapWindow.setVisible(true);
         mapContent = mapWindow.getContentPane();
-        mapContent.setBackground(Color.decode("#ADC7D9"));
+        mapContent.setBackground(Color.decode(getBackgroundHexColor()));
 
         JLabel mapTitle = new JLabel("The Map of Doctor Me Game", SwingConstants.CENTER);
         mapTitle.setBounds(100,10,500,50);
@@ -796,6 +802,8 @@ public class GameGUI implements ActionListener {
         mapCloseBtn.setBounds(450, 730, 100, 30);
         mapCloseBtn.setText("Close");
         mapCloseBtn.setFont(BUTTON_FONT);
+        mapCloseBtn.setBackground(Color.decode(getButtonHexColor()));
+        mapCloseBtn.setForeground(Color.decode(getLocationHexColor()));
         mapCloseBtn.setVisible(true);
         mapCloseBtn.addActionListener(this);
         mapContent.add(mapCloseBtn);
@@ -838,9 +846,8 @@ public class GameGUI implements ActionListener {
         helpCloseBtn.setBounds(210, 430, 80, 30);
         helpCloseBtn.setText("Close");
         helpCloseBtn.setFont(BUTTON_FONT);
-//        helpCloseBtn.setBackground(Color.white);
-//        helpCloseBtn.setForeground(Color.black);
-//        helpCloseBtn.setFont(normalFont);
+        helpCloseBtn.setBackground(Color.decode(getButtonHexColor()));
+        helpCloseBtn.setForeground(Color.decode(getLocationHexColor()));
         helpCloseBtn.setVisible(true);
         helpCloseBtn.addActionListener(this);
         helpContent.add(helpCloseBtn);
