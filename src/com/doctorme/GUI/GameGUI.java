@@ -25,16 +25,14 @@ public class GameGUI implements ActionListener {
     private static final Font NO_QUESTIONS_FONT = Roboto.BOLD.deriveFont((float) 28);
     private static final Font BUTTON_FONT = Roboto.BOLD.deriveFont((float) 12);
     private final Container content;
-    private Container nextLevelContent;
     private final JFrame window = new JFrame();
     private JFrame helpWindow, mapWindow,nextLevel;
     private JPanel questionPanel, answerPanel;
-    private JLabel nextLevelPara,congratulationsLabel,timeToAnswer, currLocation, scoreBox, progressBox, correctLabel, incorrectLabel;
+    private JLabel timeToAnswer, currLocation, scoreBox, progressBox, correctLabel, incorrectLabel;
     private final JTextArea gameInstructions;
     private final JTextArea helpText;
     private JTextArea questionText, descriptionText, hintText, noMoreQuestionsText;
     private final JTextField userName;
-    private JScrollPane scrollPane;
     private final JButton enterGameBtn;
     private JButton nextLevelBtn, mapCloseBtn, mapBtn, quitBtn, helpBtn, submit, hintBtn, leftTopLocBtn, rightTopLocBtn, leftBotLocBtn, rightBotLocBtn, helpCloseBtn;
     private JRadioButton optA, optB, optC, optD;
@@ -42,7 +40,7 @@ public class GameGUI implements ActionListener {
     private final List<JLabel> badgeLabels = new ArrayList<>();
     private final List<Badge> badges = new ArrayList<>();
     private final List<String> nextLocs = new ArrayList<>();
-    private String correctAnswer, nextLocation, playerName, backgroundHexColor, locationHexColor, buttonHexColor;
+    private String correctAnswer, nextLocation, playerName, backgroundHexColor, locationHexColor, buttonHexColor, panelHexColor, textHexColor;
     private int currentScore, badgeProgress;
     private long startQuestion, endQuestion, startBadgeTimer;
     private boolean readyForNextQuestion, hasCorrectAnswer, enteredGame, wantsToChangeLocation, hasSubmittedAnswer, badgeEarned;
@@ -52,9 +50,13 @@ public class GameGUI implements ActionListener {
         setReadyForNextQuestion(false);
         setEnteredGame(false);
         setHasSubmittedAnswer(false);
-        setBackgroundHexColor("#146EB4");  // brad
-        setLocationHexColor("#043769"); // brad
+        setBackgroundHexColor("#ADC7D9");  // #146EB4 (darker blue), #F9F3E6 (linen)
+        setLocationHexColor("#242F41"); // #043769
+        setButtonHexColor("#F3A847");
+        setTextHexColor("#242F41");
+        setPanelHexColor("#F7F7F7");
         helpText = new JTextArea();
+
         //Setting the GUI window
         window.setSize(1050,540);
         window.setLocation(500,500);
@@ -67,13 +69,13 @@ public class GameGUI implements ActionListener {
         //Welcome Title
         JLabel welcomeTitle = new JLabel(introTitle, SwingConstants.CENTER);
         welcomeTitle.setBounds(50,10,950,35);
-        welcomeTitle.setForeground(Color.black);
+        welcomeTitle.setForeground(Color.decode(getTextHexColor()));
         welcomeTitle.setFont(TITLE_FONT);
         content.add(welcomeTitle);
 
         JLabel gameDescription = new JLabel(introText, SwingConstants.CENTER);
         gameDescription.setBounds(50,45,950,30);
-        gameDescription.setForeground(Color.black);
+        gameDescription.setForeground(Color.decode(getTextHexColor()));
         gameDescription.setFont(NORMAL_FONT);
         content.add(gameDescription);
 
@@ -81,30 +83,27 @@ public class GameGUI implements ActionListener {
         //----Help or Instruction of the game
         JPanel enterGamePanel = new JPanel();
         enterGamePanel.setBounds(50,90, 950, 350);
-        enterGamePanel.setBackground(Color.white);
-//        enterGamePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        enterGamePanel.setBackground(Color.decode(getPanelHexColor()));
+        enterGamePanel.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
+        enterGamePanel.setOpaque(true);
         content.add(enterGamePanel);
 
         gameInstructions = new JTextArea();
         gameInstructions.setText(introInstructions);
-        gameInstructions.setBounds(0,0,950,350);
-        gameInstructions.setForeground(Color.black);
+        gameInstructions.setBounds(2,2,946,346);
+        gameInstructions.setForeground(Color.decode(getTextHexColor()));
+        gameInstructions.setBackground(Color.decode(getPanelHexColor()));
         gameInstructions.setFont(QUESTION_FONT);
         gameInstructions.setLineWrap(true);
         gameInstructions.setWrapStyleWord(true);
         gameInstructions.setEditable(false);
         enterGamePanel.add(gameInstructions);
 
-
-//        scrollPane = new JScrollPane(gameInstructions);
-//        scrollPane.setPreferredSize(new Dimension(950,350));
-//        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-//        enterGamePanel.add(scrollPane);
-
         //label to prompt player for name
         JLabel name = new JLabel("Player Name:");
         name.setBounds(200,450,100,30);
         name.setFont(NORMAL_FONT);
+        name.setForeground(Color.decode(getTextHexColor()));
         content.add(name);
 
         //label for player to enter their name
@@ -117,9 +116,8 @@ public class GameGUI implements ActionListener {
         enterGameBtn.setBounds(475, 450, 100, 30);
         enterGameBtn.setText("Enter Game");
         enterGameBtn.setFont(BUTTON_FONT);
-//         enterGameBtn.setBackground(Color.white);
-//         enterGameBtn.setForeground(Color.black);
-//         enterGameBtn.setFont(normalFont);
+        enterGameBtn.setBackground(Color.decode(getButtonHexColor()));
+        enterGameBtn.setForeground(Color.decode(getLocationHexColor()));
         enterGameBtn.setVisible(true);
         enterGameBtn.addActionListener(this);
         content.add( enterGameBtn);
@@ -289,12 +287,12 @@ public class GameGUI implements ActionListener {
         nextLevel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         nextLevel.setLayout(null);
         nextLevel.setVisible(true);
-        nextLevelContent = nextLevel.getContentPane();
+        Container nextLevelContent = nextLevel.getContentPane();
         nextLevelContent.setBackground(Color.decode(getBackgroundHexColor()));
 
-        congratulationsLabel = new JLabel();
+        JLabel congratulationsLabel = new JLabel();
         congratulationsLabel.setBounds(50,50,900,250);
-        congratulationsLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        congratulationsLabel.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         nextLevelContent.add(congratulationsLabel);
 
         BufferedImage congratsImg = null;
@@ -310,16 +308,19 @@ public class GameGUI implements ActionListener {
         ImageIcon img1 = new ImageIcon(cgImage);
         congratulationsLabel.setIcon(img1);
 
-        nextLevelPara = new JLabel("Level 2 has now been unlocked.", SwingConstants.CENTER);
+        JLabel nextLevelPara = new JLabel("Level 2 has now been unlocked.", SwingConstants.CENTER);
         nextLevelPara.setBounds(50,310,900,100);
         nextLevelPara.setVisible(true);
-        nextLevelPara.setForeground(Color.black);
+        nextLevelPara.setForeground(Color.decode(getTextHexColor()));
         nextLevelPara.setFont(SUB_TITLE_FONT);
         nextLevelContent.add(nextLevelPara);
 
         nextLevelBtn = new JButton("Level 2");
         nextLevelBtn.setBounds(450,375,100,30);
         nextLevelBtn.addActionListener(this);
+        nextLevelBtn.setFont(BUTTON_FONT);
+        nextLevelBtn.setBackground(Color.decode(getButtonHexColor()));
+        nextLevelBtn.setForeground(Color.decode(getLocationHexColor()));
         nextLevelContent.add(nextLevelBtn);
 
         nextLevel.repaint();
@@ -331,7 +332,7 @@ public class GameGUI implements ActionListener {
         //Title of Current Location
         JPanel currLocationPanel = new JPanel();
         currLocationPanel.setBounds(50,30,600,50);
-        currLocationPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        currLocationPanel.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         currLocationPanel.setBackground(Color.decode(getLocationHexColor()));
         content.add(currLocationPanel);
 
@@ -346,13 +347,13 @@ public class GameGUI implements ActionListener {
         //Panel for Location Description Display
         JPanel descriptionPanel = new JPanel();
         descriptionPanel.setBounds(50,80,600,70);
-        descriptionPanel.setBackground(Color.white);
-        descriptionPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        descriptionPanel.setBackground(Color.decode(getPanelHexColor()));
+        descriptionPanel.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         content.add(descriptionPanel);
 
         descriptionText = new JTextArea();
         descriptionText.setBounds(52,82,596,66);
-        descriptionText.setForeground(Color.black);
+        descriptionText.setForeground(Color.decode(getTextHexColor()));
         descriptionText.setFont(QUESTION_FONT);
         descriptionText.setLineWrap(true);
         descriptionText.setWrapStyleWord(true);
@@ -363,7 +364,7 @@ public class GameGUI implements ActionListener {
     private void outOfQuestionsSetup(){
         noMoreQuestionsText = new JTextArea();
         noMoreQuestionsText.setBounds(50,260,600,200);
-        noMoreQuestionsText.setForeground(Color.black);
+        noMoreQuestionsText.setForeground(Color.decode(getTextHexColor()));
         noMoreQuestionsText.setBackground(Color.decode(getBackgroundHexColor()));
         noMoreQuestionsText.setFont(NO_QUESTIONS_FONT);
         noMoreQuestionsText.setLineWrap(true);
@@ -379,13 +380,13 @@ public class GameGUI implements ActionListener {
         //Panel for Question Display
         questionPanel = new JPanel();
         questionPanel.setBounds(50,160,600,80);
-        questionPanel.setBackground(Color.white);
-        questionPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        questionPanel.setBackground(Color.decode(getPanelHexColor()));
+        questionPanel.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         content.add(questionPanel);
 
         questionText = new JTextArea();
         questionText.setBounds(2,2,596,76);
-        questionText.setForeground(Color.black);
+        questionText.setForeground(Color.decode(getTextHexColor()));
         questionText.setFont(QUESTION_FONT);
         startBadgeTimer = System.currentTimeMillis();
         startQuestion = System.currentTimeMillis();
@@ -399,37 +400,37 @@ public class GameGUI implements ActionListener {
         //Answer Panel
         answerPanel = new JPanel();
         answerPanel.setBounds(50,250,600,230);
-        answerPanel.setBackground(Color.white);
+        answerPanel.setBackground(Color.decode(getPanelHexColor()));
         answerPanel.setFont(NORMAL_FONT);
         answerPanel.setLayout(null);
-        answerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        answerPanel.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         answerPanel.setVisible(true);
         content.add(answerPanel);
 
         optA = new JRadioButton();
         optA.setBounds(2, 2, 596, 32);
-        optA.setBackground(Color.white);
+        optA.setBackground(Color.decode(getPanelHexColor()));
         optA.setFont(NORMAL_FONT);
         optA.setVisible(true);
         answerPanel.add(optA);
 
         optB = new JRadioButton();
         optB.setBounds(2, 35, 596, 32);
-        optB.setBackground(Color.white);
+        optB.setBackground(Color.decode(getPanelHexColor()));
         optB.setFont(NORMAL_FONT);
         optB.setVisible(true);
         answerPanel.add(optB);
 
         optC = new JRadioButton();
         optC.setBounds(2, 68, 596, 32);
-        optC.setBackground(Color.white);
+        optC.setBackground(Color.decode(getPanelHexColor()));
         optC.setFont(NORMAL_FONT);
         optC.setVisible(true);
         answerPanel.add(optC);
 
         optD = new JRadioButton();
         optD.setBounds(2, 101, 596, 32);
-        optD.setBackground(Color.white);
+        optD.setBackground(Color.decode(getPanelHexColor()));
         optD.setFont(NORMAL_FONT);
         optD.setVisible(true);
         answerPanel.add(optD);
@@ -442,7 +443,7 @@ public class GameGUI implements ActionListener {
 
         hintText = new JTextArea();
         hintText.setBounds(10, 136, 588, 40);
-        hintText.setForeground(Color.black);
+        hintText.setForeground(Color.decode(getTextHexColor()));
         hintText.setFont(QUESTION_FONT);
         hintText.setLineWrap(true);
         hintText.setWrapStyleWord(true);
@@ -454,18 +455,24 @@ public class GameGUI implements ActionListener {
         hintBtn.setBounds(10,190,60,30);
         hintBtn.setVisible(true);
         hintBtn.addActionListener(this);
+        hintBtn.setFont(BUTTON_FONT);
+        hintBtn.setBackground(Color.decode(getButtonHexColor()));
+        hintBtn.setForeground(Color.decode(getLocationHexColor()));
         answerPanel.add(hintBtn);
 
         submit = new JButton("Submit");
         submit.setBounds(240,190,120,30);
         submit.setVisible(true);
         submit.addActionListener(this);
+        submit.setFont(BUTTON_FONT);
+        submit.setBackground(Color.decode(getButtonHexColor()));
+        submit.setForeground(Color.decode(getLocationHexColor()));
         answerPanel.add(submit);
 
         correctLabel = new JLabel("CORRECT!");
         correctLabel.setBounds(400,190,150,30);
         correctLabel.setForeground(Color.green);
-        correctLabel.setBackground(Color.white);
+        correctLabel.setBackground(Color.decode(getPanelHexColor()));
         correctLabel.setFont(ANSWER_FONT);
         correctLabel.setVisible(false);
         answerPanel.add(correctLabel);
@@ -473,7 +480,7 @@ public class GameGUI implements ActionListener {
         incorrectLabel = new JLabel("INCORRECT");
         incorrectLabel.setBounds(400,190,150,30);
         incorrectLabel.setForeground(Color.red);
-        incorrectLabel.setBackground(Color.white);
+        incorrectLabel.setBackground(Color.decode(getPanelHexColor()));
         incorrectLabel.setFont(ANSWER_FONT);
         incorrectLabel.setVisible(false);
         answerPanel.add(incorrectLabel);
@@ -483,10 +490,10 @@ public class GameGUI implements ActionListener {
         //Badge Panel
         JPanel badgePanel = new JPanel();
         badgePanel.setBounds(700,30,300,220);
-        badgePanel.setBackground(Color.white);
+        badgePanel.setBackground(Color.decode(getPanelHexColor()));
         badgePanel.setFont(NORMAL_FONT);
         badgePanel.setLayout(null);
-        badgePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        badgePanel.setBorder(BorderFactory.createLineBorder(Color.decode(getTextHexColor())));
         badgePanel.setVisible(true);
         content.add(badgePanel);
 
@@ -500,85 +507,85 @@ public class GameGUI implements ActionListener {
 
         JLabel badge1 = new JLabel();
         badge1.setBounds(0,20,100,50);
-        badge1.setBackground(Color.white);
-        badge1.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge1.setBackground(Color.decode(getPanelHexColor()));
+        badge1.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge1);
         badgeLabels.add(badge1);
 
         JLabel badge2 = new JLabel();
         badge2.setBounds(100,20,100,50);
-        badge2.setBackground(Color.white);
-        badge2.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge2.setBackground(Color.decode(getPanelHexColor()));
+        badge2.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge2);
         badgeLabels.add(badge2);
 
         JLabel badge3 = new JLabel();
         badge3.setBounds(200,20,100,50);
-        badge3.setBackground(Color.white);
-        badge3.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge3.setBackground(Color.decode(getPanelHexColor()));
+        badge3.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge3);
         badgeLabels.add(badge3);
 
         JLabel badge4 = new JLabel();
         badge4.setBounds(0,70,100,50);
-        badge4.setBackground(Color.white);
-        badge4.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge4.setBackground(Color.decode(getPanelHexColor()));
+        badge4.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge4);
         badgeLabels.add(badge4);
 
         JLabel badge5 = new JLabel();
         badge5.setBounds(100,70,100,50);
-        badge5.setBackground(Color.white);
-        badge5.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge5.setBackground(Color.decode(getPanelHexColor()));
+        badge5.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge5);
         badgeLabels.add(badge5);
 
         JLabel badge6 = new JLabel();
         badge6.setBounds(200,70,100,50);
-        badge6.setBackground(Color.white);
-        badge6.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge6.setBackground(Color.decode(getPanelHexColor()));
+        badge6.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge6);
         badgeLabels.add(badge6);
 
         JLabel badge7 = new JLabel();
         badge7.setBounds(0,120,100,50);
-        badge7.setBackground(Color.white);
-        badge7.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge7.setBackground(Color.decode(getPanelHexColor()));
+        badge7.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge7);
         badgeLabels.add(badge7);
 
         JLabel badge8 = new JLabel();
         badge8.setBounds(100,120,100,50);
-        badge8.setBackground(Color.white);
-        badge8.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge8.setBackground(Color.decode(getPanelHexColor()));
+        badge8.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge8);
         badgeLabels.add(badge8);
 
         JLabel badge9 = new JLabel();
         badge9.setBounds(200,120,100,50);
-        badge9.setBackground(Color.white);
-        badge9.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge9.setBackground(Color.decode(getPanelHexColor()));
+        badge9.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge9);
         badgeLabels.add(badge9);
 
         JLabel badge10 = new JLabel();
         badge10.setBounds(0,170,100,50);
-        badge10.setBackground(Color.white);
-        badge10.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge10.setBackground(Color.decode(getPanelHexColor()));
+        badge10.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge10);
         badgeLabels.add(badge10);
 
         JLabel badge11 = new JLabel();
         badge11.setBounds(100,170,100,50);
-        badge11.setBackground(Color.white);
-        badge11.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge11.setBackground(Color.decode(getPanelHexColor()));
+        badge11.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge11);
         badgeLabels.add(badge11);
 
         JLabel badge12 = new JLabel();
         badge12.setBounds(200,170,100,50);
-        badge12.setBackground(Color.white);
-        badge12.setBorder(BorderFactory.createLineBorder(Color.black));
+        badge12.setBackground(Color.decode(getPanelHexColor()));
+        badge12.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         badgePanel.add(badge12);
         badgeLabels.add(badge12);
     }
@@ -590,7 +597,6 @@ public class GameGUI implements ActionListener {
         scorePanel.setBackground(Color.decode(getBackgroundHexColor()));
         scorePanel.setFont(NORMAL_FONT);
         scorePanel.setLayout(null);
-//        scorePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         scorePanel.setVisible(true);
         content.add(scorePanel);
 
@@ -600,14 +606,14 @@ public class GameGUI implements ActionListener {
         scoreTitle.setForeground(Color.white);
         scoreTitle.setBackground(Color.decode(getLocationHexColor()));
         scoreTitle.setFont(SUB_TITLE_FONT);
-        scoreTitle.setBorder(BorderFactory.createLineBorder(Color.black));
+        scoreTitle.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         scorePanel.add(scoreTitle);
 
         scoreBox = new JLabel("", SwingConstants.CENTER);
         scoreBox.setBounds(0,20,300,30);
         scoreBox.setOpaque(true);
-        scoreBox.setForeground(Color.black);
-        scoreBox.setBackground(Color.white);
+        scoreBox.setForeground(Color.decode(getTextHexColor()));
+        scoreBox.setBackground(Color.decode(getPanelHexColor()));
         scoreBox.setFont(NORMAL_FONT);
         scorePanel.add(scoreBox);
 
@@ -623,7 +629,7 @@ public class GameGUI implements ActionListener {
         progressBox.setBounds(0,80,300,30);
         progressBox.setOpaque(true);
         progressBox.setForeground(Color.red);
-        progressBox.setBackground(Color.white);
+        progressBox.setBackground(Color.decode(getPanelHexColor()));
         progressBox.setFont(NORMAL_FONT);
         scorePanel.add(progressBox);
     }
@@ -669,6 +675,9 @@ public class GameGUI implements ActionListener {
         mapBtn.setBounds(900,y,100,30);
         mapBtn.setVisible(true);
         mapBtn.addActionListener(this);
+        mapBtn.setFont(BUTTON_FONT);
+        mapBtn.setBackground(Color.decode(getButtonHexColor()));
+        mapBtn.setForeground(Color.decode(getLocationHexColor()));
         content.add(mapBtn);
     }
     private void setHelpBtn(int y){
@@ -676,9 +685,8 @@ public class GameGUI implements ActionListener {
         helpBtn.setBounds(700, y, 100, 30);
         helpBtn.setText("Help");
         helpBtn.setFont(BUTTON_FONT);
-//        helpBtn.setBackground(Color.white);
-//        helpBtn.setForeground(Color.black);
-//        helpBtn.setFont(normalFont);
+        helpBtn.setBackground(Color.decode(getButtonHexColor()));
+        helpBtn.setForeground(Color.decode(getLocationHexColor()));
         helpBtn.setVisible(true);
         helpBtn.addActionListener(this);
         content.add(helpBtn);
@@ -689,9 +697,8 @@ public class GameGUI implements ActionListener {
         quitBtn.setBounds(800, y, 100, 30);
         quitBtn.setText("Quit");
         quitBtn.setFont(BUTTON_FONT);
-//        quitBtn.setBackground(Color.white);
-//        quitBtn.setForeground(Color.black);
-//        quitBtn.setFont(normalFont);
+        quitBtn.setBackground(Color.decode(getButtonHexColor()));
+        quitBtn.setForeground(Color.decode(getLocationHexColor()));
         quitBtn.setVisible(true);
         quitBtn.addActionListener(this);
         content.add(quitBtn);
@@ -702,9 +709,8 @@ public class GameGUI implements ActionListener {
         leftTopLocBtn.setBounds(700, 380, width, 30);
         leftTopLocBtn.setText("<<< " + name);
         leftTopLocBtn.setFont(BUTTON_FONT);
-//        leftTopLocBtn.setBackground(Color.white);
-//        leftTopLocBtn.setForeground(Color.black);
-//        leftTopLocBtn.setFont(normalFont);
+        leftTopLocBtn.setBackground(Color.decode(getButtonHexColor()));
+        leftTopLocBtn.setForeground(Color.decode(getLocationHexColor()));
         leftTopLocBtn.setVisible(true);
         leftTopLocBtn.addActionListener(this);
         content.add(leftTopLocBtn);
@@ -715,9 +721,8 @@ public class GameGUI implements ActionListener {
         rightTopLocBtn.setBounds(850, 380, 150, 30);
         rightTopLocBtn.setText(name + " >>>");
         rightTopLocBtn.setFont(BUTTON_FONT);
-//        rightTopLocBtn.setBackground(Color.white);
-//        rightTopLocBtn.setForeground(Color.black);
-//        rightTopLocBtn.setFont(normalFont);
+        rightTopLocBtn.setBackground(Color.decode(getButtonHexColor()));
+        rightTopLocBtn.setForeground(Color.decode(getLocationHexColor()));
         rightTopLocBtn.setVisible(true);
         rightTopLocBtn.addActionListener(this);
         content.add(rightTopLocBtn);
@@ -728,9 +733,8 @@ public class GameGUI implements ActionListener {
         leftBotLocBtn.setBounds(700, 410, width, 30);
         leftBotLocBtn.setText("<<< " + name);
         leftBotLocBtn.setFont(BUTTON_FONT);
-//        leftBotLocBtn.setBackground(Color.white);
-//        leftBotLocBtn.setForeground(Color.black);
-//        leftBotLocBtn.setFont(normalFont);
+        leftBotLocBtn.setBackground(Color.decode(getButtonHexColor()));
+        leftBotLocBtn.setForeground(Color.decode(getLocationHexColor()));
         leftBotLocBtn.setVisible(true);
         leftBotLocBtn.addActionListener(this);
         content.add(leftBotLocBtn);
@@ -741,9 +745,8 @@ public class GameGUI implements ActionListener {
         rightBotLocBtn.setBounds(850, 410, 150, 30);
         rightBotLocBtn.setText(name + " >>>");
         rightBotLocBtn.setFont(BUTTON_FONT);
-//        rightBotLocBtn.setBackground(Color.white);
-//        rightBotLocBtn.setForeground(Color.black);
-//        rightBotLocBtn.setFont(normalFont);
+        rightBotLocBtn.setBackground(Color.decode(getButtonHexColor()));
+        rightBotLocBtn.setForeground(Color.decode(getLocationHexColor()));
         rightBotLocBtn.setVisible(true);
         rightBotLocBtn.addActionListener(this);
         content.add(rightBotLocBtn);
@@ -754,6 +757,7 @@ public class GameGUI implements ActionListener {
         timeToAnswer.setBounds(50,485,650,30);
         timeToAnswer.setText("");
         timeToAnswer.setFont(NORMAL_FONT);
+        timeToAnswer.setForeground(Color.decode(getTextHexColor()));
     }
 
     private void displayMapWindow(){
@@ -766,18 +770,17 @@ public class GameGUI implements ActionListener {
         mapWindow.setLayout(null);
         mapWindow.setVisible(true);
         mapContent = mapWindow.getContentPane();
-        mapContent.setBackground(Color.decode("#ADC7D9"));
+        mapContent.setBackground(Color.decode(getBackgroundHexColor()));
 
         JLabel mapTitle = new JLabel("The Map of Doctor Me Game", SwingConstants.CENTER);
         mapTitle.setBounds(100,10,500,50);
         mapTitle.setFont(TITLE_FONT);
-        mapTitle.setForeground(Color.black);
+        mapTitle.setForeground(Color.decode(getTextHexColor()));
         mapContent.add(mapTitle,BorderLayout.CENTER);
 
         JLabel gameMap = new JLabel();
         gameMap.setBounds(20,70,850,650);
-        gameMap.setBackground(Color.green);
-        gameMap.setBorder(BorderFactory.createLineBorder(Color.black));
+        gameMap.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         mapContent.add(gameMap);
 
         BufferedImage mapImg = null;
@@ -797,6 +800,8 @@ public class GameGUI implements ActionListener {
         mapCloseBtn.setBounds(450, 730, 100, 30);
         mapCloseBtn.setText("Close");
         mapCloseBtn.setFont(BUTTON_FONT);
+        mapCloseBtn.setBackground(Color.decode(getButtonHexColor()));
+        mapCloseBtn.setForeground(Color.decode(getLocationHexColor()));
         mapCloseBtn.setVisible(true);
         mapCloseBtn.addActionListener(this);
         mapContent.add(mapCloseBtn);
@@ -814,20 +819,19 @@ public class GameGUI implements ActionListener {
         helpWindow.setLayout(null);
         helpWindow.setVisible(true);
         helpContent = helpWindow.getContentPane();
-        helpContent.setBackground(Color.decode(backgroundHexColor));
+        helpContent.setBackground(Color.decode(getBackgroundHexColor()));
 
         //help title
         helpTitle = new JLabel("Need help?", SwingConstants.CENTER);
         helpTitle.setBounds(50,10,400,50);
         helpTitle.setFont(TITLE_FONT);
-        helpTitle.setForeground(Color.black);
+        helpTitle.setForeground(Color.decode(getTextHexColor()));
         helpContent.add(helpTitle,BorderLayout.CENTER);
 
         //text area for the help window
-//        helpText = new JTextArea();
-//        helpText.setText("Here are some basic instructions if you get stuck blah blah blah");
         helpText.setBounds(50,70,400,350);
-        helpText.setForeground(Color.black);
+        helpText.setForeground(Color.decode(getTextHexColor()));
+        helpText.setBackground(Color.decode(getPanelHexColor()));
         helpText.setFont(QUESTION_FONT);
         helpText.setLineWrap(true);
         helpText.setWrapStyleWord(true);
@@ -839,9 +843,8 @@ public class GameGUI implements ActionListener {
         helpCloseBtn.setBounds(210, 430, 80, 30);
         helpCloseBtn.setText("Close");
         helpCloseBtn.setFont(BUTTON_FONT);
-//        helpCloseBtn.setBackground(Color.white);
-//        helpCloseBtn.setForeground(Color.black);
-//        helpCloseBtn.setFont(normalFont);
+        helpCloseBtn.setBackground(Color.decode(getButtonHexColor()));
+        helpCloseBtn.setForeground(Color.decode(getLocationHexColor()));
         helpCloseBtn.setVisible(true);
         helpCloseBtn.addActionListener(this);
         helpContent.add(helpCloseBtn);
@@ -1022,6 +1025,22 @@ public class GameGUI implements ActionListener {
 
     private void setButtonHexColor(String buttonHexColor) {
         this.buttonHexColor = buttonHexColor;
+    }
+
+    private String getPanelHexColor() {
+        return panelHexColor;
+    }
+
+    private void setPanelHexColor(String panelHexColor) {
+        this.panelHexColor = panelHexColor;
+    }
+
+    private String getTextHexColor() {
+        return textHexColor;
+    }
+
+    private void setTextHexColor(String textHexColor) {
+        this.textHexColor = textHexColor;
     }
 
     private boolean isBadgeEarned() {
