@@ -9,32 +9,44 @@
             Interested in a PhD? Is your favorite Amazon Leadership Principle 'Learn &amp; Be Curious' ? Explore Dr. Me!
         </intro>
         <welcomeInstruction>
-            In this game, you will find 4 Levels – Level 1 through Level 4 – which ranges from easy to difficult questions. There are varying number of rooms in each location where you will find questions of different subjects. Explore your way through the game to learn while you earn points and some cool badges!
+            Dr. Me is a fun quiz game. Answer questions to earn badges as you travel from location to location.
+            Earn all 12 badges to complete the current level.
+            Dr. Me is the perfect trivia night game to play during quarantine :)
 
-            Level 1 -> 12 Locations
-            Level 2 -> More Information Coming Soon!
-            Level 3 -> More Information Coming Soon!
-            Level 4 -> More Information Coming Soon!
+            12 locations - each location has a different question topic
+            3 correct answers per location == 1 Badge
+            12 Badges == Level Up! :)
 
-            All 12 locations in Level 1 are accessible to you! You can switch between rooms to move to the next room. Please click the Map button to view how each rooms are connected.
-            If you need a little push to answer the questions, there is a Hint button available that will get you close to the correct answer.
-            A timer is available that lets you know how much time was taken to answer a particular question and to earn a badge in each room. Challenge yourself to beat your timings while answering more and more questions!!
+            Hints are available, also a 'Help' button and 'Map' button to view the location map
 
-            The trick to proceed to the next Level is to earn all badges in the previous level! Good luck on your learning adventure!
+            In each location - you can either change location or answer a question
+            You do not need to answer all the questions in a room to change locations.
+            There is a timer - to keep you answering quickly
+
+            Challenge yourself to beat your timings while answering more and more questions!!
+
+            More Levels... Coming Soon!
+
+            Good luck on your learning adventure!
 
         </welcomeInstruction>
         <helpScreen>
-            Click the buttons on the left to select answer.
+          Answer Question, get Hint, move Locations, or Quit
 
-            Click Submit to check if the answer you selected is correct or incorrect.
+            Lower Left on Main Screen:
+          press button next to correct answer
+          press Submit
+          press Hint button to see a hint
 
-            Answer the question or move locations by clicking next location buttons located on lower right corner.
+            Lower Right on Main Screen
+          press the location buttons
+          press Map button
 
-            Press Hint button to see hints for the question.
+          Quit :( - Lower Right Bottom Center
+          press Quit button to quit the game.
 
-            Click Map button to view the Game Map.
-
-            Click Quit button to quit the game.
+            3 Correct Answers (same Topic) == 1 Badge :)
+            12 Badges = Level Up!
         </helpScreen>
     </textLines>
 </Texts>

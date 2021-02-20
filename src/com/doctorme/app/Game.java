@@ -145,7 +145,7 @@ possibilities are endless, host your own trivia night :)
         String currLocalDescrip = location.getDescription();
         String typeLocal = location.getType();
         gooey.updateCurrentLocation(location.getName());
-        gooey.updateLocationDescription("Subject: " + typeLocal + "\n" + "View: " + currLocalDescrip);
+        gooey.updateLocationDescription("Topic: " + typeLocal + "\n" + "View: " + currLocalDescrip);
         gooey.updateNextLocations(location.getRoomLeadTo());
     }
 
