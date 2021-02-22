@@ -20,7 +20,7 @@ public class QuestionGenerator {
     }
 
     // SET LIST OF QUESTIONS FOR CURRENT ROOM
-    public List<Question> currentRoomQs(Location location, List<Question> localQL) {
+    public List<Question> currentRoomQs(Location location) {
         List<Question> currentRoomQues = questionsByType(location.getType());
         return currentRoomQues;
     }
@@ -47,7 +47,7 @@ public class QuestionGenerator {
         if (roomQs.isEmpty()) {
             currQ = dummyQuest();
         } else {
-            currentRoomQs(location, roomQs); // set this rooms questions
+            currentRoomQs(location); // set this rooms questions
             currQ = randoQuestion(roomQs); // return one random q from the roomQs list
         }
         return currQ;
@@ -79,16 +79,8 @@ public class QuestionGenerator {
         return currQ;
     }
 
-    public QuestionList getQl() {
-        return ql;
-    }
-
     public List<Question> getListQ() {
         return listQ;
-    }
-
-    public List<Question> getCurrentRoomQues() {
-        return currentRoomQues;
     }
 }
 
