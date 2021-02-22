@@ -52,7 +52,7 @@ public class GameGUI implements ActionListener {
         setHasSubmittedAnswer(false);
         setBackgroundHexColor("#ADC7D9");  // #146EB4 (darker blue), #F9F3E6 (linen)
         setLocationHexColor("#242F41"); // #043769
-        setButtonHexColor("#ff0000");
+        setButtonHexColor("#F3A847");
         setTextHexColor("#242F41");
         setPanelHexColor("#F7F7F7");
         helpText = new JTextArea();
@@ -117,7 +117,7 @@ public class GameGUI implements ActionListener {
         enterGameBtn.setText("Enter Game");
         enterGameBtn.setFont(BUTTON_FONT);
         enterGameBtn.setBackground(Color.red);
-//        enterGameBtn.setBackground(Color.decode(getButtonHexColor()));
+        enterGameBtn.setBackground(Color.decode(getButtonHexColor()));
         enterGameBtn.setForeground(Color.decode(getLocationHexColor()));
         enterGameBtn.setVisible(true);
         enterGameBtn.addActionListener(this);
