@@ -46,7 +46,6 @@ public class LocationGenerator {
         return (int) (Math.random() * local);
     }
 
-
     // ACCESSORS
     public LocationList getLl() {
         return ll;
