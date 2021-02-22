@@ -13,7 +13,7 @@ public class QuestionGenerator {
     private List<Question> currentRoomQues = new ArrayList<>();
     private Question currQ = new Question();
 
-    // STOCK QUESTION LIST - expansion possible for user or desinger selected 'topics or level' - alternate xmls
+    // STOCK QUESTION LIST - expansion possible for user or designer selected 'topics or level' - alternate xmls
     public void bringQuestions() {
 
         listQ = ql.allQuestions();
