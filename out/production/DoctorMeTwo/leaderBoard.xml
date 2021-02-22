@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<leaderBoard>
+    <playerInfo>
+        <name>Lucy</name>
+        <points>0</points>
+        <badges>[]</badges>
+        <name>Lucy</name>
+        <points>10</points>
+        <badges>[]</badges>
+        <name>Lucy</name>
+        <points>20</points>
+        <badges>[]</badges>
+        <name>Lucy</name>
+        <points>30</points>
+        <badges>[Astronomy]</badges>
+        <name>Lucy</name>
+        <points>40</points>
+        <badges>[Astronomy]</badges>
+        <name>Lucy</name>
+        <points>50</points>
+        <badges>[Astronomy]</badges>
+        <name>Lucy</name>
+        <points>60</points>
+        <badges>[Astronomy]</badges>
+        <name>Lucy</name>
+        <points>70</points>
+        <badges>[Astronomy, Human Body]</badges>
+    </playerInfo>
+</leaderBoard>

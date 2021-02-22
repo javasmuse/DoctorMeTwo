@@ -1,10 +1,12 @@
 package com.doctorme.util;
 
 import com.doctorme.entities.Location;
+import com.doctorme.xmlreadwrite.XMLReader;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +14,16 @@ public class LocationList {
     // FIELDS
     XMLReader xmlR = new XMLReader();
 
-    public List<Location> allLocations(String file, String nodeNameXML) {
+    public List<Location> allLocations() {
 
         List<Location> locations = new ArrayList<>();
+        // Used to readXML in JAR
+        InputStream is = getClass().getClassLoader().getResourceAsStream("locations.xml");
+        String nodeNameXML = "location";
 
         // pass in file link and node name in a call on XMLReader to return a node list of Questions
         // block level fields
-        NodeList locaNod = xmlR.readXMLFiles("resources/locations.xml", "location");  // change to call from Game w/ choice of xml and sub in correct file with args
+        NodeList locaNod = xmlR.readXMLFiles(is, nodeNameXML);  // change to call from Game w/ choice of xml and sub in correct file with args
         String adjacentRoom, direction, name, type, description;
         int len, id, tierLevel;
         Node node;

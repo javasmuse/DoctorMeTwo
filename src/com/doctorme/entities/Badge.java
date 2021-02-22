@@ -19,19 +19,23 @@ public class Badge {
 
     //*************** CONSTRUCTORS/ DESTRUCTORS ***************
     public Badge(){
-        setName("NULL");
-        setImageFile("NULL");
     }
 
     public Badge(String name) {
         setName(name);
-        setImageFile("NULL");
     }
 
     public Badge(String name, String imageFile) {
         setName(name);
         setImageFile(imageFile);
     }
+    public Badge(String name, String imageFile, String type, String hexColor) {
+        setName(name);
+        setType(type);
+        setImageFile(imageFile);
+        setHexColor(hexColor);
+    }
+
 
     //*************** ACCESSOR METHODS ***************
     public String getName() {
@@ -48,6 +52,22 @@ public class Badge {
 
     private void setImageFile(String imageFile) {
         this.imageFile = imageFile;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    private void setType(String type) {
+        this.type = type;
+    }
+
+    public String getHexColor() {
+        return hexColor;
+    }
+
+    private void setHexColor(String hexColor) {
+        this.hexColor = hexColor;
     }
 
     @Override

@@ -5,18 +5,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class QuestionListTest {
-    QuestionList qlTest = new QuestionList();
-    String fileName = "resources/questionsLevelOne";
-    String nodeName = "question";
+
+    QuestionList questionList = new QuestionList();
 
     @Test
-    public void allQuestions() {
-        assertNotNull(qlTest.allQuestions(fileName, nodeName));
+    public void allQuestionsValidList() {
+        assertNotNull(questionList.allQuestions());
     }
-
-    @Test
-    public void answerToQuestions() {
-        assertEquals("astronomy", qlTest.allQuestions(fileName, nodeName).get(2).getType());
-    }
-
 }

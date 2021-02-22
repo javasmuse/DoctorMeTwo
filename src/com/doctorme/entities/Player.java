@@ -18,7 +18,6 @@ public class Player {
 
     //*************** CONSTRUCTORS/ DESTRUCTORS ***************
     public Player(){
-        setName("NULL");
         setPoints(0);
         badges = new ArrayList<>();
     }
@@ -36,11 +35,12 @@ public class Player {
     }
 
     //*************** HELPER METHODS ***************
-    public void addBadge(Badge newBadge){
+    public boolean addBadge(Badge newBadge){
         if (!hasBadge(newBadge)){
             badges.add(newBadge);
+            return true;
         }else{
-            System.out.println("Player already has the " + newBadge + " badge!");
+            return false;
         }
     }
 

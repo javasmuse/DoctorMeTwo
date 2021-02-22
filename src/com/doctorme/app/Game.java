@@ -1,49 +1,47 @@
 package com.doctorme.app;
 
 import com.doctorme.GUI.GameGUI;
-import com.doctorme.entities.Badge;
-import com.doctorme.entities.Location;
-import com.doctorme.entities.Player;
-import com.doctorme.entities.Question;
+import com.doctorme.entities.*;
 import com.doctorme.util.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Game {
 
-    // TODO: flow of game is controlled here
+/*
+Controller for a quiz game -
+current game has 12 locations, 60 questions, 5 questions per room
+game can be expanded or changed by changing the question, location, and game text xml files
+possibilities are endless, host your own trivia night :)
+ */
 
     // FIELDS
-    private String fileName; // useful to allow user to choose different sets of questions or different rooms, also can be used to level up with insertion of more xml
+    private String fileName; // Expansion - to allow user to choose different sets of questions or different rooms, also can be used to level up with insertion of more xml
     private String nodeNameXML; // same as above comment
     // available lists - questions, locations
-    private List<Question> listQs = new ArrayList<>();     // list of questions
-    private List<Location> listLocas = new ArrayList<>();  // list of locations
-    private List<Badge> badges = new ArrayList<>();
-    // access - question list, location list
-    private QuestionList ql = new QuestionList();
-    private LocationList ll = new LocationList();
-    private QuestionGenerator qg = new QuestionGenerator();
-    private LocationGenerator lg = new LocationGenerator();
-    private Player currentPlayer = new Player();
-    private ConvertAnswer conAns = new ConvertAnswer();
-    private GameTextGenerator gtg = new GameTextGenerator();
-    private Boolean keepGoing = true;
-//    private Badge badge = new Badge("badge1");
-    private int currQpoints;
-    private int currentGameScore = 0;
 
+    private final List<Badge> badges = new ArrayList<>(); // list of badges
+    // access other classes
+    private final QuestionGenerator qg = new QuestionGenerator();
+    private final LocationGenerator lg = new LocationGenerator();
+    private final Player currentPlayer = new Player();
+    private final ConvertAnswer conAns = new ConvertAnswer();
+    private final GameTextGenerator gtg = new GameTextGenerator();
+    private final HashMap<String, Integer> categoryPoints = new HashMap<>();
+    private int currentLevel;
 
     // START HERE
     public void startGame() {
-        // instantiate and start the GUI
+        // instantiate and start the GUI, send in the welcome and instruction text from game text generator
         GameGUI gooey = new GameGUI(gtg.printWelcome(), gtg.printIntro(), gtg.printInstructions());
+        gooey.updateHelpScreenText(gtg.printGameScreenHelpInstruction());
 
+        setCurrentLevel(1);
         lg.bringLocations(); // set locations
         qg.bringQuestions(); // set questions
-
-        // STRETCH GOAL - user given option to choose 'topic' or 'level' and enter their name - before entering game loop
+        setBadges(new BadgeGenerator().allBadges());
 
         while (!gooey.isEnteredGame()) {  //wait for player to exit initial setup, then set initial values
 
@@ -55,7 +53,7 @@ public class Game {
         }
 
         // INITIALIZE - first location and question in GUI
-        // current location - randomized start, same map, changeable if fixed starter preferred
+        // current location - randomized start, same map, changeable if fixed starter room preferred
         Location location = lg.startLocation();  // calls to location generator and returns a random room
 
         // initialize question and location fields for first display
@@ -65,51 +63,66 @@ public class Game {
         stockLocation(gooey, location);
         // SET SCORE IN GUI
         gooey.setCurrentScore(0);
-
         // update GUI
         gooey.guiUpdate();
 
-        while (keepGoing) {     //there will be a sys exit when player hits quit (for now)
-            // if the player clicks the "next question" button
-            Location currentLocation = location;
-
-            // allows pause for code to enter if
+        while (true) {
+            // allows pause for code to enter if statement
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
             }
 
-//  TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
-//  TODO: CHECK IF USER ANSWERED CORRECTLY removed that one from the room question list
-//  TODO: update score (if necessary). Still needs to be implemented in GUI
-
+            // if the player clicks the 'submit' button under questions
             if (gooey.isHasSubmittedAnswer()) {
+                // if correct answer, remove question and assign points / badge
                 if (gooey.hadCorrectAnswer()) {
-                    setCurrentGameScore(getCurrentGameScore() + currQpoints);
+                    qg.removeCorrAnsQuest();
+
+                    // grab current question object, check type, and generate points and/or badge
+                    String questType = qg.getCurrQ().getType().toLowerCase();
+
+                    if(categoryPoints.containsKey(questType)){
+                        categoryPoints.put(questType,categoryPoints.get(questType)+(currentLevel * 10));
+                    }
+                    else{
+                        categoryPoints.put(questType, currentLevel * 10);
+                    }
+
+                    if(categoryPoints.get(questType)>=30){
+                        if (awardBadge(questType)) gooey.setBadges(currentPlayer.getBadges());
+                    }
+                    setCurrentGameScore(getCurrentGameScore() + currentLevel * 10);
                     gooey.setCurrentScore(getCurrentGameScore());
-                    //TODO: CHECK IF USER ANSWERED CORRECTLY remove that one from the room question list
+                    gooey.setBadgeProgress(categoryPoints.get(questType) / (currentLevel * 10));
+
+                    // if wrong answer
                 }else{
                     gooey.setHasSubmittedAnswer(false);
                 }
+
+                // if user clicks 'next question'
             }else if (gooey.isReadyForNextQuestion()) {
-                System.out.println("ready");
-//             TODO: get values from GUI and store them, i.e. whether player answered correctly, if they want to change rooms, etc
                 // set next Question object in GUI
                 stockNextQuestion(gooey, location);
-
                 // update GUI
                 gooey.guiUpdate();
+
+                // if user clicks on a location
             } else if (gooey.isWantsToChangeLocation()) {
 
                 // retrieves location name from GUI button press - send String locationName to Location generator for next location to retrieve object location
                 location = lg.nextLocation((gooey.getNextLocation()));
-                System.out.println(location.getName());
 
                 // use new location to reset room and questions
                 stockLocation(gooey, location);
                 stockNextQuestion(gooey, location);
-
+                if (categoryPoints.get(location.getType().toLowerCase()) != null){
+                    gooey.setBadgeProgress(categoryPoints.get(location.getType().toLowerCase()) / (currentLevel * 10));
+                }else{
+                    gooey.setBadgeProgress(0);
+                }
                 gooey.guiUpdate();
             }
         }
@@ -118,7 +131,6 @@ public class Game {
     // STOCK THE QUESTION OBJECT
     private void stockNextQuestion(GameGUI gooey, Location location) {
         Question currQ = qg.nextQuestion(location);
-        currQpoints = currQ.getPoints();
         gooey.updateQuestion(currQ.getQuestion());
         gooey.updateOptionA(currQ.getPossibleAnswers().get(0));
         gooey.updateOptionB(currQ.getPossibleAnswers().get(1));
@@ -126,54 +138,56 @@ public class Game {
         gooey.updateOptionD(currQ.getPossibleAnswers().get(3));
         gooey.setCorrectAnswer(conAns.convertCorrectAns(currQ.getCorrectAnswer()));
         gooey.updateHintText(currQ.getHint());
-        gooey.updateCurrentLocation(location.getName());
-
     }
 
     // STOCK THE LOCATION OBJECT
     private void stockLocation(GameGUI gooey, Location location) {
-        Location currL = location;
-
-        String currLocalDescrip = currL.getDescription();
-        String typeLocal = currL.getType();
-        gooey.updateCurrentLocation(currL.getName());  // added in attempt to get name
-        gooey.updateLocationDescription("Subject: " + typeLocal + "\n" + "View of room: " + currLocalDescrip);
+        String currLocalDescrip = location.getDescription();
+        String typeLocal = location.getType();
+        gooey.updateCurrentLocation(location.getName());
+        gooey.updateLocationDescription("Topic: " + typeLocal + "\n" + "View: " + currLocalDescrip);
         gooey.updateNextLocations(location.getRoomLeadTo());
-
-
     }
 
+    /* QUESTION METHODS  are all in the Question Generator
+    LOCATION METHODS are all in the Location Generator
+    GAME TEXT is in the Game Text Generator*/
 
-   /* SHOW LOCATION AND QUESTIONS - TYPICAL 'PLAY SCENE'
-   --- while loop through
-   --- changing location and available questions
-   --- recording questions - asked & answered
-   --- awarding and tracking player points and badges
-   --- track requirements to 'level up' - send to 'end of this level - celebrate screen'
-    */
-    // IN CODE RE-FACTOR FROM ORIGINAL - RETAIN THEIR README && USE ONE OF THEIR QUESTIONS FOR FINAL QUESTION && REUSE SOME CODE
-
-    // STOCK QUESTION AND LOCATION LISTS- expansion possible for user selected 'topics or level' - alternate xmls
-
-    /* QUESTION METHODS  are all in the Question Generator*/
-    /* LOCATION METHODS are all in the Location Generator */
-
-    public void awardBadge() {
-//        if (currentPlayer.getPoints() == 30) {  // changed to 30 - bite sized and keeping in mind creating a winnable game in short time for presentation
-//            //Would need to create a list of Badges to keep track of what badges is earned by a player? - Player.Badges List
-//            System.out.println(currentPlayer.getName() + "has earned " + badge.getName());
-//            badges.add(badge);
-//        }
+    // BADGE AND SCORE UPDATES
+    public boolean awardBadge(String questType) {
+        for(Badge bad : badges){
+            if(bad.getType().toLowerCase().equals(questType)){
+                return currentPlayer.addBadge(bad);
+            }
+        }
+        return false;
     }
-
 
     //Getter and Setter
-
     public int getCurrentGameScore() {
-        return currentGameScore;
+        return currentPlayer.getPoints();
     }
 
     public void setCurrentGameScore(int currentGameScore) {
-        this.currentGameScore = currentGameScore;
+        currentPlayer.setPoints(currentGameScore);
+    }
+
+    public List<Badge> getBadges() {
+        return badges;
+    }
+
+    private void setBadges(List<Badge> badges) {
+        this.badges.clear();
+        for(Badge badge: badges){
+            this.badges.add(badge);
+        }
+    }
+
+    private int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    private void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }

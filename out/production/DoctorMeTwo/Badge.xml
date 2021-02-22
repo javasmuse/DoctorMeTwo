@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Badge>
+<Badge>
+    <badges>
+        <name>Astronomy</name>
+        <imageFile>astronomy.png</imageFile>
+        <type>Astronomy</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Human Body</name>
+        <imageFile>body.png</imageFile>
+        <type>Body</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Physics</name>
+        <imageFile>physics.png</imageFile>
+        <type>Physics</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Math</name>
+        <imageFile>mathematics.png</imageFile>
+        <type>Mathematics</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>U.S. History</name>
+        <imageFile>usHistory.png</imageFile>
+        <type>US History</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Java</name>
+        <imageFile>java.png</imageFile>
+        <type>Java</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>World Capitals</name>
+        <imageFile>worldCapital.png</imageFile>
+        <type>World Capitals</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Geology</name>
+        <imageFile>geology.png</imageFile>
+        <type>Geology</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Spanish</name>
+        <imageFile>spanish.png</imageFile>
+        <type>Spanish</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Nutrition</name>
+        <imageFile>nutrition.png</imageFile>
+        <type>Nutrition</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Zoology</name>
+        <imageFile>zoology.png</imageFile>
+        <type>Zoology</type>
+        <hexColor></hexColor>
+    </badges>
+    <badges>
+        <name>Sociology</name>
+        <imageFile>sociology.png</imageFile>
+        <type>Sociology</type>
+        <hexColor></hexColor>
+    </badges>
+</Badge>

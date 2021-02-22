@@ -1,10 +1,12 @@
 package com.doctorme.util;
 
 import com.doctorme.entities.Question;
+import com.doctorme.xmlreadwrite.XMLReader;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +16,15 @@ public class QuestionList {
     XMLReader xmlR = new XMLReader();
 
     // GENERATE LIST OF QUESTIONS FROM XML - call and pass in desired params (i.e. filename and node name)
-    public List<Question> allQuestions(String file, String nodeNameXML) {
+    public List<Question> allQuestions() {
 
         List<Question> questions = new ArrayList<>();
+        // ALLOWS EXPORT TO JAR
+        InputStream is = getClass().getClassLoader().getResourceAsStream("questionsLevelOne.xml");
+        String nodeNameXML = "questions";
 
         // pass in file link and node name in a call on XMLReader to return a node list of Questions
-        NodeList questNod = xmlR.readXMLFiles("resources/questionsLevelOne.xml", "questions");
+        NodeList questNod = xmlR.readXMLFiles(is, nodeNameXML);
 
         // iterate through the node list to extract each question and store it in an object list of questions
         for (int i = 0; i < questNod.getLength(); i++) {

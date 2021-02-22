@@ -1,40 +1,38 @@
 package com.doctorme.util;
 
 import com.doctorme.entities.Location;
-import com.doctorme.entities.Question;
 
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: this class - currently all kinds of junk - fix me
-
 public class LocationGenerator {
     private LocationList ll = new LocationList();
     private List<Location> listLocas = new ArrayList<>();
-    private String fileName; // available for future use to allow user or designer to choose or change files
-    private String nodeNameXML; // ditto ^
     private Location currLoc;
-//    private Location current = listLocas.get(1);
 
     // STOCK LOCATION LIST - expansion possible for user or designer selected 'topics or level' - alternate xmls
     public void bringLocations() {
-        fileName = "resources/locations.xml";
-        nodeNameXML = "location";
-        listLocas = ll.allLocations(fileName, nodeNameXML);
+        listLocas = ll.allLocations();
     }
 
-    public Location startLocation(){
-        return  randoLocation(listLocas);
+    // start location from a random choice from the list
+    public Location startLocation() {
+        return randoLocation(listLocas);
     }
 
-    public Location nextLocation(String locationName){
+    // move to next room
+    public Location nextLocation(String locationName) {
 
         for (int i = 0; i < listLocas.size(); i++) {
-            if(locationName.equals(listLocas.get(i).getName())) {
-               currLoc = listLocas.get(i);
-               return currLoc;
+            if (locationName.equals("?????")) {
+                locationName = "Secret Room";
+            }
+            if (locationName.equals(listLocas.get(i).getName())) {
+                currLoc = listLocas.get(i);
+                return currLoc;
             }
         }
+
         return currLoc;
     }
 
@@ -44,13 +42,21 @@ public class LocationGenerator {
     }
 
     // RANDOM number generator
-    public int randomNumber(int local){
-        return (int)(Math.random() * local);
+    public int randomNumber(int local) {
+        return (int) (Math.random() * local);
     }
 
 
+    // ACCESSORS
+    public LocationList getLl() {
+        return ll;
+    }
 
+    public List<Location> getListLocas() {
+        return listLocas;
+    }
 
-
-
+    public Location getCurrLoc() {
+        return currLoc;
+    }
 }
