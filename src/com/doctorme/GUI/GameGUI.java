@@ -296,9 +296,10 @@ public class GameGUI implements ActionListener {
         congratulationsLabel.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         nextLevelContent.add(congratulationsLabel);
 
+        InputStream isWin = getClass().getClassLoader().getResourceAsStream("images/congratulations.png");
         BufferedImage congratsImg = null;
         try{
-            congratsImg = ImageIO.read(new File("resources/images/congratulations.png"));
+            congratsImg = ImageIO.read(isWin);
         }
         catch(IOException e){
             e.printStackTrace();
@@ -791,9 +792,10 @@ public class GameGUI implements ActionListener {
 //        gameMap.setBorder(BorderFactory.createLineBorder(Color.decode(getLocationHexColor())));
         mapContent.add(gameMap);
 
+        InputStream isMap = getClass().getClassLoader().getResourceAsStream("images/gameMap.png");
         BufferedImage mapImg = null;
         try{
-            mapImg = ImageIO.read(new File("resources/images/gameMap.png"));
+            mapImg = ImageIO.read(isMap);
         }
         catch(IOException e){
             e.printStackTrace();
